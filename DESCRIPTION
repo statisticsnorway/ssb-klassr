@@ -1,0 +1,13 @@
+Package: klassR
+Type: Package
+Title: KLASS CLASSIFICATIONS FOR STATISTICS NORWAY
+Version: 0.1.0
+Author: Susie Jentoft, Lisa Li, Diana-Cristina Iancu
+Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
+Description: Retrieves KLASS classifications from Statistics Norway's API www.ssb.no/klass.
+    Retrieves classifications by date with options to choose language, heirarchical level and formatting.
+Imports: tm, httr, jsonlite
+License: Apache License 2.0 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
