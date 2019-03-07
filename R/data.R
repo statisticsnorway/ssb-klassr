@@ -1,6 +1,6 @@
 #' Testdata for KLASS package
 #'
-#' A dataset containing variables for testing of Statistics Norways classification API with the KLASS package. Some observations are missing or incorrect for testing and demonstrations.
+#' A dataset containing variables for testing of Statistics Norways classification API with the klassR package. Some observations are missing or incorrect for testing and demonstrations.
 #'
 #' @format A data frame containing 100 rows and 7 variables:
 #' \describe{
