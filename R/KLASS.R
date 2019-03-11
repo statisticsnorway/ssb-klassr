@@ -33,13 +33,14 @@ MakeChar <- function(x){
 #' @export
 #'
 #' @examples
-#' load(testdata)
-#' testdata$kommune_names <- KLASS(x = testdata$kommune, klass = 131)
+#' data(klassdata)
+#' klassdata$kommune_names <- KLASS(x = klassdata$kommune, klass = 131)
+#' klassdata$nace_names <- KLASS(x = klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
+
 KLASS <- function(x,
                   klass,
                   date = NULL,
                   correspond = NULL,
-                 # changes = NULL,
                   language = "nb",
                   output_level = NULL,
                   output = "name",
