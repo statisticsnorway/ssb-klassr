@@ -56,6 +56,13 @@ klass_data <- GetKLASS(klass = "131", date = "2007-01-01")
 input_level <- levelCheck(x = klassdata$kommune2, klass_data = klass_data)
 formattering(x = klassdata$kommune2, input_level = input_level, klass = 131, klass_data=klass_data)
 
+# Levels
+klass_data <- GetKLASS(klass = "6")
+Levels(input_level = 5, output_level = 2, klass_data = klass_data)
+
+klass_data <- GetKLASS(klass = "6")
+Levels(input_level = 5, output_level = c(2, 3), klass_data = klass_data)
+
 
 # Bruk av hoved funksjon
 klassdata$nacenames <- KLASS(klassdata$nace5, klass = 6)
