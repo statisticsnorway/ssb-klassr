@@ -59,11 +59,8 @@ formattering(x = klassdata$kommune2, input_level = input_level, klass = 131, kla
 
 # Bruk av hoved funksjon
 klassdata$nacenames <- KLASS(klassdata$nace5, klass = 6)
-klassdata$nacenames2 <- KLASS(klassdata$nace5, klass = 6, date = "2015-01-01")
-klassdata$nacenames3 <- KLASS(klassdata$nace5, klass = 6, date = "2015-01-01",
-                         output_level = 2, language = "en") ### Not wokring
-klassdata$nacenames4 <- KLASS(klassdata$nace5, klass = 6, date = "2015-01-01",
-                             output_level = 2, output = "both") ### Not wokring
+klassdata$nacenames2 <- KLASS(klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
+klassdata$nacenames3 <- KLASS(x=klassdata$nace5, klass = 6, output_level = 2) 
 
 klassdata$kommunenames <- KLASS(klassdata$kommune, klass = 131)
 klassdata$kommunenames2 <- KLASS(klassdata$kommune, klass = 131, date = "2015-01-01")
@@ -71,8 +68,6 @@ klassdata$kommunenames3 <- KLASS(klassdata$kommune, klass = 131, date = c("2015-
 klassdata$kommunenames4 <- KLASS(klassdata$kommune, klass = 131, date = c("2015-01-01", "2010-01-01"), correspond = TRUE)
 klassdata$kommunecode2 <- KLASS(klassdata$kommune, klass = 131, output = "code",
                                 date = c("2015-01-01", "2019-01-01"), correspond = TRUE)
-klassdata$kommunecode3 <- KLASS(klassdata$kommune, klass = 131, output = "code",
-                                date = c("2015-01-01", "2010-02-01"))
 
 klassdata$occupation_names <- KLASS(klassdata$occupation, klass = 7, date = "2015-01-01")
 klassdata$occupation_names <- KLASS(klassdata$occupation, klass = 7, format = F)
