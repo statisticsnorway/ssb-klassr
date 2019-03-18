@@ -1,6 +1,6 @@
 Package: klassR
 Type: Package
-Title: KLASS CLASSIFICATIONS FOR STATISTICS NORWAY
+Title: Klass Classifications For Statistics Norway
 Version: 0.1.0
 Author: Susie Jentoft, Lisa Li, Diana-Cristina Iancu
 Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
