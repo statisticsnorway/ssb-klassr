@@ -18,9 +18,9 @@ input_level
 checking which level input data is
 }
 \examples{
-sn <- GetKLASS(klass = "6", date = "2007-01-01")
+sn <- GetKlass(klass = "6", date = "2007-01-01")
 levelCheck(x = klassdata$nace5, klass_data = sn)
 
-sn <- GetKLASS(klass = "7", date = "2007-01-01")
+sn <- GetKlass(klass = "7", date = "2007-01-01")
 levelCheck(x = klassdata$occupation, klass_data = sn)
 }

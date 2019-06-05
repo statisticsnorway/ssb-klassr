@@ -20,9 +20,9 @@ Data frame with the input and extra desired classification levels. Includes code
 Title
 }
 \examples{
-klass_data <- GetKLASS(klass = "6")
+klass_data <- GetKlass(klass = "6")
 Levels(input_level = 5, output_level = 2, klass_data = klass_data)
 
-klass_data <- GetKLASS(klass = "6")
+klass_data <- GetKlass(klass = "6")
 Levels(input_level = 5, output_level = c(2, 3), klass_data = klass_data)
 }
