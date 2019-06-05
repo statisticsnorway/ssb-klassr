@@ -20,15 +20,15 @@ splitChar <- function(x, dot){
 #' @param klass_data - the right formatting to the classification levels
 #' @return vector of character
 #' @examples
-#' klass_data <- GetKLASS(klass = "6", date = "2007-01-01")
+#' klass_data <- GetKlass(klass = "6", date = "2007-01-01")
 #' input_level <- levelCheck(x = klassdata$nace5, klass_data = klass_data)
 #' formattering(x = klassdata$nace5, input_level = input_level, klass = 6, klass_data=klass_data)
 #'
-#' klass_data <- GetKLASS(klass = "7", date = "2007-01-01")
+#' klass_data <- GetKlass(klass = "7", date = "2007-01-01")
 #' input_level <- levelCheck(x = klassdata$occupation, klass_data = klass_data)
 #' formattering(x = klassdata$occupation, input_level = input_level, klass = 7, klass_data=klass_data)
 #'
-#' klass_data <- GetKLASS(klass = "131", date = "2007-01-01")
+#' klass_data <- GetKlass(klass = "131", date = "2007-01-01")
 #' input_level <- levelCheck(x = klassdata$occupation, klass_data = klass_data)
 #' formattering(x = klassdata$kommune2, input_level = input_level, klass = 131, klass_data=klass_data)
 #'
@@ -85,10 +85,10 @@ formattering <- function(x, input_level, klass, klass_data){
   }
 
   if (riktig != 0 | mangler0 != 0 | miss != 0 | manglerDot != 0){
-    warning(c("antall riktige: ", riktig))
-    warning(c("antall mangler 0:", mangler0))
-    warning(c("antall mangler .:" , manglerDot))
-    warning(c("antall satt som missing:", miss))
+   # warning(c("Number correct: ", riktig)) # Fungere ikke for andre variabel enn nace
+    warning(c("Number missing leading 0:", mangler0))
+    warning(c("Number missing .:" , manglerDot))
+    warning(c("Number of NA:", miss))
   }
 
   return(verdi)

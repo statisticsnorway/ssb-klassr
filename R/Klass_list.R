@@ -31,10 +31,10 @@ GetUrl <- function(url){
 #' @export
 #'
 #' @examples
-#' K <- KlassList(codelists = TRUE)
+#' K <- ListKlass(codelists = TRUE)
 #' View(K)
-KlassList <- function(codelists = FALSE){
-  fams <- FamilyList()$family_nr
+ListKlass <- function(codelists = FALSE){
+  fams <- ListFamily()$family_nr
   Klist <- data.frame(klass_name = NA, klass_nr = NA, klass_family = NA, klass_type = NA)
   code <- ifelse(codelists, "?includeCodelists=true", "")
   for (i in fams){
@@ -60,11 +60,11 @@ KlassList <- function(codelists = FALSE){
 #' @export
 #'
 #' @examples
-#' FamilyList()
-#' FamilyList(codelists=TRUE)
-#' FamilyList(family = 1)
-#' FamilyList(family = 1, codelists = TRUE)
-FamilyList <- function(family=NULL, codelists = FALSE){
+#' ListFamily()
+#' ListFamily(codelists=TRUE)
+#' ListFamily(family = 1)
+#' ListFamily(family = 1, codelists = TRUE)
+ListFamily <- function(family=NULL, codelists = FALSE){
   code <- ifelse(codelists, "?includeCodelists=true", "")
   if (is.null(family)){
     url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies', code, sep="")
@@ -143,7 +143,7 @@ GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
     }
   } else {
     family = MakeChar(family)
-    fam <- FamilyList(family, codelists = TRUE)
+    fam <- ListFamily(family, codelists = TRUE)
     vers <- NULL
     klass_nr <- NULL
     for (i in fam$klass_nr){
@@ -201,7 +201,7 @@ GetName <- function(version){
 #' GetFamily(klass = 7)
 GetFamily <- function(klass){
   klass <- MakeChar(klass)
-  K <- KlassList(codelists = TRUE)
+  K <- ListKlass(codelists = TRUE)
   m <- match(klass, K$klass_nr)
   return(K$klass_family[m])
  }
@@ -267,7 +267,7 @@ CorrespondList <- function(klass, date = NULL){
   row.names(dt2) <- NULL
   dt2$target_klass[dt2$source_klass == dt2$target_klass] <- NA #dropping target for tables within version
 
-  if (any(is.na(dt2$target_klass))) warning("\n\n There are correspondence tables within classification ",klass," (between different time points). Use the changes = TRUE option in the KLASS and GetKLASS functions to get these\n ")
+  if (any(is.na(dt2$target_klass))) warning("\n\n There are correspondence tables within classification ",klass," (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n ")
   return(dt2)
 }
 

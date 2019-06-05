@@ -34,10 +34,10 @@ MakeChar <- function(x){
 #'
 #' @examples
 #' data(klassdata)
-#' klassdata$kommune_names <- KLASS(x = klassdata$kommune, klass = 131)
-#' klassdata$nace_names <- KLASS(x = klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
+#' klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131)
+#' klassdata$nace_names <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
 
-KLASS <- function(x,
+ApplyKlass <- function(x,
                   klass,
                   date = NULL,
                   correspond = NULL,
@@ -58,19 +58,19 @@ KLASS <- function(x,
   type <- ifelse(isTRUE(correspond), "change", type)
 
   # Ta ut klass tabell
-  klass_data <- GetKLASS(klass, date=date, correspond = NULL,
+  klass_data <- GetKlass(klass, date=date, correspond = NULL,
                          language = language, output_level = NULL)
 
   #Ta ut korrespond tabell
   if (type == "kor"){
-  cor_table <- GetKLASS(klass, date=date, correspond = correspond,
+  cor_table <- GetKlass(klass, date=date, correspond = correspond,
                         language = language)#, output_level = output_level)
 
-  new_table <- GetKLASS(klass = correspond, date=date, correspond = NULL,
+  new_table <- GetKlass(klass = correspond, date=date, correspond = NULL,
                         language = language)#, output_level = output_level)
   }
   if (type == "change"){
-    cor_table <- GetKLASS(klass = klass, date=date, correspond = TRUE,
+    cor_table <- GetKlass(klass = klass, date=date, correspond = TRUE,
                           language = language, output_level = NULL)
   }
 

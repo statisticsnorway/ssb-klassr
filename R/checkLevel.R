@@ -3,10 +3,10 @@
 #' @param x - vector of character
 #' @param klass_data - - the right formatting to the classification levels
 #' @examples
-#' sn <- GetKLASS(klass = "6", date = "2007-01-01")
+#' sn <- GetKlass(klass = "6", date = "2007-01-01")
 #' levelCheck(x = klassdata$nace5, klass_data = sn)
 #'
-#' sn <- GetKLASS(klass = "7", date = "2007-01-01")
+#' sn <- GetKlass(klass = "7", date = "2007-01-01")
 #' levelCheck(x = klassdata$occupation, klass_data = sn)
 #' @return input_level
 

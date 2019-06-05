@@ -78,19 +78,19 @@ GetUrl2 <- function(url){
 #'
 #' @examples
 #' # Get classification for occupation classifications
-#' GetKLASS(klass = "7")
+#' GetKlass(klass = "7")
 #' # Get classification for occupation classifications in English
-#' GetKLASS(klass = "7", language = "en")
+#' GetKlass(klass = "7", language = "en")
 #' # Get classifications for level 2 only
-#' GetKLASS(klass = "7", output_level = 2)
+#' GetKlass(klass = "7", output_level = 2)
 #' # Get classifications for level 2 only valid on a specified date of between two dates
-#' GetKLASS(klass = "7", output_level = 2, date = "2007-01-01")
-#' GetKLASS(klass = "7", date = c("2007-01-01", "2018-01-01"))
+#' GetKlass(klass = "7", output_level = 2, date = "2007-01-01")
+#' GetKlass(klass = "7", date = c("2007-01-01", "2018-01-01"))
 #' # Get correspondence table between two occupation classifications
-#' GetKLASS(klass = "145", correspond = "7", date = "2018-01-01")
+#' GetKlass(klass = "145", correspond = "7", date = "2018-01-01")
 #' #Get correspondence table between two dates for municipality
-#' GetKLASS(klass = "131", correspond = TRUE, date = c("2015-01-01", "2019-01-01")
-GetKLASS <- function(klass,
+#' GetKlass(klass = "131", correspond = TRUE, date = c("2015-01-01", "2019-01-01")
+GetKlass <- function(klass,
                       date = NULL,
                       correspond = NULL,
                       output_level = NULL,
@@ -161,8 +161,8 @@ GetKLASS <- function(klass,
 
   if (grepl("not found", klass_text)){
     stop("No KLASS table was found for KLASS number ", klass,".
-    Please try again with a diferent KLASS number.
-    For a list of possible KLASS's use the function KlassList() or FamilyList()")
+    Please try again with a different KLASS number.
+    For a list of possible KLASS's use the function ListKlass() or ListFamily()")
   }
   if (grepl("not published in language", klass_text)){
     stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
