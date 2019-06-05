@@ -50,6 +50,13 @@ sn <- GetKlass(klass = "131", date = "2007-01-01")
 lev <- levelCheck(x = klassdata$kommune2, klass_data = klass_data)
 formattering(x = klassdata$kommune2, input_level = lev, klass = 131, klass_data = sn)
 
+# Levels
+klass_data <- GetKLASS(klass = "6")
+Levels(input_level = 5, output_level = 2, klass_data = klass_data)
+
+klass_data <- GetKLASS(klass = "6")
+Levels(input_level = 5, output_level = c(2, 3), klass_data = klass_data)
+
 
 # Apply a classification code to a variable
 klassdata$nacenames <- ApplyKlass(klassdata$nace5, klass = 6)
