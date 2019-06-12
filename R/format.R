@@ -3,7 +3,7 @@
 #' insert missing dots to the right place in a string
 #' @param x - character with missing dots
 #' @param dot - the place of missing dots
-#' @return
+#' @return value
 splitChar <- function(x, dot){
   code_mod <- unlist(strsplit(x, split=""))
   for( j in 1:length(dot)){
