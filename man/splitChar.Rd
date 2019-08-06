@@ -11,6 +11,9 @@ splitChar(x, dot)
 
 \item{dot}{- the place of missing dots}
 }
+\value{
+a string is returned with the insertion of a formatted period (.) in the specifed location.
+}
 \description{
 insert missing dots to the right place in a string
 }

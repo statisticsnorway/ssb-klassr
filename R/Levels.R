@@ -8,13 +8,10 @@
 #'
 #' @return Data frame with the input and extra desired classification levels. Includes codes and names for each level.
 #' @export
-#'
 #' @examples
 #' klass_data <- GetKlass(klass = "6")
-#' Levels(input_level = 5, output_level = 2, klass_data = klass_data)
-#'
-#' klass_data <- GetKlass(klass = "6")
-#' Levels(input_level = 5, output_level = c(2, 3), klass_data = klass_data)
+#' Levels(input_level = 5, output_level = 2, klass_data = klass_data)[1:10, ]
+#' Levels(input_level = 5, output_level = c(2, 3), klass_data = klass_data)[1:10, ]
 
 Levels <- function(input_level, output_level, klass_data) {
 

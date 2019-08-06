@@ -7,15 +7,11 @@
 MakeChar(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{a number or vector of numbers}
 }
 \value{
 x converted to a string or vector of strings.
 }
 \description{
 Conversion to character
-}
-\examples{
-MakeChar(2)
-MakeChar(c(2,3,5))
 }

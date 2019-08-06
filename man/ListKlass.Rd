@@ -18,6 +18,5 @@ Classification list
 Get a full list of all classifications and codelists
 }
 \examples{
-K <- ListKlass(codelists = TRUE)
-View(K)
+head(ListKlass(codelists = TRUE))
 }

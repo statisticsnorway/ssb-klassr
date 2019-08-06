@@ -3,7 +3,7 @@
 #' insert missing dots to the right place in a string
 #' @param x - character with missing dots
 #' @param dot - the place of missing dots
-#' @return
+#' @return a string is returned with the insertion of a formatted period (.) in the specifed location.
 splitChar <- function(x, dot){
   code_mod <- unlist(strsplit(x, split=""))
   for( j in 1:length(dot)){
@@ -20,6 +20,7 @@ splitChar <- function(x, dot){
 #' @param klass_data - the right formatting to the classification levels
 #' @return vector of character
 #' @examples
+#' \dontrun{
 #' klass_data <- GetKlass(klass = "6", date = "2007-01-01")
 #' input_level <- levelCheck(x = klassdata$nace5, klass_data = klass_data)
 #' formattering(x = klassdata$nace5, input_level = input_level, klass = 6, klass_data=klass_data)
@@ -31,6 +32,7 @@ splitChar <- function(x, dot){
 #' klass_data <- GetKlass(klass = "131", date = "2007-01-01")
 #' input_level <- levelCheck(x = klassdata$occupation, klass_data = klass_data)
 #' formattering(x = klassdata$kommune2, input_level = input_level, klass = 131, klass_data=klass_data)
+#' }
 #'
 #'
 #' @export
@@ -94,16 +96,3 @@ formattering <- function(x, input_level, klass, klass_data){
   return(verdi)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

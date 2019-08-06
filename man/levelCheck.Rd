@@ -12,12 +12,14 @@ levelCheck(x, klass_data)
 \item{klass_data}{- - the right formatting to the classification levels}
 }
 \value{
-input_level
+The heirachical level of the input data is returned.
 }
 \description{
 checking which level input data is
 }
 \examples{
+data(klassdata)
+
 sn <- GetKlass(klass = "6", date = "2007-01-01")
 levelCheck(x = klassdata$nace5, klass_data = sn)
 

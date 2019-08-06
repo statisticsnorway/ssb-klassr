@@ -2,13 +2,16 @@
 #' checking which level input data is
 #' @param x - vector of character
 #' @param klass_data - - the right formatting to the classification levels
+#' @return The heirachical level of the input data is returned.
+#' @export
 #' @examples
+#' data(klassdata)
+#' 
 #' sn <- GetKlass(klass = "6", date = "2007-01-01")
 #' levelCheck(x = klassdata$nace5, klass_data = sn)
 #'
 #' sn <- GetKlass(klass = "7", date = "2007-01-01")
 #' levelCheck(x = klassdata$occupation, klass_data = sn)
-#' @return input_level
 
 levelCheck <- function(x, klass_data){
 

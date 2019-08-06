@@ -1,6 +1,6 @@
 
 #' Internal function to check date
-#' @param d Date
+#' @param date Date
 #' @return NULL
 CheckDate <- function(date){
   dcheck <- try(as.Date(date, format= "%Y-%m-%d"))
@@ -68,7 +68,7 @@ GetUrl2 <- function(url){
 #' @param correspond Number/string of the target correspondence (if a correspondence table is requested).
 #' @param output_level Number/string specifying the requested heirachy level (optional).
 #' @param language Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classificatio.)
-#' @param output String varibale for the output type. Default is "normal" and only option currently prorammed
+#' @param output_style String varibale for the output type. Default is "normal" and only option currently prorammed
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -78,18 +78,20 @@ GetUrl2 <- function(url){
 #'
 #' @examples
 #' # Get classification for occupation classifications
-#' GetKlass(klass = "7")
+#' head(GetKlass(klass = "7"))
 #' # Get classification for occupation classifications in English
-#' GetKlass(klass = "7", language = "en")
+#' head(GetKlass(klass = "7", language = "en"))
 #' # Get classifications for level 2 only
-#' GetKlass(klass = "7", output_level = 2)
+#' head(GetKlass(klass = "7", output_level = 2))
 #' # Get classifications for level 2 only valid on a specified date of between two dates
-#' GetKlass(klass = "7", output_level = 2, date = "2007-01-01")
-#' GetKlass(klass = "7", date = c("2007-01-01", "2018-01-01"))
+#' head(GetKlass(klass = "7", output_level = 2, date = "2007-01-01"))
+#' head(GetKlass(klass = "7", date = c("2007-01-01", "2018-01-01")))
+#' \dontrun{
 #' # Get correspondence table between two occupation classifications
 #' GetKlass(klass = "145", correspond = "7", date = "2018-01-01")
 #' #Get correspondence table between two dates for municipality
-#' GetKlass(klass = "131", correspond = TRUE, date = c("2015-01-01", "2019-01-01")
+#' GetKlass(klass = "131", correspond = TRUE, date = c("2015-01-01", "2019-01-01"))
+#' }
 GetKlass <- function(klass,
                       date = NULL,
                       correspond = NULL,

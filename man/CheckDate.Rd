@@ -7,7 +7,7 @@
 CheckDate(date)
 }
 \arguments{
-\item{d}{Date}
+\item{date}{Date}
 }
 \description{
 Internal function to check date

@@ -22,7 +22,7 @@ ApplyKlass(x, klass, date = NULL, correspond = NULL, language = "nb",
 
 \item{output}{String describing output. May be "name" (default), "code" or "both".}
 
-\item{format}{Run formatting av input vector x (Default = TRUE), important to check if formatting is in one level.}
+\item{format}{Logical for whther to run formatting av input vector x (Default = TRUE), important to check if formatting is in one level.}
 }
 \value{
 A vector or data frame is returned with names and/or code of the desired output level.
@@ -32,6 +32,7 @@ Match and convert a classification
 }
 \examples{
 data(klassdata)
-klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131)
-klassdata$nace_names <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
+klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, format=FALSE)
+klassdata$name <- ApplyKlass(x = klassdata$nace5, klass = 6, language = "en", format=FALSE)
+klassdata$name2 <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", format=FALSE)
 }

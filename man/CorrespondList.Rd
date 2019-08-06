@@ -20,7 +20,8 @@ Correspondence list
 Print a list of correspondence tables for a given klass with source and target IDs
 }
 \examples{
+\dontrun{
 CorrespondList("7")
-CorrespondList("131")
-CorrespondList("131", date="2016-01-01") #ta litt tid for å finne og koble alle
+CorrespondList("131", date = "2016-01-01") 
+}
 }

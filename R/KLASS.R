@@ -1,11 +1,8 @@
 #' Conversion to character
 #'
-#' @param x
+#' @param x a number or vector of numbers
 #'
 #' @return x converted to a string or vector of strings.
-#' @examples
-#' MakeChar(2)
-#' MakeChar(c(2,3,5))
 MakeChar <- function(x){
   if (length(x) == 1){
     xnew <- as.character(x)
@@ -27,15 +24,16 @@ MakeChar <- function(x){
 #' @param language Default "nb" for Norwegian (Bokmål). Also "nn" (Nynorsk) and "en" (English available for some classifications)
 #' @param output_level Desired output level
 #' @param output String describing output. May be "name" (default), "code" or "both".
-#' @param format Run formatting av input vector x (Default = TRUE), important to check if formatting is in one level.
+#' @param format Logical for whther to run formatting av input vector x (Default = TRUE), important to check if formatting is in one level.
 #'
 #' @return A vector or data frame is returned with names and/or code of the desired output level.
 #' @export
 #'
 #' @examples
 #' data(klassdata)
-#' klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131)
-#' klassdata$nace_names <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", language = "en")
+#' klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, format=FALSE)
+#' klassdata$name <- ApplyKlass(x = klassdata$nace5, klass = 6, language = "en", format=FALSE)
+#' klassdata$name2 <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", format=FALSE)
 
 ApplyKlass <- function(x,
                   klass,

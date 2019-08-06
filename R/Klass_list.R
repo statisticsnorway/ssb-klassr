@@ -31,8 +31,8 @@ GetUrl <- function(url){
 #' @export
 #'
 #' @examples
-#' K <- ListKlass(codelists = TRUE)
-#' View(K)
+#' head(ListKlass(codelists = TRUE))
+
 ListKlass <- function(codelists = FALSE){
   fams <- ListFamily()$family_nr
   Klist <- data.frame(klass_name = NA, klass_nr = NA, klass_family = NA, klass_type = NA)
@@ -98,7 +98,7 @@ ListFamily <- function(family=NULL, codelists = FALSE){
 #' @examples
 #' SearchKlass("yrke")
 #' SearchKlass("yrke", codelists = TRUE)
-#' SearchKlass("yrke", codelists = TRUE, size = 50)
+#' SearchKlass("yrke", codelists = TRUE, size = 2)
 #' SearchKlass("*fold")
 SearchKlass <- function(query, codelists = FALSE, size = 20){
   query <- as.character(query)
@@ -126,7 +126,7 @@ SearchKlass <- function(query, codelists = FALSE, size = 20){
 #' GetVersion(7)
 #' GetVersion(7, "2010-01-01")
 #' GetVersion(family = 1)
-#' GetVersion(family = 1, klassNr = TRUE)
+#' GetVersion(family = 1, klassNr = TRUE)[1:10,]
 GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
   if(is.null(date)) date <- Sys.Date()
   if(is.null(family)){
@@ -178,7 +178,7 @@ return(vers)
 #'
 #' @examples
 #' GetName("33")
-#' GetName(GetVersion(family = 1))
+#' head(GetName(GetVersion(family = 1)))
 GetName <- function(version){
   version <- MakeChar(version)
   vernames = NULL
@@ -220,9 +220,10 @@ GetFamily <- function(klass){
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' CorrespondList("7")
-#' CorrespondList("131")
-#' CorrespondList("131", date="2016-01-01") #ta litt tid for å finne og koble alle
+#' CorrespondList("131", date = "2016-01-01") 
+#' }
 
 CorrespondList <- function(klass, date = NULL){
   cat("Finding correspondence tables ...")
