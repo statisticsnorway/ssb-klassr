@@ -20,7 +20,7 @@ Correspondence list
 Print a list of correspondence tables for a given klass with source and target IDs
 }
 \examples{
-\dontrun{
+\donttest{
 CorrespondList("7")
 CorrespondList("131", date = "2016-01-01") 
 }
