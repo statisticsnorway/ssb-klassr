@@ -125,8 +125,10 @@ SearchKlass <- function(query, codelists = FALSE, size = 20){
 #' @examples
 #' GetVersion(7)
 #' GetVersion(7, "2010-01-01")
+#' \donttest{
 #' GetVersion(family = 1)
 #' GetVersion(family = 1, klassNr = TRUE)[1:10,]
+#' }
 GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
   if(is.null(date)) date <- Sys.Date()
   if(is.null(family)){
@@ -178,7 +180,6 @@ return(vers)
 #'
 #' @examples
 #' GetName("33")
-#' head(GetName(GetVersion(family = 1)))
 GetName <- function(version){
   version <- MakeChar(version)
   vernames = NULL
@@ -220,7 +221,7 @@ GetFamily <- function(klass){
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' CorrespondList("7")
 #' CorrespondList("131", date = "2016-01-01") 
 #' }
