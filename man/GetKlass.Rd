@@ -41,7 +41,7 @@ head(GetKlass(klass = "7", output_level = 2))
 # Get classifications for level 2 only valid on a specified date of between two dates
 head(GetKlass(klass = "7", output_level = 2, date = "2007-01-01"))
 head(GetKlass(klass = "7", date = c("2007-01-01", "2018-01-01")))
-\dontrun{
+\donttest{
 # Get correspondence table between two occupation classifications
 GetKlass(klass = "145", correspond = "7", date = "2018-01-01")
 #Get correspondence table between two dates for municipality

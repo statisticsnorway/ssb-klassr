@@ -17,5 +17,4 @@ Get the name of a classification version
 }
 \examples{
 GetName("33")
-head(GetName(GetVersion(family = 1)))
 }
