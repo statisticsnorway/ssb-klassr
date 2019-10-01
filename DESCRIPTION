@@ -7,7 +7,7 @@ Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
 Description: Functions to search, retrieve and apply classifications 
   and codelists using Statistics Norway's API <https://www.ssb.no/klass> 
   from the system 'KLASS'. Retrieves classifications by date with options 
-  to choose language, heirarchical level and formatting.
+  to choose language, hierarchical level and formatting.
 Imports: tm, httr, jsonlite
 BugReports: https://github.com/statisticsnorway/klassR/issues
 License: Apache License 2.0
