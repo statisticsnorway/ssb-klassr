@@ -5,7 +5,7 @@
 #' @param parentcode Name of variable of parent code (Default = "parentCode")
 #' @param level Name of variable containing level (Default = "level")
 #'
-#' @return A dataata frame
+#' @return A dataframe
 ConvertTable <- function(klass_data, code = "code", parentcode = "parentCode", level= "level"){
     levelset  <- as.numeric(max(klass_data[,level]))
     uni <- unique(klass_data[klass_data[, level]  == levelset, code])
