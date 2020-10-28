@@ -151,6 +151,7 @@ GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
     for (i in fam$klass_nr){
       url <- paste("http://data.ssb.no/api/klass/v1/classifications/", i, sep="")
       df <- as.data.frame(GetUrl(url)$versions)
+      if (length(df) == 0) next() # Check if there is a valid version number
       if(is.null(df$validTo)) df$validTo <- as.character(Sys.Date() + 1)
       df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
       for (j in 1:nrow(df)){
@@ -269,7 +270,9 @@ CorrespondList <- function(klass, date = NULL){
   row.names(dt2) <- NULL
   dt2$target_klass[dt2$source_klass == dt2$target_klass] <- NA #dropping target for tables within version
 
-  if (any(is.na(dt2$target_klass))) warning("\n\n There are correspondence tables within classification ",klass," (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n ")
+  if (any(is.na(dt2$target_klass))) message("\n\n There are correspondence tables within classification ", 
+                                            klass,
+                                            " (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n ")
   return(dt2)
 }
 
