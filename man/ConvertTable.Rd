@@ -21,7 +21,7 @@ ConvertTable(
 \item{level}{Name of variable containing level (Default = "level")}
 }
 \value{
-A dataata frame
+A dataframe
 }
 \description{
 Code level convert table (internal function)
