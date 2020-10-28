@@ -4,8 +4,16 @@
 \alias{ApplyKlass}
 \title{Match and convert a classification}
 \usage{
-ApplyKlass(x, klass, date = NULL, correspond = NULL, language = "nb",
-  output_level = NULL, output = "name", format = TRUE)
+ApplyKlass(
+  x,
+  klass,
+  date = NULL,
+  correspond = NULL,
+  language = "nb",
+  output_level = NULL,
+  output = "name",
+  format = TRUE
+)
 }
 \arguments{
 \item{x}{Input vector}

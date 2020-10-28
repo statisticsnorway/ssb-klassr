@@ -4,8 +4,15 @@
 \alias{MakeUrl}
 \title{Internal function to create URL address}
 \usage{
-MakeUrl(klass, correspond = NULL, type = "vanlig", fratil = FALSE,
-  date = NULL, output_level_coding = NULL, language_coding = NULL)
+MakeUrl(
+  klass,
+  correspond = NULL,
+  type = "vanlig",
+  fratil = FALSE,
+  date = NULL,
+  output_level_coding = NULL,
+  language_coding = NULL
+)
 }
 \arguments{
 \item{klass}{Classification number}
