@@ -40,7 +40,5 @@ Match and convert a classification
 }
 \examples{
 data(klassdata)
-klassdata$kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, format=FALSE)
-klassdata$name <- ApplyKlass(x = klassdata$nace5, klass = 6, language = "en", format=FALSE)
-klassdata$name2 <- ApplyKlass(x = klassdata$nace5, klass = 6, date = "2015-01-01", format=FALSE)
+kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, language = "en", format=FALSE)
 }

@@ -20,8 +20,5 @@ Classification family list
 Print a list of all families and the number of classifications in each
 }
 \examples{
-ListFamily()
-ListFamily(codelists=TRUE)
 ListFamily(family = 1)
-ListFamily(family = 1, codelists = TRUE)
 }

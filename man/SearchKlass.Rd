@@ -21,7 +21,4 @@ Search Klass
 }
 \examples{
 SearchKlass("yrke")
-SearchKlass("yrke", codelists = TRUE)
-SearchKlass("yrke", codelists = TRUE, size = 2)
-SearchKlass("*fold")
 }
