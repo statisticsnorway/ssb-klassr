@@ -1,11 +1,11 @@
 #' Check which level input data/vector is
 #' 
-#' The input level is calculated as the mode (most common) heirarcichal 
+#' The input level is calculated as the mode (most common) hierarchical 
 #' level in the input vector.
 #' 
 #' @param x - vector of character
 #' @param klass_data - - the right formatting to the classification levels
-#' @return The heiracichal level of the input data is returned. 
+#' @return The hierarchical level of the input data is returned. 
 #' @export
 #' @examples
 #' data(klassdata)
