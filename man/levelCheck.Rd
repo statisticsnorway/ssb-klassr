@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkLevel.R
 \name{levelCheck}
 \alias{levelCheck}
-\title{checking which level input data is}
+\title{Check which level input data/vector is}
 \usage{
 levelCheck(x, klass_data)
 }
@@ -12,17 +12,15 @@ levelCheck(x, klass_data)
 \item{klass_data}{- - the right formatting to the classification levels}
 }
 \value{
-The heirachical level of the input data is returned.
+The hierarchical level of the input data is returned.
 }
 \description{
-checking which level input data is
+The input level is calculated as the mode (most common) hierarchical 
+level in the input vector.
 }
 \examples{
 data(klassdata)
 
 sn <- GetKlass(klass = "6", date = "2007-01-01")
 levelCheck(x = klassdata$nace5, klass_data = sn)
-
-sn <- GetKlass(klass = "7", date = "2007-01-01")
-levelCheck(x = klassdata$occupation, klass_data = sn)
 }
