@@ -81,17 +81,6 @@ GetUrl2 <- function(url){
 #' head(GetKlass(klass = "7"))
 #' # Get classification for occupation classifications in English
 #' head(GetKlass(klass = "7", language = "en"))
-#' # Get classifications for level 2 only
-#' head(GetKlass(klass = "7", output_level = 2))
-#' # Get classifications for level 2 only valid on a specified date of between two dates
-#' head(GetKlass(klass = "7", output_level = 2, date = "2007-01-01"))
-#' head(GetKlass(klass = "7", date = c("2007-01-01", "2018-01-01")))
-#' \donttest{
-#' # Get correspondence table between two occupation classifications
-#' GetKlass(klass = "145", correspond = "7", date = "2018-01-01")
-#' #Get correspondence table between two dates for municipality
-#' GetKlass(klass = "131", correspond = TRUE, date = c("2015-01-01", "2019-01-01"))
-#' }
 GetKlass <- function(klass,
                       date = NULL,
                       correspond = NULL,
