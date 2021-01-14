@@ -13,6 +13,7 @@ CheckDate <- function(date){
 #'
 #' @param klass Classification number
 #' @param correspond Target number for correspondence table
+#' @param variant The name of the variant of the classification
 #' @param type String describing type. "vanlig" for normal classification and "kor" for correspondence. Default = "vanlig"
 #' @param fratil True/False for whether a date interval is to be used. Default = False
 #' @param date Date(s) for classification
@@ -21,24 +22,43 @@ CheckDate <- function(date){
 #'
 #' @return String url adress
 
-MakeUrl <- function(klass, correspond = NULL, type="vanlig", fratil=FALSE, date=NULL, output_level_coding=NULL, language_coding=NULL){
-  if (type == "vanlig" & fratil == FALSE){
-    coding <- paste("/codesAt?date=", date, sep="")
-  }
+MakeUrl <- function(klass, correspond = NULL, variant = NULL,
+                    type="vanlig", 
+                    fratil=FALSE, date=NULL, 
+                    output_level_coding=NULL, 
+                    language_coding=NULL){
+  print(fratil)
+  print(date)
+  # Standard classification/codelist
   if (type == "vanlig" & fratil == TRUE){
-    coding <- paste("/codes?from=", date[1], "&to=", date[2], sep = "")
+      coding <- paste0("/codes?from=", date[1], "&to=", date[2])
   }
-  if (type == "kor" & fratil == FALSE){
-    coding <- paste("/correspondsAt?targetClassificationId=", MakeChar(correspond), "&date=", date, sep="")
+  if (type == "vanlig" & fratil == FALSE) {
+      coding <- paste0("/codesAt?date=", date)
   }
+  
+    # For correspondence tables
   if (type == "kor" & fratil == TRUE){
-    coding <- paste("/corresponds?targetClassificationId=", MakeChar(correspond), "&from=", date[1],"&to=", date[2], sep="")
+      coding <- paste("/corresponds?targetClassificationId=", MakeChar(correspond), "&from=", date[1],"&to=", date[2], sep="")
+    }
+  if (type == "kor" & fratil == FALSE){
+      coding <- paste("/correspondsAt?targetClassificationId=", MakeChar(correspond), "&date=", date, sep="")
   }
+  
+    # For time changes
   if (type == "change"){
     coding <- paste0("/changes?from=", date[1],"&to=", date[2])
   }
-
-  # Sett sammen til URL
+  
+    # For fetching a variant
+  if (type == "variant" & fratil == TRUE){
+      coding <- paste0("/variant?variantName=", variant, "&from=", date[1],"&to=", date[2])
+  }
+  if (type == "variant" & fratil == FALSE){
+      coding <- paste0("/variantAt?variantName=", variant, "&date=", date)
+  }
+  
+  # Paste together to an URL
   url <- paste("http://data.ssb.no/api/klass/v1/classifications/",
                klass,
                coding,
@@ -55,7 +75,7 @@ MakeUrl <- function(klass, correspond = NULL, type="vanlig", fratil=FALSE, date=
 #'
 #' @return text in json format
 GetUrl2 <- function(url){
-  hent_klass <- httr::GET (url) ## henter innholdet fra klass med acceptheader json
+  hent_klass <- httr::GET(url) ## henter innholdet fra klass med acceptheader json
   klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
   return(klass_text)
 }
@@ -66,7 +86,8 @@ GetUrl2 <- function(url){
 #' @param klass Number/string of the classification ID/number. (use Klass_list() to find this)
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param correspond Number/string of the target correspondence (if a correspondence table is requested).
-#' @param output_level Number/string specifying the requested heirachy level (optional).
+#' @param variant The classification variant to fetch (if a variant is wanted).
+#' @param output_level Number/string specifying the requested hierarchy level (optional).
 #' @param language Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classificatio.)
 #' @param output_style String varibale for the output type. Default is "normal" and only option currently prorammed
 #'
@@ -84,12 +105,15 @@ GetUrl2 <- function(url){
 GetKlass <- function(klass,
                       date = NULL,
                       correspond = NULL,
+                      variant = NULL,
                       output_level = NULL,
                       language = "nb",
                       output_style = "normal"){
 
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
+  type <- ifelse(is.null(variant), type, "variant")
+  print(type)
 
   # sjekk klass er char
   klass <- MakeChar(klass)
@@ -124,25 +148,31 @@ GetKlass <- function(klass,
   }
   if (length(date) > 2) stop("You have provided too many dates.")
 
-# Check levels
+  # Check levels
   if (is.null(output_level)) {
     output_level_coding <- ""
   } else {
     output_level_coding = paste("&selectLevel=", output_level, sep="")
   }
 
-  # Set spraak
+  # Set language coding
   language_coding = paste("&language=", language, sep="")
 
-  # kjor url og data ut
-  url <- MakeUrl(klass, correspond, type, fratil, date, output_level_coding, language_coding)
+  # Create url and collect data
+  print(date)
+  url <- MakeUrl(klass=klass, correspond=correspond, variant = variant,
+                 type=type, 
+                 fratil=fratil, date=date, output_level_coding=output_level_coding, 
+                 language_coding=language_coding)
+  print(url)
   klass_text <- GetUrl2(url)
 
   # sjekk at det finnes
   targetswap <- FALSE
   if (type == "kor" & grepl("no correspondence table", klass_text)){
     targetswap <- TRUE
-    url <- MakeUrl(klass=correspond, correspond = klass, type, fratil, date, output_level_coding, language_coding)
+    url <- MakeUrl(klass=correspond, correspond = klass, type=type, fratil=fratil, date=date, 
+                   output_level_coding=output_level_coding, language_coding=language_coding)
     klass_text <- GetUrl2(url)
     if (grepl("no correspondence table", klass_text)){
       stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
@@ -159,7 +189,8 @@ GetKlass <- function(klass,
     stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
     }
 
-  if (type == "vanlig"){
+  if (type %in% c("vanlig", "variant")){
+    print("right loop")
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes
     klass_data <- klass_data[, c("code", "parentCode", "level", "name")]
   }
@@ -182,5 +213,9 @@ GetKlass <- function(klass,
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
   }
+  #if (type == "variant"){
+  #  klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$classificationItems
+  #  klass_data <- klass_data[, c("code", "parentCode", "level", "name")]
+  #}
   return (as.data.frame(klass_data))
 }
