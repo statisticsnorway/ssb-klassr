@@ -35,6 +35,7 @@ MakeChar <- function(x){
 ApplyKlass <- function(x,
                   klass,
                   date = NULL,
+                  variant = NULL,
                   correspond = NULL,
                   language = "nb",
                   output_level = NULL,
@@ -51,6 +52,7 @@ ApplyKlass <- function(x,
 
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
+  type <- ifelse(is.null(variant), type, "variant")
 
   # Ta ut klass tabell
   klass_data <- GetKlass(klass, date=date, correspond = NULL,
