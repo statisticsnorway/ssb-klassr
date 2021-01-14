@@ -9,6 +9,7 @@ GetKlass(
   klass,
   date = NULL,
   correspond = NULL,
+  variant = NULL,
   output_level = NULL,
   language = "nb",
   output_style = "normal"
@@ -21,7 +22,9 @@ GetKlass(
 
 \item{correspond}{Number/string of the target correspondence (if a correspondence table is requested).}
 
-\item{output_level}{Number/string specifying the requested heirachy level (optional).}
+\item{variant}{The classification variant to fetch (if a variant is wanted).}
+
+\item{output_level}{Number/string specifying the requested hierarchy level (optional).}
 
 \item{language}{Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classificatio.)}
 

@@ -8,6 +8,7 @@ ApplyKlass(
   x,
   klass,
   date = NULL,
+  variant = NULL,
   correspond = NULL,
   language = "nb",
   output_level = NULL,
