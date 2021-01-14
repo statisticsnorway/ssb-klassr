@@ -13,7 +13,7 @@ CheckDate <- function(date){
 #'
 #' @param klass Classification number
 #' @param correspond Target number for correspondence table
-#' @param variant The name of the variant of the classification
+#' @param variant_name The name of the variant of the classification
 #' @param type String describing type. "vanlig" for normal classification and "kor" for correspondence. Default = "vanlig"
 #' @param fratil True/False for whether a date interval is to be used. Default = False
 #' @param date Date(s) for classification
@@ -22,13 +22,12 @@ CheckDate <- function(date){
 #'
 #' @return String url adress
 
-MakeUrl <- function(klass, correspond = NULL, variant = NULL,
+MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
                     type="vanlig", 
                     fratil=FALSE, date=NULL, 
                     output_level_coding=NULL, 
                     language_coding=NULL){
-  print(fratil)
-  print(date)
+  
   # Standard classification/codelist
   if (type == "vanlig" & fratil == TRUE){
       coding <- paste0("/codes?from=", date[1], "&to=", date[2])
@@ -52,10 +51,10 @@ MakeUrl <- function(klass, correspond = NULL, variant = NULL,
   
     # For fetching a variant
   if (type == "variant" & fratil == TRUE){
-      coding <- paste0("/variant?variantName=", variant, "&from=", date[1],"&to=", date[2])
+      coding <- paste0("/variant?variantName=", variant_name, "&from=", date[1],"&to=", date[2])
   }
   if (type == "variant" & fratil == FALSE){
-      coding <- paste0("/variantAt?variantName=", variant, "&date=", date)
+      coding <- paste0("/variantAt?variantName=", variant_name, "&date=", date)
   }
   
   # Paste together to an URL
@@ -68,6 +67,25 @@ MakeUrl <- function(klass, correspond = NULL, variant = NULL,
   )
   return(url)
 }
+
+#' Get variant name
+#' Internal function for fetching the variant name based on the number
+#' @param variant The variant number
+get_variant_name <- function(variant){
+  url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
+  variant_url <- httr::GET(url)
+  variant_text <- httr::content(variant_url, "text")
+  if (grepl("variant not found", klass_text)){
+    stop("The variant ", variant, " was not found.")
+  }
+  variant_name_full <- jsonlite::fromJSON(variant_text, flatten = TRUE)$name
+  name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
+  gsub(" ", "%20", name_sm)
+}
+if (grepl("does not have a variant named", klass_text)){
+  stop("The variant ", variant, " was not found for KLASS number ", klass)
+}
+
 
 #' Get json file from Url - alternative version
 #'
@@ -113,7 +131,6 @@ GetKlass <- function(klass,
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
   type <- ifelse(is.null(variant), type, "variant")
-  print(type)
 
   # sjekk klass er char
   klass <- MakeChar(klass)
@@ -159,12 +176,17 @@ GetKlass <- function(klass,
   language_coding = paste("&language=", language, sep="")
 
   # Create url and collect data
-  print(date)
-  url <- MakeUrl(klass=klass, correspond=correspond, variant = variant,
+  if (type == "variant"){
+    if(is.numeric(variant) | grepl("^[0-9]", variant)){
+      variant_name <- get_variant_name(variant)
+    } else {
+      variant_name <- gsub(" ", "%20", variant)
+    }
+  }
+  url <- MakeUrl(klass=klass, correspond=correspond, variant_name = variant_name,
                  type=type, 
                  fratil=fratil, date=date, output_level_coding=output_level_coding, 
                  language_coding=language_coding)
-  print(url)
   klass_text <- GetUrl2(url)
 
   # sjekk at det finnes
@@ -187,10 +209,12 @@ GetKlass <- function(klass,
   }
   if (grepl("not published in language", klass_text)){
     stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
-    }
+  }
+  if (grepl("does not have a variant named", klass_text)){
+    stop("The variant ", variant, " was not found for KLASS number ", klass)
+  }
 
   if (type %in% c("vanlig", "variant")){
-    print("right loop")
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes
     klass_data <- klass_data[, c("code", "parentCode", "level", "name")]
   }
@@ -213,9 +237,5 @@ GetKlass <- function(klass,
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
   }
-  #if (type == "variant"){
-  #  klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$classificationItems
-  #  klass_data <- klass_data[, c("code", "parentCode", "level", "name")]
-  #}
   return (as.data.frame(klass_data))
 }
