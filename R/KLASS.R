@@ -120,7 +120,7 @@ ApplyKlass <- function(x,
   }
 
   # velge format output
-  if (type == "vanlig"){
+  if (type %in% c("vanlig", "variant")){
     if (output == "code") vars <- paste("level", output_level, sep ="")
     if (output == "name") vars <- paste("name", output_level, sep="")
     if (output == "both") vars <- paste(c("level","name"), output_level, sep="")
