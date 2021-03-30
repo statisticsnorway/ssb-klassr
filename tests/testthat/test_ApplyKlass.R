@@ -54,18 +54,20 @@ test_that("Check levelCheck for character codes", {
 })
 
 
-test_that("ApplyKlass can return a variant calssification",{
+test_that("ApplyKlass can return a variant classification",{
   dat <- c('000','101','102','103')
   new <- ApplyKlass(dat,
              klass = 91,
              variant = 847,
+             output_level = 1,
+             output = "code",
              date = "2020-01-01")
   expect_equal(new[1], "0")
   new <- ApplyKlass(dat,
                     klass = 91,
                     variant = 847,
-                    date = "2020-01-01",
-                    output = "name")
+                    output_level = 1,
+                    date = "2020-01-01")
   expect_equal(new[2], "EU/EØS, USA, Canada, Australia og New Zealand")
 })
 
