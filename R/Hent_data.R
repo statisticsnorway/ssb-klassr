@@ -67,24 +67,44 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   )
   return(url)
 }
+#' Check connection
+#' Function to check that a connection to data.ssb.no is able to be established
+#' @param url String url address for connection to check
+#' @return Nothing is returned but a error or warning message is return if no connection is available
+check_connect <- function(url){
+  tryget <- tryCatch(
+    httr::GET(url = url),
+    error = function(e) conditionMessage(e),
+    warning = function(w) conditionMessage(w)
+  )
+  if (class(tryget) != "response"){
+    message(tryget)
+    return(invisible(NULL))
+  } else if (httr::http_error(tryget$status_code)){
+    message(paste("Connection failed with error code", tryget$status_code))
+    return(invisible(NULL))
+  }
+  tryget
+}
+
+
 
 #' Get variant name
 #' Internal function for fetching the variant name based on the number
 #' @param variant The variant number
 get_variant_name <- function(variant){
   url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
-  variant_url <- httr::GET(url)
+  #variant_url <- httr::GET(url)
+  variant_url <- check_connect(url)
   variant_text <- httr::content(variant_url, "text")
-  if (grepl("variant not found", klass_text)){
+  if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
   }
   variant_name_full <- jsonlite::fromJSON(variant_text, flatten = TRUE)$name
   name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
   gsub(" ", "%20", name_sm)
 }
-if (grepl("does not have a variant named", klass_text)){
-  stop("The variant ", variant, " was not found for KLASS number ", klass)
-}
+
 
 
 #' Get json file from Url - alternative version
@@ -93,7 +113,9 @@ if (grepl("does not have a variant named", klass_text)){
 #'
 #' @return text in json format
 GetUrl2 <- function(url){
-  hent_klass <- httr::GET(url) ## henter innholdet fra klass med acceptheader json
+  # henter innholdet fra klass med acceptheader json
+  #hent_klass <- httr::GET(url)
+  hent_klass <- check_connect(url)
   klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
   return(klass_text)
 }
