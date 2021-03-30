@@ -23,6 +23,8 @@ ApplyKlass(
 
 \item{date}{Date for classification (format = "YYYY-mm-dd"). Default is current date}
 
+\item{variant}{The classification variant to fetch (if a variant is wanted).}
+
 \item{correspond}{ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.}
 
 \item{language}{Default "nb" for Norwegian (Bokmål). Also "nn" (Nynorsk) and "en" (English available for some classifications)}
