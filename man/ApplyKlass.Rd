@@ -8,6 +8,7 @@ ApplyKlass(
   x,
   klass,
   date = NULL,
+  variant = NULL,
   correspond = NULL,
   language = "nb",
   output_level = NULL,
@@ -21,6 +22,8 @@ ApplyKlass(
 \item{klass}{Classification number}
 
 \item{date}{Date for classification (format = "YYYY-mm-dd"). Default is current date}
+
+\item{variant}{The classification variant to fetch (if a variant is wanted).}
 
 \item{correspond}{ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.}
 

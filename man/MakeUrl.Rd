@@ -7,6 +7,7 @@
 MakeUrl(
   klass,
   correspond = NULL,
+  variant_name = NULL,
   type = "vanlig",
   fratil = FALSE,
   date = NULL,
@@ -18,6 +19,8 @@ MakeUrl(
 \item{klass}{Classification number}
 
 \item{correspond}{Target number for correspondence table}
+
+\item{variant_name}{The name of the variant of the classification}
 
 \item{type}{String describing type. "vanlig" for normal classification and "kor" for correspondence. Default = "vanlig"}
 

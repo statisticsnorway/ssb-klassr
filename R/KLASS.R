@@ -20,6 +20,7 @@ MakeChar <- function(x){
 #' @param x Input vector
 #' @param klass Classification number
 #' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
+#' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param correspond ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.
 #' @param language Default "nb" for Norwegian (Bokmål). Also "nn" (Nynorsk) and "en" (English available for some classifications)
 #' @param output_level Desired output level
@@ -35,6 +36,7 @@ MakeChar <- function(x){
 ApplyKlass <- function(x,
                   klass,
                   date = NULL,
+                  variant = NULL,
                   correspond = NULL,
                   language = "nb",
                   output_level = NULL,
@@ -51,9 +53,10 @@ ApplyKlass <- function(x,
 
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
+  type <- ifelse(is.null(variant), type, "variant")
 
   # Ta ut klass tabell
-  klass_data <- GetKlass(klass, date=date, correspond = NULL,
+  klass_data <- GetKlass(klass, date=date, correspond = NULL, variant = variant,
                          language = language, output_level = NULL)
 
   #Ta ut korrespond tabell
@@ -88,11 +91,6 @@ ApplyKlass <- function(x,
     x_level <- Levels(input_level = input_level, output_level = output_level, klass_data = klass_data)
   }
 
-  #if (!all(input_level == output_level) & !is.null(correspond)){
-  #  stop ("Changing levels and  using correspondence tables not available yet")
-  #  x_level <- Levels(input_level = input_level, output_level = output_level, klass_data = new_table) ##
-  #}
-
   if (all(input_level == output_level)){
     x_level <- klass_data[klass_data$level == input_level, ]
     x_level[,paste("level", input_level, sep="")] <- x_level$code
@@ -102,7 +100,7 @@ ApplyKlass <- function(x,
 
   # kjøre matching
   levelcode <- paste("level", input_level, sep="")
-  if (type == "vanlig"){
+  if (type %in% c("vanlig", "variant")){
     m <- match(x_formatted, x_level[, levelcode]) ###sjekk rekkefolge
   }
 
@@ -118,7 +116,7 @@ ApplyKlass <- function(x,
   }
 
   # velge format output
-  if (type == "vanlig"){
+  if (type %in% c("vanlig", "variant")){
     if (output == "code") vars <- paste("level", output_level, sep ="")
     if (output == "name") vars <- paste("name", output_level, sep="")
     if (output == "both") vars <- paste(c("level","name"), output_level, sep="")
@@ -129,7 +127,7 @@ ApplyKlass <- function(x,
     if (output == "name") {vars <- "targetName"; vars2 <- "name"}
     if (output == "both") {vars <- c("targetCode","targetName"); vars2 <- c("code", "name")}
     out <- cor_table[m2, vars]
-    #out <- ifelse(!is.na(m2), cor_table[m2, vars], klass_data[m1, vars2])
+    
   }
   if (type == "change"){
     if (output == "code") {vars <- "targetCode"; vars2 <- "code"}
