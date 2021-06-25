@@ -1,0 +1,1 @@
+This repository is the R-package klassR. The package is designed to provide an easy interface to retrieving classifications from Statistic Norway's classification database. See <https://www.ssb.no/klass/> for details.
