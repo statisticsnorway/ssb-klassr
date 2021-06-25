@@ -110,15 +110,20 @@ get_variant_name <- function(variant){
 #' Get json file from Url - alternative version
 #'
 #' @param url String url address
+#' @param check Logical parameter on whether to check if the url exists
 #'
 #' @return text in json format
-GetUrl2 <- function(url){
+GetUrl2 <- function(url, check = TRUE){
   # henter innholdet fra klass med acceptheader json
-  #hent_klass <- httr::GET(url)
-  hent_klass <- check_connect(url)
+  if (check){
+    hent_klass <- check_connect(url)
+  } else {
+    hent_klass <- httr::GET(url = url)
+  }
   klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
   return(klass_text)
 }
+
 
 #' Fetch classification data
 #' Fetch Statistics Norway classification data using API
@@ -128,13 +133,13 @@ GetUrl2 <- function(url){
 #' @param correspond Number/string of the target correspondence (if a correspondence table is requested).
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
-#' @param language Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classificatio.)
-#' @param output_style String varibale for the output type. Default is "normal" and only option currently prorammed
+#' @param language Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
+#' @param output_style String varibale for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
 #' sourceCode, sourceName, targetCode and targetName. For time correspondence tables variables include:
-#' oldCode, oldName, newCode and newName.
+#' oldCode, oldName, newCode and newName. For "wide" output, code and name with level suffixes is specified.
 #' @export
 #'
 #' @examples
@@ -149,7 +154,8 @@ GetKlass <- function(klass,
                       output_level = NULL,
                       language = "nb",
                       output_style = "normal"){
-
+  
+  # create type of klassification for using later
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
   type <- ifelse(is.null(variant), type, "variant")
@@ -159,7 +165,8 @@ GetKlass <- function(klass,
 
   # dato sjekking
   if(is.null(date[1])) date <- Sys.Date()
-
+  
+  # Create variables fratil (whether to and from dates should be used) and ver
   if (length(date) == 1 & !is.numeric(date)){
     fratil <- FALSE# om det er dato fra og til
     ver <- FALSE# om det skal finne en versjon (not implemented yet)
@@ -172,6 +179,7 @@ GetKlass <- function(klass,
     # legg inn her hvordan å finne versjon
   }
 
+  # if two dates are provided, check both and check order. Swap if neccessary
   if (length(date) == 2){
     fratil <- TRUE
     ver <- FALSE
@@ -209,20 +217,25 @@ GetKlass <- function(klass,
                  type=type, 
                  fratil=fratil, date=date, output_level_coding=output_level_coding, 
                  language_coding=language_coding)
-  klass_text <- GetUrl2(url)
-
-  # sjekk at det finnes
-  targetswap <- FALSE
-  if (type == "kor" & grepl("no correspondence table", klass_text)){
-    targetswap <- TRUE
-    url <- MakeUrl(klass=correspond, correspond = klass, type=type, fratil=fratil, date=date, 
-                   output_level_coding=output_level_coding, language_coding=language_coding)
-    klass_text <- GetUrl2(url)
+  
+  if (type == "kor"){
+    klass_text <- GetUrl2(url, check = FALSE)
+    # sjekk at det finnes
+    targetswap <- FALSE
     if (grepl("no correspondence table", klass_text)){
-      stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
-           "For a list of valid correspondence tables use the function CorrespondList()")
+      targetswap <- TRUE
+      url <- MakeUrl(klass=correspond, correspond = klass, type=type, fratil=fratil, date=date, 
+                     output_level_coding=output_level_coding, language_coding=language_coding)
+      klass_text <- GetUrl2(url)
+      if (grepl("no correspondence table", klass_text)){
+        stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
+             "For a list of valid correspondence tables use the function CorrespondList()")
+      }
     }
+  } else {
+    klass_text <- GetUrl2(url)
   }
+  
 
   if (grepl("not found", klass_text)){
     stop("No KLASS table was found for KLASS number ", klass,".
@@ -259,5 +272,36 @@ GetKlass <- function(klass,
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
   }
-  return (as.data.frame(klass_data))
+  
+  if (output_style == "wide" & is.null(output_level) & is.null(correspond)){
+      # get maximum level
+      maxlength <- max(klass_data$level)
+      minlength <- min(klass_data$level)
+      
+      # check several levels exist
+      if (maxlength == minlength){
+        warning("Only one level was detected. Klassification returned with output_style normal. ")
+        return(as.data.frame(klass_data))
+      }
+      
+      # create most detailed level dataframe
+      wide_data <- klass_data[klass_data$level == maxlength, c("code", "name")]
+      names(wide_data) <- c(paste0("code",maxlength), paste0("name", maxlength))
+      
+      # loop through and match the other levels
+      for (i in (as.numeric(maxlength) - 1):minlength){
+        m1 <- match(wide_data[, paste0("code", (i+1))], klass_data$code)
+        m2 <- match(klass_data$parentCode[m1], klass_data$code)
+        tmp <- data.frame(klass_data$parentCode[m1], klass_data$name[m2])
+        names(tmp) <- c(paste0("code",i), paste0("name", i))
+        
+        # paste in wide format beside previous
+        wide_data <- cbind(wide_data, tmp)
+      }
+      
+      # rename as klass_data for return
+      klass_data <- wide_data
+  }
+  
+  as.data.frame(klass_data)
 }
