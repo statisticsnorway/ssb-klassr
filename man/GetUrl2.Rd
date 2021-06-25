@@ -4,10 +4,12 @@
 \alias{GetUrl2}
 \title{Get json file from Url - alternative version}
 \usage{
-GetUrl2(url)
+GetUrl2(url, check = TRUE)
 }
 \arguments{
 \item{url}{String url address}
+
+\item{check}{Logical parameter on whether to check if the url exists}
 }
 \value{
 text in json format

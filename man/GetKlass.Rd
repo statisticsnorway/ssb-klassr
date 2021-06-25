@@ -26,15 +26,15 @@ GetKlass(
 
 \item{output_level}{Number/string specifying the requested hierarchy level (optional).}
 
-\item{language}{Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classificatio.)}
+\item{language}{Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)}
 
-\item{output_style}{String varibale for the output type. Default is "normal" and only option currently prorammed}
+\item{output_style}{String varibale for the output type. Default is "normal". Specify "wide" for a wide formatted table output.}
 }
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:
 code, parentCode, level, and name for standard lists. For correspondence tables variables include:
 sourceCode, sourceName, targetCode and targetName. For time correspondence tables variables include:
-oldCode, oldName, newCode and newName.
+oldCode, oldName, newCode and newName. For "wide" output, code and name with level suffixes is specified.
 }
 \description{
 Fetch classification data
