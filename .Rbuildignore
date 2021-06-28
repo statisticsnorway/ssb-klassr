@@ -5,3 +5,5 @@ cran-comments.md
 ^\.Rhistory$
 ^\.git$
 ^\.Rproj$
+README.md
+push_bitbucket.bat
