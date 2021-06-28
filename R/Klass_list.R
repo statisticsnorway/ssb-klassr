@@ -26,6 +26,7 @@ GetUrl <- function(url){
 #' Get a full list of all classifications and codelists
 #'
 #' @param codelists True/False for whether to include codelists. Default = FALSE
+#' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en").
 #'
 #' @return A data frame containing a full list of classifications. The data frame includes the classification name, number, family and type.
 #' @export
@@ -33,10 +34,15 @@ GetUrl <- function(url){
 #' @examples
 #' head(ListKlass(codelists = TRUE))
 
-ListKlass <- function(codelists = FALSE){
+ListKlass <- function(codelists = FALSE, language = "nb"){
   fams <- ListFamily()$family_nr
   Klist <- data.frame(klass_name = NA, klass_nr = NA, klass_family = NA, klass_type = NA)
+
+  # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
+  code <- ifelse(code == "", paste0(code, "?language=", language), 
+                 paste0(code, "&language=", language))
+  
   for (i in fams){
     url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies/', i, code, sep ="")
     dt <- data.frame(GetUrl(url)$classifications)
@@ -55,14 +61,20 @@ ListKlass <- function(codelists = FALSE){
 #'
 #' @param family Input family ID number to get a list of classifications in that family
 #' @param codelists True/False for whether to include codelists. Default = FALSE
-#'
+#' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en").
 #' @return dataset containing a list of families
 #' @export
 #'
 #' @examples
 #' ListFamily(family = 1)
-ListFamily <- function(family=NULL, codelists = FALSE){
+ListFamily <- function(family=NULL, codelists = FALSE, language = "nn"){
+  
+  # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
+  code <- ifelse(code == "", paste0(code, "?language=", language), 
+                 paste0(code, "&language=", language))
+  
+  # If no family specified then show all families
   if (is.null(family)){
     url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies', code, sep="")
     dt <- data.frame(GetUrl(url)$'_embedded'$classificationFamilies)
@@ -70,6 +82,8 @@ ListFamily <- function(family=NULL, codelists = FALSE){
     dt2 <- data.frame(family_name = dt$name, family_nr = nums,
                       number_of_classifications = dt$numberOfClassifications)
   }
+  
+  # If a family is given the show classifications within that family
   if (!is.null(family)){
     family <- MakeChar(family)
     url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies/', family, code, sep ="")
