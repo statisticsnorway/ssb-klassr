@@ -5,12 +5,14 @@
 \title{Classification family list
 Print a list of all families and the number of classifications in each}
 \usage{
-ListFamily(family = NULL, codelists = FALSE)
+ListFamily(family = NULL, codelists = FALSE, language = "nn")
 }
 \arguments{
 \item{family}{Input family ID number to get a list of classifications in that family}
 
 \item{codelists}{True/False for whether to include codelists. Default = FALSE}
+
+\item{language}{Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en").}
 }
 \value{
 dataset containing a list of families

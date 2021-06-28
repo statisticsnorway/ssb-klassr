@@ -5,10 +5,12 @@
 \title{Classification list
 Get a full list of all classifications and codelists}
 \usage{
-ListKlass(codelists = FALSE)
+ListKlass(codelists = FALSE, language = "nb")
 }
 \arguments{
 \item{codelists}{True/False for whether to include codelists. Default = FALSE}
+
+\item{language}{Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en").}
 }
 \value{
 A data frame containing a full list of classifications. The data frame includes the classification name, number, family and type.
