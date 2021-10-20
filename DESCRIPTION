@@ -1,7 +1,7 @@
 Package: klassR
 Type: Package
 Title: Classifications and Codelists for Statistics Norway
-Version: 0.1.6
+Version: 0.1.7
 Author: Susie Jentoft, Lisa Li, Diana-Cristina Iancu
 Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
 Description: Functions to search, retrieve and apply classifications 
