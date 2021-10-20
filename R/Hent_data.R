@@ -87,6 +87,13 @@ check_connect <- function(url){
   tryget
 }
 
+#' Stop quietly function
+#' Stop from a function without an error. Used for stopping when no internet
+stop_quietly <- function() {
+  opt <- options(show.error.messages = FALSE)
+  on.exit(options(opt))
+  stop()
+}
 
 
 #' Get variant name
@@ -96,6 +103,7 @@ get_variant_name <- function(variant){
   url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
   #variant_url <- httr::GET(url)
   variant_url <- check_connect(url)
+  if (is.null(variant_url)) stop_quietly()
   variant_text <- httr::content(variant_url, "text")
   if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
@@ -120,6 +128,9 @@ GetUrl2 <- function(url, check = TRUE){
   } else {
     hent_klass <- httr::GET(url = url)
   }
+  if (is.null(hent_klass)){
+    return(invisible(NULL))
+  } 
   klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
   return(klass_text)
 }
@@ -231,11 +242,12 @@ GetKlass <- function(klass,
         stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
              "For a list of valid correspondence tables use the function CorrespondList()")
       }
+      if (is.null(klass_text)) stop_quietly()
     }
   } else {
     klass_text <- GetUrl2(url)
   }
-  
+  if (is.null(klass_text)) stop_quietly()  
 
   if (grepl("not found", klass_text)){
     stop("No KLASS table was found for KLASS number ", klass,".
