@@ -5,7 +5,7 @@
 \title{Classification family list
 Print a list of all families and the number of classifications in each}
 \usage{
-ListFamily(family = NULL, codelists = FALSE, language = "nn")
+ListFamily(family = NULL, codelists = FALSE, language = "nb")
 }
 \arguments{
 \item{family}{Input family ID number to get a list of classifications in that family}
