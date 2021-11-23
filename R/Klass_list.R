@@ -67,7 +67,7 @@ ListKlass <- function(codelists = FALSE, language = "nb"){
 #'
 #' @examples
 #' ListFamily(family = 1)
-ListFamily <- function(family=NULL, codelists = FALSE, language = "nn"){
+ListFamily <- function(family=NULL, codelists = FALSE, language = "nb"){
   
   # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
