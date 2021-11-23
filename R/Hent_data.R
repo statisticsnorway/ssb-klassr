@@ -100,17 +100,27 @@ stop_quietly <- function() {
 #' Internal function for fetching the variant name based on the number
 #' @param variant The variant number
 get_variant_name <- function(variant){
+  # Check variant url and that it exists
   url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
-  #variant_url <- httr::GET(url)
   variant_url <- check_connect(url)
   if (is.null(variant_url)) stop_quietly()
+  
+  # Extract text with variant name
   variant_text <- httr::content(variant_url, "text")
   if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
   }
   variant_name_full <- jsonlite::fromJSON(variant_text, flatten = TRUE)$name
-  name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
-  gsub(" ", "%20", name_sm)
+  # Earlier have just taken first word before numbers but this is not working so use whole name
+  # name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
+  
+  # Substitute for spaces, and norwegian characters
+  variant_name_full <- gsub(" ", "%20", variant_name_full)
+  variant_name_full <- gsub("æ", "%C3%A6", variant_name_full)
+  variant_name_full <- gsub("ø", "%C3%B8", variant_name_full)
+  variant_name_full <- gsub("å", "%C3%A5", variant_name_full)
+  
+  variant_name_full
 }
 
 
