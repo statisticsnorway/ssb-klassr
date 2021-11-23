@@ -28,3 +28,10 @@ test_that("GetKlass returns a correspondence table in both directions", {
   expect_equal(class_data2$sourceCode[1], "0301")
 })
 
+
+test_that("GetKlass returns a valid variant", {
+  variant_data <- GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
+  expect_equal(variant_data$name[2], '01-03 Jordbruk, skogbruk og fiske')
+  
+})
+

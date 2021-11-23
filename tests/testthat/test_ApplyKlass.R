@@ -71,3 +71,13 @@ test_that("ApplyKlass can return a variant classification",{
   expect_equal(new[2], "EU/EØS, USA, Canada, Australia og New Zealand")
 })
 
+test_that("ApplyKlass works for variant classification with Norwegian characters in the variant name",{
+  dat <- c("05", "01")
+  new <- ApplyKlass(dat,
+                    klass = 6,
+                    variant = 1616,
+                    output_level = 1,
+                    output = "name",
+                    date = "2020-01-01")
+  expect_equal(new[1], "05-09 Bergverksdrift og utvinning")
+})
