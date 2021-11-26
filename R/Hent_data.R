@@ -119,6 +119,8 @@ get_variant_name <- function(variant){
   variant_name_full <- gsub("æ", "%C3%A6", variant_name_full)
   variant_name_full <- gsub("ø", "%C3%B8", variant_name_full)
   variant_name_full <- gsub("å", "%C3%A5", variant_name_full)
+  variant_name_full <- gsub("\\(", "%28", variant_name_full)
+  variant_name_full <- gsub("\\)", "%29", variant_name_full)
   
   variant_name_full
 }
