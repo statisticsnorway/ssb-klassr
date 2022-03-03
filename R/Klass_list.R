@@ -1,3 +1,8 @@
+#' Get base address for fetching classifications from 
+#' @return String with address
+GetBaseUrl <- function(){
+  "https://data.ssb.no/api/klass/v1/"
+}
 
 #' Get target ID numbers from Url
 #'
@@ -44,7 +49,7 @@ ListKlass <- function(codelists = FALSE, language = "nb"){
                  paste0(code, "&language=", language))
   
   for (i in fams){
-    url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies/', i, code, sep ="")
+    url <- paste(GetBaseUrl(), 'classificationfamilies/', i, code, sep ="")
     dt <- data.frame(GetUrl(url)$classifications)
     nums <- as.vector(sapply(dt$X_links[, 1], GetNums))
     dt2 <- data.frame(klass_name = dt$name, klass_nr = nums, klass_family = i, klass_type = dt$classificationType)
@@ -76,7 +81,7 @@ ListFamily <- function(family=NULL, codelists = FALSE, language = "nb"){
   
   # If no family specified then show all families
   if (is.null(family)){
-    url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies', code, sep="")
+    url <- paste(GetBaseUrl(), 'classificationfamilies/', code, sep="")
     dt <- data.frame(GetUrl(url)$'_embedded'$classificationFamilies)
     nums <- as.vector(sapply(dt$X_links$self$href, FUN = GetNums))
     dt2 <- data.frame(family_name = dt$name, family_nr = nums,
@@ -86,7 +91,7 @@ ListFamily <- function(family=NULL, codelists = FALSE, language = "nb"){
   # If a family is given the show classifications within that family
   if (!is.null(family)){
     family <- MakeChar(family)
-    url <- paste('http://data.ssb.no/api/klass/v1/classificationfamilies/', family, code, sep ="")
+    url <- paste(GetBaseUrl(), 'classificationfamilies/', family, code, sep ="")
     dt <- data.frame(GetUrl(url)$classifications)
     nums <- as.vector(sapply(dt$X_links[, 1], GetNums))
     dt2 <- data.frame(klass_name = dt$name, klass_nr = nums)
@@ -111,7 +116,7 @@ ListFamily <- function(family=NULL, codelists = FALSE, language = "nb"){
 SearchKlass <- function(query, codelists = FALSE, size = 20){
   query <- as.character(query)
   code <- ifelse(codelists, "&includeCodelists=true", "")
-  url <- paste('http://data.ssb.no/api/klass/v1/classifications/search?query=', query, code, "&size=", size, sep ="")
+  url <- paste(GetBaseUrl(), 'classifications/search?query=', query, code, "&size=", size, sep ="")
   dt <- data.frame(GetUrl(url)$'_embedded'$searchResults)
   nums <- as.vector(sapply(dt$X_links$self$href, GetNums))
   dt2 <- data.frame(klass_name = dt$name, klass_nr = nums)
@@ -137,7 +142,7 @@ GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
   if(is.null(family)){
     if (klassNr == TRUE) stop("To output Klass number from this function you need to input a family number")
     klass <- MakeChar(klass)
-    url <- paste("http://data.ssb.no/api/klass/v1/classifications/", klass, sep="")
+    url <- paste(GetBaseUrl(), "classifications/", klass, sep="")
     df <- as.data.frame(GetUrl(url)$versions)
     df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
     for (i in 1:nrow(df)){
@@ -152,7 +157,7 @@ GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
     vers <- NULL
     klass_nr <- NULL
     for (i in fam$klass_nr){
-      url <- paste("http://data.ssb.no/api/klass/v1/classifications/", i, sep="")
+      url <- paste(GetBaseUrl(), "classifications/", i, sep="")
       df <- as.data.frame(GetUrl(url)$versions)
       if (length(df) == 0) next() # Check if there is a valid version number
       if(is.null(df$validTo)) df$validTo <- as.character(Sys.Date() + 1)
@@ -188,7 +193,7 @@ GetName <- function(version){
   version <- MakeChar(version)
   vernames = NULL
   for (i in version){
-    url <- paste('http://data.ssb.no/api/klass/v1/versions/', i, sep ="")
+    url <- paste(GetBaseUrl(), 'versions/', i, sep ="")
     vernames <- c(vernames, GetUrl(url)$name)
   }
   return(vernames)
@@ -236,7 +241,7 @@ CorrespondList <- function(klass, date = NULL){
     date <- Sys.Date()
   }
   vers <- GetVersion(klass = klass, date = date)
-  url <- paste('http://data.ssb.no/api/klass/v1/versions/', vers, sep ="")
+  url <- paste(GetBaseUrl(), 'versions/', vers, sep ="")
   df <- GetUrl(url)
   versName <- df$name
   dt <- data.frame(df$correspondenceTables)

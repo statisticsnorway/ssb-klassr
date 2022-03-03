@@ -58,7 +58,7 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   }
   
   # Paste together to an URL
-  url <- paste("http://data.ssb.no/api/klass/v1/classifications/",
+  url <- paste(GetBaseUrl(), "classifications/",
                klass,
                coding,
                output_level_coding,
@@ -101,7 +101,7 @@ stop_quietly <- function() {
 #' @param variant The variant number
 get_variant_name <- function(variant){
   # Check variant url and that it exists
-  url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
+  url <- paste0(GetBaseUrl(), "variants/", variant)
   variant_url <- check_connect(url)
   if (is.null(variant_url)) stop_quietly()
   
