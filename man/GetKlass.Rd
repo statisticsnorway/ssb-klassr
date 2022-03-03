@@ -26,9 +26,9 @@ GetKlass(
 
 \item{output_level}{Number/string specifying the requested hierarchy level (optional).}
 
-\item{language}{Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)}
+\item{language}{Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)}
 
-\item{output_style}{String varibale for the output type. Default is "normal". Specify "wide" for a wide formatted table output.}
+\item{output_style}{String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.}
 }
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:

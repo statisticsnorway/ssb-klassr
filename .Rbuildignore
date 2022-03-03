@@ -7,3 +7,4 @@ cran-comments.md
 ^\.Rproj$
 README.md
 push_bitbucket.bat
+^\.github$
