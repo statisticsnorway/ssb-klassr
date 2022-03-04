@@ -20,5 +20,5 @@ Data frame of possible classifications that match the query
 Search Klass
 }
 \examples{
-SearchKlass("yrke")
+SearchKlass("occupation")
 }
