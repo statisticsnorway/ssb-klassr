@@ -112,7 +112,7 @@ ListFamily <- function(family=NULL, codelists = FALSE, language = "nb"){
 #' @export
 #'
 #' @examples
-#' SearchKlass("yrke")
+#' SearchKlass("occupation")
 SearchKlass <- function(query, codelists = FALSE, size = 20){
   query <- as.character(query)
   code <- ifelse(codelists, "&includeCodelists=true", "")
