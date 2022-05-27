@@ -3,6 +3,7 @@
 #' insert missing dots to the right place in a string
 #' @param x - character with missing dots
 #' @param dot - the place of missing dots
+#' @keyword internal
 #' @return a string is returned with the insertion of a formatted period (.) in the specifed location.
 splitChar <- function(x, dot){
   code_mod <- unlist(strsplit(x, split=""))
@@ -25,7 +26,7 @@ splitChar <- function(x, dot){
 #' input_level <- levelCheck(x = klassdata$nace5, klass_data = klass_data)
 #' formattering(x = klassdata$nace5, input_level = input_level, klass = 6, klass_data=klass_data)
 #'}
-#' @export
+#' @keyword internal
 formattering <- function(x, input_level, klass, klass_data){
   if(any(grepl("^[A-Za-z]+$", x))){
     return(x)

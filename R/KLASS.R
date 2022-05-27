@@ -1,7 +1,7 @@
 #' Conversion to character
 #'
 #' @param x a number or vector of numbers
-#'
+#' @keyword internal
 #' @return x converted to a string or vector of strings.
 MakeChar <- function(x){
   if (length(x) == 1){

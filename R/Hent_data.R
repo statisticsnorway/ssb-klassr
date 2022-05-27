@@ -1,6 +1,7 @@
 
 #' Internal function to check date
 #' @param date Date
+#' @keyword internal
 #' @return NULL
 CheckDate <- function(date){
   dcheck <- try(as.Date(date, format= "%Y-%m-%d"))
@@ -19,6 +20,7 @@ CheckDate <- function(date){
 #' @param date Date(s) for classification
 #' @param output_level_coding Coding for output level
 #' @param language_coding Coding for language
+#' @keyword internal
 #'
 #' @return String url adress
 
@@ -70,6 +72,7 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
 #' Check connection
 #' Function to check that a connection to data.ssb.no is able to be established
 #' @param url String url address for connection to check
+#' @keyword internal
 #' @return Nothing is returned but a error or warning message is return if no connection is available
 check_connect <- function(url){
   tryget <- tryCatch(
@@ -89,6 +92,7 @@ check_connect <- function(url){
 
 #' Stop quietly function
 #' Stop from a function without an error. Used for stopping when no internet
+#' @keyword internal
 stop_quietly <- function() {
   opt <- options(show.error.messages = FALSE)
   on.exit(options(opt))
@@ -99,6 +103,7 @@ stop_quietly <- function() {
 #' Get variant name
 #' Internal function for fetching the variant name based on the number
 #' @param variant The variant number
+#' @keyword internal
 get_variant_name <- function(variant){
   # Check variant url and that it exists
   url <- paste0(GetBaseUrl(), "variants/", variant)
@@ -131,7 +136,7 @@ get_variant_name <- function(variant){
 #'
 #' @param url String url address
 #' @param check Logical parameter on whether to check if the url exists
-#'
+#' @keyword internal
 #' @return text in json format
 GetUrl2 <- function(url, check = TRUE){
   # henter innholdet fra klass med acceptheader json

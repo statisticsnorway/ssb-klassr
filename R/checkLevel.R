@@ -6,7 +6,7 @@
 #' @param x - vector of character
 #' @param klass_data - - the right formatting to the classification levels
 #' @return The hierarchical level of the input data is returned. 
-#' @export
+#' @keyword internal
 #' @examples
 #' data(klassdata)
 #' 
