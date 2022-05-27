@@ -7,7 +7,7 @@
 #' @param klass_data Classification file retrieved from KLASS.
 #'
 #' @return Data frame with the input and extra desired classification levels. Includes codes and names for each level.
-#' @export
+#' @keyword internal
 #' @examples
 #' klass_data <- GetKlass(klass = "6")
 #' Levels(input_level = 5, output_level = 2, klass_data = klass_data)[1:10, ]
