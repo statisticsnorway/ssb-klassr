@@ -1,0 +1,267 @@
+---
+title: "Introduction to klassR"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to klassR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = T
+)
+library(knitr)
+library(kableExtra)
+library(magrittr)
+```
+## 1. Introduction
+Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian muncipality numbers and no names? Or perhaps you want to convert English standard occupations into Nynorsk for a figure. These are tasks which the R package **klassR** can help you with.
+
+Statisticss Norways's [*KLASS*](https://www.ssb.no/en/klass/) is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. **KlassR** provides an easy interface to fetch and apply these in R. 
+
+For Statistic Norway employees, the package is installed on most of our platforms. For others, it can be installed form CRAN with
+
+```{r, eval=F}
+install.packages("klassR")
+```
+
+CRAN is R's central repository for thousands of useful packages. More information on the requirements for klassR** can be found on [CRAN](https://cran.r-project.org/web/packages/klassR/index.html)
+
+
+To use the function in **klassR** the package must be called each time a new R session is started. This can be done using
+
+```{r}
+library(klassR)
+```
+
+## 2. Search for a classification
+To fetch a classification from *KLASS* you need the unique classification number. This can be found in the URL of the *KLASS* website or you can search for it in R using one of the following functions.
+
+
+### List all classifications
+The function `ListKlass` will fetch a list of all classifications. It returns the classification name (`klass_name`), number (`klass_nr`) and the classification family it belongs to (`klass_family`). The classification type (`klass_type`) is also shown which indicates whether it is a classification or code list. 
+
+```{r, eval = F}
+ListKlass()
+```
+
+
+```{r, echo = F}
+all <- ListKlass()
+row.names(all) <- NULL
+kable(head(all))
+```
+
+Code lists are classifications that used for national and internal (Statistics Norway) publications. These can be included in the list using the `codelist` parameter 
+
+```{r, eval = F}
+ListKlass(codelists = TRUE)
+```
+
+
+```{r, echo = F}
+ck <- ListKlass(codelists = TRUE)
+row.names(ck) <- NULL
+kable(head(ck), align = "l")%>%
+  kable_styling(full_width = T)
+```
+
+
+### Search for a classification using a key word
+You can also search for a classification by a keyword using the `SearchKlass` function. The first parameter here is the query to search for. 
+
+```{r, eval = F}
+SearchKlass(query = "ARENA")
+```
+
+
+```{r, echo = F}
+kable(SearchKlass(query = "ARENA"))
+```
+
+Again, to include code lists in the search this should be specified 
+
+```{r, eval=F}
+SearchKlass(query = "ARENA", codelists = TRUE)
+```
+
+```{r, echo = F}
+kable(SearchKlass(query = "ARENA", codelists = TRUE))
+```
+
+Sometimes a classification or code list will appear several times. This is due to that it occurs several times in different langauges in the database. 
+
+
+## 3. Fetch a classification
+To fetch a complete classification, use the `GetKlass` function together with the unique identifier. For example, to fetch the Standard Industrial Classifications (*KLASS* number 6) we run:
+
+```{r, eval=F}
+GetKlass(6)
+```
+
+```{r, echo=F}
+kable(head(GetKlass(6)))
+```
+
+
+### Level
+Classifications are often organised in a heirachical way. In the example above, the Standard Industrial Classifications have different values for *level*. To fetch a specific level, use the `output_level` parameter. For example, to fetch only the top level Standard Industrial Classifcaiton codes we use:
+
+
+```{r, eval =F}
+GetKlass(6, output_level = 1)
+```
+
+```{r,echo=F}
+kable(head(GetKlass(6, output_level = 1)))
+```
+
+
+### Langauge
+In the above examples we have seen that the names are returned in Norwegian (Bokmål). However, many of the classification in *KLASS* are in multiple languages. The output language can be specified as Bokmål ("nb"), Nynorsk ("nn") or English ("en") using the `language` parameter. *Note: all 3 languages are not available for all classifcations.*
+
+```{r, eval = F}
+GetKlass(6, output_level = 1, language = "en")
+```
+
+```{r, echo=F}
+kable(head(GetKlass(6, output_level = 1, language = "en")))
+```
+
+
+## 4. Applying a classfication
+If you have a data set and want to apply a classfication to a variable this is possible to do with `ApplyKlass`. This can be used to get the name of a variable which is in code form for example. 
+
+There is a built in test dataset in **klassR** called `klassdata`. It contains fictitious persons with sex, education level, municipality numbers, industry classfication for workplace and occupation.
+
+```{r, eval=F}
+data(klassdata)
+head(klassdata)
+```
+
+
+```{r, echo=F}
+data(klassdata)
+kable(head(klassdata))
+```
+
+We can use `ApplyKlass` to create a variable for the occupation names (classification number 7) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classfication number.
+
+```{r, eval=F}
+klassdata$kommune_names <- ApplyKlass(klassdata$kommune, 
+                                      klass = 131)
+head(klassdata)
+```
+
+
+```{r, echo=F, warning=F}
+klassdata$kommune_names <- ApplyKlass(klassdata$kommune, 
+                                      klass = 131,
+                                      date="2016-01-01")
+kable(head(klassdata))
+```
+
+
+Again, parameters including `language` and `output_level` can be specified.
+
+
+## 5. Working with dates
+
+Classifications will often change over time. The *KLASS* database considers this and older classifications can be fetched using the `date` parameter. 
+
+### Specify a specific date
+Fetching or using a classification at a specific time point can be done using the `date` parameter and specifying the date for which the version of classification applies. The date format should be in the form "yyyy-mm-dd", for example "2022-05-27" for the 27th May, 2022. 
+
+There have been many changes to the regions in Norway (classification number 106) over the past few years. We can see this by fetching the classifications for these at different times
+
+```{r, eval=F}
+GetKlass(106, date = "2019-01-01")
+```
+
+
+```{r, echo=F}
+kable(GetKlass(106, date = "2019-01-01"))
+```
+
+
+```{r, eval=F}
+GetKlass(106, date = "2020-01-01")
+```
+
+
+```{r, echo=F}
+kable(GetKlass(106, date = "2020-01-01"))
+```
+
+### Time intervals
+Sometime it may be useful to fetch all codes over a period of time. We can do this by specifing two dates as a vector in the `date` paramter. 
+
+The following code fetched Norwegian regional codes between 1st January 2019 to the 1st January 2020. There are 26 different codes that show both old and newer names.
+
+
+```{r,eval=F }
+GetKlass(106, date = c("2019-01-01", "2020-01-01"))
+
+```
+
+```{r, echo=F }
+kable(GetKlass(106, date = c("2018-01-01", "2020-01-01")))
+
+```
+
+
+### Changes in time
+To fetch only the changes in a time period rather than all codes we can specify `correspond=TRUE` allong with the time interval we are interested in. 
+
+```{r, eval =F}
+GetKlass(106, 
+         date = c("2020-01-01", "2019-01-01"), 
+         correspond = TRUE)
+```
+
+```{r, echo=F }
+kable(GetKlass(106, date = c("2020-01-01", "2019-01-01"), 
+                    correspond = TRUE))
+```
+
+The table returned is a correspondents in codes and/or names in the time interval specified. The `sourceCode` and `sourceName` refer to the original name and coding. The `targetCode` and `targetName` refer to the newer code and name. Notice there is not a simple 1:1 correspondence between all of the regions. Here the municipality number would be needed to map the changes more accurately.
+
+
+## 6. Correspondence tables
+In addition to small changes in time, some classifications will change completely and a correspondence table is then defined within the *KLASS* database. These can be fetched or applied using `GetKlass` and `ApplyKlass` functions together with the `correspond` parameter which should give the unique classification number to convert into. 
+
+To fetch a correspondence table between municipality codes (131) and greater regional codes (106) we can run: 
+
+```{r, eval=F}
+GetKlass(131, correspond = 106)
+```
+
+```{r, echo=F}
+kable(head(GetKlass(131, correspond = 106)))
+```
+
+
+We can apply this correspondence between municipality and region in our example data set using `ApplyKlass`.
+
+```{r, eval =F}
+klassdata$region <- ApplyKlass(klassdata$kommune, 
+                               klass = 131,
+                               correspond = 106,
+                               date = "2016-01-01")
+klassdata
+```
+
+```{r, echo=F}
+klassdata$region <- ApplyKlass(klassdata$kommune, 
+                               klass = 131,
+                               correspond = 106,
+                               date = "2016-01-01")
+kable(head(klassdata))
+```
+
+

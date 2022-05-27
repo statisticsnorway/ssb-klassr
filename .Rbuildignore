@@ -8,3 +8,6 @@ cran-comments.md
 README.md
 push_bitbucket.bat
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
