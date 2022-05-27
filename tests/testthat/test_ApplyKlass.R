@@ -79,5 +79,5 @@ test_that("ApplyKlass works for variant classification with Norwegian characters
                     output_level = 1,
                     output = "name",
                     date = "2020-01-01")
-  expect_equal(new[1], "05-09 Bergverksdrift og utvinning")
+  expect_equal(new[1], "Bergverksdrift og utvinning")
 })

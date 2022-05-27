@@ -31,7 +31,7 @@ test_that("GetKlass returns a correspondence table in both directions", {
 
 test_that("GetKlass returns a valid variant", {
   variant_data <- GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
-  expect_equal(variant_data$name[2], '01-03 Jordbruk, skogbruk og fiske')
+  expect_equal(variant_data$name[2], 'Jordbruk, skogbruk og fiske')
   
 })
 
