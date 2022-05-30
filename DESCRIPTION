@@ -19,6 +19,7 @@ Suggests:
     knitr,
     testthat (>= 3.0.0),
     kableExtra,
-    magrittr
+    magrittr,
+    httptest
 Config/testthat/edition: 3
 VignetteBuilder: knitr
