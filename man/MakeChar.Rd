@@ -15,3 +15,4 @@ x converted to a string or vector of strings.
 \description{
 Conversion to character
 }
+\keyword{internal}

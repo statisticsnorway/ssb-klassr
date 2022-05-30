@@ -18,9 +18,4 @@ The hierarchical level of the input data is returned.
 The input level is calculated as the mode (most common) hierarchical 
 level in the input vector.
 }
-\examples{
-data(klassdata)
-
-sn <- GetKlass(klass = "6", date = "2007-01-01")
-levelCheck(x = klassdata$nace5, klass_data = sn)
-}
+\keyword{internal}

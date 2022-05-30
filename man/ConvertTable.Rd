@@ -26,3 +26,4 @@ A dataframe
 \description{
 Code level convert table (internal function)
 }
+\keyword{internal}

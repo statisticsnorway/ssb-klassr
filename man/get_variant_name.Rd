@@ -14,3 +14,4 @@ get_variant_name(variant)
 Get variant name
 Internal function for fetching the variant name based on the number
 }
+\keyword{internal}

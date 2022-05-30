@@ -4,7 +4,7 @@
 #' @param code Name of variable containing code (Default = "code")
 #' @param parentcode Name of variable of parent code (Default = "parentCode")
 #' @param level Name of variable containing level (Default = "level")
-#' @keyword internal
+#' @keywords internal
 #' @return A dataframe
 ConvertTable <- function(klass_data, code = "code", parentcode = "parentCode", level= "level"){
     levelset  <- as.numeric(max(klass_data[,level]))

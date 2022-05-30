@@ -17,3 +17,4 @@ a string is returned with the insertion of a formatted period (.) in the specife
 \description{
 insert missing dots to the right place in a string
 }
+\keyword{internal}

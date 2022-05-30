@@ -11,3 +11,4 @@ stop_quietly()
 Stop quietly function
 Stop from a function without an error. Used for stopping when no internet
 }
+\keyword{internal}

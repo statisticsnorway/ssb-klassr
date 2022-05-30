@@ -1,5 +1,5 @@
 #' Get base address for fetching classifications from 
-#' @keyword internal
+#' @keywords internal
 #' @return String with address
 GetBaseUrl <- function(){
   "https://data.ssb.no/api/klass/v1/"
@@ -8,7 +8,7 @@ GetBaseUrl <- function(){
 #' Get target ID numbers from Url
 #'
 #' @param x Url address
-#' @keyword internal
+#' @keywords internal
 #' @return Number
 GetNums <- function(x){
   x <- as.character(x)
@@ -18,7 +18,7 @@ GetNums <- function(x){
 #' Get json file from Url
 #'
 #' @param url String url address
-#' @keyword internal
+#' @keywords internal
 #' @return text in json format
 GetUrl <- function(url){
   hent_klass <- httr::GET(url) ## henter innholdet fra klass med acceptheader json

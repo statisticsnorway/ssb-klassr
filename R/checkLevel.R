@@ -6,13 +6,7 @@
 #' @param x - vector of character
 #' @param klass_data - - the right formatting to the classification levels
 #' @return The hierarchical level of the input data is returned. 
-#' @keyword internal
-#' @examples
-#' data(klassdata)
-#' 
-#' sn <- GetKlass(klass = "6", date = "2007-01-01")
-#' levelCheck(x = klassdata$nace5, klass_data = sn)
-
+#' @keywords internal
 levelCheck <- function(x, klass_data){
   # Check if only numbers are included. If yes, testing without formatting requirements
   if(!all(grepl("^[A-Za-z_-]+$", x))){

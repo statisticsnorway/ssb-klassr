@@ -21,10 +21,4 @@ vector of character
 \description{
 Convert vector to the right format
 }
-\examples{
-\donttest{
-klass_data <- GetKlass(klass = "6", date = "2007-01-01")
-input_level <- levelCheck(x = klassdata$nace5, klass_data = klass_data)
-formattering(x = klassdata$nace5, input_level = input_level, klass = 6, klass_data=klass_data)
-}
-}
+\keyword{internal}

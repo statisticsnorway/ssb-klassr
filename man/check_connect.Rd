@@ -17,3 +17,4 @@ Nothing is returned but a error or warning message is return if no connection is
 Check connection
 Function to check that a connection to data.ssb.no is able to be established
 }
+\keyword{internal}

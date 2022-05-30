@@ -12,3 +12,4 @@ CheckDate(date)
 \description{
 Internal function to check date
 }
+\keyword{internal}
