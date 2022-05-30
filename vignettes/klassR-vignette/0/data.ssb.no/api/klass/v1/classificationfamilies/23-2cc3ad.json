@@ -1,0 +1,30 @@
+{
+    "name": "Varehandel og tjenesteyting",
+    "classifications": [
+        {
+            "name": "Standard for alkoholholdige drikkevarer",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-01-22T11:51:04.000+0000",
+            "_links": {
+                "self": {
+                    "href": "https://data.ssb.no/api/klass/v1/classifications/48"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av IKT-sikkerhetstiltak",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-10-23T12:28:03.000+0000",
+            "_links": {
+                "self": {
+                    "href": "https://data.ssb.no/api/klass/v1/classifications/98"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://data.ssb.no/api/klass/v1/classificationfamilies/23"
+        }
+    }
+}

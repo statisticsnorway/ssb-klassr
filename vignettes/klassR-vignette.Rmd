@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 library(knitr)
 library(kableExtra)
 library(magrittr)
+
+library(httptest)
+start_vignette("klassR-vignette")
 ```
 ## 1. Introduction
 Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian muncipality numbers and no names? Or perhaps you want to convert English standard occupations into Nynorsk for a figure. These are tasks which the R package **klassR** can help you with.
@@ -264,4 +267,8 @@ klassdata$region <- ApplyKlass(klassdata$kommune,
 kable(head(klassdata))
 ```
 
+
+```{r, include=FALSE}
+end_vignette()
+```
 

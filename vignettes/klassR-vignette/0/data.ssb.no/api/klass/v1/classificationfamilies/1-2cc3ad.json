@@ -1,0 +1,20 @@
+{
+    "name": "Arbeid og lønn",
+    "classifications": [
+        {
+            "name": "Standard for yrkesklassifisering",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-20T05:29:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "https://data.ssb.no/api/klass/v1/classifications/7"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://data.ssb.no/api/klass/v1/classificationfamilies/1"
+        }
+    }
+}
