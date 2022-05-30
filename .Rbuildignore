@@ -6,7 +6,6 @@ cran-comments.md
 ^\.git$
 ^\.Rproj$
 README.md
-push_bitbucket.bat
 ^\.github$
 ^_pkgdown\.yml$
 ^docs$
