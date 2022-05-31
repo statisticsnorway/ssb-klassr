@@ -1,0 +1,310 @@
+{
+    "name": "Region",
+    "classifications": [
+        {
+            "name": "Standard for delområde- og grunnkretsinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-12-16T08:26:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/1"
+                }
+            }
+        },
+        {
+            "name": "Standard for regionale spesialkoder",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-10-13T10:07:50.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/4"
+                }
+            }
+        },
+        {
+            "name": "Standard for arbeidsgiveravgiftssoner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-21T09:12:54.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/101"
+                }
+            }
+        },
+        {
+            "name": "Standard for bosettingstetthet",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-03-12T08:47:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/102"
+                }
+            }
+        },
+        {
+            "name": "Standard for bydelsinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-04-19T12:49:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/103"
+                }
+            }
+        },
+        {
+            "name": "Standard for fylkesinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-22T08:14:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/104"
+                }
+            }
+        },
+        {
+            "name": "Standard for helseregioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-05-12T16:30:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/105"
+                }
+            }
+        },
+        {
+            "name": "Standard for landsdelsinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-11-16T11:24:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/106"
+                }
+            }
+        },
+        {
+            "name": "Standard for næringstilknytning",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-09-26T13:01:10.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/107"
+                }
+            }
+        },
+        {
+            "name": "Standard for økonomiske regioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-11-30T11:07:41.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/108"
+                }
+            }
+        },
+        {
+            "name": "Standard for politidistrikt",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-02-08T11:00:14.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/109"
+                }
+            }
+        },
+        {
+            "name": "Standard for tettstedsinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-12-16T11:05:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/110"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av kommuner etter innbyggertall",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-05-25T13:24:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/115"
+                }
+            }
+        },
+        {
+            "name": "Standard for fylkeskommune",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-22T08:38:09.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/127"
+                }
+            }
+        },
+        {
+            "name": "Standard for sentralitet",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-02-08T11:04:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/128"
+                }
+            }
+        },
+        {
+            "name": "Standard for kommuneklassifisering",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-05-23T08:04:13.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/129"
+                }
+            }
+        },
+        {
+            "name": "Standard for kommuneinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-04-19T12:59:29.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/131"
+                }
+            }
+        },
+        {
+            "name": "Standard for 110-sentraldistrikter",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-10T13:13:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/427"
+                }
+            }
+        },
+        {
+            "name": "Standard for Brannvesendistrikt",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-10T13:05:53.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/430"
+                }
+            }
+        },
+        {
+            "name": "Standard for serviceområde - Fødesteder",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-23T08:21:32.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/431"
+                }
+            }
+        },
+        {
+            "name": "Standard for serviceområde - Akuttmottak",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-23T08:34:08.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/435"
+                }
+            }
+        },
+        {
+            "name": "Standard for kirkelige inndelinger",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-06-29T13:03:32.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/510"
+                }
+            }
+        },
+        {
+            "name": "Standard for reiselivsregioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-21T11:35:54.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/527"
+                }
+            }
+        },
+        {
+            "name": "Standard for verdensinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T08:54:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/545"
+                }
+            }
+        },
+        {
+            "name": "Standard for gruppering av land og statsborgerskap",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T08:52:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/546"
+                }
+            }
+        },
+        {
+            "name": "Standard for landkoder (alfa-3)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-08T08:52:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/552"
+                }
+            }
+        },
+        {
+            "name": "Standard for familievernregioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-08-18T08:37:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/557"
+                }
+            }
+        },
+        {
+            "name": "Standard for familievernkontor",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-05-11T15:19:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/558"
+                }
+            }
+        },
+        {
+            "name": "Standard for barnevernsregionar",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-06-17T08:39:48.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/563"
+                }
+            }
+        },
+        {
+            "name": "Standard for bostedsstrøk",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-09-07T08:59:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/567"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/15"
+        }
+    }
+}

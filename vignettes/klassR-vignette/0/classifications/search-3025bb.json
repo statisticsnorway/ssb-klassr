@@ -1,0 +1,87 @@
+{
+    "_embedded": {
+        "searchResults": [
+            {
+                "name": "Kodeliste for ARENA as_ytelse",
+                "snippet": "YTELSER for personer i <strong>ARENA<\/strong> registeret\n\nBindestrek i koden hos <strong>ARENA<\/strong> er erstattet med x i koden i KLASS \n\nNAV er ansvarlig for kodelisten",
+                "searchScore": 3.9890034198760986,
+                "_links": {
+                    "self": {
+                        "href": "classifications/394"
+                    }
+                }
+            },
+            {
+                "name": "Kodeliste for ARENA Tiltak",
+                "snippet": "Variabelen tiltak er SSB's interne variabel på <strong>ARENA<\/strong>-fila for hovedgruppene.",
+                "searchScore": 3.92795729637146,
+                "_links": {
+                    "self": {
+                        "href": "classifications/386"
+                    }
+                }
+            },
+            {
+                "name": "Kodeliste for ARENA as_f (arbeidssøkerstatus_fingruppe )",
+                "snippet": "<strong>ARENA<\/strong> arbeidssøkerstatus fingruppe\n\nNAV er ansvarlig for kodelisten",
+                "searchScore": 3.8942484855651855,
+                "_links": {
+                    "self": {
+                        "href": "classifications/396"
+                    }
+                }
+            },
+            {
+                "name": "Kodeliste for ARENA as_gr (arbeidssøkerstatus grovgruppe)",
+                "snippet": "<strong>ARENA<\/strong> arbeidssøkerstatus grovgruppe\n\nBindestrek i koden hos <strong>ARENA<\/strong> er erstattet med x i koden i KLASS \n\nNAV er ansvarlig for kodelisten",
+                "searchScore": 3.5446181297302246,
+                "_links": {
+                    "self": {
+                        "href": "classifications/395"
+                    }
+                }
+            },
+            {
+                "name": "Kodeliste for ARENA as_stat (arbeidssøkerstatus, aktivitet og ytelse)",
+                "snippet": "variabelen fra <strong>ARENA<\/strong> inneholder alt av opplysninger om personen i forhold til arbeidssøkerstatus, aktivitet og ytelse.\n\nBindestrek i koden hos <strong>ARENA<\/strong> er erstattet",
+                "searchScore": 3.0946333408355713,
+                "_links": {
+                    "self": {
+                        "href": "classifications/393"
+                    }
+                }
+            },
+            {
+                "name": "Classification of type of building /cadastre",
+                "snippet": "garden 649 - Other museum and library building 651 - Sports hall 652 - Ice <strong>arena<\/strong> 653 - Indoor swimming pool 654 - Stand and building for shower and changing",
+                "searchScore": 0.7331329584121704,
+                "_links": {
+                    "self": {
+                        "href": "classifications/31"
+                    }
+                }
+            },
+            {
+                "name": "Classification of land use and land cover",
+                "snippet": "Other green areas 13 - Sports facilities 13.01 - Sports hall 13.02 - Ice <strong>arena<\/strong> 13.03 - Indoor swimming pool 13.04 - Stand and building for shower and changing",
+                "searchScore": 0.6842313408851624,
+                "_links": {
+                    "self": {
+                        "href": "classifications/118"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "classifications/search?query=ARENA&includeCodelists=true&size=20"
+        }
+    },
+    "page": {
+        "size": 20,
+        "totalElements": 7,
+        "totalPages": 1,
+        "number": 0
+    }
+}

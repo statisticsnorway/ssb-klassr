@@ -1,0 +1,60 @@
+{
+    "name": "Utdanning",
+    "classifications": [
+        {
+            "name": "Standard for utdanningsgruppering (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-13T07:10:46.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/36"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED97 nivå og fagfelt (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/66"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED 2011 Programmes (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/139"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED 2011 Attainment (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:28.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/140"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED-F 2013 Fagfelt (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/141"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/20"
+        }
+    }
+}

@@ -1,0 +1,2852 @@
+{
+    "correspondenceItems": [
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "0301",
+            "targetName": "Oslo",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3001",
+            "targetName": "Halden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3002",
+            "targetName": "Moss",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3003",
+            "targetName": "Sarpsborg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3004",
+            "targetName": "Fredrikstad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3005",
+            "targetName": "Drammen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3006",
+            "targetName": "Kongsberg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3007",
+            "targetName": "Ringerike",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3011",
+            "targetName": "Hvaler",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3012",
+            "targetName": "Aremark",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3013",
+            "targetName": "Marker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3014",
+            "targetName": "Indre Østfold",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3015",
+            "targetName": "Skiptvet",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3016",
+            "targetName": "Rakkestad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3017",
+            "targetName": "Råde",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3018",
+            "targetName": "Våler (Viken)",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3019",
+            "targetName": "Vestby",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3020",
+            "targetName": "Nordre Follo",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3021",
+            "targetName": "Ås",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3022",
+            "targetName": "Frogn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3023",
+            "targetName": "Nesodden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3024",
+            "targetName": "Bærum",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3025",
+            "targetName": "Asker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3026",
+            "targetName": "Aurskog-Høland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3027",
+            "targetName": "Rælingen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3028",
+            "targetName": "Enebakk",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3029",
+            "targetName": "Lørenskog",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3030",
+            "targetName": "Lillestrøm",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3031",
+            "targetName": "Nittedal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3032",
+            "targetName": "Gjerdrum",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3033",
+            "targetName": "Ullensaker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3034",
+            "targetName": "Nes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3035",
+            "targetName": "Eidsvoll",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3036",
+            "targetName": "Nannestad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3037",
+            "targetName": "Hurdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3038",
+            "targetName": "Hole",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3039",
+            "targetName": "Flå",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3040",
+            "targetName": "Nesbyen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3041",
+            "targetName": "Gol",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3042",
+            "targetName": "Hemsedal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3043",
+            "targetName": "Ål",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3044",
+            "targetName": "Hol",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3045",
+            "targetName": "Sigdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3046",
+            "targetName": "Krødsherad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3047",
+            "targetName": "Modum",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3048",
+            "targetName": "Øvre Eiker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3049",
+            "targetName": "Lier",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3050",
+            "targetName": "Flesberg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3051",
+            "targetName": "Rollag",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3052",
+            "targetName": "Nore og Uvdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3053",
+            "targetName": "Jevnaker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "1",
+            "sourceName": "Oslo og Viken",
+            "sourceShortName": "Oslo og Viken",
+            "targetCode": "3054",
+            "targetName": "Lunner",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3401",
+            "targetName": "Kongsvinger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3403",
+            "targetName": "Hamar",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3405",
+            "targetName": "Lillehammer",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3407",
+            "targetName": "Gjøvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3411",
+            "targetName": "Ringsaker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3412",
+            "targetName": "Løten",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3413",
+            "targetName": "Stange",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3414",
+            "targetName": "Nord-Odal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3415",
+            "targetName": "Sør-Odal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3416",
+            "targetName": "Eidskog",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3417",
+            "targetName": "Grue",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3418",
+            "targetName": "Åsnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3419",
+            "targetName": "Våler (Innlandet)",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3420",
+            "targetName": "Elverum",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3421",
+            "targetName": "Trysil",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3422",
+            "targetName": "Åmot",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3423",
+            "targetName": "Stor-Elvdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3424",
+            "targetName": "Rendalen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3425",
+            "targetName": "Engerdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3426",
+            "targetName": "Tolga",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3427",
+            "targetName": "Tynset",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3428",
+            "targetName": "Alvdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3429",
+            "targetName": "Folldal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3430",
+            "targetName": "Os",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3431",
+            "targetName": "Dovre",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3432",
+            "targetName": "Lesja",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3433",
+            "targetName": "Skjåk",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3434",
+            "targetName": "Lom",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3435",
+            "targetName": "Vågå",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3436",
+            "targetName": "Nord-Fron",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3437",
+            "targetName": "Sel",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3438",
+            "targetName": "Sør-Fron",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3439",
+            "targetName": "Ringebu",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3440",
+            "targetName": "Øyer",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3441",
+            "targetName": "Gausdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3442",
+            "targetName": "Østre Toten",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3443",
+            "targetName": "Vestre Toten",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3446",
+            "targetName": "Gran",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3447",
+            "targetName": "Søndre Land",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3448",
+            "targetName": "Nordre Land",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3449",
+            "targetName": "Sør-Aurdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3450",
+            "targetName": "Etnedal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3451",
+            "targetName": "Nord-Aurdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3452",
+            "targetName": "Vestre Slidre",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3453",
+            "targetName": "Øystre Slidre",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "2",
+            "sourceName": "Innlandet",
+            "sourceShortName": "Innlandet",
+            "targetCode": "3454",
+            "targetName": "Vang",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3801",
+            "targetName": "Horten",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3802",
+            "targetName": "Holmestrand",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3803",
+            "targetName": "Tønsberg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3804",
+            "targetName": "Sandefjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3805",
+            "targetName": "Larvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3806",
+            "targetName": "Porsgrunn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3807",
+            "targetName": "Skien",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3808",
+            "targetName": "Notodden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3811",
+            "targetName": "Færder",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3812",
+            "targetName": "Siljan",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3813",
+            "targetName": "Bamble",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3814",
+            "targetName": "Kragerø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3815",
+            "targetName": "Drangedal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3816",
+            "targetName": "Nome",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3817",
+            "targetName": "Midt-Telemark",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3818",
+            "targetName": "Tinn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3819",
+            "targetName": "Hjartdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3820",
+            "targetName": "Seljord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3821",
+            "targetName": "Kviteseid",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3822",
+            "targetName": "Nissedal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3823",
+            "targetName": "Fyresdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3824",
+            "targetName": "Tokke",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "3825",
+            "targetName": "Vinje",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4201",
+            "targetName": "Risør",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4202",
+            "targetName": "Grimstad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4203",
+            "targetName": "Arendal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4204",
+            "targetName": "Kristiansand",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4205",
+            "targetName": "Lindesnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4206",
+            "targetName": "Farsund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4207",
+            "targetName": "Flekkefjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4211",
+            "targetName": "Gjerstad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4212",
+            "targetName": "Vegårshei",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4213",
+            "targetName": "Tvedestrand",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4214",
+            "targetName": "Froland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4215",
+            "targetName": "Lillesand",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4216",
+            "targetName": "Birkenes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4217",
+            "targetName": "Åmli",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4218",
+            "targetName": "Iveland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4219",
+            "targetName": "Evje og Hornnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4220",
+            "targetName": "Bygland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4221",
+            "targetName": "Valle",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4222",
+            "targetName": "Bykle",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4223",
+            "targetName": "Vennesla",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4224",
+            "targetName": "Åseral",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4225",
+            "targetName": "Lyngdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4226",
+            "targetName": "Hægebostad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4227",
+            "targetName": "Kvinesdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "3",
+            "sourceName": "Agder og Sør-Østlandet",
+            "sourceShortName": "Agder og Sør-Østlandet",
+            "targetCode": "4228",
+            "targetName": "Sirdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1101",
+            "targetName": "Eigersund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1103",
+            "targetName": "Stavanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1106",
+            "targetName": "Haugesund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1108",
+            "targetName": "Sandnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1111",
+            "targetName": "Sokndal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1112",
+            "targetName": "Lund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1114",
+            "targetName": "Bjerkreim",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1119",
+            "targetName": "Hå",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1120",
+            "targetName": "Klepp",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1121",
+            "targetName": "Time",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1122",
+            "targetName": "Gjesdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1124",
+            "targetName": "Sola",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1127",
+            "targetName": "Randaberg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1130",
+            "targetName": "Strand",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1133",
+            "targetName": "Hjelmeland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1134",
+            "targetName": "Suldal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1135",
+            "targetName": "Sauda",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1144",
+            "targetName": "Kvitsøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1145",
+            "targetName": "Bokn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1146",
+            "targetName": "Tysvær",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1149",
+            "targetName": "Karmøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1151",
+            "targetName": "Utsira",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1160",
+            "targetName": "Vindafjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1505",
+            "targetName": "Kristiansund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1506",
+            "targetName": "Molde",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1507",
+            "targetName": "Ålesund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1511",
+            "targetName": "Vanylven",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1514",
+            "targetName": "Sande",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1515",
+            "targetName": "Herøy (Møre og Romsdal)",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1516",
+            "targetName": "Ulstein",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1517",
+            "targetName": "Hareid",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1520",
+            "targetName": "Ørsta",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1525",
+            "targetName": "Stranda",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1528",
+            "targetName": "Sykkylven",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1531",
+            "targetName": "Sula",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1532",
+            "targetName": "Giske",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1535",
+            "targetName": "Vestnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1539",
+            "targetName": "Rauma",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1547",
+            "targetName": "Aukra",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1554",
+            "targetName": "Averøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1557",
+            "targetName": "Gjemnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1560",
+            "targetName": "Tingvoll",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1563",
+            "targetName": "Sunndal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1566",
+            "targetName": "Surnadal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1573",
+            "targetName": "Smøla",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1576",
+            "targetName": "Aure",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1577",
+            "targetName": "Volda",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1578",
+            "targetName": "Fjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "1579",
+            "targetName": "Hustadvika",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4601",
+            "targetName": "Bergen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4602",
+            "targetName": "Kinn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4611",
+            "targetName": "Etne",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4612",
+            "targetName": "Sveio",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4613",
+            "targetName": "Bømlo",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4614",
+            "targetName": "Stord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4615",
+            "targetName": "Fitjar",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4616",
+            "targetName": "Tysnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4617",
+            "targetName": "Kvinnherad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4618",
+            "targetName": "Ullensvang",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4619",
+            "targetName": "Eidfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4620",
+            "targetName": "Ulvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4621",
+            "targetName": "Voss",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4622",
+            "targetName": "Kvam",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4623",
+            "targetName": "Samnanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4624",
+            "targetName": "Bjørnafjorden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4625",
+            "targetName": "Austevoll",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4626",
+            "targetName": "Øygarden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4627",
+            "targetName": "Askøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4628",
+            "targetName": "Vaksdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4629",
+            "targetName": "Modalen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4630",
+            "targetName": "Osterøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4631",
+            "targetName": "Alver",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4632",
+            "targetName": "Austrheim",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4633",
+            "targetName": "Fedje",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4634",
+            "targetName": "Masfjorden",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4635",
+            "targetName": "Gulen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4636",
+            "targetName": "Solund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4637",
+            "targetName": "Hyllestad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4638",
+            "targetName": "Høyanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4639",
+            "targetName": "Vik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4640",
+            "targetName": "Sogndal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4641",
+            "targetName": "Aurland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4642",
+            "targetName": "Lærdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4643",
+            "targetName": "Årdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4644",
+            "targetName": "Luster",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4645",
+            "targetName": "Askvoll",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4646",
+            "targetName": "Fjaler",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4647",
+            "targetName": "Sunnfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4648",
+            "targetName": "Bremanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4649",
+            "targetName": "Stad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4650",
+            "targetName": "Gloppen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "4",
+            "sourceName": "Vestlandet",
+            "sourceShortName": "Vestlandet",
+            "targetCode": "4651",
+            "targetName": "Stryn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5001",
+            "targetName": "Trondheim",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5006",
+            "targetName": "Steinkjer",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5007",
+            "targetName": "Namsos - Nåavmesjenjaelmie",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5014",
+            "targetName": "Frøya",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5020",
+            "targetName": "Osen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5021",
+            "targetName": "Oppdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5022",
+            "targetName": "Rennebu",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5025",
+            "targetName": "Røros",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5026",
+            "targetName": "Holtålen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5027",
+            "targetName": "Midtre Gauldal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5028",
+            "targetName": "Melhus",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5029",
+            "targetName": "Skaun",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5031",
+            "targetName": "Malvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5032",
+            "targetName": "Selbu",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5033",
+            "targetName": "Tydal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5034",
+            "targetName": "Meråker",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5035",
+            "targetName": "Stjørdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5036",
+            "targetName": "Frosta",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5037",
+            "targetName": "Levanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5038",
+            "targetName": "Verdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5041",
+            "targetName": "Snåase - Snåsa",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5042",
+            "targetName": "Lierne",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5043",
+            "targetName": "Raarvihke - Røyrvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5044",
+            "targetName": "Namsskogan",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5045",
+            "targetName": "Grong",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5046",
+            "targetName": "Høylandet",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5047",
+            "targetName": "Overhalla",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5049",
+            "targetName": "Flatanger",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5052",
+            "targetName": "Leka",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5053",
+            "targetName": "Inderøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5054",
+            "targetName": "Indre Fosen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5055",
+            "targetName": "Heim",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5056",
+            "targetName": "Hitra",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5057",
+            "targetName": "Ørland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5058",
+            "targetName": "Åfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5059",
+            "targetName": "Orkland",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5060",
+            "targetName": "Nærøysund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "5",
+            "sourceName": "Trøndelag",
+            "sourceShortName": "Trøndelag",
+            "targetCode": "5061",
+            "targetName": "Rindal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1804",
+            "targetName": "Bodø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1806",
+            "targetName": "Narvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1811",
+            "targetName": "Bindal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1812",
+            "targetName": "Sømna",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1813",
+            "targetName": "Brønnøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1815",
+            "targetName": "Vega",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1816",
+            "targetName": "Vevelstad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1818",
+            "targetName": "Herøy (Nordland)",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1820",
+            "targetName": "Alstahaug",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1822",
+            "targetName": "Leirfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1824",
+            "targetName": "Vefsn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1825",
+            "targetName": "Grane",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1826",
+            "targetName": "Aarborte - Hattfjelldal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1827",
+            "targetName": "Dønna",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1828",
+            "targetName": "Nesna",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1832",
+            "targetName": "Hemnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1833",
+            "targetName": "Rana",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1834",
+            "targetName": "Lurøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1835",
+            "targetName": "Træna",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1836",
+            "targetName": "Rødøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1837",
+            "targetName": "Meløy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1838",
+            "targetName": "Gildeskål",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1839",
+            "targetName": "Beiarn",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1840",
+            "targetName": "Saltdal",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1841",
+            "targetName": "Fauske - Fuossko",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1845",
+            "targetName": "Sørfold",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1848",
+            "targetName": "Steigen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1851",
+            "targetName": "Lødingen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1853",
+            "targetName": "Evenes - Evenášši",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1856",
+            "targetName": "Røst",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1857",
+            "targetName": "Værøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1859",
+            "targetName": "Flakstad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1860",
+            "targetName": "Vestvågøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1865",
+            "targetName": "Vågan",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1866",
+            "targetName": "Hadsel",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1867",
+            "targetName": "Bø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1868",
+            "targetName": "Øksnes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1870",
+            "targetName": "Sortland - Suortá",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1871",
+            "targetName": "Andøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1874",
+            "targetName": "Moskenes",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "1875",
+            "targetName": "Hábmer - Hamarøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5401",
+            "targetName": "Tromsø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5402",
+            "targetName": "Harstad - Hárstták",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5403",
+            "targetName": "Alta",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5404",
+            "targetName": "Vardø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5405",
+            "targetName": "Vadsø",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5406",
+            "targetName": "Hammerfest - Hámmerfeasta",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5411",
+            "targetName": "Kvæfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5412",
+            "targetName": "Dielddanuorri - Tjeldsund",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5413",
+            "targetName": "Ibestad",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5414",
+            "targetName": "Gratangen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5415",
+            "targetName": "Loabák - Lavangen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5416",
+            "targetName": "Bardu",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5417",
+            "targetName": "Salangen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5418",
+            "targetName": "Målselv",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5419",
+            "targetName": "Sørreisa",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5420",
+            "targetName": "Dyrøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5421",
+            "targetName": "Senja",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5422",
+            "targetName": "Balsfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5423",
+            "targetName": "Karlsøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5424",
+            "targetName": "Lyngen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5425",
+            "targetName": "Storfjord - Omasvuotna - Omasvuono",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5426",
+            "targetName": "Gáivuotna - Kåfjord - Kaivuono",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5427",
+            "targetName": "Skjervøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5428",
+            "targetName": "Nordreisa - Ráisa - Raisi",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5429",
+            "targetName": "Kvænangen",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5430",
+            "targetName": "Guovdageaidnu - Kautokeino",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5432",
+            "targetName": "Loppa",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5433",
+            "targetName": "Hasvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5434",
+            "targetName": "Måsøy",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5435",
+            "targetName": "Nordkapp",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5436",
+            "targetName": "Porsanger - Porsángu - Porsanki",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5437",
+            "targetName": "Kárášjohka - Karasjok",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5438",
+            "targetName": "Lebesby",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5439",
+            "targetName": "Gamvik",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5440",
+            "targetName": "Berlevåg",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5441",
+            "targetName": "Deatnu - Tana",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5442",
+            "targetName": "Unjárga - Nesseby",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5443",
+            "targetName": "Båtsfjord",
+            "targetShortName": ""
+        },
+        {
+            "sourceCode": "6",
+            "sourceName": "Nord-Norge",
+            "sourceShortName": "Nord-Norge",
+            "targetCode": "5444",
+            "targetName": "Sør-Varanger",
+            "targetShortName": ""
+        }
+    ]
+}

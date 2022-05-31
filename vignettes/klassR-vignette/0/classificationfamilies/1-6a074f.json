@@ -1,0 +1,610 @@
+{
+    "name": "Arbeid og lønn",
+    "classifications": [
+        {
+            "name": "Standard for yrkesklassifisering",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-20T05:29:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/7"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for yrkeskatalogen, basert på STYRK 98",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-05-02T07:24:06.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/145"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidstid (hel-/deltid)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:46:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/149"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsmarkedsstatus",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:58:24.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/161"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsgiveravgiftstype",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:57:22.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/162"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for delpopulasjon for lønn og sysselsetting",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-02-18T15:25:16.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/163"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsforhold",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:47:58.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/164"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for sysselsettingsstatus",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:59:38.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/165"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for knytningstyper-foretak",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:06:02.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/166"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for kvalitet knytning lonn-arbeidsforhold",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:03:03.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/167"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for knytningstyper-person",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:06:16.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/168"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for persontype",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-02-18T09:07:13.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/170"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for knytningstyper-virksomhet",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:04:03.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/172"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsforhold-kilde",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:48:14.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/173"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lønn tilleggsinformasjon",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:00:50.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/174"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for permisjonstyper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:02:11.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/177"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsgiveravgiftskoder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:57:05.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/178"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsgiveravgifts sone (A-ordningen)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:56:48.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/179"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsforholdstype",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:56:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/180"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for adressetyper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:47:43.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/181"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for adressekoder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:47:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/182"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidsgrupper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:57:54.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/183"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidskategorier",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:58:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/184"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidstidsordning",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:58:45.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/185"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for avlønningstype",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:00:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/187"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for flervirksomhetsforetakskoder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:04:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/188"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for fordelskoder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:04:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/189"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for inntjeningsforhold",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:05:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/190"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for konserntilhørighet",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:03:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/191"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lønnstrinn",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:01:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/192"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for mannskapstyper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:01:44.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/194"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for helsepersonells autorisasjon",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-05-13T07:35:09.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/204"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for helsepersonells kompetanse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-09-05T13:38:00.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/205"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for helsepersonells utdanningskilde",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-09-07T12:29:53.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/206"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for helsepersonells utdanningskode",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-22T13:05:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/207"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for helsepersonells videreutdanning/spesialitet",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-06-25T15:01:30.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/208"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for forskuddstrekkbeskrivelse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:05:02.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/210"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for fradragsbeskrivelse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:05:16.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/211"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for bosattstatus",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:04:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/213"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for pensjonskoder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-07T13:31:44.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/234"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for skatteregler",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:59:52.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/235"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ytelsestyper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:59:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/236"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lønnsbeskrivelse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:01:06.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/237"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for KOSTRA sysselsetting",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-11-17T15:01:11.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/300"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for publisert yrke",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-04-24T13:48:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/308"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for jobbsøking utenfor arbeidsstyrken - AKU",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:05:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/352"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for registreringstype virksomhet",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:02:38.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/370"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ARENA Tiltak",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-08-07T07:23:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/386"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ARENA as_stat (arbeidssøkerstatus, aktivitet og ytelse)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-05-11T14:00:05.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/393"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ARENA as_ytelse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2019-01-03T10:00:14.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/394"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ARENA as_gr (arbeidssøkerstatus grovgruppe)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-03-05T06:55:47.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/395"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ARENA as_f (arbeidssøkerstatus_fingruppe )",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-02-25T07:41:26.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/396"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lærlinger",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T13:00:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/438"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeidssted/bosted",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:46:58.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/444"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for yrke før A-ordningen",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-01-07T12:36:41.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/528"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for kilde til stillingsprosent",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-08T12:29:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/560"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for landsdeler i Sverige og Finland",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-04-21T11:55:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/562"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ansettelsesform",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-07T12:51:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/568"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for årsak til sluttdato",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-07T12:53:10.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/569"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for botid - to grupper",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-05-23T07:45:34.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/594"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/1"
+        }
+    }
+}

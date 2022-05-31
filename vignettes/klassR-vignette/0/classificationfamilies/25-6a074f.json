@@ -1,0 +1,160 @@
+{
+    "name": "Internt SSB",
+    "classifications": [
+        {
+            "name": "Standard for SSBs emneinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:06:17.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/15"
+                }
+            }
+        },
+        {
+            "name": "Standard for seksjonsinndeling",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-02-25T14:53:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/83"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Ytelsestyper EFF",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-10-06T09:11:42.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/176"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Lønnsbeskrivelse EFF",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-10-06T09:10:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/193"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Pensjonskoder EFF",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-07T13:31:24.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/195"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Skatteregler EFF",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-10-06T09:11:26.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/198"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for måletyper og måleenheter",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-01-21T07:39:53.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/303"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Ja/Nei (1,2)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-10-07T07:46:37.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/463"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Nei/Ja (0,1)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-08-06T13:47:40.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/464"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Status drift virksomhet",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-10-01T08:09:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/506"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Ja/Nei/Vet ikke (1,2,3)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-01-11T09:37:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/534"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Ja/Nei/Ikke relevant/Vet ikke (1,2,3,4)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-01-11T09:59:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/535"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Svært liten grad-Svært stor grad",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-01-11T10:09:01.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/536"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Ja/Delvis/Nei/Ikke relevant/Vet ikke (1,2,3,4,5)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-01-11T10:50:48.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/537"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for rapporteringsenhet offentlig sektor (Stat/Fylke/Kommune)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-01-18T09:39:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/538"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/25"
+        }
+    }
+}

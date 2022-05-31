@@ -1,0 +1,60 @@
+{
+    "codes": [
+        {
+            "code": "1",
+            "parentCode": null,
+            "level": "1",
+            "name": "Oslo og Viken",
+            "shortName": "Oslo og Viken",
+            "presentationName": ""
+        },
+        {
+            "code": "2",
+            "parentCode": null,
+            "level": "1",
+            "name": "Innlandet",
+            "shortName": "Innlandet",
+            "presentationName": ""
+        },
+        {
+            "code": "3",
+            "parentCode": null,
+            "level": "1",
+            "name": "Agder og Sør-Østlandet",
+            "shortName": "Agder og Sør-Østlandet",
+            "presentationName": ""
+        },
+        {
+            "code": "4",
+            "parentCode": null,
+            "level": "1",
+            "name": "Vestlandet",
+            "shortName": "Vestlandet",
+            "presentationName": ""
+        },
+        {
+            "code": "5",
+            "parentCode": null,
+            "level": "1",
+            "name": "Trøndelag",
+            "shortName": "Trøndelag",
+            "presentationName": ""
+        },
+        {
+            "code": "6",
+            "parentCode": null,
+            "level": "1",
+            "name": "Nord-Norge",
+            "shortName": "Nord-Norge",
+            "presentationName": ""
+        },
+        {
+            "code": "9",
+            "parentCode": null,
+            "level": "1",
+            "name": "Uoppgitt",
+            "shortName": "Uoppgitt",
+            "presentationName": ""
+        }
+    ]
+}

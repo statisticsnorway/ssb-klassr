@@ -1,0 +1,20 @@
+{
+    "name": "Bank og finansmarked",
+    "classifications": [
+        {
+            "name": "Standard for skadeforsikring bransje",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-06-12T10:35:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/155"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/2"
+        }
+    }
+}

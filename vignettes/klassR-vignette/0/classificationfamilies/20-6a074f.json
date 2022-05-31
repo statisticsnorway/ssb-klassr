@@ -1,0 +1,390 @@
+{
+    "name": "Utdanning",
+    "classifications": [
+        {
+            "name": "Standard for utdanningsgruppering (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-13T07:10:46.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/36"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED97 nivå og fagfelt (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/66"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED 2011 Programmes (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/139"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED 2011 Attainment (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:28.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/140"
+                }
+            }
+        },
+        {
+            "name": "Standard for ISCED-F 2013 Fagfelt (NUS)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-11T12:00:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/141"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Gruppering av befolkningens utdanningsnivå",
+            "classificationType": "Kodeliste",
+            "lastModified": "2019-07-08T06:15:57.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/225"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for foreldrenes utdanningsnivå da personen var 16 år (sosbak)",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-09-27T07:03:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/227"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Fullførtgrad",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-03-12T07:33:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/229"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for årstrinn i grunnskolen",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-02-08T06:22:49.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/261"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lærerkompetanse",
+            "classificationType": "Kodeliste",
+            "lastModified": "2019-06-04T06:42:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/262"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Valg i videregående utdanning",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-03-12T07:34:10.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/264"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Utdanningsprogram/trinn videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-03-09T13:13:45.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/266"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for overgang til og fra videregående opplæring",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-04-19T11:19:55.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/267"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Bestått fag/svenneprøve i videregående opplæring",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-04-19T11:05:47.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/268"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Utdanningsstatus til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-06-12T13:01:17.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/287"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Utdanningsprogram til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-03-02T15:40:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/288"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Eierforhold til bruk i kostra videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-02-20T12:42:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/289"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for kjønn til bruk i KOSTRA",
+            "classificationType": "Kodeliste",
+            "lastModified": "2019-01-23T09:11:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/290"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Lærerkompetanse til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-05-11T06:51:52.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/291"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Arbeidstid (hel-/deltid) til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-02-20T13:16:57.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/293"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Innvandringsbakgrunn til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-04-18T12:54:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/295"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Aldersgrupper for lærere til bruk i KOSTRA",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-06-05T07:25:50.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/296"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for gruppering av årstrinn i grunnskolen - KOSTRA",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-11-17T13:50:58.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/297"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for gruppering av lærerkompetanse i grunnskolen - KOSTRA",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-02-08T08:58:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/298"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for regnskapsfunksjoner til bruk i KOSTRA grunnskole",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-06-25T11:19:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/301"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Helsestasjons- og skolehelsetjenesten - utdanning",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-02-19T11:13:51.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/338"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Skoler i videregående opplæring",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-03-11T12:06:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/357"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Eierforhold til bruk i barnehager",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-05-08T08:32:42.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/368"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Oppholdstid til bruk i barnehager",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-05-08T11:02:06.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/371"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Stillingstyper til bruk i KOSTRA barnehager",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-10-03T13:43:04.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/373"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Utdanning til bruk i KOSTRA barnehager",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-10-04T08:40:51.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/379"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Skoler i videregående opplæring med fylke og eierforhold",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-06-14T08:12:37.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/383"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Todelt innvandringsbakgrunn",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-01-13T12:06:34.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/443"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Lærerkompetanse (7 kat.) til bruk i KOSTRA videregående",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-03-10T13:15:59.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/446"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ny inndeling av kompetanse i KOSTRA grunnskole",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-03-10T09:09:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/465"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Aldersgrupper (5-delt) for lærere til bruk i KOSTRA",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-03-09T13:46:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/475"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for fagkode for grunnskolekarakter",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-03-22T10:20:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/541"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for kompetanse for andre ansatte i elevrettet arbeid i grunnskolen",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-02-10T11:09:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/585"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/20"
+        }
+    }
+}

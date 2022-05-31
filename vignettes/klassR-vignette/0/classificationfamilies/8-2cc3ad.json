@@ -1,0 +1,30 @@
+{
+    "name": "Innvandring og innvandrere",
+    "classifications": [
+        {
+            "name": "Standard for gruppering av personer etter innvandringsbakgrunn",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-23T07:51:32.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/82"
+                }
+            }
+        },
+        {
+            "name": "Standard for innvandringsgrunn",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-03-21T13:53:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/355"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/8"
+        }
+    }
+}

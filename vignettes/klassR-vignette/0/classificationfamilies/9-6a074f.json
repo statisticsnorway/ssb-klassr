@@ -1,0 +1,440 @@
+{
+    "name": "Jord, skog, jakt og fiskeri",
+    "classifications": [
+        {
+            "name": "Standard for klassifisering av skogeiere med minst 25 dekar produktivt skogareal i eiergrupper",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-06T10:19:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/22"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av kjøpere og selgere av tømmer til industriformål",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-06T10:16:19.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/23"
+                }
+            }
+        },
+        {
+            "name": "Standard for treslag- og sortimentsinndeling ved tømmersalg",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-06T09:31:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/24"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av jordbruksbedrifter etter økonomisk størrelse (SDB)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-08T08:27:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/25"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av jordbruksbedrifter etter driftsform (SDB)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-13T07:43:03.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/26"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av jordbruksareal etter bruken",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-02-28T13:08:38.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/27"
+                }
+            }
+        },
+        {
+            "name": "Standard for markslagsklassifikasjon i Økonomisk kartverk",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:06:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/28"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av husdyr",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-02-28T12:59:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/29"
+                }
+            }
+        },
+        {
+            "name": "Standard for internasjonale fangstregioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:55.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/32"
+                }
+            }
+        },
+        {
+            "name": "Standard for viktige norske fangstregioner",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:06:18.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/33"
+                }
+            }
+        },
+        {
+            "name": "Standard for fangstarter i sjø",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-12-03T08:33:51.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/34"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av plantevernmiddel etter bruksområde",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:08:41.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/50"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av dyrka og dyrkbar jord tillatt omdisponert til andre formål enn jordbruk, etter hovedformål",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-02-28T13:34:15.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/51"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av registrert avgang av vilt utenom ordinær jakt",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/68"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av hjortevilt etter alder og kjønn",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/69"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av produktivt skogareal etter hogstklasse",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/70"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av produktivt skogareal etter bonitet (H40)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/71"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av skogeiendommer etter størrelsesklasse",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/72"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av skogsveger for motorkjøretøyer",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2016-10-07T12:16:23.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/73"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av småvilt",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-08-07T06:36:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/74"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av villreinområder",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-11-09T08:26:03.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/75"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av jordbruksbedrifter etter økonomisk størrelse (SO)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-19T07:20:12.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/220"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av jordbruksbedrifter etter driftsform (SO)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2017-09-19T07:21:56.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/222"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for omdisponering av dyrka og dyrkbar jord",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-12-20T10:26:44.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/251"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for lovanvendelse ved omdisponering av dyrka og dyrkbar jord",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-12-20T10:25:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/254"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arealtype ved omdisponering",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-12-20T10:20:31.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/256"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for søknadsstatus ved omdisponering etter jordloven",
+            "classificationType": "Kodeliste",
+            "lastModified": "2017-12-20T10:28:09.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/257"
+                }
+            }
+        },
+        {
+            "name": "Standard for for klassifisering av jordbruksbedrifter etter jordbruksarealet i drift",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-05-23T06:08:35.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/378"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for frukt og bær på friland",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-01-28T07:53:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/451"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for grønnsaker i veksthus",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-01-28T07:54:11.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/453"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for grønnsaker på friland",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-02-06T12:50:55.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/454"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for enhet grønnsaksavling",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-01-30T09:29:50.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/461"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for driftsleder i enkeltpersonforetak",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:14:58.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/493"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for arbeid utenom jordbruksbedrift",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T07:35:53.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/494"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ansatte fra A-ordningen for enkeltpersonsforetak",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:13:30.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/495"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ansatte fra A-ordningen ANS/DA/AS m.v.",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:11:58.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/496"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ansatte ikke oppført i A-ordningen for enkeltpersonforetak",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:14:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/497"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for ansatte ikke oppført i A-ordningen for ANS/DA/AS m.v.",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:14:05.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/498"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for andel vann i bløtgjødsel",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:11:36.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/499"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for enhet for gjødsel",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-08-07T05:15:15.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/501"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for gruppering av driftsform",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-10-07T11:51:51.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/507"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for enhet matsvinn",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-11-13T08:24:04.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/521"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for enhet energikilder",
+            "classificationType": "Kodeliste",
+            "lastModified": "2022-03-17T19:46:14.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/590"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/9"
+        }
+    }
+}

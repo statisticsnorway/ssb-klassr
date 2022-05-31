@@ -1,0 +1,70 @@
+{
+    "name": "Virksomheter, foretak og regnskap",
+    "classifications": [
+        {
+            "name": "Standard for PRODCOM koder",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-09T12:06:57.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/5"
+                }
+            }
+        },
+        {
+            "name": "Standard for næringsgruppering (SN)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-19T09:03:27.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/6"
+                }
+            }
+        },
+        {
+            "name": "Standard for organisasjonsform (VoF)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-04-13T11:20:47.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/35"
+                }
+            }
+        },
+        {
+            "name": "Standard for institusjonell sektorgruppering",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-06-06T12:48:50.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/39"
+                }
+            }
+        },
+        {
+            "name": "Standard for inndeling av foretak etter størrelsesgruppe",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-02-12T12:44:09.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/47"
+                }
+            }
+        },
+        {
+            "name": "Standard for Variant av SN - Miljøregnskap",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-07-03T07:35:57.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/90"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/24"
+        }
+    }
+}

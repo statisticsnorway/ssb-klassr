@@ -1,0 +1,70 @@
+{
+    "name": "Sosiale forhold og kriminalitet",
+    "classifications": [
+        {
+            "name": "Standard for gruppering av hjelpe- og omsorgstiltak i barnevernet",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2022-05-20T11:35:24.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/3"
+                }
+            }
+        },
+        {
+            "name": "Standard for grunnbeløpet i folketrygden (beløp pr. 1.5 )",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-11-03T12:41:21.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/20"
+                }
+            }
+        },
+        {
+            "name": "Standard for grunnbeløpet i folketrygden (gjennomsnitt pr. år)",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-11-03T14:01:09.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/43"
+                }
+            }
+        },
+        {
+            "name": "Standard for lovbruddstyper",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-05-26T13:09:48.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/146"
+                }
+            }
+        },
+        {
+            "name": "Standard for politiets lovbruddskoder",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-05-26T13:09:07.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/153"
+                }
+            }
+        },
+        {
+            "name": "Standard for lovbruddsgrupper",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2018-01-22T10:07:43.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/154"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/16"
+        }
+    }
+}

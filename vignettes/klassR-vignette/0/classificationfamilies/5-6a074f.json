@@ -1,0 +1,80 @@
+{
+    "name": "Energi og industri",
+    "classifications": [
+        {
+            "name": "Standard for klassifisering av energiprodukter",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2021-06-23T13:20:20.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/117"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av energibalanseposter",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-01-22T09:41:30.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/157"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av energivarebalanseposter",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2019-01-22T09:43:42.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/212"
+                }
+            }
+        },
+        {
+            "name": "Standard for klassifisering av energiregnskapsposter",
+            "classificationType": "Klassifikasjon",
+            "lastModified": "2020-05-20T07:47:37.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/215"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Energibruk i kommunal/fylkeskommunal eiendomsforvaltning, art",
+            "classificationType": "Kodeliste",
+            "lastModified": "2020-11-17T11:48:39.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/350"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for Energibruk i kommunal/fylkeskommunal eiendomsforvaltning, funksjon",
+            "classificationType": "Kodeliste",
+            "lastModified": "2018-03-06T09:48:14.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/351"
+                }
+            }
+        },
+        {
+            "name": "Kodeliste for investeringskategorier innen olje- og gassutvinning og rørtransport.",
+            "classificationType": "Kodeliste",
+            "lastModified": "2021-09-10T06:30:13.000+0000",
+            "_links": {
+                "self": {
+                    "href": "classifications/570"
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "classificationfamilies/5"
+        }
+    }
+}
