@@ -13,7 +13,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  echo = T
+  echo = T, 
+  message = F
 )
 library(knitr)
 library(kableExtra)
