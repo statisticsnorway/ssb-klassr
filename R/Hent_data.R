@@ -111,7 +111,7 @@ get_variant_name <- function(variant){
   if (is.null(variant_url)) stop_quietly()
   
   # Extract text with variant name
-  variant_text <- httr::content(variant_url, "text")
+  variant_text <- httr::content(variant_url, "text", encoding = "UTF-8") ####
   if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
   }
@@ -148,7 +148,7 @@ GetUrl2 <- function(url, check = TRUE){
   if (is.null(hent_klass)){
     return(invisible(NULL))
   } 
-  klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
+  klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") #### ## deserialisering med httr funksjonen content
   return(klass_text)
 }
 
