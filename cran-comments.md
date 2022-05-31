@@ -1,9 +1,15 @@
-## Test environments
-* Linux Platform: x86_64-rehat-linux-gnu (64-bit)
-* windows Platform: x86_64-w64-mingw32/x64 (64-bit)
+### Test environments
+* Linux Platform:
+  - ubuntu latest (devel)
+  - ubunto latest (release)
+  - ubunto latest (4.1.1)
+* Windows Platform: 
+  - windows latest (release)
+* Mac OS:
+  - macOS latest (release)
 
-## R CMD check results
-There was no errors, warnings or notes when running devtools::check()
+### R CMD check results
+Results passing and published using github actions at https://github.com/statisticsnorway/klassR/actions. 
 
-## Downstream dependencies
+### Downstream dependencies
 No reverse dependencies to check.
