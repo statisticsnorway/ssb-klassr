@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">klassR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
 
 
 
-<script src="klassR-vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="klassR-vignette_files/kePrint-0.0.1/kePrint.js"></script><link href="klassR-vignette_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="klassR-vignette_files/kePrint-0.0.1/kePrint.js"></script><link href="klassR-vignette_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Introduction to klassR</h1>
@@ -80,24 +80,45 @@
 <div class="section level2">
 <h2 id="introduction">1. Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian muncipality numbers and no names? Or perhaps you want to convert English standard occupations into Nynorsk for a figure. These are tasks which the R package <strong>klassR</strong> can help you with.</p>
-<p>Statisticss Norways’s <a href="https://www.ssb.no/en/klass/" class="external-link"><em>KLASS</em></a> is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. <strong>KlassR</strong> provides an easy interface to fetch and apply these in R.</p>
-<p>For Statistic Norway employees, the package is installed on most of our platforms. For others, it can be installed form CRAN with</p>
+<p>Do you have a Norwegian data set with codes for Standard Industrial
+Classification that you want to find out what they mean? Or data with
+Norwegian muncipality numbers and no names? Or perhaps you want to
+convert English standard occupations into Nynorsk for a figure. These
+are tasks which the R package <strong>klassR</strong> can help you
+with.</p>
+<p>Statisticss Norways’s <a href="https://www.ssb.no/en/klass/" class="external-link"><em>KLASS</em></a> is a central
+database of classifications and code lists. An API makes it easy to
+fetch these standards in different computing environments.
+<strong>KlassR</strong> provides an easy interface to fetch and apply
+these in R.</p>
+<p>For Statistic Norway employees, the package is installed on most of
+our platforms. For others, it can be installed form CRAN with</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"klassR"</span><span class="op">)</span></code></pre></div>
-<p>CRAN is R’s central repository for thousands of useful packages. More information on the requirements for klassR** can be found on <a href="https://cran.r-project.org/web/packages/klassR/index.html" class="external-link">CRAN</a></p>
-<p>To use the function in <strong>klassR</strong> the package must be called each time a new R session is started. This can be done using</p>
+<p>CRAN is R’s central repository for thousands of useful packages. More
+information on the requirements for <strong>klassR</strong> can be found
+on <a href="https://cran.r-project.org/web/packages/klassR/index.html" class="external-link">CRAN</a></p>
+<p>To use the function in <strong>klassR</strong> the package must be
+called each time a new R session is started. This can be done using</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">klassR</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="search-for-a-classification">2. Search for a classification<a class="anchor" aria-label="anchor" href="#search-for-a-classification"></a>
 </h2>
-<p>To fetch a classification from <em>KLASS</em> you need the unique classification number. This can be found in the URL of the <em>KLASS</em> website or you can search for it in R using one of the following functions.</p>
+<p>To fetch a classification from <em>KLASS</em> you need the unique
+classification number. This can be found in the URL of the
+<em>KLASS</em> website or you can search for it in R using one of the
+following functions.</p>
 <div class="section level3">
 <h3 id="list-all-classifications">List all classifications<a class="anchor" aria-label="anchor" href="#list-all-classifications"></a>
 </h3>
-<p>The function <code>ListKlass</code> will fetch a list of all classifications. It returns the classification name (<code>klass_name</code>), number (<code>klass_nr</code>) and the classification family it belongs to (<code>klass_family</code>). The classification type (<code>klass_type</code>) is also shown which indicates whether it is a classification or code list.</p>
+<p>The function <code>ListKlass</code> will fetch a list of all
+classifications. It returns the classification name
+(<code>klass_name</code>), number (<code>klass_nr</code>) and the
+classification family it belongs to (<code>klass_family</code>). The
+classification type (<code>klass_type</code>) is also shown which
+indicates whether it is a classification or code list.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ListKlass.html">ListKlass</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -202,7 +223,9 @@ Klassifikasjon
 </tr>
 </tbody>
 </table>
-<p>Code lists are classifications that used for national and internal (Statistics Norway) publications. These can be included in the list using the <code>codelist</code> parameter</p>
+<p>Code lists are classifications that used for national and internal
+(Statistics Norway) publications. These can be included in the list
+using the <code>codelist</code> parameter</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ListKlass.html">ListKlass</a></span><span class="op">(</span>codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
@@ -311,7 +334,9 @@ Kodeliste
 <div class="section level3">
 <h3 id="search-for-a-classification-using-a-key-word">Search for a classification using a key word<a class="anchor" aria-label="anchor" href="#search-for-a-classification-using-a-key-word"></a>
 </h3>
-<p>You can also search for a classification by a keyword using the <code>SearchKlass</code> function. The first parameter here is the query to search for.</p>
+<p>You can also search for a classification by a keyword using the
+<code>SearchKlass</code> function. The first parameter here is the query
+to search for.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/SearchKlass.html">SearchKlass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -342,7 +367,8 @@ Classification of land use and land cover
 </tr>
 </tbody>
 </table>
-<p>Again, to include code lists in the search this should be specified</p>
+<p>Again, to include code lists in the search this should be
+specified</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/SearchKlass.html">SearchKlass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span>, codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -413,13 +439,18 @@ Classification of land use and land cover
 </tr>
 </tbody>
 </table>
-<p>Sometimes a classification or code list will appear several times. This is due to that it occurs several times in different langauges in the database.</p>
+<p>Sometimes a classification or code list will appear several times.
+This is due to that it occurs several times in different langauges in
+the database.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="fetch-a-classification">3. Fetch a classification<a class="anchor" aria-label="anchor" href="#fetch-a-classification"></a>
 </h2>
-<p>To fetch a complete classification, use the <code>GetKlass</code> function together with the unique identifier. For example, to fetch the Standard Industrial Classifications (<em>KLASS</em> number 6) we run:</p>
+<p>To fetch a complete classification, use the <code>GetKlass</code>
+function together with the unique identifier. For example, to fetch the
+Standard Industrial Classifications (<em>KLASS</em> number 6) we
+run:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -527,7 +558,11 @@ Dyrking av ris
 <div class="section level3">
 <h3 id="level">Level<a class="anchor" aria-label="anchor" href="#level"></a>
 </h3>
-<p>Classifications are often organised in a heirachical way. In the example above, the Standard Industrial Classifications have different values for <em>level</em>. To fetch a specific level, use the <code>output_level</code> parameter. For example, to fetch only the top level Standard Industrial Classifcaiton codes we use:</p>
+<p>Classifications are often organised in a heirachical way. In the
+example above, the Standard Industrial Classifications have different
+values for <em>level</em>. To fetch a specific level, use the
+<code>output_level</code> parameter. For example, to fetch only the top
+level Standard Industrial Classifcaiton codes we use:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -636,7 +671,12 @@ Bygge- og anleggsvirksomhet
 <div class="section level3">
 <h3 id="langauge">Langauge<a class="anchor" aria-label="anchor" href="#langauge"></a>
 </h3>
-<p>In the above examples we have seen that the names are returned in Norwegian (Bokmål). However, many of the classification in <em>KLASS</em> are in multiple languages. The output language can be specified as Bokmål (“nb”), Nynorsk (“nn”) or English (“en”) using the <code>language</code> parameter. <em>Note: all 3 languages are not available for all classifcations.</em></p>
+<p>In the above examples we have seen that the names are returned in
+Norwegian (Bokmål). However, many of the classification in
+<em>KLASS</em> are in multiple languages. The output language can be
+specified as Bokmål (“nb”), Nynorsk (“nn”) or English (“en”) using the
+<code>language</code> parameter. <em>Note: all 3 languages are not
+available for all classifcations.</em></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -746,8 +786,14 @@ Construction
 <div class="section level2">
 <h2 id="applying-a-classfication">4. Applying a classfication<a class="anchor" aria-label="anchor" href="#applying-a-classfication"></a>
 </h2>
-<p>If you have a data set and want to apply a classfication to a variable this is possible to do with <code>ApplyKlass</code>. This can be used to get the name of a variable which is in code form for example.</p>
-<p>There is a built in test dataset in <strong>klassR</strong> called <code>klassdata</code>. It contains fictitious persons with sex, education level, municipality numbers, industry classfication for workplace and occupation.</p>
+<p>If you have a data set and want to apply a classfication to a
+variable this is possible to do with <code>ApplyKlass</code>. This can
+be used to get the name of a variable which is in code form for
+example.</p>
+<p>There is a built in test dataset in <strong>klassR</strong> called
+<code>klassdata</code>. It contains fictitious persons with sex,
+education level, municipality numbers, industry classfication for
+workplace and occupation.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">)</span></code></pre></div>
@@ -916,7 +962,10 @@ NA
 </tr>
 </tbody>
 </table>
-<p>We can use <code>ApplyKlass</code> to create a variable for the occupation names (classification number 7) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classfication number.</p>
+<p>We can use <code>ApplyKlass</code> to create a variable for the
+occupation names (classification number 7) for the persons based on the
+codes. We specify the vector of codes as the first parameter followed by
+the unique classfication number.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ApplyKlass.html">ApplyKlass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>, 
                                       klass <span class="op">=</span> <span class="fl">131</span><span class="op">)</span>
@@ -1107,17 +1156,26 @@ Oslo
 </tr>
 </tbody>
 </table>
-<p>Again, parameters including <code>language</code> and <code>output_level</code> can be specified.</p>
+<p>Again, parameters including <code>language</code> and
+<code>output_level</code> can be specified.</p>
 </div>
 <div class="section level2">
 <h2 id="working-with-dates">5. Working with dates<a class="anchor" aria-label="anchor" href="#working-with-dates"></a>
 </h2>
-<p>Classifications will often change over time. The <em>KLASS</em> database considers this and older classifications can be fetched using the <code>date</code> parameter.</p>
+<p>Classifications will often change over time. The <em>KLASS</em>
+database considers this and older classifications can be fetched using
+the <code>date</code> parameter.</p>
 <div class="section level3">
 <h3 id="specify-a-specific-date">Specify a specific date<a class="anchor" aria-label="anchor" href="#specify-a-specific-date"></a>
 </h3>
-<p>Fetching or using a classification at a specific time point can be done using the <code>date</code> parameter and specifying the date for which the version of classification applies. The date format should be in the form “yyyy-mm-dd”, for example “2022-05-27” for the 27th May, 2022.</p>
-<p>There have been many changes to the regions in Norway (classification number 106) over the past few years. We can see this by fetching the classifications for these at different times</p>
+<p>Fetching or using a classification at a specific time point can be
+done using the <code>date</code> parameter and specifying the date for
+which the version of classification applies. The date format should be
+in the form “yyyy-mm-dd”, for example “2022-05-27” for the 27th May,
+2022.</p>
+<p>There have been many changes to the regions in Norway (classification
+number 106) over the past few years. We can see this by fetching the
+classifications for these at different times</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2019-01-01"</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -1372,8 +1430,12 @@ Uoppgitt
 <div class="section level3">
 <h3 id="time-intervals">Time intervals<a class="anchor" aria-label="anchor" href="#time-intervals"></a>
 </h3>
-<p>Sometime it may be useful to fetch all codes over a period of time. We can do this by specifing two dates as a vector in the <code>date</code> paramter.</p>
-<p>The following code fetched Norwegian regional codes between 1st January 2019 to the 1st January 2020. There are 26 different codes that show both old and newer names.</p>
+<p>Sometime it may be useful to fetch all codes over a period of time.
+We can do this by specifing two dates as a vector in the
+<code>date</code> paramter.</p>
+<p>The following code fetched Norwegian regional codes between 1st
+January 2019 to the 1st January 2020. There are 26 different codes that
+show both old and newer names.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2019-01-01"</span>, <span class="st">"2020-01-01"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -1594,7 +1656,9 @@ Uoppgitt
 <div class="section level3">
 <h3 id="changes-in-time">Changes in time<a class="anchor" aria-label="anchor" href="#changes-in-time"></a>
 </h3>
-<p>To fetch only the changes in a time period rather than all codes we can specify <code>correspond=TRUE</code> allong with the time interval we are interested in.</p>
+<p>To fetch only the changes in a time period rather than all codes we
+can specify <code>correspond=TRUE</code> allong with the time interval
+we are interested in.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, 
          date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-01-01"</span>, <span class="st">"2019-01-01"</span><span class="op">)</span>, 
@@ -1757,14 +1821,26 @@ Nord-Norge
 </tr>
 </tbody>
 </table>
-<p>The table returned is a correspondents in codes and/or names in the time interval specified. The <code>sourceCode</code> and <code>sourceName</code> refer to the original name and coding. The <code>targetCode</code> and <code>targetName</code> refer to the newer code and name. Notice there is not a simple 1:1 correspondence between all of the regions. Here the municipality number would be needed to map the changes more accurately.</p>
+<p>The table returned is a correspondents in codes and/or names in the
+time interval specified. The <code>sourceCode</code> and
+<code>sourceName</code> refer to the original name and coding. The
+<code>targetCode</code> and <code>targetName</code> refer to the newer
+code and name. Notice there is not a simple 1:1 correspondence between
+all of the regions. Here the municipality number would be needed to map
+the changes more accurately.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="correspondence-tables">6. Correspondence tables<a class="anchor" aria-label="anchor" href="#correspondence-tables"></a>
 </h2>
-<p>In addition to small changes in time, some classifications will change completely and a correspondence table is then defined within the <em>KLASS</em> database. These can be fetched or applied using <code>GetKlass</code> and <code>ApplyKlass</code> functions together with the <code>correspond</code> parameter which should give the unique classification number to convert into.</p>
-<p>To fetch a correspondence table between municipality codes (131) and greater regional codes (106) we can run:</p>
+<p>In addition to small changes in time, some classifications will
+change completely and a correspondence table is then defined within the
+<em>KLASS</em> database. These can be fetched or applied using
+<code>GetKlass</code> and <code>ApplyKlass</code> functions together
+with the <code>correspond</code> parameter which should give the unique
+classification number to convert into.</p>
+<p>To fetch a correspondence table between municipality codes (131) and
+greater regional codes (106) we can run:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">131</span>, correspond <span class="op">=</span> <span class="fl">106</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -1869,7 +1945,8 @@ Oslo og Viken
 </tr>
 </tbody>
 </table>
-<p>We can apply this correspondence between municipality and region in our example data set using <code>ApplyKlass</code>.</p>
+<p>We can apply this correspondence between municipality and region in
+our example data set using <code>ApplyKlass</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">klassdata</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ApplyKlass.html">ApplyKlass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>, 
                                klass <span class="op">=</span> <span class="fl">131</span>,
