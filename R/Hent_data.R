@@ -5,7 +5,7 @@
 #' @return NULL
 CheckDate <- function(date){
   dcheck <- try(as.Date(date, format= "%Y-%m-%d"))
-  if(class(date) == "try-error" | is.na(dcheck)) {
+  if(!inherits(dcheck, 'Date') | is.na(dcheck)) {
     stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
   }
 }
@@ -80,7 +80,7 @@ check_connect <- function(url){
     error = function(e) conditionMessage(e),
     warning = function(w) conditionMessage(w)
   )
-  if (class(tryget) != "response"){
+  if (!inherits(tryget, "response")){
     message(tryget)
     return(invisible(NULL))
   } else if (httr::http_error(tryget$status_code)){
