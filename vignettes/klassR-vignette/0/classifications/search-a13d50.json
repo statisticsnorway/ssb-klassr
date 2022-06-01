@@ -4,7 +4,7 @@
             {
                 "name": "Classification of type of building /cadastre",
                 "snippet": "garden 649 - Other museum and library building 651 - Sports hall 652 - Ice <strong>arena<\/strong> 653 - Indoor swimming pool 654 - Stand and building for shower and changing",
-                "searchScore": 1.3912005424499512,
+                "searchScore": 1.3915133476257324,
                 "_links": {
                     "self": {
                         "href": "classifications/31"
@@ -14,7 +14,7 @@
             {
                 "name": "Classification of land use and land cover",
                 "snippet": "Other green areas 13 - Sports facilities 13.01 - Sports hall 13.02 - Ice <strong>arena<\/strong> 13.03 - Indoor swimming pool 13.04 - Stand and building for shower and changing",
-                "searchScore": 1.340273141860962,
+                "searchScore": 1.3405816555023193,
                 "_links": {
                     "self": {
                         "href": "classifications/118"

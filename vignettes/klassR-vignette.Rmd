@@ -35,9 +35,9 @@ set_requester(function (request) {
 start_vignette("klassR-vignette")
 ```
 ## 1. Introduction
-Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian muncipality numbers and no names? Or perhaps you want to convert English standard occupations into Nynorsk for a figure. These are tasks which the R package **klassR** can help you with.
+Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian municipality numbers and no names? Or perhaps you want to convert English standard occupations into Ny Norsk for a figure. These are tasks which the R package **klassR** can help you with.
 
-Statisticss Norways's [*KLASS*](https://www.ssb.no/en/klass/) is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. **KlassR** provides an easy interface to fetch and apply these in R. 
+Statistics Norway's [*KLASS*](https://www.ssb.no/en/klass/) is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. **KlassR** provides an easy interface to fetch and apply these in R. 
 
 For Statistic Norway employees, the package is installed on most of our platforms. For others, it can be installed form CRAN with
 
@@ -45,7 +45,7 @@ For Statistic Norway employees, the package is installed on most of our platform
 install.packages("klassR")
 ```
 
-CRAN is R's central repository for thousands of useful packages. More information on the requirements for **klassR** can be found on [CRAN](https://cran.r-project.org/web/packages/klassR/index.html)
+CRAN is R's central repository for thousands of useful packages. More information on the requirements for **klassR** can be found on [CRAN](https://CRAN.r-project.org/package=klassR)
 
 
 To use the function in **klassR** the package must be called each time a new R session is started. This can be done using
@@ -126,7 +126,7 @@ kable(head(GetKlass(6)))
 
 
 ### Level
-Classifications are often organised in a heirachical way. In the example above, the Standard Industrial Classifications have different values for *level*. To fetch a specific level, use the `output_level` parameter. For example, to fetch only the top level Standard Industrial Classifcaiton codes we use:
+Classifications are often organised in a heirachical way. In the example above, the Standard Industrial Classifications have different values for *level*. To fetch a specific level, use the `output_level` parameter. For example, to fetch only the top level Standard Industrial Classification codes we use:
 
 
 ```{r, eval =F}
