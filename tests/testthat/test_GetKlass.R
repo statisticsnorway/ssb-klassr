@@ -35,3 +35,13 @@ test_that("GetKlass returns a valid variant", {
   
 })
 
+
+test_that("GetKlass returns notes when requested", {
+  class_data <- GetKlass(277, notes = TRUE, date = "2023-01-12")
+  note <- class_data$notes[class_data$code == "FGK8"]
+  expect_equal(note, 'Grupperingen omfatter funksjonene 202, 215, 222 og 223 innen grunnskole.')
+  
+})
+
+
+

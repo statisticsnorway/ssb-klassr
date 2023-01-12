@@ -163,6 +163,7 @@ GetUrl2 <- function(url, check = TRUE){
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
 #' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
 #' @param output_style String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
+#' @param notes Logical for if notes should be returned as a column
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -181,7 +182,8 @@ GetKlass <- function(klass,
                       variant = NULL,
                       output_level = NULL,
                       language = "nb",
-                      output_style = "normal"){
+                      output_style = "normal",
+                     notes=FALSE){
   
   # create type of klassification for using later
   type <- ifelse(is.null(correspond), "vanlig", "kor")
@@ -299,6 +301,9 @@ GetKlass <- function(klass,
       klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName")]
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
+  }
+  if (type %in% c("variant", "vanlig") & isTRUE(notes)){
+    klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
   }
   
   if (output_style == "wide" & is.null(output_level) & is.null(correspond)){
