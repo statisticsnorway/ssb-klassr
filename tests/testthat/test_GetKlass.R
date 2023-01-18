@@ -44,4 +44,9 @@ test_that("GetKlass returns notes when requested", {
 })
 
 
+test_that("GetKlass returns a future calssification", {
+  expect_message(classdata <- GetKlass(104, date = "2024-01-01"))
+  expect_equal(classdata$name[6], "Akershus")
+})
+
 
