@@ -19,27 +19,27 @@ knitr::opts_chunk$set(
 library(knitr)
 library(kableExtra)
 library(magrittr)
-library(httptest)
+#library(httptest)
 
-root <- klassR:::GetBaseUrl()
-set_redactor(function (response) {
-    response %>%
-        gsub_response(root, "", fixed=TRUE)
-})
+#root <- klassR:::GetBaseUrl()
+#set_redactor(function (response) {
+#    response %>%
+#        gsub_response(root, "", fixed=TRUE)
+#})
 
-set_requester(function (request) {
-    request %>%
-        gsub_request(root, "", fixed=TRUE)
-})
+#set_requester(function (request) {
+#    request %>%
+#        gsub_request(root, "", fixed=TRUE)
+#})
 
-start_vignette("klassR-vignette")
+#start_vignette("klassR-vignette")
 ```
 ## 1. Introduction
 Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian municipality numbers and no names? Or perhaps you want to convert English standard occupations into Ny Norsk for a figure. These are tasks which the R package **klassR** can help you with.
 
-Statistics Norway's [*KLASS*](https://www.ssb.no/en/klass/) is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. **KlassR** provides an easy interface to fetch and apply these in R. 
+Statistics Norway's [*KLASS*](https://www.ssb.no/en/klass/) is a central database of classifications and code lists. An API makes it easy to fetch these standards in different computing environments. **klassR** provides an easy interface to fetch and apply these in R. 
 
-For Statistic Norway employees, the package is installed on most of our platforms. For others, it can be installed form CRAN with
+For Statistic Norway employees, the package is installed on most of our platforms. For others, it can be installed from CRAN with:
 
 ```{r, eval=F}
 install.packages("klassR")
@@ -48,7 +48,7 @@ install.packages("klassR")
 CRAN is R's central repository for thousands of useful packages. More information on the requirements for **klassR** can be found on [CRAN](https://CRAN.r-project.org/package=klassR)
 
 
-To use the function in **klassR** the package must be called each time a new R session is started. This can be done using
+To use the function in **klassR** the package must be called each time a new R session is started. This can be done using:
 
 ```{r}
 library(klassR)
@@ -69,7 +69,7 @@ ListKlass()
 ```{r, echo = F}
 all <- ListKlass()
 row.names(all) <- NULL
-kable(head(all))
+knitr::kable(head(all))
 ```
 
 Code lists are classifications that used for national and internal (Statistics Norway) publications. These can be included in the list using the `codelist` parameter 
@@ -88,7 +88,7 @@ kable(head(ck), align = "l")%>%
 ```
 
 
-### Search for a classification using a key word
+### Search for a classification using a keyword
 You can also search for a classification by a keyword using the `SearchKlass` function. The first parameter here is the query to search for. 
 
 ```{r, eval = F}
@@ -117,11 +117,13 @@ Sometimes a classification or code list will appear several times. This is due t
 To fetch a complete classification, use the `GetKlass` function together with the unique identifier. For example, to fetch the Standard Industrial Classifications (*KLASS* number 6) we run:
 
 ```{r, eval=F}
-GetKlass(6)
+industry <- GetKlass(6)
+head(industry)
 ```
 
 ```{r, echo=F}
 kable(head(GetKlass(6)))
+
 ```
 
 
@@ -130,7 +132,8 @@ Classifications are often organised in a heirachical way. In the example above, 
 
 
 ```{r, eval =F}
-GetKlass(6, output_level = 1)
+industry <- GetKlass(6, output_level = 1)
+head(industry)
 ```
 
 ```{r,echo=F}
@@ -138,11 +141,12 @@ kable(head(GetKlass(6, output_level = 1)))
 ```
 
 
-### Langauge
+### Language
 In the above examples we have seen that the names are returned in Norwegian (Bokmål). However, many of the classification in *KLASS* are in multiple languages. The output language can be specified as Bokmål ("nb"), Nynorsk ("nn") or English ("en") using the `language` parameter. *Note: all 3 languages are not available for all classifcations.*
 
 ```{r, eval = F}
-GetKlass(6, output_level = 1, language = "en")
+industry <- GetKlass(6, output_level = 1, language = "en")
+head(industry)
 ```
 
 ```{r, echo=F}
@@ -150,10 +154,34 @@ kable(head(GetKlass(6, output_level = 1, language = "en")))
 ```
 
 
-## 4. Applying a classfication
-If you have a data set and want to apply a classfication to a variable this is possible to do with `ApplyKlass`. This can be used to get the name of a variable which is in code form for example. 
+### Output format
+The standard output style is 'long' where all levels of classifications are listed down. An alternative format can be chosen using the parameter `output_style='wide'`. This will give only one row per detailed classification with the codes and names of the higher/broader levels given as variables. 
 
-There is a built in test dataset in **klassR** called `klassdata`. It contains fictitious persons with sex, education level, municipality numbers, industry classfication for workplace and occupation.
+```{r, eval = F}
+industry <- GetKlass(6, output_style = "wide", language = "en")
+head(industry, 2)
+```
+
+```{r echo = F}
+kable(head(GetKlass(6, output_style = "wide", language = "en"),2))
+```
+
+### Notes
+Some classifications have additional notes that can be fetched with the classification. These can be included in the data using the option `notes = T`.
+
+```{r, eval = F}
+industry <- GetKlass(6, notes=T)
+head(industry, 2)
+```
+
+```{r, echo = F}
+kable(head(GetKlass(6, notes=T), 2))
+```
+
+## 4. Applying a classification
+If you have a data set and want to apply a classification to a variable this is possible to do with `ApplyKlass`. This can be used to get the name of a variable which is in code form for example. 
+
+There is a built in test data set in **klassR** called `klassdata`. It contains fictitious persons with sex, education level, municipality numbers, industry classification for workplace and occupation.
 
 
 ```{r, eval=F}
@@ -167,7 +195,7 @@ data(klassdata)
 kable(head(klassdata))
 ```
 
-We can use `ApplyKlass` to create a variable for the occupation names (classification number 7) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classfication number.
+We can use `ApplyKlass` to create a variable for the municipality names (classification number 131) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classification number.
 
 
 ```{r, eval=F}
@@ -185,7 +213,7 @@ kable(head(klassdata))
 ```
 
 
-Again, parameters including `language` and `output_level` can be specified.
+Again, the `language` and `output_level` can be specified.
 
 
 ## 5. Working with dates
@@ -250,6 +278,9 @@ kable(GetKlass(106, date = c("2020-01-01", "2019-01-01"),
 
 The table returned is a correspondents in codes and/or names in the time interval specified. The `sourceCode` and `sourceName` refer to the original name and coding. The `targetCode` and `targetName` refer to the newer code and name. Notice there is not a simple 1:1 correspondence between all of the regions. Here the municipality number would be needed to map the changes more accurately.
 
+## Future classification
+Classification that are valid in the future are also included in *KLASS*. They can be fetched out by specifying the future date. A message will be shown to indicate that this is a future classification. No additional parameters need to be specified. 
+
 
 ## 6. Correspondence tables
 In addition to small changes in time, some classifications will change completely and a correspondence table is then defined within the *KLASS* database. These can be fetched or applied using `GetKlass` and `ApplyKlass` functions together with the `correspond` parameter which should give the unique classification number to convert into. 
@@ -258,11 +289,11 @@ To fetch a correspondence table between municipality codes (131) and greater reg
 
 
 ```{r, eval=F}
-GetKlass(131, correspond = 106)
+GetKlass(131, correspond = 106, date = "2020-01-01")
 ```
 
 ```{r, echo=F}
-tt <- GetKlass(106, correspond = 131)
+tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
 tt <- tt[, c(3,4,1,2)]
 names(tt) <- navn
@@ -293,8 +324,13 @@ klassdata$region <- tt$targetName[m]
 kable(head(klassdata))
 ```
 
-
-```{r, include=FALSE}
-end_vignette()
+## 7. Variants
+It is also possible to fetch a variant of a classification. You need to provide both the classification number and the variant number. 
+```{r, eval = FALSE}
+GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
 ```
 
+```{r, echo = FALSE}
+kable(head(GetKlass(klass = 6, variant = 1616, date = "2021-01-02")))
+
+```
