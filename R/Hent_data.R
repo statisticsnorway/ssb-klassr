@@ -36,7 +36,8 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   }
   if (type == "vanlig" & fratil == FALSE) {
       coding <- paste0("/codesAt?date=", date)
-  }
+    }
+
   
     # For correspondence tables
   if (type == "kor" & fratil == TRUE){
@@ -58,6 +59,19 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   if (type == "variant" & fratil == FALSE){
       coding <- paste0("/variantAt?variantName=", variant_name, "&date=", date)
   }
+  
+  # For future times
+  idag <- Sys.Date()
+  if (idag < date[1]){
+    message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+    coding <- paste0(coding, "&includeFuture=True")
+  } else if (length(date) > 1){
+    if (idag < date[2]){
+      message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+      coding <- paste0(coding, "&includeFuture=True")
+    }
+  }
+  
   
   # Paste together to an URL
   url <- paste(GetBaseUrl(), "classifications/",
@@ -183,7 +197,7 @@ GetKlass <- function(klass,
                       output_level = NULL,
                       language = "nb",
                       output_style = "normal",
-                     notes=FALSE){
+                      notes = FALSE){
   
   # create type of klassification for using later
   type <- ifelse(is.null(correspond), "vanlig", "kor")
