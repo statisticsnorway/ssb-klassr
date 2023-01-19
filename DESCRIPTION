@@ -1,7 +1,7 @@
 Package: klassR
 Type: Package
 Title: Classifications and Codelists for Statistics Norway
-Version: 0.1.10
+Version: 0.2.0
 Author: Susie Jentoft, Lisa Li, Diana-Cristina Iancu
 Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
 Description: Functions to search, retrieve and apply classifications 
@@ -13,13 +13,11 @@ BugReports: https://github.com/statisticsnorway/klassR/issues
 License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
     kableExtra,
-    magrittr,
-    httptest
+    magrittr
 Config/testthat/edition: 3
-VignetteBuilder: knitr

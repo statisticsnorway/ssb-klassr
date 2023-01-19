@@ -36,7 +36,8 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   }
   if (type == "vanlig" & fratil == FALSE) {
       coding <- paste0("/codesAt?date=", date)
-  }
+    }
+
   
     # For correspondence tables
   if (type == "kor" & fratil == TRUE){
@@ -58,6 +59,19 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   if (type == "variant" & fratil == FALSE){
       coding <- paste0("/variantAt?variantName=", variant_name, "&date=", date)
   }
+  
+  # For future times
+  idag <- Sys.Date()
+  if (idag < date[1]){
+    message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+    coding <- paste0(coding, "&includeFuture=True")
+  } else if (length(date) > 1){
+    if (idag < date[2]){
+      message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+      coding <- paste0(coding, "&includeFuture=True")
+    }
+  }
+  
   
   # Paste together to an URL
   url <- paste(GetBaseUrl(), "classifications/",
@@ -163,6 +177,7 @@ GetUrl2 <- function(url, check = TRUE){
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
 #' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
 #' @param output_style String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
+#' @param notes Logical for if notes should be returned as a column
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -181,7 +196,8 @@ GetKlass <- function(klass,
                       variant = NULL,
                       output_level = NULL,
                       language = "nb",
-                      output_style = "normal"){
+                      output_style = "normal",
+                      notes = FALSE){
   
   # create type of klassification for using later
   type <- ifelse(is.null(correspond), "vanlig", "kor")
@@ -299,6 +315,9 @@ GetKlass <- function(klass,
       klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName")]
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
+  }
+  if (type %in% c("variant", "vanlig") & isTRUE(notes)){
+    klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
   }
   
   if (output_style == "wide" & is.null(output_level) & is.null(correspond)){

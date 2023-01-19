@@ -12,7 +12,8 @@ GetKlass(
   variant = NULL,
   output_level = NULL,
   language = "nb",
-  output_style = "normal"
+  output_style = "normal",
+  notes = FALSE
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ GetKlass(
 \item{language}{Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)}
 
 \item{output_style}{String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.}
+
+\item{notes}{Logical for if notes should be returned as a column}
 }
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:
