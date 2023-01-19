@@ -278,7 +278,7 @@ kable(GetKlass(106, date = c("2020-01-01", "2019-01-01"),
 
 The table returned is a correspondents in codes and/or names in the time interval specified. The `sourceCode` and `sourceName` refer to the original name and coding. The `targetCode` and `targetName` refer to the newer code and name. Notice there is not a simple 1:1 correspondence between all of the regions. Here the municipality number would be needed to map the changes more accurately.
 
-## Future classification
+### Future classification
 Classification that are valid in the future are also included in *KLASS*. They can be fetched out by specifying the future date. A message will be shown to indicate that this is a future classification. No additional parameters need to be specified. 
 
 

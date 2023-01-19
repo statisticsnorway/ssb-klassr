@@ -73,6 +73,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
+<!-- badges: end -->
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
@@ -82,11 +83,11 @@
 <h3 id="quick-guide">Quick guide<a class="anchor" aria-label="anchor" href="#quick-guide"></a>
 </h3>
 <p>To install the <code>klassR</code> package use</p>
-<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'klassR'</span><span class="op">)</span></span></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'klassR'</span>)</span></code></pre></div>
 <p>You can the load the package into the environment with</p>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">klassR</span><span class="op">)</span></span></code></pre>
-<p>To fetch a classification, use the <code>GetKlass</code> function together with the klass number from SSBs <a href="https://www.ssb.no/klass/" class="external-link">KLASS</a>. For example occupation classifications (klass 7) can be fetched with</p>
-<pre><code><span><span class="fu"><a href="reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(klassR)</span></code></pre></div>
+<p>To fetch a classification, use the <code>GetKlass</code> function together with the klass number from SSBs <a href="https://www.ssb.no/klass/" class="external-link">KLASS</a>. For example occupation classifications (klass number 7) can be fetched with</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">GetKlass</span>(<span class="dv">7</span>)</span></code></pre></div>
 <p>A more in depth introduction to <strong>klassR</strong> can be found at: <a href="https://statisticsnorway.github.io/klassR/articles/klassR-vignette.html" class="external-link uri">https://statisticsnorway.github.io/klassR/articles/klassR-vignette.html</a></p>
 </div>
 
