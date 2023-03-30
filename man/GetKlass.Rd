@@ -9,11 +9,13 @@ GetKlass(
   klass,
   date = NULL,
   correspond = NULL,
+  correspondID = NULL,
   variant = NULL,
   output_level = NULL,
   language = "nb",
   output_style = "normal",
-  notes = FALSE
+  notes = FALSE,
+  quiet = TRUE
 )
 }
 \arguments{
@@ -21,7 +23,9 @@ GetKlass(
 
 \item{date}{String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.}
 
-\item{correspond}{Number/string of the target correspondence (if a correspondence table is requested).}
+\item{correspond}{Number/string of the target klass for correspondence table (if a correspondence table is requested).}
+
+\item{correspondID}{ID number of the correspondence table to retrieve. Use as an alternative to correspond.}
 
 \item{variant}{The classification variant to fetch (if a variant is wanted).}
 
@@ -31,7 +35,9 @@ GetKlass(
 
 \item{output_style}{String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.}
 
-\item{notes}{Logical for if notes should be returned as a column}
+\item{notes}{Logical for if notes should be returned as a column. Default FALSE}
+
+\item{quiet}{Logical for whether to suppress the printing of the API address. Default TRUE.}
 }
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:

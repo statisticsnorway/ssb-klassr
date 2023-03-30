@@ -7,6 +7,7 @@
 MakeUrl(
   klass,
   correspond = NULL,
+  correspondID = NULL,
   variant_name = NULL,
   type = "vanlig",
   fratil = FALSE,

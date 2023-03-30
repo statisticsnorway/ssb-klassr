@@ -24,7 +24,8 @@ CheckDate <- function(date){
 #'
 #' @return String url adress
 
-MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
+MakeUrl <- function(klass, correspond = NULL, correspondID = NULL, 
+                    variant_name = NULL,
                     type="vanlig", 
                     fratil=FALSE, date=NULL, 
                     output_level_coding=NULL, 
@@ -46,6 +47,13 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   if (type == "kor" & fratil == FALSE){
       coding <- paste("/correspondsAt?targetClassificationId=", MakeChar(correspond), "&date=", date, sep="")
   }
+  if (type == "korID"){
+    coding <- paste0("correspondencetables/", MakeChar(correspondID))
+    # Tables with given ID can not be combined with other parameters in the call
+    klass <- ""
+    language_coding <- ""
+    output_level_coding <- ""
+  }
   
     # For time changes
   if (type == "change"){
@@ -62,19 +70,27 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   
   # For future times
   idag <- Sys.Date()
-  if (idag < date[1]){
+  if ((idag < date[1]) & (type != "korID")){
     message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
     coding <- paste0(coding, "&includeFuture=True")
-  } else if (length(date) > 1){
+  } else if ((length(date) > 1) & (type != "korID")){
     if (idag < date[2]){
       message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
       coding <- paste0(coding, "&includeFuture=True")
     }
   }
   
+  # Whether classifications is needed in url
+  if (type == "korID"){
+    classifics <- ""
+  } else {
+    classifics <- "classifications/"
+  }
+  
   
   # Paste together to an URL
-  url <- paste(GetBaseUrl(), "classifications/",
+  url <- paste(GetBaseUrl(), 
+               classifics,
                klass,
                coding,
                output_level_coding,
@@ -172,12 +188,14 @@ GetUrl2 <- function(url, check = TRUE){
 #'
 #' @param klass Number/string of the classification ID/number. (use Klass_list() to find this)
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
-#' @param correspond Number/string of the target correspondence (if a correspondence table is requested).
+#' @param correspond Number/string of the target klass for correspondence table (if a correspondence table is requested).
+#' @param correspondID ID number of the correspondence table to retrieve. Use as an alternative to correspond. 
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
 #' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
 #' @param output_style String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
-#' @param notes Logical for if notes should be returned as a column
+#' @param notes Logical for if notes should be returned as a column. Default FALSE
+#' @param quiet Logical for whether to suppress the printing of the API address. Default TRUE.
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -193,21 +211,32 @@ GetUrl2 <- function(url, check = TRUE){
 GetKlass <- function(klass,
                       date = NULL,
                       correspond = NULL,
+                      correspondID = NULL,
                       variant = NULL,
                       output_level = NULL,
                       language = "nb",
                       output_style = "normal",
-                      notes = FALSE){
+                      notes = FALSE,
+                      quiet=TRUE){
   
   # create type of klassification for using later
-  type <- ifelse(is.null(correspond), "vanlig", "kor")
+  type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
+  type <- ifelse(is.null(correspond) & type == "kor", "korID", type)
   type <- ifelse(is.null(variant), type, "variant")
 
   # sjekk klass er char
-  klass <- MakeChar(klass)
+  if (is.null(correspondID)) {
+    klass <- MakeChar(klass)
+  } else {
+    klass = ""
+  }
+  
 
   # dato sjekking
+  if(!is.null(date[1]) & (!is.null(correspondID))){
+    message("Note: Correspondence tables provided using an ID do not har a date attached. Date is being ignored.")
+  }
   if(is.null(date[1])) date <- Sys.Date()
   
   # Create variables fratil (whether to and from dates should be used) and ver
@@ -256,11 +285,14 @@ GetKlass <- function(klass,
       variant_name <- gsub(" ", "%20", variant)
     }
   }
-  url <- MakeUrl(klass=klass, correspond=correspond, variant_name = variant_name,
+  url <- MakeUrl(klass=klass, correspond=correspond, correspondID = correspondID,
+                 variant_name = variant_name,
                  type=type, 
                  fratil=fratil, date=date, output_level_coding=output_level_coding, 
                  language_coding=language_coding)
-  
+  if (!quiet){
+    print(paste("Fetching class from:", url))
+  }
   if (type == "kor"){
     klass_text <- GetUrl2(url, check = FALSE)
     # sjekk at det finnes
@@ -306,6 +338,9 @@ GetKlass <- function(klass,
     }
     names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
   }
+  if (type == "korID"){
+    klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceMaps
+  }
   if (type == "change"){
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codeChanges
     if (!is.data.frame(klass_data)) stop("No changes found for this classification.")
@@ -320,7 +355,7 @@ GetKlass <- function(klass,
     klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
   }
   
-  if (output_style == "wide" & is.null(output_level) & is.null(correspond)){
+  if (output_style == "wide" & is.null(output_level) & is.null(correspond) & is.null(correspondID)){
       # get maximum level
       maxlength <- max(klass_data$level)
       minlength <- min(klass_data$level)
