@@ -194,7 +194,8 @@ GetUrl2 <- function(url, check = TRUE){
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
 #' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
 #' @param output_style String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
-#' @param notes Logical for if notes should be returned as a column
+#' @param notes Logical for if notes should be returned as a column. Default FALSE
+#' @param quiet Logical for whether to suppress the printing of the API address. Default TRUE.
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -215,7 +216,8 @@ GetKlass <- function(klass,
                       output_level = NULL,
                       language = "nb",
                       output_style = "normal",
-                      notes = FALSE){
+                      notes = FALSE,
+                      quiet=TRUE){
   
   # create type of klassification for using later
   type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
@@ -288,7 +290,9 @@ GetKlass <- function(klass,
                  type=type, 
                  fratil=fratil, date=date, output_level_coding=output_level_coding, 
                  language_coding=language_coding)
-  
+  if (!quiet){
+    print(paste("Fetching class from:", url))
+  }
   if (type == "kor"){
     klass_text <- GetUrl2(url, check = FALSE)
     # sjekk at det finnes
