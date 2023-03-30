@@ -9,6 +9,7 @@ GetKlass(
   klass,
   date = NULL,
   correspond = NULL,
+  correspondID = NULL,
   variant = NULL,
   output_level = NULL,
   language = "nb",
@@ -21,7 +22,9 @@ GetKlass(
 
 \item{date}{String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.}
 
-\item{correspond}{Number/string of the target correspondence (if a correspondence table is requested).}
+\item{correspond}{Number/string of the target klass for correspondence table (if a correspondence table is requested).}
+
+\item{correspondID}{ID number of the correspondence table to retrieve. Use as an alternative to correspond.}
 
 \item{variant}{The classification variant to fetch (if a variant is wanted).}
 
