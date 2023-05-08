@@ -99,6 +99,8 @@ MakeUrl <- function(klass, correspond = NULL, correspondID = NULL,
   )
   return(url)
 }
+
+
 #' Check connection
 #' Function to check that a connection to data.ssb.no is able to be established
 #' @param url String url address for connection to check
@@ -119,6 +121,7 @@ check_connect <- function(url){
   }
   tryget
 }
+
 
 #' Stop quietly function
 #' Stop from a function without an error. Used for stopping when no internet
@@ -159,7 +162,6 @@ get_variant_name <- function(variant){
   
   variant_name_full
 }
-
 
 
 #' Get json file from Url - alternative version
