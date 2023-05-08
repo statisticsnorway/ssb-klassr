@@ -56,19 +56,20 @@ test_that("Check levelCheck for character codes", {
 
 test_that("ApplyKlass can return a variant classification",{
   dat <- c('000','101','102','103')
-  new <- ApplyKlass(dat,
-             klass = 91,
-             variant = 847,
-             output_level = 1,
-             output = "code",
-             date = "2020-01-01")
-  expect_equal(new[1], "0")
-  new <- ApplyKlass(dat,
-                    klass = 91,
-                    variant = 847,
-                    output_level = 1,
-                    date = "2020-01-01")
-  expect_equal(new[2], "EU/EØS, USA, Canada, Australia og New Zealand")
+  dat <- c("01.21", "01.46", "10.61")
+  
+  dat_new <- klassR::ApplyKlass(dat,
+                                klass = 6, 
+                                variant = 1616, 
+                                date = "2021-01-02")
+  expect_equal(dat_new[2], "Svinehold")
+  
+  dat_new <- klassR::ApplyKlass(dat,
+                                klass = 6, 
+                                variant = 1616, 
+                                output_level = 1,
+                                date = "2021-01-02")
+  expect_equal(dat_new[3] , "Industri")
 })
 
 test_that("ApplyKlass works for variant classification with Norwegian characters in the variant name",{
