@@ -1,3 +1,8 @@
+# klassR 0.2.2
+
+- New license
+
+
 # klassR 0.2.1
 
 - Added option to fetch correspondence table using table ID only.
