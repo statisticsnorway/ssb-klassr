@@ -3,6 +3,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rprofile
 inst/doc
 /doc/
 /Meta/
