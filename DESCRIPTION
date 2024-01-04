@@ -20,6 +20,7 @@ Description: Functions to search, retrieve and apply classifications
   from the system 'KLASS'. Retrieves classifications by date with options 
   to choose language, hierarchical level and formatting.
 Imports: tm, httr, jsonlite
+URL: https://statisticsnorway.github.io/klassR/
 BugReports: https://github.com/statisticsnorway/klassR/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
