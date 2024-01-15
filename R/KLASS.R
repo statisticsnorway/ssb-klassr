@@ -46,7 +46,7 @@ ApplyKlass <- function(x,
 # sjekk og standardisere varible
   klass <- MakeChar(klass)
   if (is.null(x)){
-    stop("The input vetor is empty.")
+    stop("The input vector is empty.")
   }
   x <- MakeChar(x)
 
