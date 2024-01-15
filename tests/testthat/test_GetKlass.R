@@ -45,13 +45,13 @@ test_that("GetKlass returns notes when requested", {
 
 
 test_that("GetKlass returns a future classification", {
-  expect_message(classdata <- GetKlass(104, date = "2024-01-01"))
+  expect_message(classdata <- GetKlass(104, date = "2050-01-01"))
   expect_equal(classdata$name[6], "Akershus")
 })
 
 
 test_that("GetKlass returns a correspondence table using ID", {
-  classdata <- GetKlass(correspondID = 1111, date = "2023-01-12")
+  expect_message(classdata <- GetKlass(correspondID = 1111, date = "2023-01-12"))
   expect_equal(classdata$targetName[1], "Oslo")
 })
 
