@@ -83,6 +83,6 @@ test_that("ApplyKlass works for variant classification with Norwegian characters
   expect_equal(new[1], "Bergverksdrift og utvinning")
 })
 
-testthat("An error is correctly returned in the case of a null vector", {
+test_that("An error is correctly returned in the case of a null vector", {
   expect_error(ApplyKlass(NULL, 131), "The input vector is empty")
 })
