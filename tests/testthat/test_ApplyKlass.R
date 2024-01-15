@@ -82,3 +82,7 @@ test_that("ApplyKlass works for variant classification with Norwegian characters
                     date = "2020-01-01")
   expect_equal(new[1], "Bergverksdrift og utvinning")
 })
+
+test_that("An error is correctly returned in the case of a null vector", {
+  expect_error(ApplyKlass(NULL, 131), "The input vector is empty")
+})

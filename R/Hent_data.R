@@ -286,6 +286,9 @@ GetKlass <- function(klass,
     } else {
       variant_name <- gsub(" ", "%20", variant)
     }
+    if (!is.null(output_level)) {
+      print("Selecting an output level for a variant isn't currently supported. All levels will be returned")
+    }
   }
   url <- MakeUrl(klass=klass, correspond=correspond, correspondID = correspondID,
                  variant_name = variant_name,

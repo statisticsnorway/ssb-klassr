@@ -1,7 +1,7 @@
 Package: klassR
 Type: Package
 Title: Classifications and Codelists for Statistics Norway
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
   c(person(given = "Susie",
            family = "Jentoft",
@@ -20,11 +20,12 @@ Description: Functions to search, retrieve and apply classifications
   from the system 'KLASS'. Retrieves classifications by date with options 
   to choose language, hierarchical level and formatting.
 Imports: tm, httr, jsonlite
+URL: https://statisticsnorway.github.io/klassR/
 BugReports: https://github.com/statisticsnorway/klassR/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Suggests: 
     rmarkdown,
     knitr,
