@@ -12,7 +12,7 @@ This repository is the repo for the R-package **klassR**. The package is designe
 
 To install the `klassR` package use
 
-    install.packages('ssb-klassr')
+    install.packages('klassR')
 
 You can the load the package into the environment with
 
