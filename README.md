@@ -1,6 +1,6 @@
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/statisticsnorway/klassR/workflows/R-CMD-check/badge.svg)](https://github.com/statisticsnorway/klassR/actions)
+[![R-CMD-check](https://github.com/statisticsnorway/ssb-klassr/workflows/R-CMD-check/badge.svg)](https://github.com/statisticsnorway/ssb-klassr/actions)
 
 <!-- badges: end -->
 
@@ -12,7 +12,7 @@ This repository is the repo for the R-package **klassR**. The package is designe
 
 To install the `klassR` package use
 
-    install.packages('klassR')
+    install.packages('ssb-klassr')
 
 You can the load the package into the environment with
 
@@ -22,4 +22,4 @@ To fetch a classification, use the `GetKlass` function together with the klass n
 
     GetKlass(7)
 
-A more in depth introduction to **klassR** can be found at: <https://statisticsnorway.github.io/klassR/articles/klassR-vignette.html>
+A more in depth introduction to **klassR** can be found at: <https://statisticsnorway.github.io/ssb-klassr/articles/klassR-vignette.html>
