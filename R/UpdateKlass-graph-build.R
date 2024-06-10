@@ -7,9 +7,9 @@
 #'
 get_klass_changes <- function(classification) {
   
-  bind_rows(
-    content(
-      GET(
+  dplyr::bind_rows(
+    httr::content(
+      httr::GET(
         paste0("https://data.ssb.no/api/klass/v1/classifications/",
                classification, "/changes?from=0001-01-01")
       )
@@ -53,9 +53,9 @@ KlassGraph <- function(classification, date = NULL) {
   api_endringer <- get_klass_changes(classification)
   
   api_alle <-
-    bind_rows(
-      content(
-        GET(
+    dplyr::bind_rows(
+      httr::content(
+        httr::GET(
           paste0("https://data.ssb.no/api/klass/v1/classifications/",
                  classification, "/codes?from=0001-01-01")
         )
@@ -202,18 +202,18 @@ find_variant_to <- function(x, changeOccurred, variants) {
 #' api_alle <-
 #'   glue("https://data.ssb.no/api/klass/v1/classifications/",
 #'        "{classification}/codes?from=0001-01-01") %>%
-#'   GET() %>%
-#'   content() %>%
+#'   httr::GET() %>%
+#'   httr::content() %>%
 #'   pluck("codes") %>%
-#'   bind_rows()
+#'   dplyr::bind_rows()
 #'
 #' api_endringer <-
 #'   glue("https://data.ssb.no/api/klass/v1/classifications/",
 #'        "{classification}/changes?from=0001-01-01") %>%
-#'   GET() %>%
-#'   content() %>%
+#'   httr::GET() %>%
+#'   httr::content() %>%
 #'   pluck("codeChanges") %>%
-#'   bind_rows()
+#'   dplyr::bind_rows()
 #' 
 find_dates <- function(code, api_alle, api_endringer) {
   
