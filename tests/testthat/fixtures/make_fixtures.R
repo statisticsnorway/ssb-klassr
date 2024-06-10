@@ -11,14 +11,14 @@ devtools::load_all()
 
 ## klass_131_graph.R ------------------------------------------------------
 
-klass_131_graph <- build_klass_graph(classification = 131)
+klass_131_graph <- KlassGraph(classification = 131)
 
 saveRDS(klass_131_graph, 
         "tests/testthat/fixtures/klass_131_graph.rds")
 
 ## klass_131_2020_graph.R -------------------------------------------------
 
-klass_131_2020_graph <- build_klass_graph(classification = 131, 
+klass_131_2020_graph <- KlassGraph(classification = 131, 
                                           date = "2020-01-01")
 
 saveRDS(klass_131_2020_graph, 
@@ -29,7 +29,7 @@ saveRDS(klass_131_2020_graph,
 ## Endringen i kommunestruktur i 1964 er det enkeltåret som både har flest
 ## splittelser og sammenslåinger av kommuner.
 
-klass_131_1964_graph <- build_klass_graph(classification = 131,
+klass_131_1964_graph <- KlassGraph(classification = 131,
                                           date = "1964-01-01")
 
 saveRDS(klass_131_1964_graph, 
