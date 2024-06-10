@@ -13,9 +13,11 @@ Authors@R:
     person(given = "Lisa",
            family = "Li",
            role = "aut"),
-    person("Statistics Norway", role = "cph")
-           )
-Description: Functions to search, retrieve and apply classifications 
+    person(given = "Øyvind I.",
+           family = "Berntsen",
+           role = "aut"),
+    person("Statistics Norway", role = "cph"))
+Description: Functions to search, retrieve, apply and update classifications 
   and codelists using Statistics Norway's API <https://www.ssb.no/klass> 
   from the system 'KLASS'. Retrieves classifications by date with options 
   to choose language, hierarchical level and formatting.
@@ -25,11 +27,14 @@ BugReports: https://github.com/statisticsnorway/klassR/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
     kableExtra,
-    magrittr
+    magrittr,
+    igraph,
+    dplyr,
+    purrr
 Config/testthat/edition: 3
