@@ -53,94 +53,117 @@ KlassGraph <- function(classification, date = NULL) {
   api_endringer <- get_klass_changes(classification)
   
   api_alle <-
-    dplyr::bind_rows(
-      httr::content(
-        httr::GET(
-          paste0("https://data.ssb.no/api/klass/v1/classifications/",
-                 classification, "/codes?from=0001-01-01")
-        )
-      )[["codes"]]
-    )
+    do.call(rbind,
+            lapply(
+              lapply(httr::content(httr::GET(paste0("https://data.ssb.no/api/klass/v1/classifications/", 
+                                                    classification, "/codes?from=0001-01-01")))[["codes"]], 
+                     lapply, 
+                     function(x) ifelse(is.null(x), NA, x)), 
+              as.data.frame))
+
   
   ## Calculating code variants and changes. A code may have more variants than
   ## are present in `api_alle`, since combinations of codes into an already
   ## existing code do not generate a new entry in this table. See `find_dates`.
   
   variants <-
-    api_alle %>%
-    distinct(code) %>%
-    group_by(code) %>%
-    summarise(df = map(code, find_dates, api_alle, api_endringer)) %>%
-    unnest(df) %>%
-    mutate(across(c(validFrom, validTo), as.Date)) %>%
-    select(code, name, variant, validFrom, validTo)
+    do.call(rbind, lapply(unique(api_alle$code), 
+                          find_dates, 
+                          api_alle = api_alle, 
+                          api_endringer = api_endringer))
   
-  changes <-
-    api_endringer %>%
-    select(oldCode, changeOccurred, newCode) %>% 
-    mutate(
-      variantFrom = map2_int(oldCode, changeOccurred, find_variant_from, variants),
-      variantTo = map2_int(newCode, changeOccurred, find_variant_to, variants),
-      changeOccurred = as.Date(changeOccurred)
-    )
+  variants$validFrom <- as.Date(variants$validFrom)
+  variants$validTo <- as.Date(variants$validTo)
+  
+  variants <- variants[, c("code", "name", "variant", 
+                           "validFrom", "validTo")]
+
+  changes <- api_endringer[, c("oldCode", "changeOccurred", "newCode")]
+  
+  changes$variantFrom <- mapply(FUN = find_variant_from, 
+                                x = changes$oldCode,
+                                changeOccurred = changes$changeOccurred,
+                                MoreArgs = list(variants = variants),
+                                SIMPLIFY = TRUE)
+  
+  changes$variantTo <- mapply(FUN = find_variant_to, 
+                              x = changes$newCode,
+                              changeOccurred = changes$changeOccurred,
+                              MoreArgs = list(variants = variants),
+                              SIMPLIFY = TRUE)
+  
+  changes$changeOccurred <- as.Date(changes$changeOccurred)
   
   ## Calculating vertices and edges. 
   
-  klass_vertices <-
-    variants %>%
-    mutate(vertex = as.character(row_number()))
+  klass_vertices <- variants
   
-  klass_edges <-
-    changes %>%
-    left_join(select(klass_vertices, code, variant, vertexFrom = vertex),
-              join_by(oldCode == code, variantFrom == variant)) %>%
-    left_join(select(klass_vertices, code, variant, vertexTo = vertex),
-              join_by(newCode == code, variantTo == variant))
+  klass_vertices$vertex <- as.character(1:nrow(klass_vertices))
+
+  klass_edges <- 
+    merge(changes, 
+          stats::setNames(klass_vertices[, c("code", "variant", "vertex")],
+                          c("oldCode", "variantFrom", "vertexFrom")),
+          by = c("oldCode", "variantFrom"),
+          all.x = TRUE)
   
-  ## Building graph. 
+  klass_edges <- 
+    merge(klass_edges,
+          stats::setNames(klass_vertices[, c("code", "variant", "vertex")],
+                          c("newCode", "variantTo", "vertexTo")),
+          by = c("newCode", "variantTo"),
+          all.x = TRUE)
   
-  graph <-
-    klass_edges %>%
-    select(vertexFrom, vertexTo) %>%
-    as.matrix() %>%
-    graph_from_edgelist() %>%
-    set_edge_attr("changeOccurred", value = klass_edges$changeOccurred)
+  ## Building graph 
   
-  no_edges <-
-    klass_vertices %>%
-    filter(!vertex %in% V(graph)$name)
+  graph <- 
+    igraph::graph_from_edgelist(
+      as.matrix(
+        klass_edges[, c("vertexFrom", "vertexTo")]
+      )
+    )
   
-  graph <-
-    graph %>%
-    add_vertices(nrow(klass_vertices %>% filter(!vertex %in% V(graph)$name)),
-                 attr = list(name = no_edges$vertex))
+  graph <- igraph::set_edge_attr(graph = graph, 
+                                 name = "changeOccurred", 
+                                 value = klass_edges$changeOccurred)
+  
+  no_edges <- klass_vertices[!klass_vertices$vertex %in% igraph::V(graph)$name,]
+  
+  graph <- igraph::add_vertices(graph = graph,
+                                nv = nrow(no_edges),
+                                attr = list(name = no_edges$vertex))
   
   # Redirecting edges; if date is NULL, this step does not change the graph. By
   # redirecting the edges based on date in this step, we do not need to check
   # dates in UpdateKlassNode(), we simply follow outgoing edges to reach the code
-  # valid at `date.`
+  # valid at `date`.
   
-  graph <- reverse_edges(graph, E(graph)[changeOccurred > as.Date(date)])
+  graph <- 
+    igraph::reverse_edges(
+      graph = graph, 
+      eids = igraph::E(graph)[changeOccurred > as.Date(date)]
+    )
   
-  klass_vertices <- arrange(klass_vertices, factor(vertex, V(graph)$name))
+  klass_vertices <- 
+    klass_vertices[match(igraph::V(graph)$name, klass_vertices$vertex),]
   
   # Building attributes table and applying attributes to vertices. We later
   # extract these attributes when we traverse the graph in UpdateKlassNode()
   
-  attributes <- 
-    klass_vertices %>% 
-    select(-vertex) %>% 
-    rename(label = name)
+  attributes <- klass_vertices
+  attributes$vertex <- NULL
   
-  graph <- reduce2(.x    = names(attributes),
-                   .y    = attributes,
-                   .init = graph,
-                   .f    = function(graph, attribute, values) {
-                     
-                     set_vertex_attr(graph, attribute, value = values)
-                     
-                   })
+  names(attributes)[names(attributes) == "name"] <- "label"
   
+  for (i in seq_along(attributes)) {
+    
+    graph <- 
+      igraph::set_vertex_attr(graph = graph,
+                              name  = names(attributes)[i],
+                              value = attributes[,i])
+    
+  }
+
   return(graph)
   
 }
@@ -235,6 +258,7 @@ find_dates <- function(code, api_alle, api_endringer) {
                          c("name", "validFrom", "validTo")]
     
     dates_df$variant <- 1:nrow(dates_df)
+    dates_df$code <- code
     
     return(dates_df)
     
@@ -281,13 +305,23 @@ find_dates <- function(code, api_alle, api_endringer) {
     
     dates_df$variant <- 1:nrow(dates_df)
     
-    dates_df$name <- map2_chr(dates_df$validFrom,
-                              dates_df$validTo,
-                              find_name,
-                              code = code,
-                              api_alle = api_alle)
+    # dates_df$name <- map2_chr(dates_df$validFrom,
+    #                           dates_df$validTo,
+    #                           find_name,
+    #                           code = code,
+    #                           api_alle = api_alle)
     
-    return(dates_df[c("name", "variant", "validFrom", "validTo")])
+    dates_df$name <- 
+      mapply(find_name,
+             validFrom = dates_df$validFrom,
+             validTo   = dates_df$validTo,
+             MoreArgs = list(code = code,
+                             api_alle = api_alle),
+             SIMPLIFY = TRUE)
+    
+    dates_df$code <- code
+    
+    return(dates_df[c("code", "name", "variant", "validFrom", "validTo")])
     
   }
   

@@ -15,14 +15,14 @@
 #'    \item{\code{"combined"}}{Logical: Does two or more codes become this code?}
 #'    \item{\code{"nextCode"}}{If \code{split == FALSE}, gives the code this code changed into. \code{NA} otherwise.}
 #'   }
-#'   
+#'
 #' @param combine \code{TRUE} or \code{FALSE}. See the return section.
-#' 
+#'
 #' @param report \code{TRUE} or \code{FALSE}. See the return section.
 #'
-#' @return If \code{report == TRUE} and \code{length(output) > 1 | TRUE}, the result
-#'   will be a \code{data.frame} with number of rows equal to the number of
-#'   codes in the sequence of changes between the input code and output code.
+#' @return If \code{report == TRUE} and \code{length(output) > 1 | TRUE}, the
+#'   result will be a \code{data.frame} with number of rows equal to the number
+#'   of codes in the sequence of changes between the input code and output code.
 #'   The columns in the \code{data.frame} are specified with \code{output}.
 #'
 #'   If \code{report == TRUE} and \code{length(output) == 1}, the result will be
@@ -30,11 +30,12 @@
 #'   of changes between the input code and output code. The contents of the
 #'   character vector is specified with \code{output}.
 #'
-#'   If \code{report == FALSE} and \code{length(output) > 1 | TRUE} the result will
-#'   either be a \code{data.frame} with one row representing the last code in
-#'   the change sequence and columns specified by \code{output}. If a code has
-#'   been split, the result will be \code{NA}. If \code{combine == FALSE} and a
-#'   code is the result of a combination of codes, the result will be code{NA}.
+#'   If \code{report == FALSE} and \code{length(output) > 1 | TRUE} the result
+#'   will be a \code{data.frame} with one row representing the last code
+#'   in the change sequence and columns specified by \code{output}. If a code
+#'   has been split, the result will be \code{NA}. If \code{combine == FALSE}
+#'   and a code is the result of a combination of codes, the result will be
+#'   code{NA}.
 #'
 #'   If \code{report == FALSE} and \code{length(output) == 1}, the result will
 #'   be a character vector of length one, containing information about the
@@ -42,46 +43,37 @@
 #'   result will be \code{NA}. If \code{combine == FALSE} and a code is the
 #'   result of a combination of codes, the result will be \code{NA}.
 #'
-#' @seealso See [UpdateKlass] for updating multiple codes in one function
-#'   call.
-#'
-#' @examples
-#'
-#' # Update an outdated code for the Halden municipality.
-#'
-#' update_code(klass_131, "0101")
+#' @seealso See [UpdateKlass] for updating multiple codes in one function call.
 #' 
 update_code <- function(graph, 
                         code, 
-                        date = NULL, 
+                        date = NA, 
                         output = "code",
                         combine = TRUE,
                         report = FALSE) {
   
   result <- UpdateKlassNode(graph = graph, 
-                            node = KlassNode(graph, code, date = date), 
-                            combine = combine)
+                            node = KlassNode(graph, code, date = date))
   
-  nextCodes <- 
-    map2_chr(
-      result$nextNodes,
-      result$split,
-      function(node, split) {
-        if (split | length(node) == 0) {
-          
-          return(NA)
-          
-        } else if (length(node) > 1) {
-          
-          return(paste0(node$code, collapse = "/"))
-          
-        } else {
-          
-          return(node$code)
-          
-        }
-      }
-    )
+  nextCodes <- mapply(function(node, split) {
+        
+                        if (split | length(node) == 0) {
+                          
+                          return(NA_character_)
+                          
+                        } else if (length(node) > 1) {
+                          
+                          return(paste0(node$code, collapse = "/"))
+                          
+                        } else {
+                          
+                          return(node$code)
+                        
+                        }
+                      },
+                      node = result$nextNodes,
+                      split = result$split,
+                      SIMPLIFY = TRUE)
   
   report_df <- data.frame(code      = result$code,
                           name      = result$label,
@@ -152,28 +144,28 @@ update_code <- function(graph,
 #'   ---
 #'
 #'   If \code{report == TRUE} and \code{length(output) > 1 | TRUE}, the result
-#'   will be a list \code{data.frame} of with number of rows equal to the number
-#'   of codes in the sequence of changes between the input codes and output
-#'   codes. The columns in the \code{data.frame}s are specified with
+#'   will be a list of \code{data.frame}s with number of rows equal to the
+#'   number of codes in the sequence of changes between the input codes and
+#'   output codes. The columns in the \code{data.frame}s are specified with
 #'   \code{output}.
 #'
 #'   If \code{report == TRUE} and \code{length(output) == 1}, the result will be
 #'   a list of character vectors with length equal to the number of codes in the
 #'   sequence of changes between the input code and output code. The contents of
-#'   the character vector is specified with \code{output}.
+#'   the character vectors is specified with \code{output}.
 #'
 #'   If \code{report == FALSE} and \code{length(output) > 1 | TRUE} the result
-#'   will either be a \code{data.frame} with one row representing the last code
-#'   in the change sequence and columns specified by \code{output}. If a code
-#'   has been split, the result will be \code{NA}. If \code{combine == FALSE}
-#'   and a code is the result of a combination of codes, the result will be
-#'   code{NA}.
+#'   will be a list of \code{data.frame}s with one row representing the last
+#'   code in the change sequence and columns specified by \code{output}. If a
+#'   code has been split, the result will be \code{NA}. If \code{combine ==
+#'   FALSE} and a code is the result of a combination of codes, the result will
+#'   be code{NA}.
 #'
 #'   If \code{report == FALSE} and \code{length(output) == 1}, the result will
-#'   be a character vector of length one, containing information about the
-#'   updated code specified by \code{output}. If a code has been split, the
-#'   result will be \code{NA}. If \code{combine == FALSE} and a code is the
-#'   result of a combination of codes, the result will be \code{NA}.
+#'   be a character vector containing information about the updated codes
+#'   specified by \code{output}. If a code has been split, the result will be
+#'   \code{NA}. If \code{combine == FALSE} and a code is the result of a
+#'   combination of codes, the result will be \code{NA}.
 #'
 #' @export
 #'
@@ -181,18 +173,20 @@ update_code <- function(graph,
 #'
 #' codes <- GetKlass(131, date = "2020-01-01")[["code"]]
 #'
-#' updated_codes <- UpdateKlass(codes, "2020-01-01")
+#' updated_codes <- UpdateKlass(codes,
+#'                              dates = "2020-01-01",
+#'                              classification = 131)
 #' 
 UpdateKlass <- function(codes,
-                        dates = NULL,
+                        dates = NA,
                         classification = NULL,
                         date = NULL,
+                        graph = KlassGraph(classification, date),
                         output = "code",
-                        combine = TRUE,
                         report = FALSE,
-                        graph = KlassGraph(classification, date)) {
+                        combine = TRUE) {
   
-  if (!hasArg(graph) & !hasArg(classification)) {
+  if (!methods::hasArg(graph) & !methods::hasArg(classification)) {
     
     stop("\nPlease provide either:\n",
          "- A graph with the `graph` argument\n",
@@ -200,34 +194,20 @@ UpdateKlass <- function(codes,
     
   }
   
-  if (is.null(dates) | length(dates) == 1) {
-    
-    dates <- rep(list(dates), length(codes))
-    
-  }
+  # TODO Optimize by making a table of input codes, updating those, and
+  # returning an expanded vector based on input
   
-  # Optimize by making a table of input codes, updating those, returning result?
+  simplify <- length(output) == 1 & !isTRUE(output) & !report
   
-  if (length(output) == 1 & !isTRUE(output) & !report) {
-      
-      map2_chr(.x     = codes,
-               .y     = dates,
-               .f     = update_code,
-               graph  = graph,
-               output = output,
-               combine = combine,
-               report = report)
-      
-    } else {
-      
-      map2(.x     = codes,
-           .y     = dates,
-           .f     = update_code,
-           graph  = graph,
-           output = output,
-           combine = combine,
-           report = report)
-      
-    }
-    
+  result <- mapply(FUN      = update_code,
+                   code     = codes,
+                   date     = dates,
+                   SIMPLIFY = simplify,
+                   MoreArgs = list(graph   = graph,
+                                   output  = output,
+                                   combine = combine,
+                                   report  = report))
+  
+  return(result)
+  
 }

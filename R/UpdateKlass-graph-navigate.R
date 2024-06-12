@@ -22,17 +22,17 @@
 #'
 #' halden_node <- KlassNode(klass_131, "0101")
 #' 
-KlassNode <- function(graph, x, date = NULL) {
+KlassNode <- function(graph, x, date = NA) {
   
-  if (!is.null(date)) {
+  if (!is.na(date)) {
     
     date <- as.Date(date[[1]])
     
-    node <- V(graph)[code == x & date >= validFrom & (date < validTo | is.na(validTo))]
+    node <- igraph::V(graph)[code == x & date >= validFrom & (date < validTo | is.na(validTo))]
     
   } else {
     
-    node <- V(graph)[code == x][variant == max(variant)]
+    node <- igraph::V(graph)[code == x][variant == max(variant)]
     
   }
   
@@ -82,17 +82,18 @@ is_split <- function(graph, node) {
                             mode = "out", 
                             unreachable = FALSE)
   
-  end_nodes <- bfs_result$order[map_dbl(.x = bfs_result$order, 
-                                        .f = count_neighbors,
-                                        graph = graph,
-                                        mode = "out") == 0]
+  end_nodes <- bfs_result$order[vapply(bfs_result$order,
+                                       count_neighbors,
+                                       graph = graph,
+                                       mode = "out",
+                                       FUN.VALUE = integer(1)) == 0]
   
   length(unique(end_nodes)) > 1
   
 }
 
 #' Given a graph and a node, determine if the node is a result of combinations
-#' of multiple codes
+#' of multiple codes.
 #'
 #' @inheritParams UpdateKlassNode
 #'
@@ -114,7 +115,6 @@ is_split <- function(graph, node) {
 #'   \code{node}, i.e. all paths from \code{node} to the parents of \code{node}
 #'   pass through \code{compare_node}.
 #'
-#' 
 is_combined <- function(graph, node, compare_node = NULL) {
   
   bfs_result <- igraph::bfs(graph = graph, 
@@ -122,10 +122,11 @@ is_combined <- function(graph, node, compare_node = NULL) {
                             mode = "in", 
                             unreachable = FALSE)
   
-  start_nodes <- bfs_result$order[map_dbl(.x = bfs_result$order, 
-                                          .f = count_neighbors,
-                                          graph = graph,
-                                          mode = "in") == 0]
+  start_nodes <- bfs_result$order[vapply(bfs_result$order, 
+                                         count_neighbors,
+                                         graph = graph,
+                                         mode = "in",
+                                         FUN.VALUE = integer(1)) == 0]
   
   if (is.null(compare_node)) {
     
@@ -133,9 +134,9 @@ is_combined <- function(graph, node, compare_node = NULL) {
     
   } else {
     
-    paths <- all_simple_paths(graph, node, start_nodes, mode = "in")
+    paths <- igraph::all_simple_paths(graph, node, start_nodes, mode = "in")
     
-    return(!all(map_lgl(paths, \(path) compare_node %in% path)))
+    return(!all(vapply(paths, \(path) compare_node %in% path, logical(1))))
     
   }
   
@@ -145,9 +146,6 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #'
 #' @inheritParams KlassNode
 #' @param node A node as returned by \code{\link{KlassNode}} or \code{\link[igraph]{V}}.
-#'
-#' @param combine Allow nodes to be combined? If \code{FALSE}, the node search will
-#'   halt if the visited node is a combination of multiple nodes.
 #'
 #' @return A sequence of vertices, starting with \code{node} and ending with the last
 #'   visited node.
@@ -170,7 +168,7 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #' halden_node_updated <- UpdateKlassNode(klass_131, halden_node)
 #' 
 #' 
-UpdateKlassNode <- function(graph, node, combine = TRUE) {
+UpdateKlassNode <- function(graph, node) {
   
   bfs_result <- igraph::bfs(graph = graph, 
                             root = node, 
@@ -178,27 +176,29 @@ UpdateKlassNode <- function(graph, node, combine = TRUE) {
                             unreachable = FALSE)
   
   
-  end_nodes <- bfs_result$order[map_dbl(.x = bfs_result$order, 
-                                        .f = count_neighbors,
-                                        graph = graph,
-                                        mode = "out") == 0]
+  end_nodes <- bfs_result$order[vapply(bfs_result$order, 
+                                       count_neighbors,
+                                       graph = graph,
+                                       mode = "out",
+                                       FUN.VALUE = integer(1)) == 0]
   
   visited <- c(bfs_result$order[!name %in% unique(end_nodes)$name],
                unique(end_nodes))
   
-  vertex_attr(graph, "split", visited$name) <- 
-    unname(map_lgl(visited, is_split, graph = graph))
+  igraph::vertex_attr(graph, "split", visited$name) <- 
+    unname(vapply(visited, is_split, graph = graph, FUN.VALUE = logical(1)))
   
-  vertex_attr(graph, "combined", visited$name) <- 
-    unname(map_lgl(.x = visited, 
-                   .f = is_combined, 
-                   graph = graph, 
-                   compare_node = node))
+  igraph::vertex_attr(graph, "combined", visited$name) <- 
+    unname(vapply(visited, 
+                  is_combined, 
+                  graph = graph, 
+                  compare_node = node,
+                  FUN.VALUE = logical(1)))
   
-  vertex_attr(graph, "nextNodes", visited$name) <-
-    map(visited, neighbors, graph = graph, mode = "out")
+  igraph::vertex_attr(graph, "nextNodes", visited$name) <-
+    lapply(visited, igraph::neighbors, graph = graph, mode = "out")
   
-  visited <- V(graph)[visited$name]
+  visited <- igraph::V(graph)[visited$name]
   
   return(visited)
   

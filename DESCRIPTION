@@ -21,7 +21,7 @@ Description: Functions to search, retrieve, apply and update classifications
   and codelists using Statistics Norway's API <https://www.ssb.no/klass> 
   from the system 'KLASS'. Retrieves classifications by date with options 
   to choose language, hierarchical level and formatting.
-Imports: tm, httr, jsonlite
+Imports: tm, httr, jsonlite, igraph
 URL: https://statisticsnorway.github.io/klassR/
 BugReports: https://github.com/statisticsnorway/klassR/issues
 License: MIT + file LICENSE
@@ -34,7 +34,4 @@ Suggests:
     testthat (>= 3.0.0),
     kableExtra,
     magrittr,
-    igraph,
-    dplyr,
-    purrr
 Config/testthat/edition: 3
