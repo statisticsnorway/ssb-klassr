@@ -101,7 +101,6 @@ update_code <- function(graph,
   
 }
 
-
 #' Update multiple Klass codes to a desired date.
 #'
 #' @param codes Codes to be updated.

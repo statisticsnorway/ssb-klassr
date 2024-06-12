@@ -7,14 +7,17 @@
 #'
 get_klass_changes <- function(classification) {
   
-  dplyr::bind_rows(
-    httr::content(
-      httr::GET(
-        paste0("https://data.ssb.no/api/klass/v1/classifications/",
-               classification, "/changes?from=0001-01-01")
-      )
-    )[["codeChanges"]]
-  )
+  df <- 
+    dplyr::bind_rows(
+      httr::content(
+        httr::GET(
+          paste0("https://data.ssb.no/api/klass/v1/classifications/",
+                 classification, "/changes?from=0001-01-01")
+        )
+      )[["codeChanges"]]
+    )
+  
+  return(df[!(is.na(df$oldCode) | is.na(df$newCode)),])
   
 }
 
