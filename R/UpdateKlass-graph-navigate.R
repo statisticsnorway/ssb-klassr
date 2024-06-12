@@ -28,25 +28,27 @@ KlassNode <- function(graph, x, date = NA) {
     
     date <- as.Date(date[[1]])
     
-    node <- igraph::V(graph)[code == x & date >= validFrom & (date < validTo | is.na(validTo))]
+    node <- igraph::V(graph)[code == x & 
+                               date >= validFrom & 
+                               (date < validTo | is.na(validTo))]
     
   } else {
     
-    node <- igraph::V(graph)[code == x][variant == max(variant)]
+    node <- 
+      suppressWarnings(
+        igraph::V(graph)[code == x][variant == max(variant)]
+      )
     
   }
   
-  if (length(node) == 1) {
-    
-    return(node)
-    
-  } else if (length(node) > 1) {
+  if (length(node) > 1) {
     
     stop("More than one node found.")
     
-  } else {
+  } else  {
     
-    stop("Found no nodes.")
+    return(node)
+    
   }
   
 }
@@ -145,15 +147,16 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #' Given a node and a graph, find the node at the end of a sequence of changes.
 #'
 #' @inheritParams KlassNode
-#' @param node A node as returned by \code{\link{KlassNode}} or \code{\link[igraph]{V}}.
+#' @param node A node as returned by \code{\link{KlassNode}} or
+#'   \code{\link[igraph]{V}}.
 #'
-#' @return A sequence of vertices, starting with \code{node} and ending with the last
-#'   visited node.
-#'   
+#' @return A sequence of vertices, starting with \code{node} and ending with the
+#'   last visited node.
+#'
 #' @export
-#'   
+#'
 #' @examples
-#' 
+#'
 #' # Build a graph directed towards the most recent codes.
 #'
 #' klass_131 <- KlassGraph(131)
@@ -162,11 +165,11 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #' # valid to 2020.)
 #'
 #' halden_node <- KlassNode(klass_131, "0101")
-#' 
+#'
 #' # Find the most recent code corresponding to 0101 Halden
-#' 
+#'
 #' halden_node_updated <- UpdateKlassNode(klass_131, halden_node)
-#' 
+#'
 #' 
 UpdateKlassNode <- function(graph, node) {
   

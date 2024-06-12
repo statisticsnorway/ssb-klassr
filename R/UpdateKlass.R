@@ -87,18 +87,16 @@ update_code <- function(graph,
     
     return(report_df[, output])
     
+  } else  if (any(report_df$split) | 
+              (!combine & any(report_df$combined)) | 
+              length(result) == 0) {
+    
+    return(NA)
+      
   } else {
-    
-    if (any(report_df$split) | (!combine & any(report_df$combined))) {
       
-      return(NA)
+    return(report_df[length(result), output])
       
-    } else {
-      
-      return(report_df[length(result), output])
-      
-    }
-    
   }
   
 }
