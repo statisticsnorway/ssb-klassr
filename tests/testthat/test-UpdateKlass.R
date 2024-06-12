@@ -21,7 +21,10 @@ test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
                                           report = FALSE,
                                           graph = graph))
   
-  feil <- omkodet %>% dplyr::filter(newCode != oppdatert)
+  feil <- 
+    omkodet %>% 
+    rowwise() %>% 
+    dplyr::filter(!newCode %in% oppdatert)
   
   expect_equal(nrow(feil), 0)
   
@@ -52,15 +55,32 @@ test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
                                                    combine = FALSE))
   
   omkodet %>% 
-    dplyr::filter(newCode != oppdatert) %>% 
+    rowwise() %>% 
+    dplyr::filter(!newCode %in% oppdatert) %>% 
     nrow() %>% 
     expect_equal(expected = 0)
   
   omkodet %>% 
+    rowwise() %>% 
     dplyr::filter(!is.na(oppdatert_ikkecomb)) %>% 
     nrow() %>% 
     expect_equal(expected = 0)
 
+})
+
+test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
+  
+  graph <- readRDS(test_path("fixtures", "klass_131_graph.rds"))
+  
+  expect_true(
+    all(
+      is.na(
+        UpdateKlass(c("foo", "bar", "egg", "ham"),
+                    graph = graph)
+      )
+    )
+  )
+  
 })
 
 test_that("UpdateKlass gir riktig resultat ved delte koder", {
@@ -114,3 +134,5 @@ test_that("UpdateKlass gir forventet format på output", {
   expect_equal(length(update_helper(output = "code", report = FALSE)), 1)
   
 })
+
+
