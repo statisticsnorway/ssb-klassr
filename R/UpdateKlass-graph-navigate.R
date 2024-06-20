@@ -185,8 +185,9 @@ UpdateKlassNode <- function(graph, node) {
                                        mode = "out",
                                        FUN.VALUE = integer(1)) == 0]
   
-  visited <- c(bfs_result$order[!name %in% unique(end_nodes)$name],
-               unique(end_nodes))
+  visited <- unique(c(node,
+                      bfs_result$order[!name %in% unique(end_nodes)$name],
+                      end_nodes))
   
   igraph::vertex_attr(graph, "split", visited$name) <- 
     unname(vapply(visited, is_split, graph = graph, FUN.VALUE = logical(1)))
