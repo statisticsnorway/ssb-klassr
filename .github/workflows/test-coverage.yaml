@@ -38,24 +38,16 @@ jobs:
           covr::to_cobertura(cov)
         shell: Rscript {0}
 
-      - uses: codecov/codecov-action@v4
-        with:
-          fail_ci_if_error: ${{ github.event_name != 'pull_request' && true || false }}
-          file: ./cobertura.xml
-          plugin: noop
-          disable_search: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+  sonarcloud:
+    runs-on: ubuntu-latest
+    needs: test-coverage
 
-      - name: Show testthat output
-        if: always()
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ## --------------------------------------------------------------------
-          find '${{ runner.temp }}/package' -name 'testthat.Rout*' -exec cat '{}' \; || true
-        shell: bash
-
-      - name: Upload test results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-test-failures
-          path: ${{ runner.temp }}/package
+          R -e 'install.packages("sonar")'
+          R -e 'sonar::sonar_scan()'
