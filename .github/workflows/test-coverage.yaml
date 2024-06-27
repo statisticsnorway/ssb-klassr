@@ -30,15 +30,14 @@ jobs:
 
       - name: Test coverage
         run: |
-          cov <- covr::package_coverage(
-            quiet = FALSE,
-            clean = FALSE,
-            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
-          )
-          covr::to_cobertura(cov)
+            cov <- covr::package_coverage(
+              quiet = FALSE,
+              clean = FALSE,
+              install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
+            )
           
       - name: To sonarcloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          Rscript -e 'library(covr); cov <- package_coverage(); covr::to_sonarqube(cov)'
+            covr::to_sonarqube(cov)
