@@ -79,9 +79,8 @@ ApplyKlass <- function(x,
   input_level <- levelCheck(x = x, klass_data = klass_data)
   if (is.null(output_level)) output_level <- input_level
 
-
-  #formattering
-  if (format == TRUE){
+  # Formattering Only using for nace and municipality
+  if (format == TRUE & klass %in% c("6", "131")){
     x_formatted <- formattering(x, input_level = input_level, klass = klass, klass_data = klass_data) # fungere ikke for yrke
   } else {
     x_formatted <- x
