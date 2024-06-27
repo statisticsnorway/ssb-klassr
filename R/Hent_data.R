@@ -8,7 +8,11 @@ CheckDate <- function(date){
   if(!inherits(dcheck, 'Date') | is.na(dcheck)) {
     stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
   }
+  if(dcheck < "1500-01-01"){
+    stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
+  }
 }
+
 
 #' Internal function to create URL address
 #'
