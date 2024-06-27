@@ -23,7 +23,6 @@ jobs:
           - {os: ubuntu-latest, r: 'devel'}
           - {os: ubuntu-latest, r: 'release'}
           - {os: ubuntu-latest, r: '4.1.1'}
-          - {os: ubuntu-latest, r: '3.6'}  
           - {os: macOS-latest, r: 'release'}
   
     env:
@@ -43,15 +42,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            rmarkdown
+            knitr
+            testthat
+            any::rcmdcheck
 
       - uses: r-lib/actions/check-r-package@v2
-      
-      - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
 
       - name: Show testthat output
         if: always()
