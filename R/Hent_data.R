@@ -360,6 +360,11 @@ GetKlass <- function(klass,
     klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
   }
   
+  if (type %in% c("variant", "vanlig") & isTRUE(fratil)){
+    klass_data$validFromInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validFromInRequestedRange
+    klass_data$validToInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validToInRequestedRange
+  }
+  
   if (output_style == "wide" & is.null(output_level) & is.null(correspond) & is.null(correspondID)){
       # get maximum level
       maxlength <- max(klass_data$level)
