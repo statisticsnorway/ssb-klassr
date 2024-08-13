@@ -336,6 +336,10 @@ GetKlass <- function(klass,
   }
   if (type == "kor"){
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceItems
+    if (length(klass_data) == 0){
+      stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
+           "For a list of valid correspondence tables use the function CorrespondList()")
+    }
     if (targetswap){
       klass_data <- klass_data[, c("targetCode", "targetName", "sourceCode", "sourceName")]
     } else {
@@ -350,11 +354,11 @@ GetKlass <- function(klass,
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codeChanges
     if (!is.data.frame(klass_data)) stop("No changes found for this classification.")
     if (dateswap){
-      klass_data <- klass_data[, c("newCode", "newName", "oldCode", "oldName")]
+      klass_data <- klass_data[, c("newCode", "newName", "oldCode", "oldName", "changeOccurred")]
     } else {
-      klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName")]
+      klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName", "changeOccurred")]
     }
-    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
+    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName", "changeOccurred")
   }
   if (type %in% c("variant", "vanlig") & isTRUE(notes)){
     klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
