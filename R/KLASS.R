@@ -75,16 +75,16 @@ ApplyKlass <- function(x,
                           language = language, output_level = NULL)
   }
 
-  # kjor indata sjekk
-  input_level <- levelCheck(x = x, klass_data = klass_data)
-  if (is.null(output_level)) output_level <- input_level
-
-  # Formattering Only using for nace and municipality
+  # Formattering - only for nace and municipality
   if (format == TRUE & klass %in% c("6", "131")){
-    x_formatted <- formattering(x, input_level = input_level, klass = klass, klass_data = klass_data) # fungere ikke for yrke
+    x_formatted <- formattering(x, klass = klass)
   } else {
     x_formatted <- x
   }
+  
+  # kjor indata sjekk
+  input_level <- levelCheck(x = x_formatted, klass_data = klass_data) # implies all are same level!
+  if (is.null(output_level)) output_level <- input_level
 
   if (!all(input_level == output_level) & type %in% c("kor", "change")) stop("Level changes and time changes/correspondence concurrently is not programmed.")
 
