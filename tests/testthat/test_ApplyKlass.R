@@ -95,7 +95,76 @@ test_that("ApplyKlass works for classifications with varying number of digits",{
   new <- ApplyKlass(dat,
                     klass = 270,
                     date = "2024-01-01")
+  expect_false(new[1] == new[2])
   expect_false(all(is.na(new)))
+})
+
+
+test_that("Nace classification with missing formatting",{
+  # simple example with all missing formatting
+  dat <- c("01460","45112", "45111", "45310")
+  expect_warning(
+  new <- ApplyKlass(dat,
+                    klass = 6,
+                    date = "2024-01-01"),
+  "Number missing .: 4"
+  )
+  expect_equal(new[1], "Svinehold")
+  
+  # Check mixture of formatting
+  dat <- c("45112", "45.111")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number missing .: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
+
+  # checking NAs
+  dat <- c("45.112", "45.111", NA)
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number of NA: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
+  expect_true(is.na(new[3]))
+  })
+
+
+test_that("Municipality classification with missing formatting",{
+  # example with all missing leading 0
+  dat <- c("301","301")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 131,
+                      date = "2024-01-01"),
+    "Number missing leading 0: 2"
+  )
+  expect_equal(new[1], "Oslo")
+  
+  # simple example with all missing leading 0
+  dat <- c("301","301")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 131,
+                      date = "2024-01-01"),
+    "Number missing leading 0: 2"
+  )
+  expect_equal(new[1], "Oslo")
+  
+  
+  # Check mixture of formatting
+  dat <- c("45112", "45.111")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number missing .: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
 })
 
 

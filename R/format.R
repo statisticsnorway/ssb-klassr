@@ -1,85 +1,77 @@
+## to do:
+# level input need and run level check first but the formatted input is need to check level....FIX
 
-
-#' insert missing dots to the right place in a string
-#' @param x - character with missing dots
-#' @param dot - the place of missing dots
-#' @keywords internal
-#' @return a string is returned with the insertion of a formatted period (.) in the specifed location.
-splitChar <- function(x, dot){
-  code_mod <- unlist(strsplit(x, split=""))
-  for( j in 1:length(dot)){
-    code_mod <- append(code_mod, ".", after=dot[j]-1)
-  }
-  verdi <- paste(code_mod, sep="", collapse="")
-  return(verdi)
-}
-
-#' Convert vector to the right format
+#' Format vector for industry codes
 #' @param x - vector of character
 #' @param klass - classification number
-#' @param input_level - which classification level
-#' @param klass_data - the right formatting to the classification levels
 #' @return vector of character
 #' @keywords internal
-formattering <- function(x, input_level, klass, klass_data){
+formattering <- function(x, klass){
+  # Check for letters and return as is
   if(any(grepl("^[A-Za-z]+$", x))){
     return(x)
   }
-  code <- klass_data[klass_data$level==input_level,]$code
-  # hente funksjonen til å lese inn: Fetch_data
-  dot <- unlist(lapply(strsplit(code[1], ''), function(x) which(x == '.')))
-  len <- length(tm::removePunctuation(unlist(strsplit(code[1], ''))))
-
-  verdi <- c()
-  riktig <- 0
-  mangler0 <- 0
-  miss <- 0
-  manglerDot <- 0
-  for ( i in 1:length(x)){
-    test <- length(tm::removePunctuation(unlist(strsplit(x[i], ''))))
-    if (is.na(x[i]) | x[i]==""){
-      verdi[i] <- NA
-      miss <- miss +1
-    }
-    else{
-      if(is.logical(dot)){
-        if (unlist(strsplit(x[i], ''))[dot] =="."){
-          verdi[i] <- x[i]
-          riktig <- riktig + 1
-        }
-      }
-      else{
-        if (any(unlist(lapply(strsplit(x[i], ''), function(x) which(x == '.')))) == any(dot)){
-          if(nchar(x[i]) != len){
-            verdi[i] <- paste0("0", x[i])
-            mangler0 <- mangler0 +1
-          }
-          else{
-            verdi[i] <- x[i]
-          }
-        }
-        else{
-          if( (test) == (len)-length(dot)){
-            verdi[i] <- splitChar(x[i], dot)
-            manglerDot <- manglerDot + 1
-          }
-          else{
-            verdi[i] <- NA
-            miss <- miss +  0
-          }
-        }
-      }
-
-    }
+  
+  # Check for missing values
+  miss <- sum(is.na(x) | x == "")
+  if (miss != 0){
+    warning(c("Number of NA: ", miss))
   }
-
-  if (riktig != 0 | mangler0 != 0 | miss != 0 | manglerDot != 0){
-   # warning(c("Number correct: ", riktig)) # Fungere ikke for andre variabel enn nace
-    warning(c("Number missing leading 0:", mangler0))
-    warning(c("Number missing .:" , manglerDot))
-    warning(c("Number of NA:", miss))
+  
+  # Check and format
+  if (klass == 6){
+    x_formatted <- formattering_nace(x)
   }
+  if (klass == 131){
+    x_formatted <- formattering_kommune(x)
+  }
+  
+  x_formatted
+}
 
-  return(verdi)
 
+#' Format vector for industry codes
+#' @param x Character vector
+#' @return Formatted charcter vector
+#' @keywords internal
+formattering_nace <- function(x){
+
+  # Specify position of the .
+  dot <- 3
+  
+  # Identify number missing punctuation
+  x_nopunc <- tm::removePunctuation(x)
+  x_over2 <- nchar(x_nopunc) >= 3
+  x_over2[is.na(x_over2)] <- FALSE
+  mangler_dot <- sum(!grepl("\\.", x[x_over2]))
+  
+  if (mangler_dot != 0){
+    warning(c("Number missing .: " , mangler_dot))
+  }
+  
+  mangler_dot <- length(x) - sum(grepl("\\.", x))
+    
+  # Format
+  x_formatted <- sub(paste0('(?<=.{',dot-1,'})'), '.', x_nopunc, perl=TRUE)
+  x_formatted[!x_over2] <- x_nopunc[!x_over2]
+
+  x_formatted
+}
+
+#' Format vector for kommune codes
+#' @param x - vector of character type for kommune codes
+#' @return vector of character
+#' @keywords internal
+formattering_kommune <- function(x){
+  # Find dropped leading zeros
+  mangler0 <- sum(nchar(x) < 4, na.rm=T)
+  
+  # Fix if any
+  if (mangler0 > 0){
+    x_formatted <- formatC(as.numeric(x), width = 4, flag="0")
+    warning(c("Number missing leading 0: ", mangler0))
+  } else {
+    x_formatted <- x
+  }
+  x_formatted
 }
