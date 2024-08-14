@@ -4,8 +4,6 @@
 #' Format vector for industry codes
 #' @param x - vector of character
 #' @param klass - classification number
-#' @param input_level - which classification level
-#' @param klass_data - the right formatting to the classification levels
 #' @return vector of character
 #' @keywords internal
 formattering <- function(x, klass){

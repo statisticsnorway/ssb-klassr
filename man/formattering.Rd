@@ -2,23 +2,19 @@
 % Please edit documentation in R/format.R
 \name{formattering}
 \alias{formattering}
-\title{Convert vector to the right format}
+\title{Format vector for industry codes}
 \usage{
-formattering(x, input_level, klass, klass_data)
+formattering(x, klass)
 }
 \arguments{
 \item{x}{- vector of character}
 
-\item{input_level}{- which classification level}
-
 \item{klass}{- classification number}
-
-\item{klass_data}{- the right formatting to the classification levels}
 }
 \value{
 vector of character
 }
 \description{
-Convert vector to the right format
+Format vector for industry codes
 }
 \keyword{internal}

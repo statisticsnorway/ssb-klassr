@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkLevel.R
 \name{levelCheck}
 \alias{levelCheck}
-\title{Check which level input data/vector is}
+\title{Check which level the input data/vector is}
 \usage{
 levelCheck(x, klass_data)
 }
