@@ -150,4 +150,11 @@ test_that("GetKlass returns a correspondence table using ID", {
   expect_equal(classdata$targetName[1], "Oslo")
 })
 
-
+test_that("GetKlass returns valid dates for a date range", {
+  class_data <- GetKlass(131, date = c("2020-01-01","2024-01-02"))
+  expect_equal(class_data$validFromInRequestedRange[1], "2020-01-01")
+  
+  variant_data <- GetKlass(klass = 6, variant = 1616, date = c("2020-01-01","2024-01-02"))
+  expect_equal(variant_data$validFromInRequestedRange[1], "2020-01-01")
+  
+})
