@@ -11,9 +11,30 @@ test_that("GetKlass returns a classification with Norwegian letters", {
   expect_equal(class_data$name[8], "Rømskog")
 })
 
+
 test_that("GetKlass returns no error when no date given", {
-  class_data <- GetKlass(klass = 131)
+  expect_type(GetKlass(klass = 131), type = "list")
 })
+
+
+test_that("GetKlass returns error when date in wrong format", {
+  expect_error(
+    x <- GetKlass(klass = 2, date = "01-01-2024"),
+    "An incorrect date format was given. Please use format 'YYYY-mm-dd'."
+  )
+  
+  expect_error(
+    x <- GetKlass(klass = 2, date = "20240101"),
+    "An incorrect date format was given. Please use format 'YYYY-mm-dd'."
+  )
+  
+  expect_error(
+    x <- GetKlass(klass = 2, date = c("2024-01-01", "2023-01-01", "2022-01-01"),
+    "You have provided too many dates."
+  )
+  )
+})
+
 
 test_that("GetKlass returns changes when two dates given", {
   class_data1 <- GetKlass(klass = 131, date = c("2022-01-01", "2023-01-01"))
@@ -21,11 +42,28 @@ test_that("GetKlass returns changes when two dates given", {
   expect_equal(nrow(class_data1), nrow(class_data2))
 })
 
+
+test_that("GetKlass returns classifications with future date", {
+  expect_message(
+    class_data <- GetKlass(klass = 2, date = "2100-01-01"),
+    "The date you selected is in the future. You may be viewing a future classification that is not currently valid"
+  )
+  expect_equal(nrow(class_data), 2)
+})
+
+
 test_that("GetKlass returns correct output level", {
   class_data <- GetKlass(klass = 7, date = "2024-01-01",
                          output_level = 1)
   expect_equal(nrow(class_data), 10)
   expect_equal(class_data$name[2], "Ledere")
+})
+
+
+test_that("GetKlass returns english language", {
+  class_data <- GetKlass(klass = 2, date = "2024-01-01",
+                         language="en")
+  expect_equal(class_data$name, c("Male", "Female"))
 })
 
 
@@ -46,9 +84,51 @@ test_that("GetKlass returns a correspondence table in both directions", {
 })
 
 
-test_that("GetKlass returns a valid variant", {
+test_that("GetKlass returns a valid variant including ones with spaces in name", {
   variant_data <- GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
   expect_equal(variant_data$name[2], 'Jordbruk, skogbruk og fiske')
+  
+  variant_data <- GetKlass(klass = 6, variant = 1615, date = "2021-01-02")
+  expect_equal(variant_data$name[6], 'Dyrking av ris') 
+})
+
+test_that("GetKlass returns a correspondence table", {
+  cor_data1 <- GetKlass(klass = 131, correspond = 127,date = "2024-01-02")
+  cor_data2 <- GetKlass(klass = 127, correspond = 131,date = "2024-01-02")
+  
+  expect_gt(nrow(cor_data1), 1)
+
+  expect_equal(cor_data1$sourceCode, cor_data2$targetCode)
+})
+
+test_that("GetKlass returns a correspondent using ID", {
+  expect_message(
+  cor_data <- GetKlass(correspondID = 1441, date = "2024-01-02")
+  )
+  expect_equal(cor_data$targetCode[1], '3100')
+})
+
+
+test_that("GetKlass fails quietly with invalid variant", {
+  
+    # Capture the warnings and errors
+    err <- NULL
+    result <- tryCatch(
+      {
+        variant_data <- GetKlass(klass = 6, variant = 1, date = "2021-01-02")
+      },
+      error = function(e) {
+        err <<- e
+        NULL
+      }
+    )
+    
+    # Check that an error was indeed thrown
+    expect_true(!is.null(err))
+    
+    # Check that the error message is empty
+    expect_true(nchar(conditionMessage(err)) == 0)
+
 })
 
 
