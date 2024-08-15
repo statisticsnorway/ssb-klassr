@@ -42,8 +42,10 @@ GetKlass(
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:
 code, parentCode, level, and name for standard lists. For correspondence tables variables include:
-sourceCode, sourceName, targetCode and targetName. For time correspondence tables variables include:
+sourceCode, sourceName, targetCode and targetName. For date correspondence tables variables include:
 oldCode, oldName, newCode and newName. For "wide" output, code and name with level suffixes is specified.
+For date ranges, validFromInRequestedRange and validToInRequestedRange give the dates for the classification. Variable ChangeOccured gives the 
+effective date for classification change in classification change tables.
 }
 \description{
 Fetch classification data
