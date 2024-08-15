@@ -308,12 +308,12 @@ We can apply this correspondence between municipality and region in our example 
 klassdata$region <- ApplyKlass(klassdata$kommune, 
                                klass = 131,
                                correspond = 106,
-                               date = "2016-01-01")
+                               date = "2020-01-01")
 klassdata
 ```
 
 ```{r, echo=F}
-tt <- GetKlass(106, correspond = 131, date = "2016-01-01")
+tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
 tt <- tt[, c(3,4,1,2)]
 names(tt) <- navn
