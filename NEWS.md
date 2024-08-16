@@ -1,3 +1,9 @@
+# klassR 0.2.4
+
+- Adjusted formatting function. 
+- Added dates check and returning valid dates for date range comparisons.
+
+
 # klassR 0.2.3
 
 - Bug fix for testing future classifications for CRAN release

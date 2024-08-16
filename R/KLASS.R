@@ -19,7 +19,7 @@ MakeChar <- function(x){
 #'
 #' @param x Input vector
 #' @param klass Classification number
-#' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
+#' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param correspond ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.
 #' @param language Default "nb" for Norwegian (Bokmål). Also "nn" (Nynorsk) and "en" (English available for some classifications)

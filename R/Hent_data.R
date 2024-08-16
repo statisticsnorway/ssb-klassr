@@ -8,7 +8,11 @@ CheckDate <- function(date){
   if(!inherits(dcheck, 'Date') | is.na(dcheck)) {
     stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
   }
+  if(dcheck < "1500-01-01"){
+    stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
+  }
 }
+
 
 #' Internal function to create URL address
 #'
@@ -201,8 +205,10 @@ GetUrl2 <- function(url, check = TRUE){
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
-#' sourceCode, sourceName, targetCode and targetName. For time correspondence tables variables include:
+#' sourceCode, sourceName, targetCode and targetName. For date correspondence tables variables include:
 #' oldCode, oldName, newCode and newName. For "wide" output, code and name with level suffixes is specified.
+#' For date ranges, validFromInRequestedRange and validToInRequestedRange give the dates for the classification. Variable ChangeOccured gives the 
+#' effective date for classification change in classification change tables.
 #' @export
 #'
 #' @examples
@@ -336,6 +342,10 @@ GetKlass <- function(klass,
   }
   if (type == "kor"){
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceItems
+    if (length(klass_data) == 0){
+      stop("No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
+           "For a list of valid correspondence tables use the function CorrespondList()")
+    }
     if (targetswap){
       klass_data <- klass_data[, c("targetCode", "targetName", "sourceCode", "sourceName")]
     } else {
@@ -350,14 +360,19 @@ GetKlass <- function(klass,
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codeChanges
     if (!is.data.frame(klass_data)) stop("No changes found for this classification.")
     if (dateswap){
-      klass_data <- klass_data[, c("newCode", "newName", "oldCode", "oldName")]
+      klass_data <- klass_data[, c("newCode", "newName", "oldCode", "oldName", "changeOccurred")]
     } else {
-      klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName")]
+      klass_data <- klass_data[, c("oldCode", "oldName","newCode", "newName", "changeOccurred")]
     }
-    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
+    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName", "changeOccurred")
   }
   if (type %in% c("variant", "vanlig") & isTRUE(notes)){
     klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
+  }
+  
+  if (type %in% c("variant", "vanlig") & isTRUE(fratil)){
+    klass_data$validFromInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validFromInRequestedRange
+    klass_data$validToInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validToInRequestedRange
   }
   
   if (output_style == "wide" & is.null(output_level) & is.null(correspond) & is.null(correspondID)){
