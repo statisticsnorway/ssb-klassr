@@ -999,11 +999,21 @@ show both old and newer names.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2019-01-01"</span>, <span class="st">"2020-01-01"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="5%">
+<col width="11%">
+<col width="6%">
+<col width="24%">
+<col width="27%">
+<col width="25%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">code</th>
 <th align="left">parentCode</th>
 <th align="left">level</th>
 <th align="left">name</th>
+<th align="left">validFromInRequestedRange</th>
+<th align="left">validToInRequestedRange</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1011,84 +1021,112 @@ show both old and newer names.</p>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Oslo og Akershus</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Oslo og Viken</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Innlandet</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Hedmark og Oppland</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Agder og Sør-Østlandet</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Sør-Østlandet</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">4</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Vestlandet</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Agder og Rogaland</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Vestlandet</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">5</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Trøndelag</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="odd">
 <td align="left">6</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Trøndelag</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">6</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Nord-Norge</td>
+<td align="left">2020-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Nord-Norge</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">9</td>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Uoppgitt</td>
+<td align="left">2018-01-01</td>
+<td align="left">2020-01-02</td>
 </tr>
 </tbody>
 </table>
@@ -1103,12 +1141,20 @@ we are interested in.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, </span>
 <span>         date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-01-01"</span>, <span class="st">"2019-01-01"</span><span class="op">)</span>, </span>
 <span>         correspond <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="13%">
+<col width="29%">
+<col width="13%">
+<col width="24%">
+<col width="18%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">sourceCode</th>
 <th align="left">sourceName</th>
 <th align="left">targetCode</th>
 <th align="left">targetName</th>
+<th align="left">changeOccurred</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1116,60 +1162,70 @@ we are interested in.</p>
 <td align="left">NA</td>
 <td align="left">1</td>
 <td align="left">Oslo og Akershus</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">3</td>
 <td align="left">Sør-Østlandet</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">4</td>
 <td align="left">Agder og Rogaland</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">5</td>
 <td align="left">Vestlandet</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">1</td>
 <td align="left">Oslo og Viken</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
 <td align="left">Innlandet</td>
 <td align="left">2</td>
 <td align="left">Hedmark og Oppland</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
 <td align="left">Agder og Sør-Østlandet</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
 <td align="left">Vestlandet</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
 <td align="left">Trøndelag</td>
 <td align="left">6</td>
 <td align="left">Trøndelag</td>
+<td align="left">2020-01-01</td>
 </tr>
 <tr class="even">
 <td align="left">6</td>
 <td align="left">Nord-Norge</td>
 <td align="left">7</td>
 <td align="left">Nord-Norge</td>
+<td align="left">2020-01-01</td>
 </tr>
 </tbody>
 </table>
