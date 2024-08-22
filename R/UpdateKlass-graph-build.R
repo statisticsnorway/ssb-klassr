@@ -12,7 +12,7 @@ get_klass_changes <- function(classification) {
       httr::content(
         httr::GET(
           paste0("https://data.ssb.no/api/klass/v1/classifications/",
-                 classification, "/changes?from=0001-01-01")
+                 classification, "/changes?from=1860-01-01")
         )
       )[["codeChanges"]]
     )
