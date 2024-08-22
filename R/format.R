@@ -7,10 +7,6 @@
 #' @return vector of character
 #' @keywords internal
 formattering <- function(x, klass){
-  # Check for letters and return as is
-  if(any(grepl("^[A-Za-z]+$", x))){
-    return(x)
-  }
   
   # Check for missing values
   miss <- sum(is.na(x) | x == "")
@@ -63,6 +59,11 @@ formattering_nace <- function(x){
 #' @return vector of character
 #' @keywords internal
 formattering_kommune <- function(x){
+  # Check for letters
+  if(any(grepl("^[A-Za-z]+$", x))){
+    stop("Letters detected in kommune codes. Please check and rerun.")
+  }
+  
   # Find dropped leading zeros
   mangler0 <- sum(nchar(x) < 4, na.rm=T)
   
