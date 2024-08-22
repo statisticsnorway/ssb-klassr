@@ -33,33 +33,34 @@ update_code(
    \item{\code{"nextCode"}}{If \code{split == FALSE}, gives the code this code changed into. \code{NA} otherwise.}
   }}
 
-\item{combine}{\code{TRUE} or \code{FALSE}. See the return section.}
+\item{combine}{\code{TRUE} or \code{FALSE}. See the value section.}
 
-\item{report}{\code{TRUE} or \code{FALSE}. See the return section.}
+\item{report}{\code{TRUE} or \code{FALSE}. See the value section.}
 }
 \value{
 If \code{report == TRUE} and \code{length(output) > 1 | TRUE}, the
-  result will be a \code{data.frame} with number of rows equal to the number
-  of codes in the sequence of changes between the input code and output code.
-  The columns in the \code{data.frame} are specified with \code{output}.
+  result will be a \code{data.frame}. The number of rows in the data.frame
+  will be the the number of codes in the sequence of changes between the
+  input code and output code. The columns in the \code{data.frame} are
+  specified with \code{output}.
 
   If \code{report == TRUE} and \code{length(output) == 1}, the result will be
-  a character vector with length equal to the number of codes in the sequence
-  of changes between the input code and output code. The contents of the
-  character vector is specified with \code{output}.
+  a character vector. The length of the vector will be the number of codes in
+  the sequence of changes between the input code and output code. The
+  contents of the character vector is specified with \code{output}.
 
   If \code{report == FALSE} and \code{length(output) > 1 | TRUE} the result
-  will be a \code{data.frame} with one row representing the last code
-  in the change sequence and columns specified by \code{output}. If a code
-  has been split, the result will be \code{NA}. If \code{combine == FALSE}
-  and a code is the result of a combination of codes, the result will be
-  code{NA}.
+  will be a \code{data.frame} with one row representing the updated code. The
+  data.frame will have columns specified by \code{output}. If a code has been
+  split, the result will be \code{NA}. If \code{combine == FALSE} and a code
+  is the result of a combination of codes, the result will be code{NA}.
 
   If \code{report == FALSE} and \code{length(output) == 1}, the result will
   be a character vector of length one, containing information about the
-  updated code specified by \code{output}. If a code has been split, the
-  result will be \code{NA}. If \code{combine == FALSE} and a code is the
-  result of a combination of codes, the result will be \code{NA}.
+  updated code. The information provided is specified by \code{output}. If a
+  code has been split, the result will be \code{NA}. If \code{combine ==
+  FALSE} and a code is the result of a combination of codes, the result will
+  be \code{NA}.
 }
 \description{
 Update a code found in a directed graph based on a Klass-classification

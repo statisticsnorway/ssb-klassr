@@ -30,12 +30,16 @@ get_klass_changes <- function(classification) {
 #'   Defaults to the current year plus one, which ensures the graph is directed
 #'   to the most recent codes.
 #'
-#' @return An \code{igraph} object with the vertexes representing codes, and
-#'   edges representing changes between codes. The direction of the edges
-#'   represent changes towards the date specified in \code{date}.
-#'   
+#' @return An object containing information about all codes in the
+#'   classification/codelist, and information about the changes between codes.
+#'
+#'   The information is stored as a \code{igraph} object with the vertices
+#'   representing codes, and edges representing changes between codes. The
+#'   direction of the edges represent changes towards the date specified in
+#'   \code{date}.
+#'
 #' @export
-#'   
+#'
 #' @examples
 #'
 #' # Build a graph directed towards the most recent codes
