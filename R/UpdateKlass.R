@@ -53,6 +53,12 @@ update_code <- function(graph,
                         combine = TRUE,
                         report = FALSE) {
   
+  if (is.na(code)) {
+    
+    return(NA)
+    
+  }
+  
   result <- UpdateKlassNode(graph = graph, 
                             node = KlassNode(graph, code, date = date))
   

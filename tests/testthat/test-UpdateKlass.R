@@ -83,6 +83,21 @@ test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
   
 })
 
+test_that("UpdateKlass gir riktig resultat ved NA", {
+  
+  graph <- readRDS(test_path("fixtures", "klass_131_graph.rds"))
+  
+  expect_true(
+    all(
+      is.na(
+        UpdateKlass(rep(NA, 10),
+                    graph = graph)
+      )
+    )
+  )
+  
+})
+
 test_that("UpdateKlass gir riktig resultat ved delte koder", {
   
   graph <- readRDS(test_path("fixtures", "klass_131_1964_graph.rds"))
