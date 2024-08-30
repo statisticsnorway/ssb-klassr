@@ -17,7 +17,7 @@ MakeChar <- function(x){
 
 #' Match and convert a classification
 #'
-#' @param x Input vector
+#' @param x Input vector of classification codes. Vector must match "code" column from a call to GetKlass().
 #' @param klass Classification number
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param variant The classification variant to fetch (if a variant is wanted).
