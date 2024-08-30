@@ -188,8 +188,6 @@ GetUrl2 <- function(url, check = TRUE){
   return(klass_text)
 }
 
-
-#' Fetch classification data
 #' Fetch Statistics Norway classification data using API
 #'
 #' @param klass Number/string of the classification ID/number. (use Klass_list() to find this)
