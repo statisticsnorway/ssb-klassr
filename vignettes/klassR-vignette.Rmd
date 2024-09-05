@@ -13,26 +13,26 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  echo = T, 
+  echo = T,
   message = F
 )
 library(knitr)
 library(kableExtra)
 library(magrittr)
-#library(httptest)
+# library(httptest)
 
-#root <- klassR:::GetBaseUrl()
-#set_redactor(function (response) {
+# root <- klassR:::GetBaseUrl()
+# set_redactor(function (response) {
 #    response %>%
 #        gsub_response(root, "", fixed=TRUE)
-#})
+# })
 
-#set_requester(function (request) {
+# set_requester(function (request) {
 #    request %>%
 #        gsub_request(root, "", fixed=TRUE)
-#})
+# })
 
-#start_vignette("klassR-vignette")
+# start_vignette("klassR-vignette")
 ```
 ## 1. Introduction
 Do you have a Norwegian data set with codes for Standard Industrial Classification that you want to find out what they mean? Or data with Norwegian municipality numbers and no names? Or perhaps you want to convert English standard occupations into Ny Norsk for a figure. These are tasks which the R package **klassR** can help you with.
@@ -83,7 +83,7 @@ ListKlass(codelists = TRUE)
 ```{r, echo = F}
 ck <- ListKlass(codelists = TRUE)
 row.names(ck) <- NULL
-kable(head(ck), align = "l")%>%
+kable(head(ck), align = "l") %>%
   kable_styling(full_width = T)
 ```
 
@@ -123,7 +123,6 @@ head(industry)
 
 ```{r, echo=F}
 kable(head(GetKlass(6)))
-
 ```
 
 
@@ -163,19 +162,19 @@ head(industry, 2)
 ```
 
 ```{r echo = F}
-kable(head(GetKlass(6, output_style = "wide", language = "en"),2))
+kable(head(GetKlass(6, output_style = "wide", language = "en"), 2))
 ```
 
 ### Notes
 Some classifications have additional notes that can be fetched with the classification. These can be included in the data using the option `notes = T`.
 
 ```{r, eval = F}
-industry <- GetKlass(6, notes=T)
+industry <- GetKlass(6, notes = T)
 head(industry, 2)
 ```
 
 ```{r, echo = F}
-kable(head(GetKlass(6, notes=T), 2))
+kable(head(GetKlass(6, notes = T), 2))
 ```
 
 ## 4. Applying a classification
@@ -199,16 +198,18 @@ We can use `ApplyKlass` to create a variable for the municipality names (classif
 
 
 ```{r, eval=F}
-klassdata$kommune_names <- ApplyKlass(klassdata$kommune, 
-                                      klass = 131)
+klassdata$kommune_names <- ApplyKlass(klassdata$kommune,
+  klass = 131
+)
 head(klassdata)
 ```
 
 
 ```{r, echo=F, warning=F}
-klassdata$kommune_names <- ApplyKlass(klassdata$kommune, 
-                                      klass = 131,
-                                      date="2016-01-01")
+klassdata$kommune_names <- ApplyKlass(klassdata$kommune,
+  klass = 131,
+  date = "2016-01-01"
+)
 kable(head(klassdata))
 ```
 
@@ -252,12 +253,10 @@ The following code fetched Norwegian regional codes between 1st January 2019 to 
 
 ```{r,eval=F }
 GetKlass(106, date = c("2019-01-01", "2020-01-01"))
-
 ```
 
 ```{r, echo=F }
 kable(GetKlass(106, date = c("2018-01-01", "2020-01-01")))
-
 ```
 
 
@@ -266,14 +265,17 @@ To fetch only the changes in a time period rather than all codes we can specify 
 
 
 ```{r, eval =F}
-GetKlass(106, 
-         date = c("2020-01-01", "2019-01-01"), 
-         correspond = TRUE)
+GetKlass(106,
+  date = c("2020-01-01", "2019-01-01"),
+  correspond = TRUE
+)
 ```
 
 ```{r, echo=F }
-kable(GetKlass(106, date = c("2020-01-01", "2019-01-01"), 
-                    correspond = TRUE))
+kable(GetKlass(106,
+  date = c("2020-01-01", "2019-01-01"),
+  correspond = TRUE
+))
 ```
 
 The table returned is a correspondents in codes and/or names in the time interval specified. The `sourceCode` and `sourceName` refer to the original name and coding. The `targetCode` and `targetName` refer to the newer code and name. Notice there is not a simple 1:1 correspondence between all of the regions. Here the municipality number would be needed to map the changes more accurately.
@@ -295,7 +297,7 @@ GetKlass(131, correspond = 106, date = "2020-01-01")
 ```{r, echo=F}
 tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
-tt <- tt[, c(3,4,1,2)]
+tt <- tt[, c(3, 4, 1, 2)]
 names(tt) <- navn
 kable(head(tt))
 ```
@@ -305,22 +307,23 @@ We can apply this correspondence between municipality and region in our example 
 
 
 ```{r, eval =F}
-klassdata$region <- ApplyKlass(klassdata$kommune, 
-                               klass = 131,
-                               correspond = 106,
-                               date = "2020-01-01")
+klassdata$region <- ApplyKlass(klassdata$kommune,
+  klass = 131,
+  correspond = 106,
+  date = "2020-01-01"
+)
 klassdata
 ```
 
 ```{r, echo=F}
 tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
-tt <- tt[, c(3,4,1,2)]
+tt <- tt[, c(3, 4, 1, 2)]
 names(tt) <- navn
 
 m <- match(klassdata$kommune, tt$sourceCode)
 
-klassdata$region <- tt$targetName[m] 
+klassdata$region <- tt$targetName[m]
 kable(head(klassdata))
 ```
 
@@ -332,5 +335,4 @@ GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
 
 ```{r, echo = FALSE}
 kable(head(GetKlass(klass = 6, variant = 1616, date = "2021-01-02")))
-
 ```
