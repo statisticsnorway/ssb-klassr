@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' 
+#'
 #' # Build a graph directed towards the most recent codes.
 #'
 #' klass_131 <- KlassGraph(131)
@@ -21,36 +21,26 @@
 #' # valid to 2020.)
 #'
 #' halden_node <- KlassNode(klass_131, "0101")
-#' 
+#'
 KlassNode <- function(graph, x, date = NA) {
-  
   if (!is.na(date)) {
-    
     date <- as.Date(date[[1]])
-    
-    node <- igraph::V(graph)[code == x & 
-                               date >= validFrom & 
-                               (date < validTo | is.na(validTo))]
-    
+
+    node <- igraph::V(graph)[code == x &
+      date >= validFrom &
+      (date < validTo | is.na(validTo))]
   } else {
-    
-    node <- 
+    node <-
       suppressWarnings(
         igraph::V(graph)[code == x][variant == max(variant)]
       )
-    
   }
-  
+
   if (length(node) > 1) {
-    
     stop("More than one node found.")
-    
-  } else  {
-    
+  } else {
     return(node)
-    
   }
-  
 }
 
 #' Count the neighbors of a node.
@@ -61,9 +51,7 @@ KlassNode <- function(graph, x, date = NA) {
 #' @return A numeric vector of length one giving the number of neighbors.
 #'
 count_neighbors <- function(graph, node, mode) {
-  
   length(igraph::neighbors(graph, node, mode))
-  
 }
 
 #' Given a graph and a node, determine if the node is a split code.
@@ -78,20 +66,21 @@ count_neighbors <- function(graph, node, mode) {
 #'   a sequence of changes) that can be reached from \code{node}
 #'
 is_split <- function(graph, node) {
-  
-  bfs_result <- igraph::bfs(graph = graph, 
-                            root = node, 
-                            mode = "out", 
-                            unreachable = FALSE)
-  
+  bfs_result <- igraph::bfs(
+    graph = graph,
+    root = node,
+    mode = "out",
+    unreachable = FALSE
+  )
+
   end_nodes <- bfs_result$order[vapply(bfs_result$order,
-                                       count_neighbors,
-                                       graph = graph,
-                                       mode = "out",
-                                       FUN.VALUE = integer(1)) == 0]
-  
+    count_neighbors,
+    graph = graph,
+    mode = "out",
+    FUN.VALUE = integer(1)
+  ) == 0]
+
   length(unique(end_nodes)) > 1
-  
 }
 
 #' Given a graph and a node, determine if the node is a result of combinations
@@ -118,30 +107,27 @@ is_split <- function(graph, node) {
 #'   pass through \code{compare_node}.
 #'
 is_combined <- function(graph, node, compare_node = NULL) {
-  
-  bfs_result <- igraph::bfs(graph = graph, 
-                            root = node, 
-                            mode = "in", 
-                            unreachable = FALSE)
-  
-  start_nodes <- bfs_result$order[vapply(bfs_result$order, 
-                                         count_neighbors,
-                                         graph = graph,
-                                         mode = "in",
-                                         FUN.VALUE = integer(1)) == 0]
-  
+  bfs_result <- igraph::bfs(
+    graph = graph,
+    root = node,
+    mode = "in",
+    unreachable = FALSE
+  )
+
+  start_nodes <- bfs_result$order[vapply(bfs_result$order,
+    count_neighbors,
+    graph = graph,
+    mode = "in",
+    FUN.VALUE = integer(1)
+  ) == 0]
+
   if (is.null(compare_node)) {
-    
     length(unique(start_nodes)) > 1
-    
   } else {
-    
     paths <- igraph::all_simple_paths(graph, node, start_nodes, mode = "in")
-    
+
     return(!all(vapply(paths, \(path) compare_node %in% path, logical(1))))
-    
   }
-  
 }
 
 #' Given a node and a graph, find the node at the end of a sequence of changes.
@@ -170,41 +156,43 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #'
 #' halden_node_updated <- UpdateKlassNode(klass_131, halden_node)
 #'
-#' 
 UpdateKlassNode <- function(graph, node) {
-  
-  bfs_result <- igraph::bfs(graph = graph, 
-                            root = node, 
-                            mode = "out", 
-                            unreachable = FALSE)
-  
-  
-  end_nodes <- bfs_result$order[vapply(bfs_result$order, 
-                                       count_neighbors,
-                                       graph = graph,
-                                       mode = "out",
-                                       FUN.VALUE = integer(1)) == 0]
-  
-  visited <- unique(c(node,
-                      bfs_result$order[!name %in% unique(end_nodes)$name],
-                      end_nodes))
-  
-  igraph::vertex_attr(graph, "split", visited$name) <- 
+  bfs_result <- igraph::bfs(
+    graph = graph,
+    root = node,
+    mode = "out",
+    unreachable = FALSE
+  )
+
+
+  end_nodes <- bfs_result$order[vapply(bfs_result$order,
+    count_neighbors,
+    graph = graph,
+    mode = "out",
+    FUN.VALUE = integer(1)
+  ) == 0]
+
+  visited <- unique(c(
+    node,
+    bfs_result$order[!name %in% unique(end_nodes)$name],
+    end_nodes
+  ))
+
+  igraph::vertex_attr(graph, "split", visited$name) <-
     unname(vapply(visited, is_split, graph = graph, FUN.VALUE = logical(1)))
-  
-  igraph::vertex_attr(graph, "combined", visited$name) <- 
-    unname(vapply(visited, 
-                  is_combined, 
-                  graph = graph, 
-                  compare_node = node,
-                  FUN.VALUE = logical(1)))
-  
+
+  igraph::vertex_attr(graph, "combined", visited$name) <-
+    unname(vapply(visited,
+      is_combined,
+      graph = graph,
+      compare_node = node,
+      FUN.VALUE = logical(1)
+    ))
+
   igraph::vertex_attr(graph, "nextNodes", visited$name) <-
     lapply(visited, igraph::neighbors, graph = graph, mode = "out")
-  
-  visited <- igraph::V(graph)[visited$name]
-  
-  return(visited)
-  
-}
 
+  visited <- igraph::V(graph)[visited$name]
+
+  return(visited)
+}

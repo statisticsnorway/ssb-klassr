@@ -44,61 +44,52 @@
 #'   result of a combination of codes, the result will be \code{NA}.
 #'
 #' @seealso See [UpdateKlass] for updating multiple codes in one function call.
-#' 
-update_code <- function(graph, 
-                        code, 
-                        date = NA, 
+#'
+update_code <- function(graph,
+                        code,
+                        date = NA,
                         output = "code",
                         combine = TRUE,
                         report = FALSE) {
-  
-  result <- UpdateKlassNode(graph = graph, 
-                            node = KlassNode(graph, code, date = date))
-  
-  nextCodes <- mapply(function(node, split) {
-        
-                        if (split | length(node) == 0) {
-                          
-                          return(NA_character_)
-                          
-                        } else if (length(node) > 1) {
-                          
-                          return(paste0(node$code, collapse = "/"))
-                          
-                        } else {
-                          
-                          return(node$code)
-                        
-                        }
-                      },
-                      node = result$nextNodes,
-                      split = result$split,
-                      SIMPLIFY = TRUE)
-  
-  report_df <- data.frame(code      = result$code,
-                          name      = result$label,
-                          validFrom = result$validFrom,
-                          validTo   = result$validTo,
-                          split     = result$split,
-                          combined  = result$combined,
-                          nextCode  = unname(nextCodes))
-  
+  result <- UpdateKlassNode(
+    graph = graph,
+    node = KlassNode(graph, code, date = date)
+  )
+
+  nextCodes <- mapply(
+    function(node, split) {
+      if (split | length(node) == 0) {
+        return(NA_character_)
+      } else if (length(node) > 1) {
+        return(paste0(node$code, collapse = "/"))
+      } else {
+        return(node$code)
+      }
+    },
+    node = result$nextNodes,
+    split = result$split,
+    SIMPLIFY = TRUE
+  )
+
+  report_df <- data.frame(
+    code = result$code,
+    name = result$label,
+    validFrom = result$validFrom,
+    validTo = result$validTo,
+    split = result$split,
+    combined = result$combined,
+    nextCode = unname(nextCodes)
+  )
+
   if (report) {
-    
     return(report_df[, output])
-    
-  } else  if (any(report_df$split) | 
-              (!combine & any(report_df$combined)) | 
-              length(result) == 0) {
-    
+  } else if (any(report_df$split) |
+    (!combine & any(report_df$combined)) |
+    length(result) == 0) {
     return(NA)
-      
   } else {
-      
     return(report_df[length(result), output])
-      
   }
-  
 }
 
 #' Update multiple Klass codes to a desired date.
@@ -171,9 +162,10 @@ update_code <- function(graph,
 #' codes <- GetKlass(131, date = "2020-01-01")[["code"]]
 #'
 #' updated_codes <- UpdateKlass(codes,
-#'                              dates = "2020-01-01",
-#'                              classification = 131)
-#' 
+#'   dates = "2020-01-01",
+#'   classification = 131
+#' )
+#'
 UpdateKlass <- function(codes,
                         dates = NA,
                         classification = NULL,
@@ -182,29 +174,31 @@ UpdateKlass <- function(codes,
                         output = "code",
                         report = FALSE,
                         combine = TRUE) {
-  
   if (!methods::hasArg(graph) & !methods::hasArg(classification)) {
-    
-    stop("\nPlease provide either:\n",
-         "- A graph with the `graph` argument\n",
-         "- A classification ID with the `classification` argument")
-    
+    stop(
+      "\nPlease provide either:\n",
+      "- A graph with the `graph` argument\n",
+      "- A classification ID with the `classification` argument"
+    )
   }
-  
+
   # TODO Optimize by making a table of input codes, updating those, and
   # returning an expanded vector based on input
-  
+
   simplify <- length(output) == 1 & !isTRUE(output) & !report
-  
-  result <- mapply(FUN      = update_code,
-                   code     = codes,
-                   date     = dates,
-                   SIMPLIFY = simplify,
-                   MoreArgs = list(graph   = graph,
-                                   output  = output,
-                                   combine = combine,
-                                   report  = report))
-  
+
+  result <- mapply(
+    FUN = update_code,
+    code = codes,
+    date = dates,
+    SIMPLIFY = simplify,
+    MoreArgs = list(
+      graph = graph,
+      output = output,
+      combine = combine,
+      report = report
+    )
+  )
+
   return(result)
-  
 }
