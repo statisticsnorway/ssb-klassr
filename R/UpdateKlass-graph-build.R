@@ -36,16 +36,18 @@ get_klass_changes <- function(classification) {
 #' @export
 #'
 #' @examples
+#' Call in library
+#' library(klassR)
 #'
 #' # Build a graph directed towards the most recent codes
 #'
-#' klass_131 <- KlassGraph(131)
+#' klass_131 <- klass_graph(131)
 #'
 #' # Build a graph directed towards valid codes in 2020.
 #'
-#' klass_131_2020 <- KlassGraph(131, "2020-01-01")
+#' klass_131_2020 <- klass_graph(131, "2020-01-01")
 #'
-KlassGraph <- function(classification, date = NULL) {
+klass_graph <- function(classification, date = NULL) {
   if (is.null(classification)) stop("Please provide a classification ID.")
 
   ## Downloading codes and code changes
@@ -159,7 +161,7 @@ KlassGraph <- function(classification, date = NULL) {
 
   # Redirecting edges; if date is NULL, this step does not change the graph. By
   # redirecting the edges based on date in this step, we do not need to check
-  # dates in UpdateKlassNode(), we simply follow outgoing edges to reach the code
+  # dates in update_klass_node(), we simply follow outgoing edges to reach the code
   # valid at `date`.
 
   graph <-
@@ -172,7 +174,7 @@ KlassGraph <- function(classification, date = NULL) {
     klass_vertices[match(igraph::V(graph)$name, klass_vertices$vertex), ]
 
   # Building attributes table and applying attributes to vertices. We later
-  # extract these attributes when we traverse the graph in UpdateKlassNode()
+  # extract these attributes when we traverse the graph in update_klass_node()
 
   attributes <- klass_vertices
   attributes$vertex <- NULL
@@ -237,30 +239,6 @@ find_variant_to <- function(x, changeOccurred, variants) {
 #'    \item{"validFrom"}
 #'    \item{"validTo"}
 #'   }
-#'
-#' @examples
-#'
-#'
-#' api_alle <-
-#'   glue(
-#'     "https://data.ssb.no/api/klass/v1/classifications/",
-#'     "{classification}/codes?from=0001-01-01"
-#'   ) %>%
-#'   httr::GET() %>%
-#'   httr::content() %>%
-#'   pluck("codes") %>%
-#'   dplyr::bind_rows()
-#'
-#' api_endringer <-
-#'   glue(
-#'     "https://data.ssb.no/api/klass/v1/classifications/",
-#'     "{classification}/changes?from=0001-01-01"
-#'   ) %>%
-#'   httr::GET() %>%
-#'   httr::content() %>%
-#'   pluck("codeChanges") %>%
-#'   dplyr::bind_rows()
-#'
 find_dates <- function(code, api_alle, api_endringer) {
   dates_df <- api_alle[api_alle$code == code, ]
 
