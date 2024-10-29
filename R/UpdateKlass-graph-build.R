@@ -36,7 +36,6 @@ get_klass_changes <- function(classification) {
 #' @export
 #'
 #' @examples
-#' Call in library
 #' library(klassR)
 #'
 #' # Build a graph directed towards the most recent codes

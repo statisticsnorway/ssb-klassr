@@ -147,7 +147,7 @@ update_code <- function(graph,
 #'   code in the change sequence and columns specified by \code{output}. If a
 #'   code has been split, the result will be \code{NA}. If \code{combine ==
 #'   FALSE} and a code is the result of a combination of codes, the result will
-#'   be code{NA}.
+#'   be \code{NA}.
 #'
 #'   If \code{report == FALSE} and \code{length(output) == 1}, the result will
 #'   be a character vector containing information about the updated codes
