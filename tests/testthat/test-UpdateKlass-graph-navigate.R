@@ -1,5 +1,6 @@
 test_that("is_combined correctly identifies combined nodes", {
-  graph <- readRDS(test_path("fixtures", "klass_131_graph.rds"))
+  data(klass_131_graph)
+  graph <- klass_131_graph
 
   ## Not using `compare_node`
 

@@ -1,5 +1,6 @@
 test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
-  graph <- readRDS(test_path("fixtures", "klass_131_2020_graph.rds"))
+  data(klass_131_2020_graph)
+  graph <- klass_131_2020_graph
 
   endringer_kommunestruktur_enkle <-
     get_klass_changes(131) %>%
@@ -23,14 +24,15 @@ test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
 
   feil <-
     omkodet %>%
-    rowwise() %>%
+    dplyr::rowwise() %>%
     dplyr::filter(!newCode %in% oppdatert)
 
   expect_equal(nrow(feil), 0)
 })
 
 test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
-  graph <- readRDS(test_path("fixtures", "klass_131_1964_graph.rds"))
+  data(klass_131_1964_graph)
+  graph <- klass_131_1964_graph
 
   endringer_kommunestruktur_sammenslåinger <-
     get_klass_changes(131) %>%
@@ -59,20 +61,21 @@ test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
     )
 
   omkodet %>%
-    rowwise() %>%
+    dplyr::rowwise() %>%
     dplyr::filter(!newCode %in% oppdatert) %>%
     nrow() %>%
     expect_equal(expected = 0)
 
   omkodet %>%
-    rowwise() %>%
+    dplyr::rowwise() %>%
     dplyr::filter(!is.na(oppdatert_ikkecomb)) %>%
     nrow() %>%
     expect_equal(expected = 0)
 })
 
 test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
-  graph <- readRDS(test_path("fixtures", "klass_131_graph.rds"))
+  data(klass_131_graph)
+  graph <- klass_131_graph
 
   expect_true(
     all(
@@ -86,7 +89,8 @@ test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
 })
 
 test_that("UpdateKlass gir riktig resultat ved delte koder", {
-  graph <- readRDS(test_path("fixtures", "klass_131_1964_graph.rds"))
+  data(klass_131_1964_graph)
+  graph <- klass_131_1964_graph
 
   endringer_kommunestruktur_delinger <-
     get_klass_changes(131) %>%
@@ -110,7 +114,8 @@ test_that("UpdateKlass gir riktig resultat ved delte koder", {
 
 
 test_that("UpdateKlass gir forventet format på output", {
-  graph <- readRDS(test_path("fixtures", "klass_131_graph.rds"))
+  data(klass_131_graph)
+  graph <- klass_131_graph
 
   update_helper <- function(output, report) {
     UpdateKlass(
