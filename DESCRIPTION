@@ -21,7 +21,7 @@ Description: Functions to search, retrieve, apply and update classifications
   and codelists using Statistics Norway's API <https://www.ssb.no/klass> 
   from the system 'KLASS'. Retrieves classifications by date with options 
   to choose language, hierarchical level and formatting.
-Imports: tm, httr, jsonlite, igraph
+Imports: tm, httr, jsonlite, igraph, methods
 URL: https://statisticsnorway.github.io/ssb-klassr/
 BugReports: https://github.com/statisticsnorway/ssb-klassr/issues
 License: MIT + file LICENSE
