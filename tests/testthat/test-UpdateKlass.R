@@ -1,4 +1,4 @@
-test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
+test_that("update_klass gir riktig resultat ved enkle endringer", {
   data(klass_131_2020_graph)
   graph <- klass_131_2020_graph
 
@@ -14,7 +14,7 @@ test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
 
   omkodet <-
     endringer_kommunestruktur_enkle %>%
-    dplyr::mutate(oppdatert = UpdateKlass(
+    dplyr::mutate(oppdatert = update_klass(
       codes = oldCode,
       classification = 131,
       output = "code",
@@ -30,7 +30,7 @@ test_that("UpdateKlass gir riktig resultat ved enkle endringer", {
   expect_equal(nrow(feil), 0)
 })
 
-test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
+test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
 
@@ -45,13 +45,13 @@ test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
   omkodet <-
     endringer_kommunestruktur_sammenslåinger %>%
     dplyr::mutate(
-      oppdatert = UpdateKlass(
+      oppdatert = update_klass(
         codes = oldCode,
         dates = as.Date(changeOccurred) - 1,
         classification = 131,
         graph = graph
       ),
-      oppdatert_ikkecomb = UpdateKlass(
+      oppdatert_ikkecomb = update_klass(
         codes = oldCode,
         dates = as.Date(changeOccurred) - 1,
         classification = 131,
@@ -73,14 +73,14 @@ test_that("UpdateKlass gir riktig resultat ved sammenslåtte koder", {
     expect_equal(expected = 0)
 })
 
-test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
+test_that("update_klass gir riktig resultat ved ugyldige koder", {
   data(klass_131_graph)
   graph <- klass_131_graph
 
   expect_true(
     all(
       is.na(
-        UpdateKlass(c("foo", "bar", "egg", "ham"),
+        update_klass(c("foo", "bar", "egg", "ham"),
           graph = graph
         )
       )
@@ -88,7 +88,7 @@ test_that("UpdateKlass gir riktig resultat ved ugyldige koder", {
   )
 })
 
-test_that("UpdateKlass gir riktig resultat ved delte koder", {
+test_that("update_klass gir riktig resultat ved delte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
 
@@ -102,7 +102,7 @@ test_that("UpdateKlass gir riktig resultat ved delte koder", {
 
   omkodet <-
     endringer_kommunestruktur_delinger %>%
-    dplyr::mutate(oppdatert = UpdateKlass(
+    dplyr::mutate(oppdatert = update_klass(
       codes = oldCode,
       dates = as.Date(changeOccurred) - 1,
       classification = 131,
@@ -113,12 +113,12 @@ test_that("UpdateKlass gir riktig resultat ved delte koder", {
 })
 
 
-test_that("UpdateKlass gir forventet format på output", {
+test_that("update_klass gir forventet format på output", {
   data(klass_131_graph)
   graph <- klass_131_graph
 
   update_helper <- function(output, report) {
-    UpdateKlass(
+    update_klass(
       codes = "0301",
       dates = "1838-01-01",
       output = output,
