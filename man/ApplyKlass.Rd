@@ -17,7 +17,7 @@ ApplyKlass(
 )
 }
 \arguments{
-\item{x}{Input vector}
+\item{x}{Input vector of classification codes. Vector must match "code" column from a call to GetKlass().}
 
 \item{klass}{Classification number}
 
@@ -43,5 +43,5 @@ Match and convert a classification
 }
 \examples{
 data(klassdata)
-kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, language = "en", format=FALSE)
+kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
 }

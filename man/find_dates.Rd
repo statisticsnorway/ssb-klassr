@@ -29,23 +29,3 @@ A \code{data.frame} with number of rows equal to the number of
 For a given Klass code, produce a table of dates describing the valid-from
 and valid-to dates of all versions of the code
 }
-\examples{
-
-
-api_alle <-
-  glue("https://data.ssb.no/api/klass/v1/classifications/",
-       "{classification}/codes?from=0001-01-01") \%>\%
-  httr::GET() \%>\%
-  httr::content() \%>\%
-  pluck("codes") \%>\%
-  dplyr::bind_rows()
-
-api_endringer <-
-  glue("https://data.ssb.no/api/klass/v1/classifications/",
-       "{classification}/changes?from=0001-01-01") \%>\%
-  httr::GET() \%>\%
-  httr::content() \%>\%
-  pluck("codeChanges") \%>\%
-  dplyr::bind_rows()
-
-}
