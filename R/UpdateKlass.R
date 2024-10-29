@@ -167,13 +167,13 @@ update_code <- function(graph,
 #' )
 #'
 update_klass <- function(codes,
-                        dates = NA,
-                        classification = NULL,
-                        date = NULL,
-                        graph = klass_graph(classification, date),
-                        output = "code",
-                        report = FALSE,
-                        combine = TRUE) {
+                         dates = NA,
+                         classification = NULL,
+                         date = NULL,
+                         graph = klass_graph(classification, date),
+                         output = "code",
+                         report = FALSE,
+                         combine = TRUE) {
   if (!methods::hasArg(graph) & !methods::hasArg(classification)) {
     stop(
       "\nPlease provide either:\n",
