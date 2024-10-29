@@ -7,7 +7,8 @@ library(klassR)
 klass_131_graph <- KlassGraph(classification = 131, date = "2024-10-29")
 
 save(klass_131_graph,
-  file ="./data/klass_131_graph.RData"
+  file ="./data/klass_131_graph.RData",
+  compress = TRUE
 )
 
 ## klass_131_2020_graph.R -------------------------------------------------
@@ -19,7 +20,8 @@ klass_131_2020_graph <- KlassGraph(
 
 save(
   klass_131_2020_graph,
-  file = "data/klass_131_2020_graph.RData"
+  file = "data/klass_131_2020_graph.RData",
+  compress = TRUE
 )
 
 ## klass_131_1964_graph.R -------------------------------------------------
@@ -34,6 +36,9 @@ klass_131_1964_graph <- KlassGraph(
 
 save(
   klass_131_1964_graph,
-  file ="data/klass_131_1964_graph.RData"
+  file ="data/klass_131_1964_graph.RData",
+  compress = TRUE
 )
 
+# Compress data
+tools::resaveRdaFiles("./data", compress = "xz")
