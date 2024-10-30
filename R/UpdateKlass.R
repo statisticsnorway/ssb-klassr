@@ -159,7 +159,7 @@ update_code <- function(graph,
 #'
 #' @examples
 #' library(klassR)
-#' codes <- GetKlass(131, date = "2020-01-01")[["code"]]
+#' codes <- get_klass(131, date = "2020-01-01")[["code"]]
 #'
 #' updated_codes <- update_klass(codes,
 #'   dates = "2020-01-01",
