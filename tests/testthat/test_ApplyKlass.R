@@ -1,7 +1,7 @@
 test_that("apply_klass returns correct names for numeric codes", {
   data(klassdata)
   kommune_names <- apply_klass(klassdata$kommune,
-                              klass = 131, date = "2015-01-01"
+    klass = 131, date = "2015-01-01"
   )
   expect_equal(kommune_names[1], "Sandefjord")
 })

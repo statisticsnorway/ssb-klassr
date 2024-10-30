@@ -33,14 +33,14 @@ MakeChar <- function(x) {
 #' data(klassdata)
 #' kommune_names <- apply_klass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
 apply_klass <- function(x,
-                       klass,
-                       date = NULL,
-                       variant = NULL,
-                       correspond = NULL,
-                       language = "nb",
-                       output_level = NULL,
-                       output = "name",
-                       format = TRUE) {
+                        klass,
+                        date = NULL,
+                        variant = NULL,
+                        correspond = NULL,
+                        language = "nb",
+                        output_level = NULL,
+                        output = "name",
+                        format = TRUE) {
   # sjekk og standardisere varible
   klass <- MakeChar(klass)
   if (is.null(x)) {
@@ -175,13 +175,14 @@ ApplyKlass <- function(x,
                        language = "nb",
                        output_level = NULL,
                        output = "name",
-                       format = TRUE){
-  #.Deprecated("apply_klass") # add in for future versions
-  apply_klass(x=x, klass = klass, date=date, variant=variant,
-              correspond = correspond,
-              language = language,
-              output_level = output_level,
-              output = output,
-              format = format)
+                       format = TRUE) {
+  # .Deprecated("apply_klass") # add in for future versions
+  apply_klass(
+    x = x, klass = klass, date = date, variant = variant,
+    correspond = correspond,
+    language = language,
+    output_level = output_level,
+    output = output,
+    format = format
+  )
 }
-

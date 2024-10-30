@@ -7,7 +7,6 @@ test_that("ListKlass returns a warning but still runs", {
     klass_table <- ListKlass()
   )
   expect_true(exists("klass_table"))
-  
 })
 
 

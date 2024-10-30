@@ -212,15 +212,15 @@ GetUrl2 <- function(url, check = TRUE) {
 #' # Get classification for occupation classifications in English
 #' head(get_klass(klass = "7", language = "en"))
 get_klass <- function(klass,
-                     date = NULL,
-                     correspond = NULL,
-                     correspondID = NULL,
-                     variant = NULL,
-                     output_level = NULL,
-                     language = "nb",
-                     output_style = "normal",
-                     notes = FALSE,
-                     quiet = TRUE) {
+                      date = NULL,
+                      correspond = NULL,
+                      correspondID = NULL,
+                      variant = NULL,
+                      output_level = NULL,
+                      language = "nb",
+                      output_style = "normal",
+                      notes = FALSE,
+                      quiet = TRUE) {
   # create type of klassification for using later
   type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
@@ -423,16 +423,18 @@ GetKlass <- function(klass,
                      language = "nb",
                      output_style = "normal",
                      notes = FALSE,
-                     quiet = TRUE){
-  #.Deprecated("get_klass") # Add in for future versions
-  get_klass(klass=klass,
-            date = date,
-            correspond = correspond,
-            correspondID = correspondID,
-            variant = variant,
-            output_level = output_level,
-            language = language,
-            output_style = output_style,
-            notes = notes,
-            quiet = quiet)
+                     quiet = TRUE) {
+  # .Deprecated("get_klass") # Add in for future versions
+  get_klass(
+    klass = klass,
+    date = date,
+    correspond = correspond,
+    correspondID = correspondID,
+    variant = variant,
+    output_level = output_level,
+    language = language,
+    output_style = output_style,
+    notes = notes,
+    quiet = quiet
+  )
 }
