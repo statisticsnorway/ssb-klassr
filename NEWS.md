@@ -1,3 +1,8 @@
+# klassR 1.0.0
+
+- Changes to main functions names to adhere to standard formats.
+- Addition of new functions for mapping changes in time using graphs.
+
 # klassR 0.2.4
 
 - Adjusted formatting function. 
