@@ -254,7 +254,7 @@ GetName <- function(version) {
 #' @export
 #'
 #' @examples
-#' GetFamily(klass = 7)
+#' get_family(klass = 7)
 get_family <- function(klass) {
   klass <- MakeChar(klass)
   K <- list_klass(codelists = TRUE)
@@ -297,7 +297,7 @@ correspond_list <- function(klass, date = NULL) {
   df <- GetUrl(url)
   versName <- df$name
   dt <- data.frame(df$correspondenceTables)
-  fam <- GetFamily(klass = klass)
+  fam <- get_family(klass = klass)
   versValid <- get_version(family = fam, date = date, klassNr = TRUE)
   vers_names <- get_name(versValid$vers)
   source_klass <- NULL
