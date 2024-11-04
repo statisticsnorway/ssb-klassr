@@ -26,7 +26,6 @@ CheckDate <- function(date) {
 #' @keywords internal
 #'
 #' @return String url adress
-
 MakeUrl <- function(klass, correspond = NULL, correspondID = NULL,
                     variant_name = NULL,
                     type = "vanlig",
@@ -188,7 +187,7 @@ GetUrl2 <- function(url, check = TRUE) {
 
 #' Fetch Statistics Norway classification data using API
 #'
-#' @param klass Number/string of the classification ID/number. (use Klass_list() to find this)
+#' @param klass Number/string of the classification ID/number. (use klass_list() to find this)
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param correspond Number/string of the target klass for correspondence table (if a correspondence table is requested).
 #' @param correspondID ID number of the correspondence table to retrieve. Use as an alternative to correspond.
@@ -209,19 +208,19 @@ GetUrl2 <- function(url, check = TRUE) {
 #'
 #' @examples
 #' # Get classification for occupation classifications
-#' head(GetKlass(klass = "7"))
+#' head(get_klass(klass = "7"))
 #' # Get classification for occupation classifications in English
-#' head(GetKlass(klass = "7", language = "en"))
-GetKlass <- function(klass,
-                     date = NULL,
-                     correspond = NULL,
-                     correspondID = NULL,
-                     variant = NULL,
-                     output_level = NULL,
-                     language = "nb",
-                     output_style = "normal",
-                     notes = FALSE,
-                     quiet = TRUE) {
+#' head(get_klass(klass = "7", language = "en"))
+get_klass <- function(klass,
+                      date = NULL,
+                      correspond = NULL,
+                      correspondID = NULL,
+                      variant = NULL,
+                      output_level = NULL,
+                      language = "nb",
+                      output_style = "normal",
+                      notes = FALSE,
+                      quiet = TRUE) {
   # create type of klassification for using later
   type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
@@ -315,7 +314,7 @@ GetKlass <- function(klass,
       if (grepl("no correspondence table", klass_text)) {
         stop(
           "No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
-          "For a list of valid correspondence tables use the function CorrespondList()"
+          "For a list of valid correspondence tables use the function correspond_list()"
         )
       }
       if (is.null(klass_text)) stop_quietly()
@@ -328,7 +327,7 @@ GetKlass <- function(klass,
   if (grepl("not found", klass_text)) {
     stop("No KLASS table was found for KLASS number ", klass, ".
     Please try again with a different KLASS number.
-    For a list of possible KLASS's use the function ListKlass() or ListFamily()")
+    For a list of possible KLASS's use the function list_klass() or list_family()")
   }
   if (grepl("not published in language", klass_text)) {
     stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
@@ -346,7 +345,7 @@ GetKlass <- function(klass,
     if (length(klass_data) == 0) {
       stop(
         "No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
-        "For a list of valid correspondence tables use the function CorrespondList()"
+        "For a list of valid correspondence tables use the function correspond_list()"
       )
     }
     if (targetswap) {
@@ -409,4 +408,33 @@ GetKlass <- function(klass,
   }
 
   as.data.frame(klass_data)
+}
+
+
+#' @rdname get_klass
+#' @keywords internal
+#' @export
+GetKlass <- function(klass,
+                     date = NULL,
+                     correspond = NULL,
+                     correspondID = NULL,
+                     variant = NULL,
+                     output_level = NULL,
+                     language = "nb",
+                     output_style = "normal",
+                     notes = FALSE,
+                     quiet = TRUE) {
+  # .Deprecated("get_klass") # Add in for future versions
+  get_klass(
+    klass = klass,
+    date = date,
+    correspond = correspond,
+    correspondID = correspondID,
+    variant = variant,
+    output_level = output_level,
+    language = language,
+    output_style = output_style,
+    notes = notes,
+    quiet = quiet
+  )
 }

@@ -14,10 +14,9 @@ MakeChar <- function(x) {
 }
 
 
-
 #' Match and convert a classification
 #'
-#' @param x Input vector of classification codes. Vector must match "code" column from a call to GetKlass().
+#' @param x Input vector of classification codes. Vector must match "code" column from a call to get_klass().
 #' @param klass Classification number
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param variant The classification variant to fetch (if a variant is wanted).
@@ -32,16 +31,16 @@ MakeChar <- function(x) {
 #'
 #' @examples
 #' data(klassdata)
-#' kommune_names <- ApplyKlass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
-ApplyKlass <- function(x,
-                       klass,
-                       date = NULL,
-                       variant = NULL,
-                       correspond = NULL,
-                       language = "nb",
-                       output_level = NULL,
-                       output = "name",
-                       format = TRUE) {
+#' kommune_names <- apply_klass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
+apply_klass <- function(x,
+                        klass,
+                        date = NULL,
+                        variant = NULL,
+                        correspond = NULL,
+                        language = "nb",
+                        output_level = NULL,
+                        output = "name",
+                        format = TRUE) {
   # sjekk og standardisere varible
   klass <- MakeChar(klass)
   if (is.null(x)) {
@@ -58,25 +57,25 @@ ApplyKlass <- function(x,
   type <- ifelse(is.null(variant), type, "variant")
 
   # Ta ut klass tabell
-  klass_data <- GetKlass(klass,
+  klass_data <- get_klass(klass,
     date = date, correspond = NULL, variant = variant,
     language = language, output_level = NULL
   )
 
   # Ta ut korrespond tabell
   if (type == "kor") {
-    cor_table <- GetKlass(klass,
+    cor_table <- get_klass(klass,
       date = date, correspond = correspond,
       language = language
     ) # , output_level = output_level)
 
-    new_table <- GetKlass(
+    new_table <- get_klass(
       klass = correspond, date = date, correspond = NULL,
       language = language
     ) # , output_level = output_level)
   }
   if (type == "change") {
-    cor_table <- GetKlass(
+    cor_table <- get_klass(
       klass = klass, date = date, correspond = TRUE,
       language = language, output_level = NULL
     )
@@ -162,4 +161,28 @@ ApplyKlass <- function(x,
     out <- ifelse(!is.na(m2), cor_table[m2, vars], klass_data[m1, vars2])
   }
   return(out)
+}
+
+
+#' @rdname apply_klass
+#' @keywords internal
+#' @export
+ApplyKlass <- function(x,
+                       klass,
+                       date = NULL,
+                       variant = NULL,
+                       correspond = NULL,
+                       language = "nb",
+                       output_level = NULL,
+                       output = "name",
+                       format = TRUE) {
+  # .Deprecated("apply_klass") # add in for future versions
+  apply_klass(
+    x = x, klass = klass, date = date, variant = variant,
+    correspond = correspond,
+    language = language,
+    output_level = output_level,
+    output = output,
+    format = format
+  )
 }

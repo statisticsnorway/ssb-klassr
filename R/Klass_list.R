@@ -42,9 +42,9 @@ GetUrl <- function(url) {
 #' @export
 #'
 #' @examples
-#' head(ListKlass(codelists = TRUE))
-ListKlass <- function(codelists = FALSE, language = "nb") {
-  fams <- ListFamily()$family_nr
+#' head(list_klass(codelists = TRUE))
+list_klass <- function(codelists = FALSE, language = "nb") {
+  fams <- list_family()$family_nr
   Klist <- data.frame(klass_name = NA, klass_nr = NA, klass_family = NA, klass_type = NA)
 
   # create code for including codelists and language
@@ -63,7 +63,13 @@ ListKlass <- function(codelists = FALSE, language = "nb") {
   return(Klist[-1, ])
 }
 
-
+#' @rdname list_klass
+#' @keywords internal
+#' @export
+ListKlass <- function(codelists = FALSE, language = "nb") {
+  .Deprecated("list_klass")
+  list_klass(codelists = codelists, language = language)
+}
 
 
 #' Classification family list
@@ -76,8 +82,8 @@ ListKlass <- function(codelists = FALSE, language = "nb") {
 #' @export
 #'
 #' @examples
-#' ListFamily(family = 1)
-ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
+#' list_family(family = 1)
+list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
   # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
   code <- ifelse(code == "", paste0(code, "?language=", language),
@@ -108,6 +114,14 @@ ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
 }
 
 
+#' @rdname list_family
+#' @keywords internal
+#' @export
+ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
+  .Deprecated("list_family")
+  list_family(family = family, codelists = codelists, language = language)
+}
+
 
 #' Search Klass
 #'
@@ -119,8 +133,8 @@ ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
 #' @export
 #'
 #' @examples
-#' SearchKlass("occupation")
-SearchKlass <- function(query, codelists = FALSE, size = 20) {
+#' search_klass("occupation")
+search_klass <- function(query, codelists = FALSE, size = 20) {
   query <- as.character(query)
   code <- ifelse(codelists, "&includeCodelists=true", "")
   url <- paste(GetBaseUrl(), "classifications/search?query=", query, code, "&size=", size, sep = "")
@@ -129,6 +143,15 @@ SearchKlass <- function(query, codelists = FALSE, size = 20) {
   dt2 <- data.frame(klass_name = dt$name, klass_nr = nums)
   row.names(dt2) <- NULL
   return(dt2)
+}
+
+
+#' @rdname search_klass
+#' @keywords internal
+#' @export
+SearchKlass <- function(query, codelists = FALSE, size = 20) {
+  .Deprecated("search_klass")
+  search_klass(query = query, codelists = codelists, size = size)
 }
 
 
@@ -143,8 +166,8 @@ SearchKlass <- function(query, codelists = FALSE, size = 20) {
 #' @export
 #'
 #' @examples
-#' GetVersion(7)
-GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
+#' get_version(7)
+get_version <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
   if (is.null(date)) date <- Sys.Date()
   if (is.null(family)) {
     if (klassNr == TRUE) stop("To output Klass number from this function you need to input a family number")
@@ -160,7 +183,7 @@ GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE
     }
   } else {
     family <- MakeChar(family)
-    fam <- ListFamily(family, codelists = TRUE)
+    fam <- list_family(family, codelists = TRUE)
     vers <- NULL
     klass_nr <- NULL
     for (i in fam$klass_nr) {
@@ -185,6 +208,13 @@ GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE
 }
 
 
+#' @rdname get_version
+#' @keywords internal
+#' @export
+GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
+  .Deprecated("get_version")
+  get_version(klass = klass, date = date, family = family, klassNr = klassNr)
+}
 
 
 #' Get the name of a classification version
@@ -195,8 +225,8 @@ GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE
 #' @export
 #'
 #' @examples
-#' GetName("33")
-GetName <- function(version) {
+#' get_name("33")
+get_name <- function(version) {
   version <- MakeChar(version)
   vernames <- NULL
   for (i in version) {
@@ -204,6 +234,15 @@ GetName <- function(version) {
     vernames <- c(vernames, GetUrl(url)$name)
   }
   return(vernames)
+}
+
+
+#' @rdname get_name
+#' @keywords internal
+#' @export
+GetName <- function(version) {
+  .Deprecated("get_name")
+  get_name(version = version)
 }
 
 
@@ -216,14 +255,21 @@ GetName <- function(version) {
 #'
 #' @examples
 #' GetFamily(klass = 7)
-GetFamily <- function(klass) {
+get_family <- function(klass) {
   klass <- MakeChar(klass)
-  K <- ListKlass(codelists = TRUE)
+  K <- list_klass(codelists = TRUE)
   m <- match(klass, K$klass_nr)
   return(K$klass_family[m])
 }
 
 
+#' @rdname get_family
+#' @keywords internal
+#' @export
+GetFamily <- function(klass) {
+  .Deprecated("get_family")
+  get_family(klass = klass)
+}
 
 
 
@@ -238,22 +284,22 @@ GetFamily <- function(klass) {
 #'
 #' @examples
 #' \donttest{
-#' CorrespondList("7")
+#' correspond_list("7")
 #' }
-CorrespondList <- function(klass, date = NULL) {
+correspond_list <- function(klass, date = NULL) {
   cat("Finding correspondence tables ...")
   klass <- MakeChar(klass)
   if (is.null(date)) {
     date <- Sys.Date()
   }
-  vers <- GetVersion(klass = klass, date = date)
+  vers <- get_version(klass = klass, date = date)
   url <- paste(GetBaseUrl(), "versions/", vers, sep = "")
   df <- GetUrl(url)
   versName <- df$name
   dt <- data.frame(df$correspondenceTables)
   fam <- GetFamily(klass = klass)
-  versValid <- GetVersion(family = fam, date = date, klassNr = TRUE)
-  vers_names <- GetName(versValid$vers)
+  versValid <- get_version(family = fam, date = date, klassNr = TRUE)
+  vers_names <- get_name(versValid$vers)
   source_klass <- NULL
   target_klass <- NULL
 
@@ -265,8 +311,8 @@ CorrespondList <- function(klass, date = NULL) {
     counter <- 0
     while (is.na(m2) & counter < 10) { # hvis versjonen ikke ble funnet på date søkes det tilbake i tid
       newdate <- as.character(as.Date(newdate) - 60)
-      versValidold <- GetVersion(family = fam, date = newdate, klassNr = TRUE)
-      vers_names <- GetName(versValidold$vers)
+      versValidold <- get_version(family = fam, date = newdate, klassNr = TRUE)
+      vers_names <- get_name(versValidold$vers)
       m2 <- match(findName, vers_names)
       counter <- counter + 1
       cat(".")
@@ -289,8 +335,17 @@ CorrespondList <- function(klass, date = NULL) {
     message(
       "\n\n There are correspondence tables within classification ",
       klass,
-      " (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n "
+      " (between different time points). Use the changes = TRUE option in the apply_klass and get_klass functions to get these\n "
     )
   }
   return(dt2)
+}
+
+
+#' @rdname correspond_list
+#' @keywords internal
+#' @export
+CorrespondList <- function(klass, date = NULL) {
+  .Deprecated("correspond_list")
+  correspond_list(klass = klass, date = date)
 }

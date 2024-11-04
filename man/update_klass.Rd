@@ -98,7 +98,7 @@ Update multiple Klass codes to a desired date.
 }
 \examples{
 library(klassR)
-codes <- GetKlass(131, date = "2020-01-01")[["code"]]
+codes <- get_klass(131, date = "2020-01-01")[["code"]]
 
 updated_codes <- update_klass(codes,
   dates = "2020-01-01",

@@ -59,15 +59,15 @@ To fetch a classification from *KLASS* you need the unique classification number
 
 
 ### List all classifications
-The function `ListKlass` will fetch a list of all classifications. It returns the classification name (`klass_name`), number (`klass_nr`) and the classification family it belongs to (`klass_family`). The classification type (`klass_type`) is also shown which indicates whether it is a classification or code list. 
+The function `list_klass` will fetch a list of all classifications. It returns the classification name (`klass_name`), number (`klass_nr`) and the classification family it belongs to (`klass_family`). The classification type (`klass_type`) is also shown which indicates whether it is a classification or code list. 
 
 ```{r, eval = F}
-ListKlass()
+list_klass()
 ```
 
 
 ```{r, echo = F}
-all <- ListKlass()
+all <- list_klass()
 row.names(all) <- NULL
 knitr::kable(head(all))
 ```
@@ -76,12 +76,12 @@ Code lists are classifications that used for national and internal (Statistics N
 
 
 ```{r, eval = F}
-ListKlass(codelists = TRUE)
+list_klass(codelists = TRUE)
 ```
 
 
 ```{r, echo = F}
-ck <- ListKlass(codelists = TRUE)
+ck <- list_klass(codelists = TRUE)
 row.names(ck) <- NULL
 kable(head(ck), align = "l") %>%
   kable_styling(full_width = T)
@@ -89,40 +89,40 @@ kable(head(ck), align = "l") %>%
 
 
 ### Search for a classification using a keyword
-You can also search for a classification by a keyword using the `SearchKlass` function. The first parameter here is the query to search for. 
+You can also search for a classification by a keyword using the `search_klass` function. The first parameter here is the query to search for. 
 
 ```{r, eval = F}
-SearchKlass(query = "ARENA")
+search_klass(query = "ARENA")
 ```
 
 
 ```{r, echo = F}
-kable(SearchKlass(query = "ARENA"))
+kable(search_klass(query = "ARENA"))
 ```
 
 Again, to include code lists in the search this should be specified 
 
 ```{r, eval=F}
-SearchKlass(query = "ARENA", codelists = TRUE)
+search_klass(query = "ARENA", codelists = TRUE)
 ```
 
 ```{r, echo = F}
-kable(SearchKlass(query = "ARENA", codelists = TRUE))
+kable(search_klass(query = "ARENA", codelists = TRUE))
 ```
 
 Sometimes a classification or code list will appear several times. This is due to that it occurs several times in different langauges in the database. 
 
 
 ## 3. Fetch a classification
-To fetch a complete classification, use the `GetKlass` function together with the unique identifier. For example, to fetch the Standard Industrial Classifications (*KLASS* number 6) we run:
+To fetch a complete classification, use the `get_klass` function together with the unique identifier. For example, to fetch the Standard Industrial Classifications (*KLASS* number 6) we run:
 
 ```{r, eval=F}
-industry <- GetKlass(6)
+industry <- get_klass(6)
 head(industry)
 ```
 
 ```{r, echo=F}
-kable(head(GetKlass(6)))
+kable(head(get_klass(6)))
 ```
 
 
@@ -131,12 +131,12 @@ Classifications are often organised in a heirachical way. In the example above, 
 
 
 ```{r, eval =F}
-industry <- GetKlass(6, output_level = 1)
+industry <- get_klass(6, output_level = 1)
 head(industry)
 ```
 
 ```{r,echo=F}
-kable(head(GetKlass(6, output_level = 1)))
+kable(head(get_klass(6, output_level = 1)))
 ```
 
 
@@ -144,12 +144,12 @@ kable(head(GetKlass(6, output_level = 1)))
 In the above examples we have seen that the names are returned in Norwegian (Bokmål). However, many of the classification in *KLASS* are in multiple languages. The output language can be specified as Bokmål ("nb"), Nynorsk ("nn") or English ("en") using the `language` parameter. *Note: all 3 languages are not available for all classifcations.*
 
 ```{r, eval = F}
-industry <- GetKlass(6, output_level = 1, language = "en")
+industry <- get_klass(6, output_level = 1, language = "en")
 head(industry)
 ```
 
 ```{r, echo=F}
-kable(head(GetKlass(6, output_level = 1, language = "en")))
+kable(head(get_klass(6, output_level = 1, language = "en")))
 ```
 
 
@@ -157,28 +157,28 @@ kable(head(GetKlass(6, output_level = 1, language = "en")))
 The standard output style is 'long' where all levels of classifications are listed down. An alternative format can be chosen using the parameter `output_style='wide'`. This will give only one row per detailed classification with the codes and names of the higher/broader levels given as variables. 
 
 ```{r, eval = F}
-industry <- GetKlass(6, output_style = "wide", language = "en")
+industry <- get_klass(6, output_style = "wide", language = "en")
 head(industry, 2)
 ```
 
 ```{r echo = F}
-kable(head(GetKlass(6, output_style = "wide", language = "en"), 2))
+kable(head(get_klass(6, output_style = "wide", language = "en"), 2))
 ```
 
 ### Notes
 Some classifications have additional notes that can be fetched with the classification. These can be included in the data using the option `notes = T`.
 
 ```{r, eval = F}
-industry <- GetKlass(6, notes = T)
+industry <- get_klass(6, notes = T)
 head(industry, 2)
 ```
 
 ```{r, echo = F}
-kable(head(GetKlass(6, notes = T), 2))
+kable(head(get_klass(6, notes = T), 2))
 ```
 
 ## 4. Applying a classification
-If you have a data set and want to apply a classification to a variable this is possible to do with `ApplyKlass`. This can be used to get the name of a variable which is in code form for example. 
+If you have a data set and want to apply a classification to a variable this is possible to do with `apply_klass`. This can be used to get the name of a variable which is in code form for example. 
 
 There is a built in test data set in **klassR** called `klassdata`. It contains fictitious persons with sex, education level, municipality numbers, industry classification for workplace and occupation.
 
@@ -194,11 +194,11 @@ data(klassdata)
 kable(head(klassdata))
 ```
 
-We can use `ApplyKlass` to create a variable for the municipality names (classification number 131) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classification number.
+We can use `apply_klass` to create a variable for the municipality names (classification number 131) for the persons based on the codes. We specify the vector of codes as the first parameter followed by the unique classification number.
 
 
 ```{r, eval=F}
-klassdata$kommune_names <- ApplyKlass(klassdata$kommune,
+klassdata$kommune_names <- apply_klass(klassdata$kommune,
   klass = 131
 )
 head(klassdata)
@@ -206,7 +206,7 @@ head(klassdata)
 
 
 ```{r, echo=F, warning=F}
-klassdata$kommune_names <- ApplyKlass(klassdata$kommune,
+klassdata$kommune_names <- apply_klass(klassdata$kommune,
   klass = 131,
   date = "2016-01-01"
 )
@@ -228,22 +228,22 @@ There have been many changes to the regions in Norway (classification number 106
 
 
 ```{r, eval=F}
-GetKlass(106, date = "2019-01-01")
+get_klass(106, date = "2019-01-01")
 ```
 
 
 ```{r, echo=F}
-kable(GetKlass(106, date = "2019-01-01"))
+kable(get_klass(106, date = "2019-01-01"))
 ```
 
 
 ```{r, eval=F}
-GetKlass(106, date = "2020-01-01")
+get_klass(106, date = "2020-01-01")
 ```
 
 
 ```{r, echo=F}
-kable(GetKlass(106, date = "2020-01-01"))
+kable(get_klass(106, date = "2020-01-01"))
 ```
 
 ### Time intervals
@@ -252,11 +252,11 @@ Sometime it may be useful to fetch all codes over a period of time. We can do th
 The following code fetched Norwegian regional codes between 1st January 2019 to the 1st January 2020. There are 26 different codes that show both old and newer names.
 
 ```{r,eval=F }
-GetKlass(106, date = c("2019-01-01", "2020-01-01"))
+get_klass(106, date = c("2019-01-01", "2020-01-01"))
 ```
 
 ```{r, echo=F }
-kable(GetKlass(106, date = c("2018-01-01", "2020-01-01")))
+kable(get_klass(106, date = c("2018-01-01", "2020-01-01")))
 ```
 
 
@@ -265,14 +265,14 @@ To fetch only the changes in a time period rather than all codes we can specify 
 
 
 ```{r, eval =F}
-GetKlass(106,
+get_klass(106,
   date = c("2020-01-01", "2019-01-01"),
   correspond = TRUE
 )
 ```
 
 ```{r, echo=F }
-kable(GetKlass(106,
+kable(get_klass(106,
   date = c("2020-01-01", "2019-01-01"),
   correspond = TRUE
 ))
@@ -285,17 +285,17 @@ Classification that are valid in the future are also included in *KLASS*. They c
 
 
 ## 6. Correspondence tables
-In addition to small changes in time, some classifications will change completely and a correspondence table is then defined within the *KLASS* database. These can be fetched or applied using `GetKlass` and `ApplyKlass` functions together with the `correspond` parameter which should give the unique classification number to convert into. 
+In addition to small changes in time, some classifications will change completely and a correspondence table is then defined within the *KLASS* database. These can be fetched or applied using `get_klass` and `apply_klass` functions together with the `correspond` parameter which should give the unique classification number to convert into. 
 
 To fetch a correspondence table between municipality codes (131) and greater regional codes (106) we can run: 
 
 
 ```{r, eval=F}
-GetKlass(131, correspond = 106, date = "2020-01-01")
+get_klass(131, correspond = 106, date = "2020-01-01")
 ```
 
 ```{r, echo=F}
-tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
+tt <- get_klass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
 tt <- tt[, c(3, 4, 1, 2)]
 names(tt) <- navn
@@ -303,11 +303,11 @@ kable(head(tt))
 ```
 
 
-We can apply this correspondence between municipality and region in our example data set using `ApplyKlass`.
+We can apply this correspondence between municipality and region in our example data set using `apply_klass`.
 
 
 ```{r, eval =F}
-klassdata$region <- ApplyKlass(klassdata$kommune,
+klassdata$region <- apply_klass(klassdata$kommune,
   klass = 131,
   correspond = 106,
   date = "2020-01-01"
@@ -316,7 +316,7 @@ klassdata
 ```
 
 ```{r, echo=F}
-tt <- GetKlass(106, correspond = 131, date = "2020-01-01")
+tt <- get_klass(106, correspond = 131, date = "2020-01-01")
 navn <- names(tt)
 tt <- tt[, c(3, 4, 1, 2)]
 names(tt) <- navn
@@ -330,9 +330,9 @@ kable(head(klassdata))
 ## 7. Variants
 It is also possible to fetch a variant of a classification. You need to provide both the classification number and the variant number. 
 ```{r, eval = FALSE}
-GetKlass(klass = 6, variant = 1616, date = "2021-01-02")
+get_klass(klass = 6, variant = 1616, date = "2021-01-02")
 ```
 
 ```{r, echo = FALSE}
-kable(head(GetKlass(klass = 6, variant = 1616, date = "2021-01-02")))
+kable(head(get_klass(klass = 6, variant = 1616, date = "2021-01-02")))
 ```
