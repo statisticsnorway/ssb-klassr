@@ -19,6 +19,6 @@ Family number
 Identify corresponding family from a classification number
 }
 \examples{
-GetFamily(klass = 7)
+get_family(klass = 7)
 }
 \keyword{internal}
