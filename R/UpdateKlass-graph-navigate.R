@@ -30,17 +30,15 @@ klass_node <- function(graph, x, date = NA) {
       date >= V(graph)$validFrom &
       (date < V(graph)$validTo | is.na(V(graph)$validTo))]
   } else {
-    
     x_indices <- which(V(graph)$code == x)
-    
-    highest_variant_index <- 
+
+    highest_variant_index <-
       suppressWarnings(
-        x_indices[which(V(graph)[x_indices]$variant == 
-                          max(V(graph)[x_indices]$variant))]
+        x_indices[which(V(graph)[x_indices]$variant ==
+          max(V(graph)[x_indices]$variant))]
       )
-    
+
     node <- V(graph)[highest_variant_index]
-                     
   }
 
   if (length(node) > 1) {
