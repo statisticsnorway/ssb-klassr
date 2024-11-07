@@ -26,14 +26,19 @@ klass_node <- function(graph, x, date = NA) {
   if (!is.na(date)) {
     date <- as.Date(date[[1]])
 
-    node <- igraph::V(graph)[code == x &
-      date >= validFrom &
-      (date < validTo | is.na(validTo))]
+    node <- igraph::V(graph)[V(graph)$code == x &
+      date >= V(graph)$validFrom &
+      (date < V(graph)$validTo | is.na(V(graph)$validTo))]
   } else {
-    node <-
+    x_indices <- which(V(graph)$code == x)
+
+    highest_variant_index <-
       suppressWarnings(
-        igraph::V(graph)[code == x][variant == max(variant)]
+        x_indices[which(V(graph)[x_indices]$variant ==
+          max(V(graph)[x_indices]$variant))]
       )
+
+    node <- V(graph)[highest_variant_index]
   }
 
   if (length(node) > 1) {
@@ -174,7 +179,7 @@ update_klass_node <- function(graph, node) {
 
   visited <- unique(c(
     node,
-    bfs_result$order[!name %in% unique(end_nodes)$name],
+    bfs_result$order[!bfs_result$name %in% unique(end_nodes)$name],
     end_nodes
   ))
 
