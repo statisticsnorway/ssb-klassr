@@ -166,7 +166,7 @@ klass_graph <- function(classification, date = NULL) {
   graph <-
     igraph::reverse_edges(
       graph = graph,
-      eids = igraph::E(graph)[E(graph)$changeOccurred > date]
+      eids = igraph::E(graph)[igraph::E(graph)$changeOccurred > date]
     )
 
   klass_vertices <-

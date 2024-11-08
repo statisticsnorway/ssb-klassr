@@ -26,19 +26,19 @@ klass_node <- function(graph, x, date = NA) {
   if (!is.na(date)) {
     date <- as.Date(date[[1]])
 
-    node <- igraph::V(graph)[V(graph)$code == x &
-      date >= V(graph)$validFrom &
-      (date < V(graph)$validTo | is.na(V(graph)$validTo))]
+    node <- igraph::V(graph)[igraph::V(graph)$code == x &
+      date >= igraph::V(graph)$validFrom &
+      (date < igraph::V(graph)$validTo | is.na(igraph::V(graph)$validTo))]
   } else {
-    x_indices <- which(V(graph)$code == x)
+    x_indices <- which(igraph::V(graph)$code == x)
 
     highest_variant_index <-
       suppressWarnings(
-        x_indices[which(V(graph)[x_indices]$variant ==
-          max(V(graph)[x_indices]$variant))]
+        x_indices[which(igraph::V(graph)[x_indices]$variant ==
+          max(igraph::V(graph)[x_indices]$variant))]
       )
 
-    node <- V(graph)[highest_variant_index]
+    node <- igraph::V(graph)[highest_variant_index]
   }
 
   if (length(node) > 1) {
