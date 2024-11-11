@@ -13,3 +13,24 @@
 #' \item{occupation}{4-digit occupation codes using standard for STYRK-08 (klass = 7) 2015.01.01}
 #' }
 "klassdata"
+
+
+#' Test Graph data for municipalities in 2024
+#'
+#' A nested list of graph data for using in testing
+#'
+"klass_131_graph"
+
+
+#' Test Graph data for municipalities in 2020
+#'
+#' A nested list of graph data for using in testing
+#'
+"klass_131_2020_graph"
+
+
+#' Test Graph data for municipalities in 1964
+#'
+#' A nested list of graph data for using in testing
+#'
+"klass_131_1964_graph"

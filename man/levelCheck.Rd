@@ -15,7 +15,7 @@ levelCheck(x, klass_data)
 The hierarchical level of the input data is returned.
 }
 \description{
-The input level is calculated as the mode (most common) hierarchical 
+The input level is calculated as the mode (most common) hierarchical
 level in the input vector.
 }
 \keyword{internal}
