@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">klassR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/klassR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/ssb-klassr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -48,74 +48,116 @@
 
       <dl><dt>
 
-          <code><a href="ApplyKlass.html">ApplyKlass()</a></code>
+          <code><a href="count_neighbors.html">count_neighbors()</a></code>
 
         </dt>
-        <dd>Match and convert a classification</dd>
+        <dd>Count the neighbors of a node.</dd>
       </dl><dl><dt>
 
-          <code><a href="CorrespondList.html">CorrespondList()</a></code>
+          <code><a href="find_dates.html">find_dates()</a></code>
 
         </dt>
-        <dd>Correspondence list Print a list of correspondence tables for a given klass with source and target IDs</dd>
+        <dd>For a given Klass code, produce a table of dates describing the valid-from and valid-to dates of all versions of the code</dd>
       </dl><dl><dt>
 
-          <code><a href="GetFamily.html">GetFamily()</a></code>
+          <code><a href="find_name.html">find_name()</a></code>
 
         </dt>
-        <dd>Identify corresponding family from a classification number</dd>
+        <dd>Find the name of a code valid at a specific date.</dd>
       </dl><dl><dt>
 
-          <code><a href="GetKlass.html">GetKlass()</a></code>
+          <code><a href="find_variant_from.html">find_variant_from()</a></code>
 
         </dt>
-        <dd>Fetch classification data Fetch Statistics Norway classification data using API</dd>
+        <dd>Find the variant of a code corresponding to a change *from* a specific code.</dd>
       </dl><dl><dt>
 
-          <code><a href="GetName.html">GetName()</a></code>
+          <code><a href="find_variant_to.html">find_variant_to()</a></code>
 
         </dt>
-        <dd>Get the name of a classification version</dd>
+        <dd>Find the variant of a code corresponding to a change *to* a specific code.</dd>
       </dl><dl><dt>
 
-          <code><a href="GetVersion.html">GetVersion()</a></code>
+          <code><a href="get_klass_changes.html">get_klass_changes()</a></code>
 
         </dt>
-        <dd>Get version number of a class given a date</dd>
+        <dd>Get all changes that have occurred in a Klass classification</dd>
       </dl><dl><dt>
 
-          <code><a href="ListFamily.html">ListFamily()</a></code>
+          <code><a href="is_combined.html">is_combined()</a></code>
 
         </dt>
-        <dd>Classification family list Print a list of all families and the number of classifications in each</dd>
+        <dd>Given a graph and a node, determine if the node is a result of combinations of multiple codes.</dd>
       </dl><dl><dt>
 
-          <code><a href="ListKlass.html">ListKlass()</a></code>
+          <code><a href="is_split.html">is_split()</a></code>
 
         </dt>
-        <dd>Classification list Get a full list of all classifications and codelists</dd>
+        <dd>Given a graph and a node, determine if the node is a split code.</dd>
       </dl><dl><dt>
 
-          <code><a href="SearchKlass.html">SearchKlass()</a></code>
+          <code><a href="klass_131_1964_graph.html">klass_131_1964_graph</a></code>
 
         </dt>
-        <dd>Search Klass</dd>
+        <dd>Test Graph data for municipalities in 1964</dd>
+      </dl><dl><dt>
+
+          <code><a href="klass_131_2020_graph.html">klass_131_2020_graph</a></code>
+
+        </dt>
+        <dd>Test Graph data for municipalities in 2020</dd>
+      </dl><dl><dt>
+
+          <code><a href="klass_131_graph.html">klass_131_graph</a></code>
+
+        </dt>
+        <dd>Test Graph data for municipalities in 2024</dd>
+      </dl><dl><dt>
+
+          <code><a href="klass_graph.html">klass_graph()</a></code>
+
+        </dt>
+        <dd>Build a directed graph of code changes based on a Klass classification</dd>
+      </dl><dl><dt>
+
+          <code><a href="klass_node.html">klass_node()</a></code>
+
+        </dt>
+        <dd>Given a Klass graph, find the node corresponding to a code and (optionally) a date.</dd>
       </dl><dl><dt>
 
           <code><a href="klassdata.html">klassdata</a></code>
 
         </dt>
         <dd>Testdata for klassR package</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_code.html">update_code()</a></code>
+
+        </dt>
+        <dd>Update a code found in a directed graph based on a Klass-classification</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_klass.html">update_klass()</a></code>
+
+        </dt>
+        <dd>Update multiple Klass codes to a desired date.</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_klass_node.html">update_klass_node()</a></code>
+
+        </dt>
+        <dd>Given a node and a graph, find the node at the end of a sequence of changes.</dd>
       </dl></div>
   </main></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li.</p>
+  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li, Øyvind I. Berntsen.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

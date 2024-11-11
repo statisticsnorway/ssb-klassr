@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">klassR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/klassR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/ssb-klassr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -59,7 +59,7 @@
       <h1>Introduction to klassR</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statisticsnorway/klassR/blob/v0.2.4/vignettes/klassR-vignette.Rmd" class="external-link"><code>vignettes/klassR-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statisticsnorway/ssb-klassr/blob/master/vignettes/klassR-vignette.Rmd" class="external-link"><code>vignettes/klassR-vignette.Rmd</code></a></small>
       <div class="d-none name"><code>klassR-vignette.Rmd</code></div>
     </div>
 
@@ -89,7 +89,7 @@ on <a href="https://CRAN.r-project.org/package=klassR" class="external-link">CRA
 <p>To use the function in <strong>klassR</strong> the package must be
 called each time a new R session is started. This can be done using:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://statisticsnorway.github.io/klassR/" class="external-link">klassR</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://statisticsnorway.github.io/ssb-klassr/" class="external-link">klassR</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="search-for-a-classification">2. Search for a classification<a class="anchor" aria-label="anchor" href="#search-for-a-classification"></a>
@@ -101,14 +101,14 @@ following functions.</p>
 <div class="section level3">
 <h3 id="list-all-classifications">List all classifications<a class="anchor" aria-label="anchor" href="#list-all-classifications"></a>
 </h3>
-<p>The function <code>ListKlass</code> will fetch a list of all
+<p>The function <code>list_klass</code> will fetch a list of all
 classifications. It returns the classification name
 (<code>klass_name</code>), number (<code>klass_nr</code>) and the
 classification family it belongs to (<code>klass_family</code>). The
 classification type (<code>klass_type</code>) is also shown which
 indicates whether it is a classification or code list.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ListKlass.html">ListKlass</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_klass.html">list_klass</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="52%">
@@ -165,7 +165,7 @@ indicates whether it is a classification or code list.</p>
 (Statistics Norway) publications. These can be included in the list
 using the <code>codelist</code> parameter</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ListKlass.html">ListKlass</a></span><span class="op">(</span>codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_klass.html">list_klass</a></span><span class="op">(</span>codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -273,10 +273,10 @@ Kodeliste
 <h3 id="search-for-a-classification-using-a-keyword">Search for a classification using a keyword<a class="anchor" aria-label="anchor" href="#search-for-a-classification-using-a-keyword"></a>
 </h3>
 <p>You can also search for a classification by a keyword using the
-<code>SearchKlass</code> function. The first parameter here is the query
-to search for.</p>
+<code>search_klass</code> function. The first parameter here is the
+query to search for.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/SearchKlass.html">SearchKlass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/search_klass.html">search_klass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">klass_name</th>
@@ -296,7 +296,7 @@ to search for.</p>
 <p>Again, to include code lists in the search this should be
 specified</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/SearchKlass.html">SearchKlass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span>, codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/search_klass.html">search_klass</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"ARENA"</span>, codelists <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="88%">
@@ -356,12 +356,12 @@ the database.</p>
 <div class="section level2">
 <h2 id="fetch-a-classification">3. Fetch a classification<a class="anchor" aria-label="anchor" href="#fetch-a-classification"></a>
 </h2>
-<p>To fetch a complete classification, use the <code>GetKlass</code>
+<p>To fetch a complete classification, use the <code>get_klass</code>
 function together with the unique identifier. For example, to fetch the
 Standard Industrial Classifications (<em>KLASS</em> number 6) we
 run:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -427,7 +427,7 @@ values for <em>level</em>. To fetch a specific level, use the
 <code>output_level</code> parameter. For example, to fetch only the top
 level Standard Industrial Classification codes we use:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -493,7 +493,7 @@ specified as Bokmål (“nb”), Nynorsk (“nn”) or English (“en”) using 
 <code>language</code> parameter. <em>Note: all 3 languages are not
 available for all classifcations.</em></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">6</span>, output_level <span class="op">=</span> <span class="fl">1</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -559,7 +559,7 @@ using the parameter <code>output_style='wide'</code>. This will give
 only one row per detailed classification with the codes and names of the
 higher/broader levels given as variables.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, output_style <span class="op">=</span> <span class="st">"wide"</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">6</span>, output_style <span class="op">=</span> <span class="st">"wide"</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -629,7 +629,7 @@ activities</td>
 the classification. These can be included in the data using the option
 <code>notes = T</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">6</span>, notes<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">industry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">6</span>, notes <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -683,7 +683,7 @@ såfrø og såkorn</td>
 <h2 id="applying-a-classification">4. Applying a classification<a class="anchor" aria-label="anchor" href="#applying-a-classification"></a>
 </h2>
 <p>If you have a data set and want to apply a classification to a
-variable this is possible to do with <code>ApplyKlass</code>. This can
+variable this is possible to do with <code>apply_klass</code>. This can
 be used to get the name of a variable which is in code form for
 example.</p>
 <p>There is a built in test data set in <strong>klassR</strong> called
@@ -760,13 +760,14 @@ workplace and occupation.</p>
 </tr>
 </tbody>
 </table>
-<p>We can use <code>ApplyKlass</code> to create a variable for the
+<p>We can use <code>apply_klass</code> to create a variable for the
 municipality names (classification number 131) for the persons based on
 the codes. We specify the vector of codes as the first parameter
 followed by the unique classification number.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ApplyKlass.html">ApplyKlass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>, </span>
-<span>                                      klass <span class="op">=</span> <span class="fl">131</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_klass.html">apply_klass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>,</span>
+<span>  klass <span class="op">=</span> <span class="fl">131</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -873,7 +874,7 @@ in the form “yyyy-mm-dd”, for example “2022-05-27” for the 27th May,
 number 106) over the past few years. We can see this by fetching the
 classifications for these at different times</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2019-01-01"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2019-01-01"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">code</th>
@@ -933,7 +934,7 @@ classifications for these at different times</p>
 </tbody>
 </table>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2020-01-01"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2020-01-01"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">code</th>
@@ -997,7 +998,7 @@ We can do this by specifing two dates as a vector in the
 January 2019 to the 1st January 2020. There are 26 different codes that
 show both old and newer names.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2019-01-01"</span>, <span class="st">"2020-01-01"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">106</span>, date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2019-01-01"</span>, <span class="st">"2020-01-01"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="5%">
@@ -1138,9 +1139,10 @@ show both old and newer names.</p>
 can specify <code>correspond=TRUE</code> allong with the time interval
 we are interested in.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">106</span>, </span>
-<span>         date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-01-01"</span>, <span class="st">"2019-01-01"</span><span class="op">)</span>, </span>
-<span>         correspond <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">106</span>,</span>
+<span>  date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-01-01"</span>, <span class="st">"2019-01-01"</span><span class="op">)</span>,</span>
+<span>  correspond <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="13%">
@@ -1252,13 +1254,13 @@ No additional parameters need to be specified.</p>
 <p>In addition to small changes in time, some classifications will
 change completely and a correspondence table is then defined within the
 <em>KLASS</em> database. These can be fetched or applied using
-<code>GetKlass</code> and <code>ApplyKlass</code> functions together
+<code>get_klass</code> and <code>apply_klass</code> functions together
 with the <code>correspond</code> parameter which should give the unique
 classification number to convert into.</p>
 <p>To fetch a correspondence table between municipality codes (131) and
 greater regional codes (106) we can run:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span><span class="fl">131</span>, correspond <span class="op">=</span> <span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2020-01-01"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span><span class="fl">131</span>, correspond <span class="op">=</span> <span class="fl">106</span>, date <span class="op">=</span> <span class="st">"2020-01-01"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">sourceCode</th>
@@ -1306,12 +1308,13 @@ greater regional codes (106) we can run:</p>
 </tbody>
 </table>
 <p>We can apply this correspondence between municipality and region in
-our example data set using <code>ApplyKlass</code>.</p>
+our example data set using <code>apply_klass</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">klassdata</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ApplyKlass.html">ApplyKlass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>, </span>
-<span>                               klass <span class="op">=</span> <span class="fl">131</span>,</span>
-<span>                               correspond <span class="op">=</span> <span class="fl">106</span>,</span>
-<span>                               date <span class="op">=</span> <span class="st">"2020-01-01"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">klassdata</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_klass.html">apply_klass</a></span><span class="op">(</span><span class="va">klassdata</span><span class="op">$</span><span class="va">kommune</span>,</span>
+<span>  klass <span class="op">=</span> <span class="fl">131</span>,</span>
+<span>  correspond <span class="op">=</span> <span class="fl">106</span>,</span>
+<span>  date <span class="op">=</span> <span class="st">"2020-01-01"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">klassdata</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -1412,7 +1415,7 @@ our example data set using <code>ApplyKlass</code>.</p>
 <p>It is also possible to fetch a variant of a classification. You need
 to provide both the classification number and the variant number.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/GetKlass.html">GetKlass</a></span><span class="op">(</span>klass <span class="op">=</span> <span class="fl">6</span>, variant <span class="op">=</span> <span class="fl">1616</span>, date <span class="op">=</span> <span class="st">"2021-01-02"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_klass.html">get_klass</a></span><span class="op">(</span>klass <span class="op">=</span> <span class="fl">6</span>, variant <span class="op">=</span> <span class="fl">1616</span>, date <span class="op">=</span> <span class="st">"2021-01-02"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="7%">
@@ -1476,11 +1479,11 @@ oljeholdige vekster</td>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li.</p>
+  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li, Øyvind I. Berntsen.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

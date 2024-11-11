@@ -1,6 +1,6 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   klassR-vignette: klassR-vignette.html
-last_built: 2024-08-16T10:18Z
+last_built: 2024-11-11T07:19Z

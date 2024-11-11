@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Classifications and Codelists for Statistics Norway">
-<meta name="description" content="Functions to search, retrieve and apply classifications and codelists using Statistics Norways API &lt;https://www.ssb.no/klass&gt; from the system KLASS'. Retrieves classifications by date with options to choose language, hierarchical level and formatting.">
-<meta property="og:description" content="Functions to search, retrieve and apply classifications and codelists using Statistics Norways API &lt;https://www.ssb.no/klass&gt; from the system KLASS'. Retrieves classifications by date with options to choose language, hierarchical level and formatting.">
+<meta name="description" content="Functions to search, retrieve, apply and update classifications and codelists using Statistics Norways API &lt;https://www.ssb.no/klass&gt; from the system KLASS'. Retrieves classifications by date with options to choose language, hierarchical level and formatting.">
+<meta property="og:description" content="Functions to search, retrieve, apply and update classifications and codelists using Statistics Norways API &lt;https://www.ssb.no/klass&gt; from the system KLASS'. Retrieves classifications by date with options to choose language, hierarchical level and formatting.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">klassR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/klassR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statisticsnorway/ssb-klassr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -66,8 +66,8 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'klassR'</span>)</span></code></pre></div>
 <p>You can the load the package into the environment with</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(klassR)</span></code></pre></div>
-<p>To fetch a classification, use the <code>GetKlass</code> function together with the klass number from SSBs <a href="https://www.ssb.no/klass/" class="external-link">KLASS</a>. For example occupation classifications (klass number 7) can be fetched with</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">GetKlass</span>(<span class="dv">7</span>)</span></code></pre></div>
+<p>To fetch a classification, use the <code>get_klass</code> function together with the klass number from SSBs <a href="https://www.ssb.no/klass/" class="external-link">KLASS</a>. For example occupation classifications (klass number 7) can be fetched with</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">get_klass</span>(<span class="dv">7</span>)</span></code></pre></div>
 <p>A more in depth introduction to <strong>klassR</strong> can be found at: <a href="https://statisticsnorway.github.io/ssb-klassr/articles/klassR-vignette.html" class="external-link uri">https://statisticsnorway.github.io/ssb-klassr/articles/klassR-vignette.html</a></p>
 </div>
 
@@ -75,8 +75,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=klassR" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/statisticsnorway/klassR/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/statisticsnorway/klassR/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/statisticsnorway/ssb-klassr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/statisticsnorway/ssb-klassr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -102,6 +102,7 @@
 <li>Susie Jentoft <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Diana-Cristina Iancu <br><small class="roles"> Author </small>  </li>
 <li>Lisa Li <br><small class="roles"> Author </small>  </li>
+<li>Øyvind I. Berntsen <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -118,11 +119,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li.</p>
+  <p>Developed by Susie Jentoft, Diana-Cristina Iancu, Lisa Li, Øyvind I. Berntsen.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
