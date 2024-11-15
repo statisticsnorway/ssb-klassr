@@ -412,7 +412,6 @@ get_klass <- function(classification,
 
 
 #' @rdname get_klass
-#' @keywords internal
 #' @export
 GetKlass <- function(klass,
                      date = NULL,

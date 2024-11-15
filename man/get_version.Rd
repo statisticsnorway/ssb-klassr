@@ -27,4 +27,3 @@ Get version number of a class given a date
 \examples{
 get_version(7)
 }
-\keyword{internal}

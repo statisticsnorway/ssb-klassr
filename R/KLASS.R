@@ -196,7 +196,6 @@ apply_klass <- function(x,
 
 
 #' @rdname apply_klass
-#' @keywords internal
 #' @export
 ApplyKlass <- function(x,
                        klass,

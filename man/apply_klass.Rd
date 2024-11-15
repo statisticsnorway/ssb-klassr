@@ -56,10 +56,10 @@ Match and convert a classification
 }
 \examples{
 data(klassdata)
-kommune_names <- apply_klass(x = klassdata$kommune,
-                              classification = 131,
-                              language = "en",
-                              format = FALSE
-                              )
+kommune_names <- apply_klass(
+  x = klassdata$kommune,
+  classification = 131,
+  language = "en",
+  format = FALSE
+)
 }
-\keyword{internal}

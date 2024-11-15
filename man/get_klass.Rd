@@ -69,4 +69,3 @@ head(get_klass(classification = "7"))
 # Get classification for occupation classifications in English
 head(get_klass(classification = "7", language = "en"))
 }
-\keyword{internal}

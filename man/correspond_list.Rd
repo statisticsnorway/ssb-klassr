@@ -27,4 +27,3 @@ Print a list of correspondence tables for a given classification with source and
 correspond_list("7")
 }
 }
-\keyword{internal}

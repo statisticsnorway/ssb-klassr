@@ -21,4 +21,3 @@ Get the name of a classification version
 \examples{
 get_name("33")
 }
-\keyword{internal}

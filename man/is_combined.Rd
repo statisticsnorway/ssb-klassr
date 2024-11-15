@@ -37,3 +37,4 @@ The function will attempt to reconcile nodes that have split and
   \code{node}, i.e. all paths from \code{node} to the parents of \code{node}
   pass through \code{compare_node}.
 }
+\keyword{internal}
