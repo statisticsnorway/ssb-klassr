@@ -29,3 +29,4 @@ A \code{data.frame} with number of rows equal to the number of
 For a given Klass code, produce a table of dates describing the valid-from
 and valid-to dates of all versions of the code
 }
+\keyword{internal}

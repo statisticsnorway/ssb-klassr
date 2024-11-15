@@ -22,3 +22,4 @@ Find the variant of a code corresponding to a change *to* a specific code.
 \seealso{
 [find_variant_from()]
 }
+\keyword{internal}

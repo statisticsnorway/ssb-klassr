@@ -24,3 +24,4 @@ The function will attempt to reconcile nodes that have split and
   than one node that does not itself have children (i.e. nodes at the end of
   a sequence of changes) that can be reached from \code{node}
 }
+\keyword{internal}

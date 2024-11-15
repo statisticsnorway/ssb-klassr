@@ -22,3 +22,4 @@ A numeric vector of length one giving the number of neighbors.
 \description{
 Count the neighbors of a node.
 }
+\keyword{internal}

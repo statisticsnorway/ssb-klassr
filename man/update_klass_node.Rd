@@ -32,5 +32,4 @@ halden_node <- klass_node(klass_131, "0101")
 # Find the most recent code corresponding to 0101 Halden
 halden_node_updated <- update_klass_node(klass_131, halden_node)
 
-
 }

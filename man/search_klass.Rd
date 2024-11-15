@@ -25,4 +25,3 @@ Search Klass
 \examples{
 search_klass("occupation")
 }
-\keyword{internal}

@@ -25,4 +25,3 @@ Get a full list of all classifications and codelists
 \examples{
 head(list_klass(codelists = TRUE))
 }
-\keyword{internal}

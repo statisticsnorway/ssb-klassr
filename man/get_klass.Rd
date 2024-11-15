@@ -51,6 +51,8 @@ GetKlass(
 \item{notes}{Logical for if notes should be returned as a column. Default FALSE}
 
 \item{quiet}{Logical for whether to suppress the printing of the API address. Default TRUE.}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 The function returns a data frame of the specified classification/correspondence table. Output variables include:
@@ -69,4 +71,3 @@ head(get_klass(classification = "7"))
 # Get classification for occupation classifications in English
 head(get_klass(classification = "7", language = "en"))
 }
-\keyword{internal}
