@@ -3,10 +3,10 @@
 
 #' Format vector for industry codes
 #' @param x - vector of character
-#' @param klass - classification number
+#' @param classification - classification number
 #' @return vector of character
 #' @keywords internal
-formattering <- function(x, klass) {
+formattering <- function(x, classification) {
   # Check for missing values
   miss <- sum(is.na(x) | x == "")
   if (miss != 0) {
@@ -14,10 +14,10 @@ formattering <- function(x, klass) {
   }
 
   # Check and format
-  if (klass == 6) {
+  if (classification == 6) {
     x_formatted <- formattering_nace(x)
   }
-  if (klass == 131) {
+  if (classification == 131) {
     x_formatted <- formattering_kommune(x)
   }
 

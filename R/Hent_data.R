@@ -15,7 +15,7 @@ CheckDate <- function(date) {
 
 #' Internal function to create URL address
 #'
-#' @param klass Classification number
+#' @param classification Classification number
 #' @param correspond Target number for correspondence table
 #' @param variant_name The name of the variant of the classification
 #' @param type String describing type. "vanlig" for normal classification and "kor" for correspondence. Default = "vanlig"
@@ -26,7 +26,7 @@ CheckDate <- function(date) {
 #' @keywords internal
 #'
 #' @return String url adress
-MakeUrl <- function(klass, correspond = NULL, correspondID = NULL,
+MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
                     variant_name = NULL,
                     type = "vanlig",
                     fratil = FALSE, date = NULL,
@@ -51,7 +51,7 @@ MakeUrl <- function(klass, correspond = NULL, correspondID = NULL,
   if (type == "korID") {
     coding <- paste0("correspondencetables/", MakeChar(correspondID))
     # Tables with given ID can not be combined with other parameters in the call
-    klass <- ""
+    classification <- ""
     language_coding <- ""
     output_level_coding <- ""
   }
@@ -92,7 +92,7 @@ MakeUrl <- function(klass, correspond = NULL, correspondID = NULL,
   # Paste together to an URL
   url <- paste(GetBaseUrl(),
     classifics,
-    klass,
+    classification,
     coding,
     output_level_coding,
     language_coding,
@@ -172,7 +172,7 @@ get_variant_name <- function(variant) {
 #' @keywords internal
 #' @return text in json format
 GetUrl2 <- function(url, check = TRUE) {
-  # henter innholdet fra klass med acceptheader json
+  # Fetch contents from classfication 
   if (check) {
     hent_klass <- check_connect(url)
   } else {
@@ -181,15 +181,15 @@ GetUrl2 <- function(url, check = TRUE) {
   if (is.null(hent_klass)) {
     return(invisible(NULL))
   }
-  klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") #### ## deserialisering med httr funksjonen content
+  klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") ## deserialisering with httr function
   return(klass_text)
 }
 
 #' Fetch Statistics Norway classification data using API
 #'
-#' @param klass Number/string of the classification ID/number. (use klass_list() to find this)
+#' @param classification Number/string of the classification ID/number. (use klass_list() to find this)
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
-#' @param correspond Number/string of the target klass for correspondence table (if a correspondence table is requested).
+#' @param correspond Number/string of the target classification for correspondence table (if a correspondence table is requested).
 #' @param correspondID ID number of the correspondence table to retrieve. Use as an alternative to correspond.
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
@@ -208,10 +208,10 @@ GetUrl2 <- function(url, check = TRUE) {
 #'
 #' @examples
 #' # Get classification for occupation classifications
-#' head(get_klass(klass = "7"))
+#' head(get_klass(classification = "7"))
 #' # Get classification for occupation classifications in English
-#' head(get_klass(klass = "7", language = "en"))
-get_klass <- function(klass,
+#' head(get_klass(classification = "7", language = "en"))
+get_klass <- function(classification,
                       date = NULL,
                       correspond = NULL,
                       correspondID = NULL,
@@ -221,17 +221,17 @@ get_klass <- function(klass,
                       output_style = "normal",
                       notes = FALSE,
                       quiet = TRUE) {
-  # create type of klassification for using later
+  # create type of classification for using later
   type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
   type <- ifelse(is.null(correspond) & type == "kor", "korID", type)
   type <- ifelse(is.null(variant), type, "variant")
 
-  # sjekk klass er char
+  # check classification is a character
   if (is.null(correspondID)) {
-    klass <- MakeChar(klass)
+    classification <- MakeChar(classification)
   } else {
-    klass <- ""
+    classification <- ""
   }
 
 
@@ -291,7 +291,7 @@ get_klass <- function(klass,
     }
   }
   url <- MakeUrl(
-    klass = klass, correspond = correspond, correspondID = correspondID,
+    classification = classification, correspond = correspond, correspondID = correspondID,
     variant_name = variant_name,
     type = type,
     fratil = fratil, date = date, output_level_coding = output_level_coding,
@@ -307,13 +307,13 @@ get_klass <- function(klass,
     if (grepl("no correspondence table", klass_text)) {
       targetswap <- TRUE
       url <- MakeUrl(
-        klass = correspond, correspond = klass, type = type, fratil = fratil, date = date,
+        classification = correspond, correspond = classification, type = type, fratil = fratil, date = date,
         output_level_coding = output_level_coding, language_coding = language_coding
       )
       klass_text <- GetUrl2(url)
       if (grepl("no correspondence table", klass_text)) {
         stop(
-          "No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
+          "No correspondence table found between classes ", classification, " and ", correspond, " for the date ", date,
           "For a list of valid correspondence tables use the function correspond_list()"
         )
       }
@@ -325,15 +325,15 @@ get_klass <- function(klass,
   if (is.null(klass_text)) stop_quietly()
 
   if (grepl("not found", klass_text)) {
-    stop("No KLASS table was found for KLASS number ", klass, ".
-    Please try again with a different KLASS number.
-    For a list of possible KLASS's use the function list_klass() or list_family()")
+    stop("No classification table was found for classification number ", classification, ".
+    Please try again with a different classification number.
+    For a list of possible classification's use the function list_klass() or list_family()")
   }
   if (grepl("not published in language", klass_text)) {
     stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
   }
   if (grepl("does not have a variant named", klass_text)) {
-    stop("The variant ", variant, " was not found for KLASS number ", klass)
+    stop("The variant ", variant, " was not found for classification number ", classification)
   }
 
   if (type %in% c("vanlig", "variant")) {
@@ -344,7 +344,7 @@ get_klass <- function(klass,
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceItems
     if (length(klass_data) == 0) {
       stop(
-        "No correspondence table found between classes ", klass, " and ", correspond, " for the date ", date,
+        "No correspondence table found between classes ", classification, " and ", correspond, " for the date ", date,
         "For a list of valid correspondence tables use the function correspond_list()"
       )
     }
@@ -384,7 +384,7 @@ get_klass <- function(klass,
 
     # check several levels exist
     if (maxlength == minlength) {
-      warning("Only one level was detected. Klassification returned with output_style normal. ")
+      warning("Only one level was detected. Classification returned with output_style normal. ")
       return(as.data.frame(klass_data))
     }
 
@@ -426,7 +426,7 @@ GetKlass <- function(klass,
                      quiet = TRUE) {
   # .Deprecated("get_klass") # Add in for future versions
   get_klass(
-    klass = klass,
+    classification = klass,
     date = date,
     correspond = correspond,
     correspondID = correspondID,

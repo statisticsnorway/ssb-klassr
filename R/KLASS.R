@@ -17,7 +17,7 @@ MakeChar <- function(x) {
 #' Match and convert a classification
 #'
 #' @param x Input vector of classification codes. Vector must match "code" column from a call to get_klass().
-#' @param klass Classification number
+#' @param classification Classification number
 #' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param correspond ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.
@@ -31,9 +31,13 @@ MakeChar <- function(x) {
 #'
 #' @examples
 #' data(klassdata)
-#' kommune_names <- apply_klass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
+#' kommune_names <- apply_klass(x = klassdata$kommune,
+#'                               classification = 131,
+#'                               language = "en",
+#'                               format = FALSE
+#'                               )
 apply_klass <- function(x,
-                        klass,
+                        classification,
                         date = NULL,
                         variant = NULL,
                         correspond = NULL,
@@ -41,93 +45,115 @@ apply_klass <- function(x,
                         output_level = NULL,
                         output = "name",
                         format = TRUE) {
-  # sjekk og standardisere varible
-  klass <- MakeChar(klass)
+  
+  # Check and standardise variables
+  classification <- MakeChar(classification)
   if (is.null(x)) {
     stop("The input vector is empty.")
   }
   x <- MakeChar(x)
-
+  
   if (is.null(date)) {
     date <- Sys.Date()
   }
-
+  
   type <- ifelse(is.null(correspond), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
   type <- ifelse(is.null(variant), type, "variant")
-
-  # Ta ut klass tabell
-  klass_data <- get_klass(klass,
-    date = date, correspond = NULL, variant = variant,
-    language = language, output_level = NULL
+  
+  # Fetch classification table
+  klass_data <- get_klass(
+    classification,
+    date = date,
+    correspond = NULL,
+    variant = variant,
+    language = language,
+    output_level = NULL
   )
-
-  # Ta ut korrespond tabell
+  
+  # Extract correspondence table
   if (type == "kor") {
-    cor_table <- get_klass(klass,
-      date = date, correspond = correspond,
+    cor_table <- get_klass(
+      classification,
+      date = date,
+      correspond = correspond,
       language = language
     ) # , output_level = output_level)
-
+    
     new_table <- get_klass(
-      klass = correspond, date = date, correspond = NULL,
+      classification = correspond,
+      date = date,
+      correspond = NULL,
       language = language
     ) # , output_level = output_level)
   }
   if (type == "change") {
     cor_table <- get_klass(
-      klass = klass, date = date, correspond = TRUE,
-      language = language, output_level = NULL
+      classification = classification,
+      date = date,
+      correspond = TRUE,
+      language = language,
+      output_level = NULL
     )
   }
-
+  
   # Formattering - only for nace and municipality
-  if (format == TRUE & klass %in% c("6", "131")) {
-    x_formatted <- formattering(x, klass = klass)
+  if (format == TRUE & classification %in% c("6", "131")) {
+    x_formatted <- formattering(x, classification = classification)
   } else {
     x_formatted <- x
   }
-
-  # kjor indata sjekk
+  
+  # Check input data for level
   input_level <- levelCheck(x = x_formatted, klass_data = klass_data) # implies all are same level!
-  if (is.null(output_level)) output_level <- input_level
-
-  if (!all(input_level == output_level) & type %in% c("kor", "change")) stop("Level changes and time changes/correspondence concurrently is not programmed.")
-
-  # kjøre nivå funksjon
+  if (is.null(output_level))
+    output_level <- input_level
+  
+  if (!all(input_level == output_level) &
+      type %in% c("kor", "change"))
+    stop("Level changes and time changes/correspondence concurrently is not programmed.")
+  
+  # Run level function
   if (!all(input_level == output_level) & is.null(correspond)) {
-    x_level <- Levels(input_level = input_level, output_level = output_level, klass_data = klass_data)
+    x_level <- Levels(
+      input_level = input_level,
+      output_level = output_level,
+      klass_data = klass_data
+    )
   }
-
+  
   if (all(input_level == output_level)) {
     x_level <- klass_data[klass_data$level == input_level, ]
     x_level[, paste("level", input_level, sep = "")] <- x_level$code
     x_level[, paste("name", input_level, sep = "")] <- x_level$name
   }
-
-
-  # kjøre matching
+  
+  
+  # run matching
   levelcode <- paste("level", input_level, sep = "")
   if (type %in% c("vanlig", "variant")) {
     m <- match(x_formatted, x_level[, levelcode]) ### sjekk rekkefolge
   }
-
+  
   if (type == "kor") {
     m1 <- match(x_level[, levelcode], cor_table[, "sourceCode"])
     m2 <- match(x_formatted, cor_table[, "sourceCode"])
     m3 <- match(cor_table[, "targetCode"], new_table[, "code"]) ## ?
   }
-
+  
   if (type == "change") {
     m1 <- match(x_formatted, x_level[, levelcode])
     m2 <- match(x_formatted, cor_table$sourceCode)
   }
-
-  # velge format output
+  
+  # Choose format output
   if (type %in% c("vanlig", "variant")) {
-    if (output == "code") vars <- paste("level", output_level, sep = "")
-    if (output == "name") vars <- paste("name", output_level, sep = "")
-    if (output == "both") vars <- paste(c("level", "name"), output_level, sep = "")
+    if (output == "code")
+      vars <- paste("level", output_level, sep = "")
+    if (output == "name")
+      vars <- paste("name", output_level, sep = "")
+    if (output == "both")
+      vars <- paste(c("level", "name"), output_level, sep = "")
     out <- x_level[m, vars]
   }
   if (type == "kor") {
@@ -178,7 +204,10 @@ ApplyKlass <- function(x,
                        format = TRUE) {
   # .Deprecated("apply_klass") # add in for future versions
   apply_klass(
-    x = x, klass = klass, date = date, variant = variant,
+    x = x,
+    classification = klass,
+    date = date,
+    variant = variant,
     correspond = correspond,
     language = language,
     output_level = output_level,
