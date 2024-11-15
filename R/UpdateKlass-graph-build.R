@@ -5,7 +5,7 @@
 #' @return A \code{data.frame} containing the code changes.
 #'
 #' @keywords internal
-#' 
+#'
 get_klass_changes <- function(classification) {
   df <-
     dplyr::bind_rows(
@@ -205,7 +205,7 @@ klass_graph <- function(classification, date = NULL) {
 #' @return The variant corresponding to the code \code{x} at date \code{changeOccurred}.
 #'
 #' @seealso [find_variant_to]
-#' 
+#'
 #' @keywords internal
 #'
 find_variant_from <- function(x, changeOccurred, variants) {
@@ -221,9 +221,9 @@ find_variant_from <- function(x, changeOccurred, variants) {
 #' @inherit find_variant_from return
 #'
 #' @seealso [find_variant_from()]
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 find_variant_to <- function(x, changeOccurred, variants) {
   variants[variants$code == x &
     changeOccurred >= variants$validFrom &
@@ -247,9 +247,9 @@ find_variant_to <- function(x, changeOccurred, variants) {
 #'    \item{"validFrom"}
 #'    \item{"validTo"}
 #'   }
-#'   
+#'
 #' @keywords internal
-#'   
+#'
 find_dates <- function(code, api_alle, api_endringer) {
   dates_df <- api_alle[api_alle$code == code, ]
 

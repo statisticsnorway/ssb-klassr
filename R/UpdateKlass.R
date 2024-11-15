@@ -44,7 +44,7 @@
 #'   result of a combination of codes, the result will be \code{NA}.
 #'
 #' @seealso See [update_klass] for updating multiple codes in one function call.
-#' 
+#'
 #' @keywords internal
 update_code <- function(graph,
                         code,

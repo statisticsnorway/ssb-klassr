@@ -56,9 +56,9 @@ klass_node <- function(graph, x, date = NA) {
 #' @inheritParams igraph::neighbors
 #'
 #' @return A numeric vector of length one giving the number of neighbors.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 count_neighbors <- function(graph, node, mode) {
   length(igraph::neighbors(graph, node, mode))
 }
@@ -73,9 +73,9 @@ count_neighbors <- function(graph, node, mode) {
 #'   then later merged again. A node is considered to be split if there is more
 #'   than one node that does not itself have children (i.e. nodes at the end of
 #'   a sequence of changes) that can be reached from \code{node}
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 is_split <- function(graph, node) {
   bfs_result <- igraph::bfs(
     graph = graph,
@@ -118,7 +118,7 @@ is_split <- function(graph, node) {
 #'   pass through \code{compare_node}.
 #'
 #' @keywords internal
-#' 
+#'
 is_combined <- function(graph, node, compare_node = NULL) {
   bfs_result <- igraph::bfs(
     graph = graph,
