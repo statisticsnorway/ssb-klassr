@@ -26,11 +26,13 @@ Build a directed graph of code changes based on a Klass classification
 library(klassR)
 
 # Build a graph directed towards the most recent codes
-
+\dontrun{
 klass_131 <- klass_graph(131)
+}
 
 # Build a graph directed towards valid codes in 2020.
-
+\dontrun{
 klass_131_2020 <- klass_graph(131, "2020-01-01")
+}
 
 }

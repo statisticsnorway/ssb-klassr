@@ -4,14 +4,14 @@
 \alias{correspond_list}
 \alias{CorrespondList}
 \title{Correspondence list
-Print a list of correspondence tables for a given klass with source and target IDs}
+Print a list of correspondence tables for a given classification with source and target IDs}
 \usage{
-correspond_list(klass, date = NULL)
+correspond_list(classification, date = NULL)
 
 CorrespondList(klass, date = NULL)
 }
 \arguments{
-\item{klass}{Classification number}
+\item{classification}{Classification number}
 
 \item{date}{Date for classification (format = "YYYY-mm-dd"). Default is current date}
 }
@@ -20,7 +20,7 @@ Data frame with list of corrsepondence tables, source ID and target ID.
 }
 \description{
 Correspondence list
-Print a list of correspondence tables for a given klass with source and target IDs
+Print a list of correspondence tables for a given classification with source and target IDs
 }
 \examples{
 \donttest{

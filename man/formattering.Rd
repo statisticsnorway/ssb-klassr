@@ -4,12 +4,12 @@
 \alias{formattering}
 \title{Format vector for industry codes}
 \usage{
-formattering(x, klass)
+formattering(x, classification)
 }
 \arguments{
 \item{x}{- vector of character}
 
-\item{klass}{- classification number}
+\item{classification}{- classification number}
 }
 \value{
 vector of character

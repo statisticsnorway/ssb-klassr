@@ -157,7 +157,7 @@ SearchKlass <- function(query, codelists = FALSE, size = 20) {
 
 #' Get version number of a class given a date
 #'
-#' @param klass Classification number
+#' @param classification Classification number
 #' @param date Date for version to be valid
 #' @param family Family ID number if a list of version number for all classes is desired
 #' @param klassNr True/False for whether to output classification numbers. Default = FALSE
@@ -167,12 +167,12 @@ SearchKlass <- function(query, codelists = FALSE, size = 20) {
 #'
 #' @examples
 #' get_version(7)
-get_version <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
+get_version <- function(classification = NULL, date = NULL, family = NULL, klassNr = FALSE) {
   if (is.null(date)) date <- Sys.Date()
   if (is.null(family)) {
-    if (klassNr == TRUE) stop("To output Klass number from this function you need to input a family number")
-    klass <- MakeChar(klass)
-    url <- paste(GetBaseUrl(), "classifications/", klass, sep = "")
+    if (klassNr == TRUE) stop("To output classification number from this function you need to input a family number")
+    classification <- MakeChar(classification)
+    url <- paste(GetBaseUrl(), "classifications/", classification, sep = "")
     df <- as.data.frame(GetUrl(url)$versions)
     df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
     for (i in 1:nrow(df)) {
@@ -213,7 +213,7 @@ get_version <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALS
 #' @export
 GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
   .Deprecated("get_version")
-  get_version(klass = klass, date = date, family = family, klassNr = klassNr)
+  get_version(classification = klass, date = date, family = family, klassNr = klassNr)
 }
 
 
@@ -248,17 +248,17 @@ GetName <- function(version) {
 
 #' Identify corresponding family from a classification number
 #'
-#' @param klass Classification number
+#' @param classification Classification number
 #'
 #' @return Family number
 #' @export
 #'
 #' @examples
-#' get_family(klass = 7)
-get_family <- function(klass) {
-  klass <- MakeChar(klass)
+#' get_family(classification = 7)
+get_family <- function(classification) {
+  classification <- MakeChar(classification)
   K <- list_klass(codelists = TRUE)
-  m <- match(klass, K$klass_nr)
+  m <- match(classification, K$klass_nr)
   return(K$klass_family[m])
 }
 
@@ -268,15 +268,15 @@ get_family <- function(klass) {
 #' @export
 GetFamily <- function(klass) {
   .Deprecated("get_family")
-  get_family(klass = klass)
+  get_family(classification = klass)
 }
 
 
 
 #' Correspondence list
-#' Print a list of correspondence tables for a given klass with source and target IDs
+#' Print a list of correspondence tables for a given classification with source and target IDs
 #'
-#' @param klass Classification number
+#' @param classification Classification number
 #' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
 #'
 #' @return Data frame with list of corrsepondence tables, source ID and target ID.
@@ -286,18 +286,18 @@ GetFamily <- function(klass) {
 #' \donttest{
 #' correspond_list("7")
 #' }
-correspond_list <- function(klass, date = NULL) {
+correspond_list <- function(classification, date = NULL) {
   cat("Finding correspondence tables ...")
-  klass <- MakeChar(klass)
+  classification <- MakeChar(classification)
   if (is.null(date)) {
     date <- Sys.Date()
   }
-  vers <- get_version(klass = klass, date = date)
+  vers <- get_version(classification = classification, date = date)
   url <- paste(GetBaseUrl(), "versions/", vers, sep = "")
   df <- GetUrl(url)
   versName <- df$name
   dt <- data.frame(df$correspondenceTables)
-  fam <- get_family(klass = klass)
+  fam <- get_family(classification = classification)
   versValid <- get_version(family = fam, date = date, klassNr = TRUE)
   vers_names <- get_name(versValid$vers)
   source_klass <- NULL
@@ -318,8 +318,8 @@ correspond_list <- function(klass, date = NULL) {
       cat(".")
     }
     sourceTarget <- ifelse(is.na(m2), NA, as.character(versValid[m2, "klass_nr"]))
-    source_klass[i] <- ifelse(m == 1, klass, sourceTarget)
-    target_klass[i] <- ifelse(m == 1, sourceTarget, klass)
+    source_klass[i] <- ifelse(m == 1, classification, sourceTarget)
+    target_klass[i] <- ifelse(m == 1, sourceTarget, classification)
   }
   correspondence_table <- sapply(dt$X_links$self$href, GetNums)
   dt2 <- data.frame(
@@ -334,7 +334,7 @@ correspond_list <- function(klass, date = NULL) {
   if (any(is.na(dt2$target_klass))) {
     message(
       "\n\n There are correspondence tables within classification ",
-      klass,
+      classification,
       " (between different time points). Use the changes = TRUE option in the apply_klass and get_klass functions to get these\n "
     )
   }
@@ -347,5 +347,5 @@ correspond_list <- function(klass, date = NULL) {
 #' @export
 CorrespondList <- function(klass, date = NULL) {
   .Deprecated("correspond_list")
-  correspond_list(klass = klass, date = date)
+  correspond_list(classification = klass, date = date)
 }

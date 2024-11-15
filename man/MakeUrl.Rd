@@ -5,7 +5,7 @@
 \title{Internal function to create URL address}
 \usage{
 MakeUrl(
-  klass,
+  classification,
   correspond = NULL,
   correspondID = NULL,
   variant_name = NULL,
@@ -17,7 +17,7 @@ MakeUrl(
 )
 }
 \arguments{
-\item{klass}{Classification number}
+\item{classification}{Classification number}
 
 \item{correspond}{Target number for correspondence table}
 
