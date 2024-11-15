@@ -5,12 +5,12 @@
 \alias{GetFamily}
 \title{Identify corresponding family from a classification number}
 \usage{
-get_family(klass)
+get_family(classification)
 
 GetFamily(klass)
 }
 \arguments{
-\item{klass}{Classification number}
+\item{classification}{Classification number}
 }
 \value{
 Family number
@@ -19,6 +19,6 @@ Family number
 Identify corresponding family from a classification number
 }
 \examples{
-get_family(klass = 7)
+get_family(classification = 7)
 }
 \keyword{internal}

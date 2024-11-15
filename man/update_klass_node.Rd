@@ -27,11 +27,10 @@ klass_131 <- klass_graph(131)
 
 # Find the most recent node in the graph representing the code "0101" (Halden,
 # valid to 2020.)
-
 halden_node <- klass_node(klass_131, "0101")
 
 # Find the most recent code corresponding to 0101 Halden
-
 halden_node_updated <- update_klass_node(klass_131, halden_node)
+
 
 }

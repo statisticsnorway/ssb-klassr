@@ -6,7 +6,7 @@
 \title{Fetch Statistics Norway classification data using API}
 \usage{
 get_klass(
-  klass,
+  classification,
   date = NULL,
   correspond = NULL,
   correspondID = NULL,
@@ -32,11 +32,11 @@ GetKlass(
 )
 }
 \arguments{
-\item{klass}{Number/string of the classification ID/number. (use klass_list() to find this)}
+\item{classification}{Number/string of the classification ID/number. (use klass_list() to find this)}
 
 \item{date}{String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.}
 
-\item{correspond}{Number/string of the target klass for correspondence table (if a correspondence table is requested).}
+\item{correspond}{Number/string of the target classification for correspondence table (if a correspondence table is requested).}
 
 \item{correspondID}{ID number of the correspondence table to retrieve. Use as an alternative to correspond.}
 
@@ -65,8 +65,8 @@ Fetch Statistics Norway classification data using API
 }
 \examples{
 # Get classification for occupation classifications
-head(get_klass(klass = "7"))
+head(get_klass(classification = "7"))
 # Get classification for occupation classifications in English
-head(get_klass(klass = "7", language = "en"))
+head(get_klass(classification = "7", language = "en"))
 }
 \keyword{internal}

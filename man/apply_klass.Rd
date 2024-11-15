@@ -7,7 +7,7 @@
 \usage{
 apply_klass(
   x,
-  klass,
+  classification,
   date = NULL,
   variant = NULL,
   correspond = NULL,
@@ -32,7 +32,7 @@ ApplyKlass(
 \arguments{
 \item{x}{Input vector of classification codes. Vector must match "code" column from a call to get_klass().}
 
-\item{klass}{Classification number}
+\item{classification}{Classification number}
 
 \item{date}{String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.}
 
@@ -56,6 +56,10 @@ Match and convert a classification
 }
 \examples{
 data(klassdata)
-kommune_names <- apply_klass(x = klassdata$kommune, klass = 131, language = "en", format = FALSE)
+kommune_names <- apply_klass(x = klassdata$kommune,
+                              classification = 131,
+                              language = "en",
+                              format = FALSE
+                              )
 }
 \keyword{internal}

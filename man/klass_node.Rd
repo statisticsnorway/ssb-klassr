@@ -28,11 +28,13 @@ date.
 
 # Build a graph directed towards the most recent codes.
 library(klassR)
+\dontrun{
 klass_131 <- klass_graph(131)
+}
 
 # Find the most recent node in the graph representing the code "0101" (Halden,
 # valid to 2020.)
-
+\dontrun{
 halden_node <- klass_node(klass_131, "0101")
-
+}
 }

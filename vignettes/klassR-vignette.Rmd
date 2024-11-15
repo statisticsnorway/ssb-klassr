@@ -199,7 +199,7 @@ We can use `apply_klass` to create a variable for the municipality names (classi
 
 ```{r, eval=F}
 klassdata$kommune_names <- apply_klass(klassdata$kommune,
-  klass = 131
+  classification = 131
 )
 head(klassdata)
 ```
@@ -207,7 +207,7 @@ head(klassdata)
 
 ```{r, echo=F, warning=F}
 klassdata$kommune_names <- apply_klass(klassdata$kommune,
-  klass = 131,
+  classification = 131,
   date = "2016-01-01"
 )
 kable(head(klassdata))
@@ -308,7 +308,7 @@ We can apply this correspondence between municipality and region in our example 
 
 ```{r, eval =F}
 klassdata$region <- apply_klass(klassdata$kommune,
-  klass = 131,
+  classification = 131,
   correspond = 106,
   date = "2020-01-01"
 )
@@ -330,9 +330,9 @@ kable(head(klassdata))
 ## 7. Variants
 It is also possible to fetch a variant of a classification. You need to provide both the classification number and the variant number. 
 ```{r, eval = FALSE}
-get_klass(klass = 6, variant = 1616, date = "2021-01-02")
+get_klass(6, variant = 1616, date = "2021-01-02")
 ```
 
 ```{r, echo = FALSE}
-kable(head(get_klass(klass = 6, variant = 1616, date = "2021-01-02")))
+kable(head(get_klass(6, variant = 1616, date = "2021-01-02")))
 ```

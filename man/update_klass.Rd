@@ -100,9 +100,11 @@ Update multiple Klass codes to a desired date.
 library(klassR)
 codes <- get_klass(131, date = "2020-01-01")[["code"]]
 
+\dontrun{
 updated_codes <- update_klass(codes,
   dates = "2020-01-01",
   classification = 131
 )
+}
 
 }
