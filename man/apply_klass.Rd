@@ -47,6 +47,8 @@ ApplyKlass(
 \item{output}{String describing output. May be "name" (default), "code" or "both".}
 
 \item{format}{Logical for whther to run formatting av input vector x (Default = TRUE), important to check if formatting is in one level.}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 A vector or data frame is returned with names and/or code of the desired output level.

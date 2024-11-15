@@ -196,6 +196,7 @@ apply_klass <- function(x,
 
 
 #' @rdname apply_klass
+#' @param klass Deprecated; use `classification` instead.
 #' @export
 ApplyKlass <- function(x,
                        klass,

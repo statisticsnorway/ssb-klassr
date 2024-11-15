@@ -11,6 +11,8 @@ GetFamily(klass)
 }
 \arguments{
 \item{classification}{Classification number}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 Family number

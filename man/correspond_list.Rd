@@ -14,6 +14,8 @@ CorrespondList(klass, date = NULL)
 \item{classification}{Classification number}
 
 \item{date}{Date for classification (format = "YYYY-mm-dd"). Default is current date}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 Data frame with list of corrsepondence tables, source ID and target ID.

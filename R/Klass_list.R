@@ -203,6 +203,7 @@ get_version <- function(classification = NULL, date = NULL, family = NULL, klass
 
 
 #' @rdname get_version
+#' @param klass Deprecated; use `classification` instead.
 GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
   .Deprecated("get_version")
   get_version(classification = klass, date = date, family = family, klassNr = klassNr)
@@ -254,6 +255,7 @@ get_family <- function(classification) {
 
 
 #' @rdname get_family
+#' @param klass Deprecated; use `classification` instead.
 GetFamily <- function(klass) {
   .Deprecated("get_family")
   get_family(classification = klass)
@@ -331,6 +333,7 @@ correspond_list <- function(classification, date = NULL) {
 
 
 #' @rdname correspond_list
+#' @param klass Deprecated; use `classification` instead.
 CorrespondList <- function(klass, date = NULL) {
   .Deprecated("correspond_list")
   correspond_list(classification = klass, date = date)
