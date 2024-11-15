@@ -172,7 +172,7 @@ get_variant_name <- function(variant) {
 #' @keywords internal
 #' @return text in json format
 GetUrl2 <- function(url, check = TRUE) {
-  # Fetch contents from classfication 
+  # Fetch contents from classfication
   if (check) {
     hent_klass <- check_connect(url)
   } else {

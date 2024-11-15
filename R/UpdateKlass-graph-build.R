@@ -47,7 +47,7 @@ get_klass_changes <- function(classification) {
 #' \dontrun{
 #' klass_131_2020 <- klass_graph(131, "2020-01-01")
 #' }
-#' 
+#'
 klass_graph <- function(classification, date = NULL) {
   if (is.null(classification)) stop("Please provide a classification ID.")
 
