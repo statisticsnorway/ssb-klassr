@@ -44,7 +44,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_klass</span><span class="op">(</span></span>
-<span>  <span class="va">klass</span>,</span>
+<span>  <span class="va">classification</span>,</span>
 <span>  date <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  correspond <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  correspondID <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -74,7 +74,7 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-klass">klass<a class="anchor" aria-label="anchor" href="#arg-klass"></a></dt>
+<dl><dt id="arg-classification">classification<a class="anchor" aria-label="anchor" href="#arg-classification"></a></dt>
 <dd><p>Number/string of the classification ID/number. (use klass_list() to find this)</p></dd>
 
 
@@ -83,7 +83,7 @@
 
 
 <dt id="arg-correspond">correspond<a class="anchor" aria-label="anchor" href="#arg-correspond"></a></dt>
-<dd><p>Number/string of the target klass for correspondence table (if a correspondence table is requested).</p></dd>
+<dd><p>Number/string of the target classification for correspondence table (if a correspondence table is requested).</p></dd>
 
 
 <dt id="arg-correspondid">correspondID<a class="anchor" aria-label="anchor" href="#arg-correspondid"></a></dt>
@@ -127,7 +127,7 @@ effective date for classification change in classification change tables.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get classification for occupation classifications</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_klass</span><span class="op">(</span>klass <span class="op">=</span> <span class="st">"7"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_klass</span><span class="op">(</span>classification <span class="op">=</span> <span class="st">"7"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   code parentCode level                                        name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    0       &lt;NA&gt;     1                  Militære yrker og uoppgitt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   00          0     2 Uoppgitt / yrker som ikke kan identifiseres</span>
@@ -136,7 +136,7 @@ effective date for classification change in classification change tables.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5   01          0     2         Offiserer fra fenrik og høyere grad</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6  011         01     3         Offiserer fra fenrik og høyere grad</span>
 <span class="r-in"><span><span class="co"># Get classification for occupation classifications in English</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_klass</span><span class="op">(</span>klass <span class="op">=</span> <span class="st">"7"</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_klass</span><span class="op">(</span>classification <span class="op">=</span> <span class="st">"7"</span>, language <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   code parentCode level                                      name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    0       &lt;NA&gt;     1              Armed forces and unspecified</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   00          0     2 Unspecified or unidentifiable occupations</span>
