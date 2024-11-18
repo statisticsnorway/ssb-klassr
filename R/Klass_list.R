@@ -64,8 +64,6 @@ list_klass <- function(codelists = FALSE, language = "nb") {
 }
 
 #' @rdname list_klass
-#' @keywords internal
-#' @export
 ListKlass <- function(codelists = FALSE, language = "nb") {
   .Deprecated("list_klass")
   list_klass(codelists = codelists, language = language)
@@ -115,8 +113,6 @@ list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
 
 
 #' @rdname list_family
-#' @keywords internal
-#' @export
 ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
   .Deprecated("list_family")
   list_family(family = family, codelists = codelists, language = language)
@@ -147,8 +143,6 @@ search_klass <- function(query, codelists = FALSE, size = 20) {
 
 
 #' @rdname search_klass
-#' @keywords internal
-#' @export
 SearchKlass <- function(query, codelists = FALSE, size = 20) {
   .Deprecated("search_klass")
   search_klass(query = query, codelists = codelists, size = size)
@@ -209,8 +203,7 @@ get_version <- function(classification = NULL, date = NULL, family = NULL, klass
 
 
 #' @rdname get_version
-#' @keywords internal
-#' @export
+#' @param klass Deprecated; use `classification` instead.
 GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
   .Deprecated("get_version")
   get_version(classification = klass, date = date, family = family, klassNr = klassNr)
@@ -238,8 +231,6 @@ get_name <- function(version) {
 
 
 #' @rdname get_name
-#' @keywords internal
-#' @export
 GetName <- function(version) {
   .Deprecated("get_name")
   get_name(version = version)
@@ -264,8 +255,7 @@ get_family <- function(classification) {
 
 
 #' @rdname get_family
-#' @keywords internal
-#' @export
+#' @param klass Deprecated; use `classification` instead.
 GetFamily <- function(klass) {
   .Deprecated("get_family")
   get_family(classification = klass)
@@ -343,8 +333,7 @@ correspond_list <- function(classification, date = NULL) {
 
 
 #' @rdname correspond_list
-#' @keywords internal
-#' @export
+#' @param klass Deprecated; use `classification` instead.
 CorrespondList <- function(klass, date = NULL) {
   .Deprecated("correspond_list")
   correspond_list(classification = klass, date = date)

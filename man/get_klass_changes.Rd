@@ -15,3 +15,4 @@ A \code{data.frame} containing the code changes.
 \description{
 Get all changes that have occurred in a Klass classification
 }
+\keyword{internal}

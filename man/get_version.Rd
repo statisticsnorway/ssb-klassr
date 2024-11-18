@@ -17,6 +17,8 @@ GetVersion(klass = NULL, date = NULL, family = NULL, klassNr = FALSE)
 \item{family}{Family ID number if a list of version number for all classes is desired}
 
 \item{klassNr}{True/False for whether to output classification numbers. Default = FALSE}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 Number, vector or data frame with version numbers and calssification numbers if specified.
@@ -27,4 +29,3 @@ Get version number of a class given a date
 \examples{
 get_version(7)
 }
-\keyword{internal}

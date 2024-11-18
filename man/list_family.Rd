@@ -27,4 +27,3 @@ Print a list of all families and the number of classifications in each
 \examples{
 list_family(family = 1)
 }
-\keyword{internal}

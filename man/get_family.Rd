@@ -11,6 +11,8 @@ GetFamily(klass)
 }
 \arguments{
 \item{classification}{Classification number}
+
+\item{klass}{Deprecated; use `classification` instead.}
 }
 \value{
 Family number
@@ -21,4 +23,3 @@ Identify corresponding family from a classification number
 \examples{
 get_family(classification = 7)
 }
-\keyword{internal}

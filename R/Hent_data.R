@@ -412,7 +412,7 @@ get_klass <- function(classification,
 
 
 #' @rdname get_klass
-#' @keywords internal
+#' @param klass Deprecated; use `classification` instead.
 #' @export
 GetKlass <- function(klass,
                      date = NULL,

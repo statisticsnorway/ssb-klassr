@@ -67,3 +67,4 @@ Update a code found in a directed graph based on a Klass-classification
 \seealso{
 See [update_klass] for updating multiple codes in one function call.
 }
+\keyword{internal}
