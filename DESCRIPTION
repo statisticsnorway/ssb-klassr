@@ -23,7 +23,7 @@ Description: Functions to search, retrieve, apply and update classifications
   to choose language, hierarchical level and formatting.
 Depends:
     R (>= 3.5.0)
-Imports: tm, httr, jsonlite, igraph, methods
+Imports: tm, httr, jsonlite, igraph (>= 2.1.1), methods
 URL: https://statisticsnorway.github.io/ssb-klassr/
 BugReports: https://github.com/statisticsnorway/ssb-klassr/issues
 License: MIT + file LICENSE
