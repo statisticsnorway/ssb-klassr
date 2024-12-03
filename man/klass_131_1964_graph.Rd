@@ -5,7 +5,7 @@
 \alias{klass_131_1964_graph}
 \title{Test Graph data for municipalities in 1964}
 \format{
-An object of class \code{igraph} of length 1936.
+An object of class \code{igraph} of length 1933.
 }
 \usage{
 klass_131_1964_graph
