@@ -1,26 +1,3 @@
-#' Get all changes that have occurred in a Klass classification
-#'
-#' @param classification The ID of the desired classification.
-#'
-#' @return A \code{data.frame} containing the code changes.
-#'
-#' @keywords internal
-#'
-get_klass_changes <- function(classification) {
-  df <-
-    dplyr::bind_rows(
-      httr::content(
-        httr::GET(
-          paste0(
-            "https://data.ssb.no/api/klass/v1/classifications/",
-            classification, "/changes?from=1860-01-01"
-          )
-        )
-      )[["codeChanges"]]
-    )
-
-  return(df[!(is.na(df$oldCode) | is.na(df$newCode)), ])
-}
 
 #' Build a directed graph of code changes based on a Klass classification
 #'
@@ -54,24 +31,22 @@ klass_graph <- function(classification, date = NULL) {
   if (is.null(classification)) stop("Please provide a classification ID.")
 
   ## Downloading codes and code changes
+  
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    classification, "/changes?from=0001-01-01"
+  )
 
-  api_endringer <- get_klass_changes(classification)
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url), 
+                                      flatten = TRUE)[["codeChanges"]]
+  
+  codes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    classification, "/codes?from=0001-01-01"
+  )
 
-  api_alle <-
-    do.call(
-      rbind,
-      lapply(
-        lapply(
-          httr::content(httr::GET(paste0(
-            "https://data.ssb.no/api/klass/v1/classifications/",
-            classification, "/codes?from=0001-01-01"
-          )))[["codes"]],
-          lapply,
-          function(x) ifelse(is.null(x), NA, x)
-        ),
-        as.data.frame
-      )
-    )
+  api_alle <- jsonlite::fromJSON(klassR:::GetUrl2(codes_url), 
+                                 flatten = TRUE)[["codes"]]
 
 
   ## Calculating code variants and changes. A code may have more variants than
