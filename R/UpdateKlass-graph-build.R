@@ -86,16 +86,73 @@ klass_graph <- function(classification, date = NULL) {
     SIMPLIFY = TRUE
   )
 
-  changes$changeOccurred <- as.Date(changes$changeOccurred)
+  ## `variant_changes` represents additional changes that are inferred from code
+  ## variants where the `validTo` and `validFrom` values are "adjacent", e.g.
+  ## variant 1 having a `validTo` of "1964-01-01" and variant 2 having a
+  ## `validFrom` of "1964-01-01". In these cases we construct a change between
+  ## the two variants on the assumption that the variants are connected.
 
+  variant_changes <- 
+    do.call(rbind, lapply(split(variants, variants$code), function(df) {
+      
+      # We check if each variant has a `validTo` that matches the next variant's
+      # `validFrom`. The last variant always gets `FALSE`, since there is no
+      # next variant to check against.
+      df$adjacent <- c(df$validTo[-nrow(df)] == df$validFrom[-1], FALSE)
+      
+      # We keep rows where `validTo` is equal to a `validFrom` value in another
+      # row, or where `validTo` is either the highest value or NA. We wrap this
+      # call in suppressWarnings to silence warnings that are due to all values
+      # of `validTo` being NA. This is usually the case when there's only one
+      # variant of a code.
+      suppressWarnings({
+        
+        
+        df <- df[df$adjacent | 
+                   df$validTo == max(df$validTo, na.rm = TRUE) |
+                   is.na(df$validTo),]
+        
+      })
+      
+      # Preparing the changes table. These columns represent the "from" side of
+      # the change, so we simply copy the variables already present.
+      df$oldCode        <- df$code
+      df$newCode        <- df$code
+      df$variantFrom    <- df$variant
+      df$changeOccurred <- as.character(df$validTo)
+      
+      # Constructing the "to" side of the change. We set `variantTo` to the next
+      # `variant` if `validTo` matches that variant's `validFrom`. This ensures
+      # that we don't connect two variants that aren't adjacent in time, e.g. if
+      # a code has been discontinued and then reused after a period of time.
+      df$variantTo <- ifelse(df$adjacent, df$variant + 1, NA)
+      
+      # We exclude rows where variantTo is NA, since these aren't changes. This
+      # also excludes rows representing the last variant of a code (see
+      # `max_validTo`). We also only keep the newly constructed columns.
+      df <- df[!is.na(df$variantTo), c("oldCode", "changeOccurred", "newCode", 
+                                       "variantFrom", "variantTo")]
+
+      return(df)
+      
+    }))
+  
+  # The final changes table is the combination of changes identified earlier and
+  # the changes inferred from evaluating the dates in the variant table. We wrap
+  # the call in `unique` in order to remove duplicates, since some of the
+  # inferred changes are present in `changes`.
+  all_changes <- unique(rbind(changes, variant_changes))
+  
   ## Calculating vertices and edges.
 
   klass_vertices <- variants
 
   klass_vertices$vertex <- as.character(1:nrow(klass_vertices))
+  
+  all_changes$changeOccurred <- as.Date(all_changes$changeOccurred)
 
   klass_edges <-
-    merge(changes,
+    merge(all_changes,
       stats::setNames(
         klass_vertices[, c("code", "variant", "vertex")],
         c("oldCode", "variantFrom", "vertexFrom")
