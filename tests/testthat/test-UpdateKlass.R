@@ -170,3 +170,19 @@ test_that("update_klass gir forventet format på output", {
                1)
   expect_equal(length(update_helper(output = "code", report = FALSE)), 1)
 })
+
+test_that("update_klass oppdaterer koder som har hatt navneendringer", {
+  
+  ## ... og der navneendringene ikke er logget som endringer, jf. [#56]
+  
+  data(klass_131_graph)
+  graph <- klass_131_graph
+  
+  expect_equal(update_klass(codes = "1420", 
+                            dates = "1838-01-01", 
+                            graph = graph),
+               "4640",
+               ignore_attr = TRUE)
+  
+  
+})
