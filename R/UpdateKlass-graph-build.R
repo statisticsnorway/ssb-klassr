@@ -310,6 +310,9 @@ find_dates <- function(code, api_alle, api_endringer) {
 
     return(dates_df)
   } else {
+    
+    dates_df <- dates_df[, c("validFrom", "validTo")]
+    
     # `api_alle` does not give information on codes combining with already
     # existing codes. We use `api_endringer` to expand the dates table to
     # include periods based on when a code has been either combined with
@@ -335,13 +338,14 @@ find_dates <- function(code, api_alle, api_endringer) {
 
         dates_df <-
           rbind(
-            dates_df[!dates_df$rn %in% row_to_edit$rn, ],
-            old_row,
-            new_row
+            dates_df[!dates_df$rn %in% row_to_edit$rn, 
+                     c("validFrom", "validTo")],
+            old_row[, c("validFrom", "validTo")],
+            new_row[, c("validFrom", "validTo")]
           )
       }
     }
-
+      
     dates_df <- dates_df[
       order(dates_df$validFrom),
       c("validFrom", "validTo")
@@ -382,12 +386,27 @@ find_name <- function(code, validFrom, validTo, api_alle) {
   koder <- api_alle[api_alle$code == code, ]
 
   if (is.na(validTo)) {
-    return(koder[is.na(koder$validToInRequestedRange), ]$name)
+    
+    name <- koder[is.na(koder$validToInRequestedRange), ]$name 
+    
   } else {
-    return(
-      koder[validFrom >= koder$validFromInRequestedRange &
-        (validTo <= koder$validToInRequestedRange |
-          is.na(koder$validToInRequestedRange)), ]$name
-    )
+    
+    name <- koder[
+      validFrom >= koder$validFromInRequestedRange & 
+        (validTo <= koder$validToInRequestedRange | 
+           is.na(koder$validToInRequestedRange)), 
+    ][["name"]]
+    
   }
+  
+  if (length(name) == 0) {
+    
+    return(NA)
+    
+  } else {
+    
+    return(name)
+    
+  }
+  
 }
