@@ -1,10 +1,19 @@
 test_that("update_klass gir riktig resultat ved enkle endringer", {
   data(klass_131_2020_graph)
   graph <- klass_131_2020_graph
+  
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+  
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url), 
+                                      flatten = TRUE)[["codeChanges"]]
 
   endringer_kommunestruktur_enkle <-
-    get_klass_changes(131) %>%
-    dplyr::filter(changeOccurred == "2020-01-01") %>% # 2020 hadde mange enkle endringer
+    api_endringer %>%
+    # 2020 hadde mange enkle endringer
+    dplyr::filter(changeOccurred == "2020-01-01") %>% 
     dplyr::group_by(oldCode) %>%
     dplyr::filter(dplyr::n() == 1) %>% # vi tester ikke delinger av koder
     dplyr::group_by(newCode) %>%
@@ -33,9 +42,17 @@ test_that("update_klass gir riktig resultat ved enkle endringer", {
 test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
+  
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+  
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url), 
+                                      flatten = TRUE)[["codeChanges"]]
 
   endringer_kommunestruktur_sammenslåinger <-
-    get_klass_changes(131) %>%
+    api_endringer %>% 
     dplyr::filter(changeOccurred == "1964-01-01") %>%
     dplyr::group_by(oldCode, changeOccurred) %>%
     dplyr::filter(dplyr::n() == 1) %>% # vi tester ikke delinger av koder
@@ -91,10 +108,19 @@ test_that("update_klass gir riktig resultat ved ugyldige koder", {
 test_that("update_klass gir riktig resultat ved delte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
-
+  
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+  
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url), 
+                                      flatten = TRUE)[["codeChanges"]]
+  
   endringer_kommunestruktur_delinger <-
-    get_klass_changes(131) %>%
-    dplyr::filter(changeOccurred == "1964-01-01") %>% # 1964 hadde klart flest delinger av koder
+    api_endringer %>% 
+    # 1964 hadde klart flest delinger av koder
+    dplyr::filter(changeOccurred == "1964-01-01") %>% 
     dplyr::group_by(oldCode) %>%
     dplyr::filter(dplyr::n() > 1) %>%
     dplyr::ungroup() %>%
