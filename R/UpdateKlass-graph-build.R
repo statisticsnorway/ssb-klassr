@@ -186,7 +186,7 @@ klass_graph <- function(classification, date = NULL) {
     value = klass_edges$changeOccurred
   )
 
-  no_edges <- klass_vertices[!klass_vertices$vertex %in% igraph::V(graph)$name, ]
+  no_edges <- klass_vertices[!klass_vertices$vertex %in% igraph::V(graph)$name,]
 
   graph <- igraph::add_vertices(
     graph = graph,
@@ -196,8 +196,8 @@ klass_graph <- function(classification, date = NULL) {
 
   # Redirecting edges; if date is NULL, this step does not change the graph. By
   # redirecting the edges based on date in this step, we do not need to check
-  # dates in update_klass_node(), we simply follow outgoing edges to reach the code
-  # valid at `date`.
+  # dates in update_klass_node(), we simply follow outgoing edges to reach the 
+  # code valid at `date`.
 
   graph <-
     igraph::reverse_edges(
@@ -234,7 +234,8 @@ klass_graph <- function(classification, date = NULL) {
 #' @param changeOccurred The date the change occurred
 #' @param variants The variants lookup-table.
 #'
-#' @return The variant corresponding to the code \code{x} at date \code{changeOccurred}.
+#' @return The variant corresponding to the code \code{x} at date 
+#' \code{changeOccurred}.
 #'
 #' @seealso [find_variant_to]
 #'
@@ -283,6 +284,7 @@ find_variant_to <- function(x, changeOccurred, variants) {
 #' @keywords internal
 #'
 find_dates <- function(code, api_alle, api_endringer) {
+  
   dates_df <- api_alle[api_alle$code == code, ]
 
   dates_df <- dates_df[c(
@@ -346,12 +348,6 @@ find_dates <- function(code, api_alle, api_endringer) {
     ]
 
     dates_df$variant <- 1:nrow(dates_df)
-
-    # dates_df$name <- map2_chr(dates_df$validFrom,
-    #                           dates_df$validTo,
-    #                           find_name,
-    #                           code = code,
-    #                           api_alle = api_alle)
 
     dates_df$name <-
       mapply(find_name,
