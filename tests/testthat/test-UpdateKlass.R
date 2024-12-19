@@ -157,11 +157,13 @@ test_that("update_klass gir forventet format på output", {
   expect_type(update_helper(output = "code", report = TRUE), "list")
   expect_type(update_helper(output = TRUE, report = FALSE), "list")
   expect_type(update_helper(output = "code", report = TRUE)[[1]], "character")
-  expect_s3_class(update_helper(output = c("code", "name"), report = TRUE)[[1]], "data.frame")
+  expect_s3_class(update_helper(output = c("code", "name"), report = TRUE)[[1]], 
+                  "data.frame")
   expect_type(update_helper(output = c("code", "name"), report = TRUE), "list")
   expect_type(update_helper(output = TRUE, report = FALSE), "list")
   expect_s3_class(update_helper(output = TRUE, report = FALSE)[[1]], "data.frame")
   expect_equal(nrow(update_helper(output = TRUE, report = FALSE)[[1]]), 1)
-  expect_equal(nrow(update_helper(output = c("code", "name"), report = FALSE)[[1]]), 1)
+  expect_equal(nrow(update_helper(output = c("code", "name"), report = FALSE)[[1]]), 
+               1)
   expect_equal(length(update_helper(output = "code", report = FALSE)), 1)
 })
