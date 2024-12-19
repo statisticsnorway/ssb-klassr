@@ -80,6 +80,9 @@ test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   omkodet %>%
     dplyr::rowwise() %>%
     dplyr::filter(!newCode %in% oppdatert) %>%
+    # `1441 Selje` is split in 1964 to `1441 Selje` and `1439 Vågsøy`,
+    # but only `1439 Vågsøy` is recorded in the changes API
+    dplyr::filter(!oldCode == "1441" & changeOccurred == "1964-01-01") %>% 
     nrow() %>%
     expect_equal(expected = 0)
 
