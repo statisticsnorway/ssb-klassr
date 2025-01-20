@@ -185,7 +185,7 @@ update_klass_node <- function(graph, node) {
 
   visited <- unique(c(
     node,
-    bfs_result$order[!bfs_result$name %in% unique(end_nodes)$name],
+    bfs_result$order[!bfs_result$order$name %in% unique(end_nodes)$name],
     end_nodes
   ))
 

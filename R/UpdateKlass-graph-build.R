@@ -1,30 +1,6 @@
-#' Get all changes that have occurred in a Klass classification
-#'
-#' @param classification The ID of the desired classification.
-#'
-#' @return A \code{data.frame} containing the code changes.
-#'
-#' @keywords internal
-#'
-get_klass_changes <- function(classification) {
-  df <-
-    dplyr::bind_rows(
-      httr::content(
-        httr::GET(
-          paste0(
-            "https://data.ssb.no/api/klass/v1/classifications/",
-            classification, "/changes?from=1860-01-01"
-          )
-        )
-      )[["codeChanges"]]
-    )
-
-  return(df[!(is.na(df$oldCode) | is.na(df$newCode)), ])
-}
-
 #' Build a directed graph of code changes based on a Klass classification
 #'
-#' @inheritParams get_klass_changes
+#' @param classification The ID of the desired classification.
 #'
 #' @param date The date which the edges of the graph should be directed towards.
 #'
@@ -55,23 +31,23 @@ klass_graph <- function(classification, date = NULL) {
 
   ## Downloading codes and code changes
 
-  api_endringer <- get_klass_changes(classification)
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    classification, "/changes?from=0001-01-01"
+  )
 
-  api_alle <-
-    do.call(
-      rbind,
-      lapply(
-        lapply(
-          httr::content(httr::GET(paste0(
-            "https://data.ssb.no/api/klass/v1/classifications/",
-            classification, "/codes?from=0001-01-01"
-          )))[["codes"]],
-          lapply,
-          function(x) ifelse(is.null(x), NA, x)
-        ),
-        as.data.frame
-      )
-    )
+  api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url),
+    flatten = TRUE
+  )[["codeChanges"]]
+
+  codes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    classification, "/codes?from=0001-01-01"
+  )
+
+  api_alle <- jsonlite::fromJSON(GetUrl2(codes_url),
+    flatten = TRUE
+  )[["codes"]]
 
 
   ## Calculating code variants and changes. A code may have more variants than
@@ -111,7 +87,59 @@ klass_graph <- function(classification, date = NULL) {
     SIMPLIFY = TRUE
   )
 
-  changes$changeOccurred <- as.Date(changes$changeOccurred)
+  ## `variant_changes` represents additional changes that are inferred from code
+  ## variants where the `validTo` and `validFrom` values are "adjacent", e.g.
+  ## variant 1 having a `validTo` of "1964-01-01" and variant 2 having a
+  ## `validFrom` of "1964-01-01". In these cases we construct a change between
+  ## the two variants on the assumption that the variants are connected.
+
+  variant_changes <-
+    do.call(rbind, lapply(split(variants, variants$code), function(df) {
+      # We check if each variant has a `validTo` that matches the next variant's
+      # `validFrom`. The last variant always gets `FALSE`, since there is no
+      # next variant to check against.
+      df$adjacent <- c(df$validTo[-nrow(df)] == df$validFrom[-1], FALSE)
+
+      # We keep rows where `validTo` is equal to a `validFrom` value in another
+      # row, or where `validTo` is either the highest value or NA. We wrap this
+      # call in suppressWarnings to silence warnings that are due to all values
+      # of `validTo` being NA. This is usually the case when there's only one
+      # variant of a code.
+      suppressWarnings({
+        df <- df[df$adjacent |
+          df$validTo == max(df$validTo, na.rm = TRUE) |
+          is.na(df$validTo), ]
+      })
+
+      # Preparing the changes table. These columns represent the "from" side of
+      # the change, so we simply copy the variables already present.
+      df$oldCode <- df$code
+      df$newCode <- df$code
+      df$variantFrom <- df$variant
+      df$changeOccurred <- as.character(df$validTo)
+
+      # Constructing the "to" side of the change. We set `variantTo` to the next
+      # `variant` if `validTo` matches that variant's `validFrom`. This ensures
+      # that we don't connect two variants that aren't adjacent in time, e.g. if
+      # a code has been discontinued and then reused after a period of time.
+      df$variantTo <- ifelse(df$adjacent, df$variant + 1, NA)
+
+      # We exclude rows where variantTo is NA, since these aren't changes. This
+      # also excludes rows representing the last variant of a code (see
+      # `max_validTo`). We also only keep the newly constructed columns.
+      df <- df[!is.na(df$variantTo), c(
+        "oldCode", "changeOccurred", "newCode",
+        "variantFrom", "variantTo"
+      )]
+
+      return(df)
+    }))
+
+  # The final changes table is the combination of changes identified earlier and
+  # the changes inferred from evaluating the dates in the variant table. We wrap
+  # the call in `unique` in order to remove duplicates, since some of the
+  # inferred changes are present in `changes`.
+  all_changes <- unique(rbind(changes, variant_changes))
 
   ## Calculating vertices and edges.
 
@@ -119,8 +147,10 @@ klass_graph <- function(classification, date = NULL) {
 
   klass_vertices$vertex <- as.character(1:nrow(klass_vertices))
 
+  all_changes$changeOccurred <- as.Date(all_changes$changeOccurred)
+
   klass_edges <-
-    merge(changes,
+    merge(all_changes,
       stats::setNames(
         klass_vertices[, c("code", "variant", "vertex")],
         c("oldCode", "variantFrom", "vertexFrom")
@@ -164,8 +194,8 @@ klass_graph <- function(classification, date = NULL) {
 
   # Redirecting edges; if date is NULL, this step does not change the graph. By
   # redirecting the edges based on date in this step, we do not need to check
-  # dates in update_klass_node(), we simply follow outgoing edges to reach the code
-  # valid at `date`.
+  # dates in update_klass_node(), we simply follow outgoing edges to reach the
+  # code valid at `date`.
 
   graph <-
     igraph::reverse_edges(
@@ -202,7 +232,8 @@ klass_graph <- function(classification, date = NULL) {
 #' @param changeOccurred The date the change occurred
 #' @param variants The variants lookup-table.
 #'
-#' @return The variant corresponding to the code \code{x} at date \code{changeOccurred}.
+#' @return The variant corresponding to the code \code{x} at date
+#' \code{changeOccurred}.
 #'
 #' @seealso [find_variant_to]
 #'
@@ -276,6 +307,8 @@ find_dates <- function(code, api_alle, api_endringer) {
 
     return(dates_df)
   } else {
+    dates_df <- dates_df[, c("validFrom", "validTo")]
+
     # `api_alle` does not give information on codes combining with already
     # existing codes. We use `api_endringer` to expand the dates table to
     # include periods based on when a code has been either combined with
@@ -301,9 +334,12 @@ find_dates <- function(code, api_alle, api_endringer) {
 
         dates_df <-
           rbind(
-            dates_df[!dates_df$rn %in% row_to_edit$rn, ],
-            old_row,
-            new_row
+            dates_df[
+              !dates_df$rn %in% row_to_edit$rn,
+              c("validFrom", "validTo")
+            ],
+            old_row[, c("validFrom", "validTo")],
+            new_row[, c("validFrom", "validTo")]
           )
       }
     }
@@ -314,12 +350,6 @@ find_dates <- function(code, api_alle, api_endringer) {
     ]
 
     dates_df$variant <- 1:nrow(dates_df)
-
-    # dates_df$name <- map2_chr(dates_df$validFrom,
-    #                           dates_df$validTo,
-    #                           find_name,
-    #                           code = code,
-    #                           api_alle = api_alle)
 
     dates_df$name <-
       mapply(find_name,
@@ -354,12 +384,18 @@ find_name <- function(code, validFrom, validTo, api_alle) {
   koder <- api_alle[api_alle$code == code, ]
 
   if (is.na(validTo)) {
-    return(koder[is.na(koder$validToInRequestedRange), ]$name)
+    name <- koder[is.na(koder$validToInRequestedRange), ]$name
   } else {
-    return(
-      koder[validFrom >= koder$validFromInRequestedRange &
+    name <- koder[
+      validFrom >= koder$validFromInRequestedRange &
         (validTo <= koder$validToInRequestedRange |
-          is.na(koder$validToInRequestedRange)), ]$name
-    )
+          is.na(koder$validToInRequestedRange)),
+    ][["name"]]
+  }
+
+  if (length(name) == 0) {
+    return(NA)
+  } else {
+    return(name)
   }
 }

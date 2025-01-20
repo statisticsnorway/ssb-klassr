@@ -5,7 +5,7 @@
 \alias{klass_131_2020_graph}
 \title{Test Graph data for municipalities in 2020}
 \format{
-An object of class \code{igraph} of length 1933.
+An object of class \code{igraph} of length 2000.
 }
 \usage{
 klass_131_2020_graph

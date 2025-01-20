@@ -2,9 +2,19 @@ test_that("update_klass gir riktig resultat ved enkle endringer", {
   data(klass_131_2020_graph)
   graph <- klass_131_2020_graph
 
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+    flatten = TRUE
+  )[["codeChanges"]]
+
   endringer_kommunestruktur_enkle <-
-    get_klass_changes(131) %>%
-    dplyr::filter(changeOccurred == "2020-01-01") %>% # 2020 hadde mange enkle endringer
+    api_endringer %>%
+    # 2020 hadde mange enkle endringer
+    dplyr::filter(changeOccurred == "2020-01-01") %>%
     dplyr::group_by(oldCode) %>%
     dplyr::filter(dplyr::n() == 1) %>% # vi tester ikke delinger av koder
     dplyr::group_by(newCode) %>%
@@ -34,8 +44,17 @@ test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
 
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+    flatten = TRUE
+  )[["codeChanges"]]
+
   endringer_kommunestruktur_sammenslåinger <-
-    get_klass_changes(131) %>%
+    api_endringer %>%
     dplyr::filter(changeOccurred == "1964-01-01") %>%
     dplyr::group_by(oldCode, changeOccurred) %>%
     dplyr::filter(dplyr::n() == 1) %>% # vi tester ikke delinger av koder
@@ -63,6 +82,9 @@ test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   omkodet %>%
     dplyr::rowwise() %>%
     dplyr::filter(!newCode %in% oppdatert) %>%
+    # `1441 Selje` is split in 1964 to `1441 Selje` and `1439 Vågsøy`,
+    # but only `1439 Vågsøy` is recorded in the changes API
+    dplyr::filter(!oldCode == "1441" & changeOccurred == "1964-01-01") %>%
     nrow() %>%
     expect_equal(expected = 0)
 
@@ -92,9 +114,19 @@ test_that("update_klass gir riktig resultat ved delte koder", {
   data(klass_131_1964_graph)
   graph <- klass_131_1964_graph
 
+  changes_url <- paste0(
+    "https://data.ssb.no/api/klass/v1/classifications/",
+    131, "/changes?from=0001-01-01"
+  )
+
+  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+    flatten = TRUE
+  )[["codeChanges"]]
+
   endringer_kommunestruktur_delinger <-
-    get_klass_changes(131) %>%
-    dplyr::filter(changeOccurred == "1964-01-01") %>% # 1964 hadde klart flest delinger av koder
+    api_endringer %>%
+    # 1964 hadde klart flest delinger av koder
+    dplyr::filter(changeOccurred == "1964-01-01") %>%
     dplyr::group_by(oldCode) %>%
     dplyr::filter(dplyr::n() > 1) %>%
     dplyr::ungroup() %>%
@@ -131,11 +163,34 @@ test_that("update_klass gir forventet format på output", {
   expect_type(update_helper(output = "code", report = TRUE), "list")
   expect_type(update_helper(output = TRUE, report = FALSE), "list")
   expect_type(update_helper(output = "code", report = TRUE)[[1]], "character")
-  expect_s3_class(update_helper(output = c("code", "name"), report = TRUE)[[1]], "data.frame")
+  expect_s3_class(
+    update_helper(output = c("code", "name"), report = TRUE)[[1]],
+    "data.frame"
+  )
   expect_type(update_helper(output = c("code", "name"), report = TRUE), "list")
   expect_type(update_helper(output = TRUE, report = FALSE), "list")
   expect_s3_class(update_helper(output = TRUE, report = FALSE)[[1]], "data.frame")
   expect_equal(nrow(update_helper(output = TRUE, report = FALSE)[[1]]), 1)
-  expect_equal(nrow(update_helper(output = c("code", "name"), report = FALSE)[[1]]), 1)
+  expect_equal(
+    nrow(update_helper(output = c("code", "name"), report = FALSE)[[1]]),
+    1
+  )
   expect_equal(length(update_helper(output = "code", report = FALSE)), 1)
+})
+
+test_that("update_klass oppdaterer koder som har hatt navneendringer", {
+  ## ... og der navneendringene ikke er logget som endringer, jf. [#56]
+
+  data(klass_131_graph)
+  graph <- klass_131_graph
+
+  expect_equal(
+    update_klass(
+      codes = "1420",
+      dates = "1838-01-01",
+      graph = graph
+    ),
+    "4640",
+    ignore_attr = TRUE
+  )
 })

@@ -4,7 +4,7 @@
 
 ## klass_131_graph.R ------------------------------------------------------
 library(klassR)
-klass_131_graph <- klass_graph(classification = 131, date = "2024-10-29")
+klass_131_graph <- klass_graph(classification = 131, date = "2024-12-19")
 
 save(klass_131_graph,
   file ="./data/klass_131_graph.RData",
