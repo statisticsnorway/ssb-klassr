@@ -14,7 +14,8 @@ find_variant_to(x, changeOccurred, variants)
 \item{variants}{The variants lookup-table.}
 }
 \value{
-The variant corresponding to the code \code{x} at date \code{changeOccurred}.
+The variant corresponding to the code \code{x} at date
+\code{changeOccurred}.
 }
 \description{
 Find the variant of a code corresponding to a change *to* a specific code.
