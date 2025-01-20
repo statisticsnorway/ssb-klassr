@@ -1,6 +1,6 @@
 #' Build a directed graph of code changes based on a Klass classification
 #'
-#' @inheritParams get_klass_changes
+#' @param classification The ID of the desired classification.
 #'
 #' @param date The date which the edges of the graph should be directed towards.
 #'
@@ -36,7 +36,7 @@ klass_graph <- function(classification, date = NULL) {
     classification, "/changes?from=0001-01-01"
   )
 
-  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+  api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url),
     flatten = TRUE
   )[["codeChanges"]]
 
@@ -45,7 +45,7 @@ klass_graph <- function(classification, date = NULL) {
     classification, "/codes?from=0001-01-01"
   )
 
-  api_alle <- jsonlite::fromJSON(klassR:::GetUrl2(codes_url),
+  api_alle <- jsonlite::fromJSON(GetUrl2(codes_url),
     flatten = TRUE
   )[["codes"]]
 
