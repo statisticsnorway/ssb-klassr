@@ -18,7 +18,7 @@ determining whether \code{node} is combined. See details.}
 }
 \value{
 \code{TRUE} if the node is a combination of two or more nodes,
-  otherwise \code{FALSE}.
+otherwise \code{FALSE}.
 }
 \description{
 Given a graph and a node, determine if the node is a result of combinations
@@ -26,15 +26,15 @@ of multiple codes.
 }
 \details{
 The function will attempt to reconcile nodes that have split and
-  then later merged again when evaluating a node's combinedness.
+then later merged again when evaluating a node's combinedness.
 
-  If \code{compare_node == NULL}, a node is considered to be combined if more
-  than one node that does not itself have a parent (i.e. codes at the start
-  of a sequence of changes) contribute to \code{node}.
+If \code{compare_node == NULL}, a node is considered to be combined if more
+than one node that does not itself have a parent (i.e. codes at the start
+of a sequence of changes) contribute to \code{node}.
 
-  If \code{compare_node != NULL}, a node is considered to be combined if any
-  node that is not an ancestor of \code{compare_node} contributes to
-  \code{node}, i.e. all paths from \code{node} to the parents of \code{node}
-  pass through \code{compare_node}.
+If \code{compare_node != NULL}, a node is considered to be combined if any
+node that is not an ancestor of \code{compare_node} contributes to
+\code{node}, i.e. all paths from \code{node} to the parents of \code{node}
+pass through \code{compare_node}.
 }
 \keyword{internal}

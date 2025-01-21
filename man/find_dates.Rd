@@ -17,13 +17,13 @@ example.}
 }
 \value{
 A \code{data.frame} with number of rows equal to the number of
-  variants of the combination of code and name, determined by the changes the
-  code has been involved in. The \code{data.frame} has two columns:
+variants of the combination of code and name, determined by the changes the
+code has been involved in. The \code{data.frame} has two columns:
 
-  \itemize{
-   \item{"validFrom"}
-   \item{"validTo"}
-  }
+\itemize{
+\item{"validFrom"}
+\item{"validTo"}
+}
 }
 \description{
 For a given Klass code, produce a table of dates describing the valid-from

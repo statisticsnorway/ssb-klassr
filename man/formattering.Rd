@@ -7,9 +7,13 @@
 formattering(x, classification)
 }
 \arguments{
-\item{x}{- vector of character}
+\item{x}{\itemize{
+\item vector of character
+}}
 
-\item{classification}{- classification number}
+\item{classification}{\itemize{
+\item classification number
+}}
 }
 \value{
 vector of character
