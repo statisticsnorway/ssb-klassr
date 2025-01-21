@@ -1,4 +1,3 @@
-
 #' Find the equivalents of a node at various dates
 #'
 #' @param node The node that we're finding the equivalents of
@@ -8,14 +7,13 @@
 #' @return A named list of `length(dates)` containing the equivalent nodes for
 #'   each date. The names of the returned list are the dates provided in `date`,
 #'   coerced to character.
-#' 
+#'
 find_equivalent_nodes <- function(node, dates, graph) {
-  
   dates <- as.Date(dates)
-  
+
   if (any(is.na(dates))) stop("Dates cannot be NA")
   if (!length(dates) > 1) stop("Need to provide at least two dates")
-  
+
   # <- older                                                          newer ->
   # | ----------- min_date ---------------------------- max_date ----------- |
   # | 1. [=================================================================> |
@@ -25,68 +23,67 @@ find_equivalent_nodes <- function(node, dates, graph) {
   # | 5.                        [==================]                         |
   # | 6.                        [==========================================> |
   # |------------------------------------------------------------------------|
-  
+
   min_date <- min(dates)
   max_date <- max(dates)
-  
+
   # We only want to search for equivalent sets of nodes in a subset of the
   # graph, determined by max_date and min_date. We filter the nodes to include
   # only codes that were valid at one point within the period specified by
-  # max_date and min_date. 
+  # max_date and min_date.
   #
   # See the table above for a visual explanation of the filtering logic used
   # here. The numbers in the table correspond to the numbered comments below.
   search_nodes <- igraph::V(graph)[
     # 1. Codes that were introduced before/on min_date and haven't expired
     (igraph::V(graph)$validFrom <= min_date & is.na(igraph::V(graph)$validTo)) |
-    # 2. Codes that were introduced before/on min_date and expired after
-    # max_date
-    (igraph::V(graph)$validFrom <= min_date & 
-       igraph::V(graph)$validTo >= max_date) |
-    # 3. Codes that were introduced before min_date, and expired before/on
-    # max_date and after/on min_date
-    (igraph::V(graph)$validFrom <= min_date & 
-       igraph::V(graph)$validTo <= max_date & 
-       igraph::V(graph)$validTo >= min_date) |
-    # 4. Codes that were introduced after/on min_date and before/on max_date,
-    # and expired after/on max_date
-    (igraph::V(graph)$validFrom >= min_date & 
-       igraph::V(graph)$validFrom <= max_date & 
-       igraph::V(graph)$validTo >= max_date) |
-    # 5. Codes that were introduced after/on min_date and before/on max_date,
-    # and expired before/on max_date and after/on min_date
-    (igraph::V(graph)$validFrom >= min_date & 
-       igraph::V(graph)$validFrom <= max_date & 
-       igraph::V(graph)$validTo <= max_date & 
-       igraph::V(graph)$validTo >= min_date) |
-    # 6. Codes that were introduced after/on min_date and before/on max_date,
-    # and haven't expired
-    (igraph::V(graph)$validFrom >= min_date & 
-       igraph::V(graph)$validFrom <= max_date & 
-       is.na(igraph::V(graph)$validTo))
-  ] 
+      # 2. Codes that were introduced before/on min_date and expired after
+      # max_date
+      (igraph::V(graph)$validFrom <= min_date &
+        igraph::V(graph)$validTo >= max_date) |
+      # 3. Codes that were introduced before min_date, and expired before/on
+      # max_date and after/on min_date
+      (igraph::V(graph)$validFrom <= min_date &
+        igraph::V(graph)$validTo <= max_date &
+        igraph::V(graph)$validTo >= min_date) |
+      # 4. Codes that were introduced after/on min_date and before/on max_date,
+      # and expired after/on max_date
+      (igraph::V(graph)$validFrom >= min_date &
+        igraph::V(graph)$validFrom <= max_date &
+        igraph::V(graph)$validTo >= max_date) |
+      # 5. Codes that were introduced after/on min_date and before/on max_date,
+      # and expired before/on max_date and after/on min_date
+      (igraph::V(graph)$validFrom >= min_date &
+        igraph::V(graph)$validFrom <= max_date &
+        igraph::V(graph)$validTo <= max_date &
+        igraph::V(graph)$validTo >= min_date) |
+      # 6. Codes that were introduced after/on min_date and before/on max_date,
+      # and haven't expired
+      (igraph::V(graph)$validFrom >= min_date &
+        igraph::V(graph)$validFrom <= max_date &
+        is.na(igraph::V(graph)$validTo))
+  ]
 
-  all_nodes <- igraph::bfs(graph = graph,
-                           root = node,
-                           mode = "all",
-                           unreachable = FALSE,
-                           restricted = search_nodes)[["order"]]
-  
+  all_nodes <- igraph::bfs(
+    graph = graph,
+    root = node,
+    mode = "all",
+    unreachable = FALSE,
+    restricted = search_nodes
+  )[["order"]]
+
   result <- lapply(dates, \(date) {
-    
     result_nodes <- all_nodes[
-      date >= all_nodes$validFrom & 
+      date >= all_nodes$validFrom &
         (date < all_nodes$validTo | is.na(all_nodes$validTo))
     ]
-    
+
     result_nodes[order(result_nodes$code)]
-    
   })
-  
+
   names(result) <- as.character(dates)
-  
+
   return(result)
-  
 }
 
 #' Find equivalent sets of codes at specific dates in a Klass classification
@@ -165,10 +162,10 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   `find_equivalents` will only search in the time range we specify. As a
 #'   consequence, generating sets of equivalent codes over longer time spans
 #'   will generally create larger sets than using shorter time spans.
-#'   
+#'
 #'   To illustrate this behavior, we can add a new code `"e"` to the previous
-#'   example, and have `"d"` and `"e"` combine into `"f"` at t4. 
-#'   
+#'   example, and have `"d"` and `"e"` combine into `"f"` at t4.
+#'
 #'   ```
 #'   t1     t2     t3     t4
 #'   a
@@ -176,11 +173,11 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   └─────> c ┴─> d ┐
 #'   e ──────────────┴──> f
 #'   ```
-#'   
+#'
 #'   Finding the
 #'   equivalents of `"a"` in t1 at t2 and t3 returns the same sets as
 #'   before:
-#'   
+#'
 #'   - t1: `"a"`
 #'   - t2: `"b"` and `"c"`
 #'   - t3: `"d"`
@@ -192,85 +189,73 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   - t2: `"b"`, `"c"` and `"e"`
 #'   - t3: `"d"` and `"e"`
 #'   - t4: `"f"`
-#' 
-find_equivalents <- function(code, 
-                             date = NULL, 
-                             dates, 
+#'
+find_equivalents <- function(code,
+                             date = NULL,
+                             dates,
                              classification,
                              graph = klass_graph(classification)) {
-  
   if (is.null(date)) {
-    
     # Only search for nodes within the specified date interval
     # Refer to find_equivalent_nodes for an explanation of this filtering logic
-    
+
     max_date <- max(dates)
     min_date <- min(dates)
-    
+
     code_indices <- which(
       igraph::V(graph)$code == code & (
         (igraph::V(graph)$validFrom <= min_date & is.na(igraph::V(graph)$validTo)) |
-          (igraph::V(graph)$validFrom <= min_date & 
-             igraph::V(graph)$validTo >= max_date) |
-          (igraph::V(graph)$validFrom <= min_date & 
-             igraph::V(graph)$validTo <= max_date & 
-             igraph::V(graph)$validTo >= min_date) |
-          (igraph::V(graph)$validFrom >= min_date & 
-             igraph::V(graph)$validFrom <= max_date & 
-             igraph::V(graph)$validTo >= max_date) |
-          (igraph::V(graph)$validFrom >= min_date & 
-             igraph::V(graph)$validFrom <= max_date & 
-             igraph::V(graph)$validTo <= max_date & 
-             igraph::V(graph)$validTo >= min_date) |
-          (igraph::V(graph)$validFrom >= min_date & 
-             igraph::V(graph)$validFrom <= max_date & 
-             is.na(igraph::V(graph)$validTo))
+          (igraph::V(graph)$validFrom <= min_date &
+            igraph::V(graph)$validTo >= max_date) |
+          (igraph::V(graph)$validFrom <= min_date &
+            igraph::V(graph)$validTo <= max_date &
+            igraph::V(graph)$validTo >= min_date) |
+          (igraph::V(graph)$validFrom >= min_date &
+            igraph::V(graph)$validFrom <= max_date &
+            igraph::V(graph)$validTo >= max_date) |
+          (igraph::V(graph)$validFrom >= min_date &
+            igraph::V(graph)$validFrom <= max_date &
+            igraph::V(graph)$validTo <= max_date &
+            igraph::V(graph)$validTo >= min_date) |
+          (igraph::V(graph)$validFrom >= min_date &
+            igraph::V(graph)$validFrom <= max_date &
+            is.na(igraph::V(graph)$validTo))
       )
     )
-    
+
     highest_variant_index <-
       suppressWarnings(
         code_indices[which(igraph::V(graph)[code_indices]$variant ==
-                          max(igraph::V(graph)[code_indices]$variant))]
+          max(igraph::V(graph)[code_indices]$variant))]
       )
-    
+
     node <- igraph::V(graph)[highest_variant_index]
-    
   } else if (!is.na(as.Date(date))) {
-    
     if (date > max(dates) | date < min(dates)) {
-      
       stop("`date` must be in the range specified by `min(dates)` and `max(dates)`")
-      
     }
-    
+
     node <- igraph::V(graph)[
       igraph::V(graph)$code == !!code &
         igraph::V(graph)$validFrom <= date &
         (igraph::V(graph)$validTo >= date | is.na(igraph::V(graph)$validTo))
     ]
-    
   } else {
-    
     stop("Provided `date` could not be coerced to date.")
-    
   }
-  
+
   equivalents <- find_equivalent_nodes(node, dates, graph)
-  
+
   equivalent_dfs <- list()
-  
+
   for (i in seq_along(equivalents)) {
-    
     df <- as.data.frame(igraph::vertex.attributes(graph, equivalents[[i]]))
     df$date <- dates[i]
     df <- df[c("date", "code", "label", "validFrom", "validTo")]
     names(df)[3] <- "name"
-    
+
     equivalent_dfs[[i]] <- df
-    
   }
-  
+
   return(do.call(rbind, equivalent_dfs))
-  
 }
