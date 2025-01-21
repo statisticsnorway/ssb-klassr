@@ -2,7 +2,7 @@
 % Please edit documentation in R/UpdateKlass-graph-build.R
 \name{find_variant_to}
 \alias{find_variant_to}
-\title{Find the variant of a code corresponding to a change *to* a specific code.}
+\title{Find the variant of a code corresponding to a change \emph{to} a specific code.}
 \usage{
 find_variant_to(x, changeOccurred, variants)
 }
@@ -18,9 +18,9 @@ The variant corresponding to the code \code{x} at date
 \code{changeOccurred}.
 }
 \description{
-Find the variant of a code corresponding to a change *to* a specific code.
+Find the variant of a code corresponding to a change \emph{to} a specific code.
 }
 \seealso{
-[find_variant_from()]
+\code{\link[=find_variant_from]{find_variant_from()}}
 }
 \keyword{internal}

@@ -16,9 +16,9 @@ klass_node(graph, x, date = NA)
 }
 \value{
 The node in the graph corresponding to the supplied code. If date is
-  not provided, the node with the most recent code is returned. If date is
-  provided, the code with date between \code{validFrom} and \code{validTo} is
-  returned.
+not provided, the node with the most recent code is returned. If date is
+provided, the code with date between \code{validFrom} and \code{validTo} is
+returned.
 }
 \description{
 Given a Klass graph, find the node corresponding to a code and (optionally) a

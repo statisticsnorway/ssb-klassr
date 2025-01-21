@@ -7,9 +7,16 @@
 levelCheck(x, klass_data)
 }
 \arguments{
-\item{x}{- vector of character}
+\item{x}{\itemize{
+\item vector of character
+}}
 
-\item{klass_data}{- - the right formatting to the classification levels}
+\item{klass_data}{\itemize{
+\item 
+\itemize{
+\item the right formatting to the classification levels
+}
+}}
 }
 \value{
 The hierarchical level of the input data is returned.

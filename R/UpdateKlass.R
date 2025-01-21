@@ -121,7 +121,9 @@ update_code <- function(graph,
 #'
 #' @inheritParams update_code
 #'
-#' @return If \code{output = "code"}, a vector of length \code{length(codes)}
+#' @return 
+#' 
+#'   If \code{output = "code"}, a vector of length \code{length(codes)}
 #'   containing either a code if the update is successful or \code{NA} if the
 #'   code has been split. If \code{combine = FALSE}, a code being combined with
 #'   another code will also return \code{NA}.
@@ -129,8 +131,6 @@ update_code <- function(graph,
 #'   If \code{output == TRUE}, a list of length \code{length(codes)} containing
 #'   \code{data.frame}s detailing the codes visited through the node search. The
 #'   tables have the following columns.
-#'
-#'   ---
 #'
 #'   If \code{report == TRUE} and \code{length(output) > 1 | TRUE}, the result
 #'   will be a list of \code{data.frame}s with number of rows equal to the
@@ -155,6 +155,7 @@ update_code <- function(graph,
 #'   specified by \code{output}. If a code has been split, the result will be
 #'   \code{NA}. If \code{combine == FALSE} and a code is the result of a
 #'   combination of codes, the result will be \code{NA}.
+#' 
 #'
 #' @export
 #'

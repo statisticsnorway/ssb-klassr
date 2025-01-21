@@ -7,7 +7,9 @@
 formattering_kommune(x)
 }
 \arguments{
-\item{x}{- vector of character type for kommune codes}
+\item{x}{\itemize{
+\item vector of character type for kommune codes
+}}
 }
 \value{
 vector of character

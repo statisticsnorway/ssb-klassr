@@ -12,7 +12,7 @@ GetFamily(klass)
 \arguments{
 \item{classification}{Classification number}
 
-\item{klass}{Deprecated; use `classification` instead.}
+\item{klass}{Deprecated; use \code{classification} instead.}
 }
 \value{
 Family number

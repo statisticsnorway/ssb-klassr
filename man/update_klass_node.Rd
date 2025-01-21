@@ -14,7 +14,7 @@ update_klass_node(graph, node)
 }
 \value{
 A sequence of vertices, starting with \code{node} and ending with the
-  last visited node.
+last visited node.
 }
 \description{
 Given a node and a graph, find the node at the end of a sequence of changes.

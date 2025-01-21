@@ -20,8 +20,8 @@ Given a graph and a node, determine if the node is a split code.
 }
 \details{
 The function will attempt to reconcile nodes that have split and
-  then later merged again. A node is considered to be split if there is more
-  than one node that does not itself have children (i.e. nodes at the end of
-  a sequence of changes) that can be reached from \code{node}
+then later merged again. A node is considered to be split if there is more
+than one node that does not itself have children (i.e. nodes at the end of
+a sequence of changes) that can be reached from \code{node}
 }
 \keyword{internal}
