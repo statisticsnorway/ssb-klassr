@@ -19,11 +19,11 @@ find_equivalent_nodes <- function(node, dates, graph) {
 
   # Search in codes that were valid before or on max_date and valid to
   # after the min_date (or still valid)
-  
+
   validTo <- igraph::V(graph)$validTo
-  
+
   search_nodes <- igraph::V(graph)[
-    igraph::V(graph)$validFrom <= max_date & 
+    igraph::V(graph)$validFrom <= max_date &
       (is.na(validTo) | validTo >= min_date)
   ]
 
@@ -65,24 +65,24 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   group labels, or `NULL` to disable labelling.. The names of the list
 #'   determine the column names that the corresponding labels will be placed
 #'   into.
-#'   
+#'
 #'   The default setting adds a column `group_label`, with labels of the form:
 #'
 #'   ```
 #'   "5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
 #'   ```
-#'   
-#'   
+#'
+#'
 #'   Multiple label-columns can be specified by adding more functions to the list.
 #'   The following example would create three label columns (one with the codes,
 #'   one with the names, and one with the codes and names)
-#'   
+#'
 #'   ```
 #'   labellers = list(group_code = \(code, ...) paste(code, collapse = ", "),
 #'                    group_name = \(name, ...) paste(name, collapse = ", "),
 #'                    group_label = \(code, name, ...) paste(code, name, collapse = ", "))
 #'   ```
-#'   
+#'
 #'   The functions provided in this parameter can accept any of the following
 #'   parameters: `date` `code`, `name`, `validFrom` and `validTo`, representing
 #'   the corresponding values of each code in a group. The function must also
@@ -90,7 +90,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   expect that the input variables have the same length of 1 or longer. The
 #'   functions should return a character vector of length one or the same length
 #'   as the input variables.
-#'   
+#'
 #'
 #' @return A data.frame with columns:
 #' - `date` containing the input `dates`
@@ -192,17 +192,15 @@ find_equivalents <- function(code,
                              graph = klass_graph(classification),
                              labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", "))) {
   if (is.null(date)) {
-
-
     max_date <- max(dates)
     min_date <- min(dates)
-    
+
     validTo <- igraph::V(graph)$validTo
 
     # Refer to find_equivalent_nodes for an explanation of this filtering logic
     code_indices <- which(
-      igraph::V(graph)$code == code & 
-        igraph::V(graph)$validFrom <= max_date & 
+      igraph::V(graph)$code == code &
+        igraph::V(graph)$validFrom <= max_date &
         (is.na(validTo) | validTo >= min_date)
     )
 
@@ -232,26 +230,23 @@ find_equivalents <- function(code,
   equivalent_dfs <- list()
 
   for (i in seq_along(equivalents)) {
-    
     # extract code information from set of equivalent nodes
     df <- as.data.frame(igraph::vertex.attributes(graph, equivalents[[i]]))
-    
+
     # add date variable and select variables
     df$date <- dates[i]
     df <- df[c("date", "code", "label", "validFrom", "validTo")]
-    
+
     # Klass functions use "name" instead of "label"
-    names(df)[3] <- "name" 
+    names(df)[3] <- "name"
 
     # construct group labels according to the labeller function(s) provided by the
     # user
-    
+
     if (!is.null(labellers)) {
-      
       labels <- lapply(labellers, do.call, args = df)
-      
+
       df <- cbind(df, labels)
-      
     }
 
     equivalent_dfs[[i]] <- df
