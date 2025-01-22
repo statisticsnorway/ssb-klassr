@@ -121,8 +121,8 @@ update_code <- function(graph,
 #'
 #' @inheritParams update_code
 #'
-#' @return 
-#' 
+#' @return
+#'
 #'   If \code{output = "code"}, a vector of length \code{length(codes)}
 #'   containing either a code if the update is successful or \code{NA} if the
 #'   code has been split. If \code{combine = FALSE}, a code being combined with
@@ -155,7 +155,7 @@ update_code <- function(graph,
 #'   specified by \code{output}. If a code has been split, the result will be
 #'   \code{NA}. If \code{combine == FALSE} and a code is the result of a
 #'   combination of codes, the result will be \code{NA}.
-#' 
+#'
 #'
 #' @export
 #'
