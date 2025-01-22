@@ -9,7 +9,8 @@ find_equivalents(
   date = NULL,
   dates,
   classification,
-  graph = klass_graph(classification)
+  graph = klass_graph(classification),
+  group_labeller = function(code, name, ...) paste(code, name, collapse = ", ")
 )
 }
 \arguments{
@@ -26,6 +27,20 @@ be used.}
 \item{graph}{Optional. Generating the graph using \code{klass_graph} manually
 beforehand and providing it in this parameter can save time if running
 \code{find_equivalents} multiple times in sequence.}
+
+\item{group_labeller}{Optional. Can be used to customize the group labels
+provided by the function. The default setting provides labels of the form:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{"5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
+}\if{html}{\out{</div>}}
+
+The function provided in this parameter can accept any of the following
+parameters: \code{date} \code{code}, \code{name}, \code{validFrom} and \code{validTo}, representing
+the corresponding values of each code in a group. The function must also
+provide a \code{...} parameter, unless using all of the above. The function can
+expect that the input variables have the same length of 1 or longer. The
+function should return a character vector of length one or the same length
+as the input variables.}
 }
 \value{
 A data.frame with columns:
@@ -34,6 +49,7 @@ A data.frame with columns:
 \item \code{code} containing the set of equivalent codes in each date
 \item \code{name} containing the names of each code
 \item \code{validFrom} and \code{validTo} values for each code returned
+\item \code{group} A label for each set of equivalent codes, determined by \code{group_labeller}.
 }
 }
 \description{

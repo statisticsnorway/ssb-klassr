@@ -101,11 +101,27 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   beforehand and providing it in this parameter can save time if running
 #'   `find_equivalents` multiple times in sequence.
 #'
+#' @param group_labeller Optional. Can be used to customize the group labels
+#'   provided by the function. The default setting provides labels of the form:
+#' 
+#'   ```
+#'   "5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
+#'   ```
+#' 
+#'   The function provided in this parameter can accept any of the following
+#'   parameters: `date` `code`, `name`, `validFrom` and `validTo`, representing
+#'   the corresponding values of each code in a group. The function must also
+#'   provide a `...` parameter, unless using all of the above. The function can
+#'   expect that the input variables have the same length of 1 or longer. The
+#'   function should return a character vector of length one or the same length
+#'   as the input variables.
+#'
 #' @return A data.frame with columns:
 #' - `date` containing the input `dates`
 #' - `code` containing the set of equivalent codes in each date
 #' - `name` containing the names of each code
 #' - `validFrom` and `validTo` values for each code returned
+#' - `group` A label for each set of equivalent codes, determined by `group_labeller`.
 #' @export
 #' @details This function provides a solution to the problem of split or
 #'   combined codes in Klass classifications. When using `update_klass` to ask
@@ -197,7 +213,8 @@ find_equivalents <- function(code,
                              date = NULL, 
                              dates, 
                              classification,
-                             graph = klass_graph(classification)) {
+                             graph = klass_graph(classification),
+                             group_labeller = \(code, name, ...) paste(code, name, collapse = ", ")) {
   
   if (is.null(date)) {
     
@@ -266,6 +283,10 @@ find_equivalents <- function(code,
     df$date <- dates[i]
     df <- df[c("date", "code", "label", "validFrom", "validTo")]
     names(df)[3] <- "name"
+    
+    
+    # apply group labels according to the labeller function provided by the user
+    df$group <- do.call(what = group_labeller, args = df)
     
     equivalent_dfs[[i]] <- df
     
