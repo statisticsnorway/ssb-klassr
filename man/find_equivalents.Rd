@@ -6,15 +6,18 @@
 \usage{
 find_equivalents(
   code,
+  classification,
   date = NULL,
   dates,
-  classification,
   graph = klass_graph(classification),
-  group_labeller = function(code, name, ...) paste(code, name, collapse = ", ")
+  labellers = list(group_label = function(code, name, ...) paste(code, name, collapse =
+    ", "))
 )
 }
 \arguments{
 \item{code}{A Klass code that you wish to know the equivalent sets of}
+
+\item{classification}{The Klass ID to be used}
 
 \item{date}{Optional. Use to specify the date this code was valid. If NULL,
 the most recent version of the code within the specified date interval will
@@ -22,24 +25,35 @@ be used.}
 
 \item{dates}{The dates that equivalent sets of codes should be found for.}
 
-\item{classification}{The Klass ID to be used}
-
 \item{graph}{Optional. Generating the graph using \code{klass_graph} manually
 beforehand and providing it in this parameter can save time if running
 \code{find_equivalents} multiple times in sequence.}
 
-\item{group_labeller}{Optional. Can be used to customize the group labels
-provided by the function. The default setting provides labels of the form:
+\item{labellers}{Optional named list of functions to be used for building
+group labels, or \code{NULL} to disable labelling.. The names of the list
+determine the column names that the corresponding labels will be placed
+into.
+
+The default setting adds a column \code{group_label}, with labels of the form:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{"5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
 }\if{html}{\out{</div>}}
 
-The function provided in this parameter can accept any of the following
+Multiple label-columns can be specified by adding more functions to the list.
+The following example would create three label columns (one with the codes,
+one with the names, and one with the codes and names)
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{labellers = list(group_code = \\(code, ...) paste(code, collapse = ", "),
+                 group_name = \\(name, ...) paste(name, collapse = ", "),
+                 group_label = \\(code, name, ...) paste(code, name, collapse = ", "))
+}\if{html}{\out{</div>}}
+
+The functions provided in this parameter can accept any of the following
 parameters: \code{date} \code{code}, \code{name}, \code{validFrom} and \code{validTo}, representing
 the corresponding values of each code in a group. The function must also
-provide a \code{...} parameter, unless using all of the above. The function can
+provide a \code{...} parameter, unless using all of the above. The functions can
 expect that the input variables have the same length of 1 or longer. The
-function should return a character vector of length one or the same length
+functions should return a character vector of length one or the same length
 as the input variables.}
 }
 \value{

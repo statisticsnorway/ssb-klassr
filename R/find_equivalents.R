@@ -61,20 +61,36 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   beforehand and providing it in this parameter can save time if running
 #'   `find_equivalents` multiple times in sequence.
 #'
-#' @param group_labeller Optional. Can be used to customize the group labels
-#'   provided by the function. The default setting provides labels of the form:
+#' @param labellers Optional named list of functions to be used for building
+#'   group labels, or `NULL` to disable labelling.. The names of the list
+#'   determine the column names that the corresponding labels will be placed
+#'   into.
+#'   
+#'   The default setting adds a column `group_label`, with labels of the form:
 #'
 #'   ```
 #'   "5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
 #'   ```
-#'
-#'   The function provided in this parameter can accept any of the following
+#'   
+#'   
+#'   Multiple label-columns can be specified by adding more functions to the list.
+#'   The following example would create three label columns (one with the codes,
+#'   one with the names, and one with the codes and names)
+#'   
+#'   ```
+#'   labellers = list(group_code = \(code, ...) paste(code, collapse = ", "),
+#'                    group_name = \(name, ...) paste(name, collapse = ", "),
+#'                    group_label = \(code, name, ...) paste(code, name, collapse = ", "))
+#'   ```
+#'   
+#'   The functions provided in this parameter can accept any of the following
 #'   parameters: `date` `code`, `name`, `validFrom` and `validTo`, representing
 #'   the corresponding values of each code in a group. The function must also
-#'   provide a `...` parameter, unless using all of the above. The function can
+#'   provide a `...` parameter, unless using all of the above. The functions can
 #'   expect that the input variables have the same length of 1 or longer. The
-#'   function should return a character vector of length one or the same length
+#'   functions should return a character vector of length one or the same length
 #'   as the input variables.
+#'   
 #'
 #' @return A data.frame with columns:
 #' - `date` containing the input `dates`
@@ -174,7 +190,7 @@ find_equivalents <- function(code,
                              date = NULL,
                              dates,
                              graph = klass_graph(classification),
-                             group_labeller = \(code, name, ...) paste(code, name, collapse = ", ")) {
+                             labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", "))) {
   if (is.null(date)) {
 
 
@@ -216,13 +232,27 @@ find_equivalents <- function(code,
   equivalent_dfs <- list()
 
   for (i in seq_along(equivalents)) {
+    
+    # extract code information from set of equivalent nodes
     df <- as.data.frame(igraph::vertex.attributes(graph, equivalents[[i]]))
+    
+    # add date variable and select variables
     df$date <- dates[i]
     df <- df[c("date", "code", "label", "validFrom", "validTo")]
-    names(df)[3] <- "name"
+    
+    # Klass functions use "name" instead of "label"
+    names(df)[3] <- "name" 
 
-    # apply group labels according to the labeller function provided by the user
-    df$group <- do.call(what = group_labeller, args = df)
+    # construct group labels according to the labeller function(s) provided by the
+    # user
+    
+    if (!is.null(labellers)) {
+      
+      labels <- lapply(labellers, do.call, args = df)
+      
+      df <- cbind(df, labels)
+      
+    }
 
     equivalent_dfs[[i]] <- df
   }
