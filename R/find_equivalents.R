@@ -100,11 +100,11 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'
 #' @param group_labeller Optional. Can be used to customize the group labels
 #'   provided by the function. The default setting provides labels of the form:
-#' 
+#'
 #'   ```
 #'   "5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
 #'   ```
-#' 
+#'
 #'   The function provided in this parameter can accept any of the following
 #'   parameters: `date` `code`, `name`, `validFrom` and `validTo`, representing
 #'   the corresponding values of each code in a group. The function must also
@@ -212,7 +212,6 @@ find_equivalents <- function(code,
                              classification,
                              graph = klass_graph(classification),
                              group_labeller = \(code, name, ...) paste(code, name, collapse = ", ")) {
-
   if (is.null(date)) {
     # Only search for nodes within the specified date interval
     # Refer to find_equivalent_nodes for an explanation of this filtering logic
@@ -274,10 +273,9 @@ find_equivalents <- function(code,
 
     # apply group labels according to the labeller function provided by the user
     df$group <- do.call(what = group_labeller, args = df)
-    
+
     equivalent_dfs[[i]] <- df
   }
 
   return(do.call(rbind, equivalent_dfs))
-
 }
