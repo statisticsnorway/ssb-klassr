@@ -193,6 +193,12 @@ find_equivalents <- function(classification,
     igraph::vertex.attributes(graph)[c("code", "validFrom", "validTo")]
   )
   
+  if (any(is.na(as.Date(dates)))) {
+    
+    stop("Couldn't coerce all dates to date format.")
+    
+  }
+  
   codes <- codes[codes$validFrom <= max(dates) & 
                    (is.na(codes$validTo) | codes$validTo >= min(dates)),]
   
