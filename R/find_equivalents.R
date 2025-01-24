@@ -10,31 +10,17 @@
 #'
 find_equivalent_nodes <- function(node, dates, graph) {
 
-  min_date <- min(dates)
-  max_date <- max(dates)
-
-  # Search in codes that were valid before or on max_date and valid to
-  # after the min_date (or still valid)
-
-  validTo <- igraph::V(graph)$validTo
-
-  search_nodes <- igraph::V(graph)[
-    igraph::V(graph)$validFrom <= max_date &
-      (is.na(validTo) | validTo >= min_date)
-  ]
-
-  all_nodes <- igraph::bfs(
+  related_nodes <- igraph::bfs(
     graph = graph,
     root = node,
     mode = "all",
-    unreachable = FALSE,
-    restricted = search_nodes
+    unreachable = FALSE
   )[["order"]]
 
   result <- lapply(dates, \(date) {
-    result_nodes <- all_nodes[
-      date >= all_nodes$validFrom &
-        (date < all_nodes$validTo | is.na(all_nodes$validTo))
+    result_nodes <- related_nodes[
+      date >= related_nodes$validFrom &
+        (date < related_nodes$validTo | is.na(related_nodes$validTo))
     ]
 
     result_nodes[order(result_nodes$code)]
@@ -185,9 +171,6 @@ find_equivalents <- function(classification,
                              labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", ")),
                              graph = klass_graph(classification)) {
 
-  codes <- as.data.frame(
-    igraph::vertex.attributes(graph)[c("code", "validFrom", "validTo")]
-  )
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
 
   dates <- as.Date(dates)
@@ -198,25 +181,23 @@ find_equivalents <- function(classification,
 
   }
 
-  codes <- codes[codes$validFrom <= max(dates) &
-    (is.na(codes$validTo) | codes$validTo >= min(dates)), ]
   if (!length(dates) > 1) stop("Need to provide at least two dates")
+
+  # Search in codes that were valid before or on max_date and valid to
+  # after the min_date (or still valid)
+  sgraph <- igraph::subgraph(graph,
+    igraph::V(graph)$validFrom <= max(dates) &
+      (is.na(igraph::V(graph)$validTo) | igraph::V(graph)$validTo >= min(dates))
+  )
 
   result <- data.frame()
 
-  for (i in 1:nrow(codes)) {
+  for (i in 1:length(sgraph)) {
 
-    code <- codes$code[i]
-    date <- codes$validFrom[i]
-
-    node <- igraph::V(graph)[
-      igraph::V(graph)$code == !!code &
-        igraph::V(graph)$validFrom <= date &
-        (igraph::V(graph)$validTo >= date | is.na(igraph::V(graph)$validTo))
-    ]
+    node <- igraph::V(sgraph)[i]
 
     # build list of equivalent sets of nodes for this node
-    equivalent_sets <- find_equivalent_nodes(node, dates, graph)
+    equivalent_sets <- find_equivalent_nodes(node, dates, sgraph)
 
     # instantiate data.frame that will contain information about all equivalent
     # sets for this code
@@ -226,7 +207,7 @@ find_equivalents <- function(classification,
 
       # build data frame containing information about the codes in this set
       set_df <- as.data.frame(
-        igraph::vertex.attributes(graph, equivalent_sets[[j]])
+        igraph::vertex.attributes(sgraph, equivalent_sets[[j]])
       )
 
       # add date variable specifying at what date this set is valid
