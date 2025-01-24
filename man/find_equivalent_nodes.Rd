@@ -2,14 +2,14 @@
 % Please edit documentation in R/find_equivalents.R
 \name{find_equivalent_nodes}
 \alias{find_equivalent_nodes}
-\title{Find the equivalents of a node at various dates}
+\title{Find the equivalent sets of a node at various dates}
 \usage{
 find_equivalent_nodes(node, dates, graph)
 }
 \arguments{
-\item{node}{The node that we're finding the equivalents of}
+\item{node}{The node that we're finding the equivalent sets of}
 
-\item{dates}{The dates that we want to find the equivalents in}
+\item{dates}{The dates that we want to find the equivalent sets in}
 
 \item{graph}{The graph that the nodes come from}
 }
@@ -19,5 +19,5 @@ each date. The names of the returned list are the dates provided in \code{date},
 coerced to character.
 }
 \description{
-Find the equivalents of a node at various dates
+Find the equivalent sets of a node at various dates
 }
