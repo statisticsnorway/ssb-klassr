@@ -9,10 +9,6 @@
 #'   coerced to character.
 #'
 find_equivalent_nodes <- function(node, dates, graph) {
-  dates <- as.Date(dates)
-
-  if (any(is.na(dates))) stop("Dates cannot be NA")
-  if (!length(dates) > 1) stop("Need to provide at least two dates")
 
   min_date <- min(dates)
   max_date <- max(dates)
@@ -192,13 +188,19 @@ find_equivalents <- function(classification,
   codes <- as.data.frame(
     igraph::vertex.attributes(graph)[c("code", "validFrom", "validTo")]
   )
+  if (any(is.na(dates))) stop("`dates` cannot be NA.")
 
-  if (any(is.na(as.Date(dates)))) {
-    stop("Couldn't coerce all dates to date format.")
+  dates <- as.Date(dates)
+
+  if (any(is.na(dates))) {
+
+    stop("Some dates could not be converted to date format.")
+
   }
 
   codes <- codes[codes$validFrom <= max(dates) &
     (is.na(codes$validTo) | codes$validTo >= min(dates)), ]
+  if (!length(dates) > 1) stop("Need to provide at least two dates")
 
   result <- data.frame()
 
