@@ -1,7 +1,7 @@
-#' Find the equivalents of a node at various dates
+#' Find the equivalent sets of a node at various dates
 #'
-#' @param node The node that we're finding the equivalents of
-#' @param dates The dates that we want to find the equivalents in
+#' @param node The node that we're finding the equivalent sets of
+#' @param dates The dates that we want to find the equivalent sets in
 #' @param graph The graph that the nodes come from
 #'
 #' @return A named list of `length(dates)` containing the equivalent nodes for
@@ -188,6 +188,7 @@ find_equivalents <- function(classification,
                              dates,
                              labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", ")),
                              graph = klass_graph(classification)) {
+
   codes <- as.data.frame(
     igraph::vertex.attributes(graph)[c("code", "validFrom", "validTo")]
   )
@@ -202,6 +203,7 @@ find_equivalents <- function(classification,
   result <- data.frame()
 
   for (i in 1:nrow(codes)) {
+
     code <- codes$code[i]
     date <- codes$validFrom[i]
 
@@ -211,34 +213,47 @@ find_equivalents <- function(classification,
         (igraph::V(graph)$validTo >= date | is.na(igraph::V(graph)$validTo))
     ]
 
-    equivalents <- find_equivalent_nodes(node, dates, graph)
+    # build list of equivalent sets of nodes for this node
+    equivalent_sets <- find_equivalent_nodes(node, dates, graph)
 
-    equivalent_dfs <- list()
+    # instantiate data.frame that will contain information about all equivalent
+    # sets for this code
+    equivalents_df <- data.frame()
 
-    for (j in seq_along(equivalents)) {
-      # extract code information from set of equivalent nodes
-      df <- as.data.frame(igraph::vertex.attributes(graph, equivalents[[j]]))
+    for (j in seq_along(equivalent_sets)) {
 
-      # add date variable and select variables
-      df$date <- dates[j]
-      df <- df[c("date", "code", "label", "validFrom", "validTo")]
+      # build data frame containing information about the codes in this set
+      set_df <- as.data.frame(
+        igraph::vertex.attributes(graph, equivalent_sets[[j]])
+      )
 
-      # Klass functions use "name" instead of "label"
-      names(df)[3] <- "name"
+      # add date variable specifying at what date this set is valid
+      set_df$date <- dates[j]
 
-      # construct group labels according to the labeller function(s) provided by
-      # the user
+      # select variables
+      set_df <- set_df[c("date", "code", "label", "validFrom", "validTo")]
 
-      labels <- lapply(labellers, do.call, args = df)
+      # rename `label` to `name` to match output from other klassR functions
+      names(set_df)[3] <- "name"
 
-      df <- cbind(df, labels)
+      # add set rows to data.frame containing other sets for this code
+      equivalents_df <- rbind(equivalents_df, set_df)
 
-      equivalent_dfs[[j]] <- df
     }
 
-    result <- rbind(result, do.call(rbind, equivalent_dfs))
+    # construct label across all sets for this according to the labeller
+    # function(s) provided by the user
+    labels <- lapply(labellers, do.call, args = equivalents_df)
+
+    # apply labels to data.frame containing all equivalent sets for this code
+    equivalents_df <- cbind(equivalents_df, labels)
+
+    # add equivalent sets for this code to the final result
+    result <- rbind(result, equivalents_df)
+
   }
 
+  # remove duplicate rows
   result <- unique(result)
 
   return(result)
