@@ -9,7 +9,6 @@
 #'   coerced to character.
 #'
 find_equivalent_nodes <- function(node, dates, graph) {
-
   related_nodes <- igraph::bfs(
     graph = graph,
     root = node,
@@ -170,22 +169,20 @@ find_equivalents <- function(classification,
                              dates,
                              labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", ")),
                              graph = klass_graph(classification)) {
-
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
 
   dates <- as.Date(dates)
 
   if (any(is.na(dates))) {
-
     stop("Some dates could not be converted to date format.")
-
   }
 
   if (!length(dates) > 1) stop("Need to provide at least two dates")
 
   # Search in codes that were valid before or on max_date and valid to
   # after the min_date (or still valid)
-  sgraph <- igraph::subgraph(graph,
+  sgraph <- igraph::subgraph(
+    graph,
     igraph::V(graph)$validFrom <= max(dates) &
       (is.na(igraph::V(graph)$validTo) | igraph::V(graph)$validTo >= min(dates))
   )
@@ -193,7 +190,6 @@ find_equivalents <- function(classification,
   result <- data.frame()
 
   for (i in 1:length(sgraph)) {
-
     node <- igraph::V(sgraph)[i]
 
     # build list of equivalent sets of nodes for this node
@@ -204,7 +200,6 @@ find_equivalents <- function(classification,
     equivalents_df <- data.frame()
 
     for (j in seq_along(equivalent_sets)) {
-
       # build data frame containing information about the codes in this set
       set_df <- as.data.frame(
         igraph::vertex.attributes(sgraph, equivalent_sets[[j]])
@@ -221,7 +216,6 @@ find_equivalents <- function(classification,
 
       # add set rows to data.frame containing other sets for this code
       equivalents_df <- rbind(equivalents_df, set_df)
-
     }
 
     # construct label across all sets for this according to the labeller
@@ -233,7 +227,6 @@ find_equivalents <- function(classification,
 
     # add equivalent sets for this code to the final result
     result <- rbind(result, equivalents_df)
-
   }
 
   # remove duplicate rows
