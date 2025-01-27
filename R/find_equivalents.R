@@ -236,7 +236,7 @@ find_equivalents <- function(classification,
 
     # construct label across all sets for this according to the labeller
     # function(s) provided by the user
-    if (labels == TRUE) {
+    if (isTRUE(labels)) {
       i <- equivalents_df$date == max(equivalents_df$date)
 
       label <- paste(equivalents_df$code[i],
@@ -246,7 +246,7 @@ find_equivalents <- function(classification,
 
       equivalents_df$label <- label
     } else if (is.list(labels)) {
-      label <- lapply(labellers, do.call, args = equivalents_df)
+      label <- lapply(labels, do.call, args = equivalents_df)
       equivalents_df <- cbind(equivalents_df, label)
     }
 
