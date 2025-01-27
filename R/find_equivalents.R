@@ -174,8 +174,9 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #' @export
 find_equivalents <- function(classification,
                              dates,
-                             labellers = list(group_label = \(code, name, validTo, ...) {
-                               i <- is.na(validTo)
+                             labellers = list(group_label = \(date, code, name, validTo, ...) {
+
+                               i <- which(date == max(date))
 
                                paste(code[i], name[i], collapse = ", ")
                              }),
