@@ -190,15 +190,12 @@ find_equivalents <- function(classification,
                              labels = TRUE,
                              graph = klass_graph(classification),
                              date_format = "%Y") {
-
   # check if any provided dates are NA
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
 
   # prepare dates lacking month and date information for date conversion
   if (any(nchar(dates) == 4)) {
-
     dates[nchar(dates) == 4] <- paste0(dates[nchar(dates) == 4], "-01-01")
-
   }
 
   dates <- as.Date(dates)
