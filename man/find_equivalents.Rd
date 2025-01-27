@@ -65,10 +65,10 @@ Find equivalent sets of codes at specific dates in a Klass classification
 }
 \details{
 This function provides a solution to the problem of split or
-combined codes in Klass classifications. When using \code{update_klass} to ask
+combined codes in Klass classifications. When using \code{\link{update_klass}} to ask
 "what is this code in this version of the classification in this other
 version of the classification?", the answer is sometimes that the code has
-been split into two more codes (or combined from two or more codes, if
+been split into two or more codes (or combined from two or more codes, if
 trying to back-date a code), and therefore that the code cannot be updated.
 
 The solution provided by \code{find_equivalents} is answering the question: "in
@@ -85,10 +85,10 @@ b ──┚
 
 }\if{html}{\out{</div>}}
 
-\code{update_klass()} would inform us that \code{"a"} can be updated to \code{"c"} at t2,
-unless we specified \code{combine = FALSE}, in which case the result would be
-\code{NA}. \code{find_equivalents()} would inform us that the equivalent of the codes
-\code{"a"} and \code{"b"} in t1 at t2 is \code{"c"}.
+\code{\link{update_klass}} would inform us that \code{"a"} can be updated to
+\code{"c"} at t2, unless we specified \code{combine = FALSE}, in which case the
+result would be \code{NA}. \code{find_equivalents()} would inform us that the
+equivalent of the codes \code{"a"} and \code{"b"} in t1 at t2 is \code{"c"}.
 
 We can also consider a code splitting into two. In this example, \code{"a"} is
 valid at t1, and splits into \code{"b"} and \code{"c"} at t2.
@@ -99,9 +99,9 @@ a
 └─────> c
 }\if{html}{\out{</div>}}
 
-\code{update_klass} is unable to provide an updated code due to the split, and
-would return \code{NA}. \code{find_equivalents()} would inform us that the equivalent
-codes of \code{"a"} at t1 is \code{"b"} and \code{"c"} at t2.
+\code{\link{update_klass}} is unable to provide an updated code due to the
+split, and would return \code{NA}. \code{find_equivalents} would inform us that the
+equivalent codes of \code{"a"} at t1 is \code{"b"} and \code{"c"} at t2.
 
 \code{find_equivalents} can handle more than two dates. In the following
 example, \code{"a"} splits into \code{"b"} and \code{"c"} at t2, and \code{"b"} and \code{"c"}

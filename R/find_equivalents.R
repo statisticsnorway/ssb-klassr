@@ -80,10 +80,10 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   The names of the label columns are equal to `names(labellers)`.
 #'
 #' @details This function provides a solution to the problem of split or
-#'   combined codes in Klass classifications. When using `update_klass` to ask
+#'   combined codes in Klass classifications. When using \code{\link{update_klass}} to ask
 #'   "what is this code in this version of the classification in this other
 #'   version of the classification?", the answer is sometimes that the code has
-#'   been split into two more codes (or combined from two or more codes, if
+#'   been split into two or more codes (or combined from two or more codes, if
 #'   trying to back-date a code), and therefore that the code cannot be updated.
 #'
 #'   The solution provided by `find_equivalents` is answering the question: "in
@@ -101,10 +101,10 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'
 #'   ```
 #'
-#'   `update_klass()` would inform us that `"a"` can be updated to `"c"` at t2,
-#'   unless we specified `combine = FALSE`, in which case the result would be
-#'   `NA`. `find_equivalents()` would inform us that the equivalent of the codes
-#'   `"a"` and `"b"` in t1 at t2 is `"c"`.
+#'   \code{\link{update_klass}} would inform us that `"a"` can be updated to
+#'   `"c"` at t2, unless we specified `combine = FALSE`, in which case the
+#'   result would be `NA`. `find_equivalents()` would inform us that the
+#'   equivalent of the codes `"a"` and `"b"` in t1 at t2 is `"c"`.
 #'
 #'   We can also consider a code splitting into two. In this example, `"a"` is
 #'   valid at t1, and splits into `"b"` and `"c"` at t2.
@@ -116,9 +116,9 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   └─────> c
 #'   ```
 #'
-#'   `update_klass` is unable to provide an updated code due to the split, and
-#'   would return `NA`. `find_equivalents()` would inform us that the equivalent
-#'   codes of `"a"` at t1 is `"b"` and `"c"` at t2.
+#'   \code{\link{update_klass}} is unable to provide an updated code due to the
+#'   split, and would return `NA`. `find_equivalents` would inform us that the
+#'   equivalent codes of `"a"` at t1 is `"b"` and `"c"` at t2.
 #'
 #'
 #'   `find_equivalents` can handle more than two dates. In the following
