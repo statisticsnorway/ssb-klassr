@@ -8,7 +8,8 @@ find_equivalents(
   classification,
   dates,
   labels = TRUE,
-  graph = klass_graph(classification)
+  graph = klass_graph(classification),
+  date_format = "\%Y"
 )
 }
 \arguments{
@@ -61,6 +62,11 @@ as the default labelling used when \code{labels == TRUE}.
 \item{graph}{Optional. Generating the graph using \code{klass_graph} manually
 beforehand and providing it in this parameter can save time if running
 \code{find_equivalents} multiple times in sequence.}
+
+\item{date_format}{Optional. Passed directly to \link{format}, this is used to
+specify the output format for the \code{date} column. The default keeps just the
+year (\code{"YYYY"}). To get the full date in \code{"YYYY-MM-DD"} format, use
+\code{"\%Y-\%m-\%d"}. See \link{strptime} for complete functionality.}
 }
 \value{
 A data.frame with columns:

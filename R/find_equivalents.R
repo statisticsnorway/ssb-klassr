@@ -81,10 +81,14 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   )
 #'   ```
 #'
-#'
 #' @param graph Optional. Generating the graph using `klass_graph` manually
 #'   beforehand and providing it in this parameter can save time if running
 #'   `find_equivalents` multiple times in sequence.
+#'
+#' @param date_format Optional. Passed directly to \link{format}, this is used to
+#'   specify the output format for the `date` column. The default keeps just the
+#'   year (`"YYYY"`). To get the full date in `"YYYY-MM-DD"` format, use
+#'   `"%Y-%m-%d"`. See \link{strptime} for complete functionality.
 #'
 #' @return
 #'   A data.frame with columns:
@@ -93,7 +97,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   - `code` containing the set of equivalent codes in each date
 #'   - `name` containing the names of each code
 #'   - `validFrom` and `validTo` values for each code returned
-#'   - By default, `labels`, giving a unique group label for each group of equivalent sets. See \link{Labels} for details.
+#'   - By default, `labels`, giving a unique group label for each group of equivalent sets.
 #'
 #' @details This function provides a solution to the problem of split or
 #'   combined codes in Klass classifications. When using \code{\link{update_klass}} to ask
@@ -184,8 +188,18 @@ find_equivalent_nodes <- function(node, dates, graph) {
 find_equivalents <- function(classification,
                              dates,
                              labels = TRUE,
-                             graph = klass_graph(classification)) {
+                             graph = klass_graph(classification),
+                             date_format = "%Y") {
+
+  # check if any provided dates are NA
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
+
+  # prepare dates lacking month and date information for date conversion
+  if (any(nchar(dates) == 4)) {
+
+    dates[nchar(dates) == 4] <- paste0(dates[nchar(dates) == 4], "-01-01")
+
+  }
 
   dates <- as.Date(dates)
 
@@ -222,7 +236,7 @@ find_equivalents <- function(classification,
       )
 
       # add date variable specifying at what date this set is valid
-      set_df$date <- dates[j]
+      set_df$date <- format(dates[j], date_format)
 
       # select variables
       set_df <- set_df[, c("date", "code", "label", "validFrom", "validTo")]
