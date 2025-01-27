@@ -38,21 +38,28 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   labels. The names of the list determine the column names that the
 #'   corresponding labels will be placed into.
 #'
-#'   The default setting adds a column `group_label`, with labels of the form:
+#'   The default setting adds a column `group_label` which includes only the
+#'   most recent valid codes in the group and with labels of the following form:
 #'
 #'   ```
-#'   "5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
+#'   "1508 Ålesund, 1580 Haram"
 #'   ```
-#'
 #'
 #'   Multiple label-columns can be specified by adding more functions to the
-#'   list. The following example would create three label columns (one with the
-#'   codes, one with the names, and one with the codes and names)
+#'   list. The following example creates two label columns: one containing the
+#'   codes and names, and another with only the codes.
 #'
 #'   ```
-#'   labellers = list(group_code = \(code, ...) paste(code, collapse = ", "),
-#'                    group_name = \(name, ...) paste(name, collapse = ", "),
-#'                    group_label = \(code, name, ...) paste(code, name, collapse = ", "))
+#'   labellers = list(
+#'     group_label = function(code, name, validFrom, ...) {
+#'       label_codes <- validFrom == max(validFrom)
+#'       paste(code[label_codes], name[label_codes], collapse = ", ")
+#'     },
+#'     group_code = function(code, validFrom, ...) {
+#'       label_codes <- validFrom == max(validFrom)
+#'       paste(code[label_codes], collapse = ", ")
+#'     }
+#'   )
 #'   ```
 #'
 #'   The functions provided in this parameter can accept any of the following
@@ -167,7 +174,13 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #' @export
 find_equivalents <- function(classification,
                              dates,
-                             labellers = list(group_label = \(code, name, ...) paste(code, name, collapse = ", ")),
+                             labellers = list(group_label = \(code, name, validTo, ...) {
+
+                               i = is.na(validTo)
+
+                               paste(code[i], name[i], collapse = ", ")
+
+                             }),
                              graph = klass_graph(classification)) {
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
 

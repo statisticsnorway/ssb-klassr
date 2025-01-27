@@ -7,8 +7,11 @@
 find_equivalents(
   classification,
   dates,
-  labellers = list(group_label = function(code, name, ...) paste(code, name, collapse =
-    ", ")),
+  labellers = list(group_label = function(code, name, validFrom, ...) {
+     i =
+    which(is.na(validTo))
+     paste(code[i], name[i], collapse = ", ")
+ }),
   graph = klass_graph(classification)
 )
 }
@@ -21,18 +24,26 @@ find_equivalents(
 labels. The names of the list determine the column names that the
 corresponding labels will be placed into.
 
-The default setting adds a column \code{group_label}, with labels of the form:
+The default setting adds a column \code{group_label} which includes only the
+most recent valid codes in the group and with labels of the following form:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{"5006 Steinkjer, 5007 Namsos - Nåavmesjenjaelmie, 5053 Inderøy"
+\if{html}{\out{<div class="sourceCode">}}\preformatted{"1508 Ålesund, 1580 Haram"
 }\if{html}{\out{</div>}}
 
 Multiple label-columns can be specified by adding more functions to the
-list. The following example would create three label columns (one with the
-codes, one with the names, and one with the codes and names)
+list. The following example creates two label columns: one containing the
+codes and names, and another with only the codes.
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{labellers = list(group_code = \\(code, ...) paste(code, collapse = ", "),
-                 group_name = \\(name, ...) paste(name, collapse = ", "),
-                 group_label = \\(code, name, ...) paste(code, name, collapse = ", "))
+\if{html}{\out{<div class="sourceCode">}}\preformatted{labellers = list(
+  group_label = function(code, name, validFrom, ...) \{
+    label_codes <- validFrom == max(validFrom)
+    paste(code[label_codes], name[label_codes], collapse = ", ")
+  \},
+  group_code = function(code, validFrom, ...) \{
+    label_codes <- validFrom == max(validFrom)
+    paste(code[label_codes], collapse = ", ")
+  \}
+)
 }\if{html}{\out{</div>}}
 
 The functions provided in this parameter can accept any of the following
