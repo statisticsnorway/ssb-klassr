@@ -175,11 +175,9 @@ find_equivalent_nodes <- function(node, dates, graph) {
 find_equivalents <- function(classification,
                              dates,
                              labellers = list(group_label = \(code, name, validTo, ...) {
-
-                               i = is.na(validTo)
+                               i <- is.na(validTo)
 
                                paste(code[i], name[i], collapse = ", ")
-
                              }),
                              graph = klass_graph(classification)) {
   if (any(is.na(dates))) stop("`dates` cannot be NA.")
