@@ -240,16 +240,14 @@ find_equivalents <- function(classification,
       i <- equivalents_df$date == max(equivalents_df$date)
 
       label <- paste(equivalents_df$code[i],
-                     equivalents_df$name[i],
-                     collapse = ", ")
+        equivalents_df$name[i],
+        collapse = ", "
+      )
 
       equivalents_df$label <- label
-
     } else if (is.list(labels)) {
-
       label <- lapply(labellers, do.call, args = equivalents_df)
       equivalents_df <- cbind(equivalents_df, label)
-
     }
 
     # add equivalent sets for this code to the final result
