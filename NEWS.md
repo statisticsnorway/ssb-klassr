@@ -1,3 +1,11 @@
+# klassR 1.0.1
+
+- Small bug fix
+
+# klassR 1.0.1
+
+- Small bug fix
+
 # klassR 1.0.0
 
 - Changes to main functions names to adhere to standard formats.
