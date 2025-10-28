@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">klassR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -198,20 +198,6 @@ Klassifikasjon
 </tr>
 <tr>
 <td style="text-align:left;">
-Kodeliste for yrkeskatalogen, basert på STYRK 98
-</td>
-<td style="text-align:left;">
-145
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-Kodeliste
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Kodeliste for arbeidstid (hel-/deltid)
 </td>
 <td style="text-align:left;">
@@ -266,6 +252,20 @@ Kodeliste for delpopulasjon for lønn og sysselsetting
 Kodeliste
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Kodeliste for arbeidsforhold
+</td>
+<td style="text-align:left;">
+164
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Kodeliste
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -284,10 +284,14 @@ query to search for.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Classification of type of building /cadastre</td>
+<td align="left">Classification of type of building / GAB</td>
 <td align="left">31</td>
 </tr>
 <tr class="even">
+<td align="left">Classification of type of building /cadastre</td>
+<td align="left">31</td>
+</tr>
+<tr class="odd">
 <td align="left">Classification of land use and land cover</td>
 <td align="left">118</td>
 </tr>
@@ -331,18 +335,22 @@ aktivitet og ytelse)</td>
 <td align="left">393</td>
 </tr>
 <tr class="even">
-<td align="left">Classification of type of building /cadastre</td>
+<td align="left">Classification of type of building / GAB</td>
 <td align="left">31</td>
 </tr>
 <tr class="odd">
+<td align="left">Classification of type of building /cadastre</td>
+<td align="left">31</td>
+</tr>
+<tr class="even">
 <td align="left">Classification of land use and land cover</td>
 <td align="left">118</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Kodeliste for Interkommunale selskap</td>
 <td align="left">625</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Codelist for Intermunicipal companies</td>
 <td align="left">625</td>
 </tr>
@@ -394,14 +402,14 @@ viltstell</td>
 <td align="left">01.11</td>
 <td align="left">01.1</td>
 <td align="left">4</td>
-<td align="left">Dyrking av korn (unntatt ris), belgvekster og
+<td align="left">Dyrking av korn, unntatt ris, belgvekster og
 oljeholdige vekster</td>
 </tr>
 <tr class="even">
 <td align="left">01.110</td>
 <td align="left">01.11</td>
 <td align="left">5</td>
-<td align="left">Dyrking av korn (unntatt ris), belgvekster og
+<td align="left">Dyrking av korn, unntatt ris, belgvekster og
 oljeholdige vekster</td>
 </tr>
 <tr class="odd">
@@ -431,10 +439,10 @@ level Standard Industrial Classification codes we use:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="6%">
-<col width="14%">
-<col width="8%">
-<col width="70%">
+<col width="5%">
+<col width="13%">
+<col width="7%">
+<col width="73%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">code</th>
@@ -465,14 +473,14 @@ level Standard Industrial Classification codes we use:</p>
 <td align="left">D</td>
 <td align="left">NA</td>
 <td align="left">1</td>
-<td align="left">Elektrisitets-, gass-, damp- og
-varmtvannsforsyning</td>
+<td align="left">Forsyning av elektrisitet, gass, damp og kjøleluft</td>
 </tr>
 <tr class="odd">
 <td align="left">E</td>
 <td align="left">NA</td>
 <td align="left">1</td>
-<td align="left">Vannforsyning, avløps- og renovasjonsvirksomhet</td>
+<td align="left">Vannforsyning, avløps-, renovasjons- og
+oppryddingsvirksomhet</td>
 </tr>
 <tr class="even">
 <td align="left">F</td>
@@ -563,16 +571,16 @@ higher/broader levels given as variables.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">industry</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="1%">
-<col width="2%">
-<col width="21%">
-<col width="2%">
-<col width="21%">
-<col width="2%">
-<col width="10%">
+<col width="0%">
 <col width="2%">
 <col width="22%">
-<col width="2%">
+<col width="1%">
+<col width="22%">
+<col width="1%">
+<col width="10%">
+<col width="1%">
+<col width="22%">
+<col width="1%">
 <col width="11%">
 </colgroup>
 <thead><tr class="header">
@@ -592,11 +600,11 @@ higher/broader levels given as variables.</p>
 <tr class="odd">
 <td align="left">4</td>
 <td align="left">01.110</td>
-<td align="left">Growing of cereals (except rice), leguminous crops and
-oil seeds</td>
+<td align="left">Growing of cereals, other than rice, leguminous crops
+and oil seeds</td>
 <td align="left">01.11</td>
-<td align="left">Growing of cereals (except rice), leguminous crops and
-oil seeds</td>
+<td align="left">Growing of cereals, other than rice, leguminous crops
+and oil seeds</td>
 <td align="left">01.1</td>
 <td align="left">Growing of non-perennial crops</td>
 <td align="left">01</td>
@@ -634,10 +642,10 @@ the classification. These can be included in the data using the option
 <table class="table">
 <colgroup>
 <col width="0%">
-<col width="1%">
 <col width="0%">
-<col width="7%">
-<col width="89%">
+<col width="0%">
+<col width="3%">
+<col width="95%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">code</th>
@@ -653,27 +661,45 @@ the classification. These can be included in the data using the option
 <td align="left">2</td>
 <td align="left">Jordbruk og tjenester tilknyttet jordbruk, jakt og
 viltstell</td>
-<td align="left">Inkluderer: Denne næringen omfatter to
-basisaktiviteter: produksjon av vegetabilske og animalske produkter,
-jordbruk, dyrking av genetisk modifiserte vekster og oppdrett av
-genetisk modifiserte dyr. Både dyrking av vekster på friland og i
-veksthus inngår Inkluderer også: Omfatter også tjenester tilknyttet
-jordbruk, jakt og fangst Ekskluderer: Grunnarbeid, f.eks. anlegg av
-jordterrasser, drenering o.l. grupperes under næringshovedområde: F
-Bygge- og anleggsvirksomhet. Kjøpere og andelslag engasjert i
-markedsføring av jordbruksprodukter grupperes under næringshovedområde:
-G Varehandel, reparasjon av motorvogner. Stell og vedlikehold av
-landskap grupperes under: 81.30 Beplantning av hager og parkanlegg</td>
+<td align="left">Omfatter: Denne næringen omfatter to basisaktiviteter,
+produksjon av vegetabilske og animalske produkter. Næringshovedgruppe
+01.5 Kombinert husdyrhold og planteproduksjon bryter med de vanlige
+prinsippene for identifisering av hovedaktivitet. Det er aksept for at
+mange gårder har et rimelig balansert forhold mellom plante- og
+husdyrproduksjon, og at en klassifisering i den ene eller andre
+kategorien vil bli tilfeldig. Næringen inkluderer jordløs dyrking, for
+eksempel ved bruk av hydroponiske og akvaponiske dyrkingsmetoder. I
+jordbruket kan det by på utfordringer ved fordelingen av verdiskapingen
+når en virksomhet både produserer en råvare og produserer en bearbeidet
+vare fra den egenproduserte råvaren. For eksempel når en virksomhet
+dyrker epler og produserer sider fra de selvdyrkede eplene, eller når en
+virksomhet dyrker bær og produserer syltetøy fra de selvdyrkede bærene.
+I slike tilfeller vil antall timer arbeidet være en passende
+erstatningsvariabel. Bruk av antall timer arbeidet ved slike vertikalt
+integrerte aktiviteter vil vanligvis føre til klassifisering av
+virksomheten i jordbruk. Det samme vil være tilfelle for andre
+jordbruksprodukter, der virksomheter vanligvis blir klassifisert i
+jordbruk, for å sikre likebehandling. Omfatter også: Næringen omfatter
+også tjenester tilknyttet jordbruk, jakt og fangst. Ekskluderer:
+Jordbruksaktiviteter omfatter normalt ikke bearbeiding av
+jordbruksprodukter (klassifisert i næringene 10, 11 og 12) med unntak av
+den bearbeiding som er nødvendig for å få omsatt varene på det primære
+markedet. En slik bearbeiding er inkludert her. Grunnarbeid, for
+eksempel anlegg av jordterrasser, drenering og lignende, grupperes under
+næringshovedområde F. Kjøpere og andelslag som driver med markedsføring
+av jordbruksprodukter grupperes under næringshovedområde G. Stell og
+vedlikehold av landskap grupperes under 81.30 Beplantning av hager og
+parkanlegg.</td>
 </tr>
 <tr class="even">
 <td align="left">01.1</td>
 <td align="left">01</td>
 <td align="left">3</td>
 <td align="left">Dyrking av ettårige vekster</td>
-<td align="left">Inkluderer: Omfatter dyrking av ettårige vekster, dvs.
-planter som ikke varer i mer enn to vekstsesonger Inkluderer også:
-Omfatter også dyrking av ettårige vekster med henblikk på produksjon av
-såfrø og såkorn</td>
+<td align="left">Omfatter: Denne næringshovedgruppen omfatter dyrking av
+ettårige vekster, dvs. Planter som ikke varer i mer enn to
+vekstsesonger. Den omfatter også dyrking av ettårige vekster med
+henblikk på produksjon av såfrø og såkorn.</td>
 </tr>
 </tbody>
 </table>
@@ -1483,7 +1509,7 @@ oljeholdige vekster</td>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
