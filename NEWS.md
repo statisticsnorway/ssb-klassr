@@ -1,3 +1,8 @@
+# klassR 1.0.3
+
+- Adjustments for upcoming changes to dependent package igraph.
+- Updates in documentation.
+
 # klassR 1.0.0
 
 - Changes to main functions names to adhere to standard formats.

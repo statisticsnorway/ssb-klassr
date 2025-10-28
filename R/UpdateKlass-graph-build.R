@@ -192,16 +192,17 @@ klass_graph <- function(classification, date = NULL) {
     attr = list(name = no_edges$vertex)
   )
 
-  # Redirecting edges; if date is NULL, this step does not change the graph. By
-  # redirecting the edges based on date in this step, we do not need to check
-  # dates in update_klass_node(), we simply follow outgoing edges to reach the
-  # code valid at `date`.
+  # Redirecting edges only if date is not specified.
+  # Removes the need to check dates in update_klass_node(), since we can simply follow
+  # outgoing edges to reach the code valid at `date`.
 
-  graph <-
-    igraph::reverse_edges(
-      graph = graph,
-      eids = igraph::E(graph)[igraph::E(graph)$changeOccurred > date]
-    )
+  if (!is.null(date)) {
+    graph <-
+      igraph::reverse_edges(
+        graph = graph,
+        eids = igraph::E(graph)[igraph::E(graph)$changeOccurred > date]
+      )
+  }
 
   klass_vertices <-
     klass_vertices[match(igraph::V(graph)$name, klass_vertices$vertex), ]
