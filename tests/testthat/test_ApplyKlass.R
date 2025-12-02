@@ -8,7 +8,6 @@ test_that("apply_klass returns correct names for numeric codes", {
 })
 
 
-
 test_that("apply_klass returns correct names for numeric codes", {
   data(klassdata)
   kommune_names <- apply_klass(klassdata$kommune,
