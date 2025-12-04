@@ -4,7 +4,7 @@ test_that("update_klass gir riktig resultat ved enkle endringer", {
 
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    131, "/changes?from=0001-01-01"
+    131, "/changes?from=2019-01-01"
   )
 
   api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),

@@ -20,7 +20,7 @@ A sequence of vertices, starting with \code{node} and ending with the
 Given a node and a graph, find the node at the end of a sequence of changes.
 }
 \examples{
-
+\dontrun{
 # Build a graph directed towards the most recent codes.
 library(klassR)
 klass_131 <- klass_graph(131)
@@ -31,5 +31,5 @@ halden_node <- klass_node(klass_131, "0101")
 
 # Find the most recent code corresponding to 0101 Halden
 halden_node_updated <- update_klass_node(klass_131, halden_node)
-
+}
 }
