@@ -12,16 +12,13 @@
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # Build a graph directed towards the most recent codes.
 #' library(klassR)
-#' \dontrun{
 #' klass_131 <- klass_graph(131)
-#' }
 #'
 #' # Find the most recent node in the graph representing the code "0101" (Halden,
 #' # valid to 2020.)
-#' \dontrun{
 #' halden_node <- klass_node(klass_131, "0101")
 #' }
 klass_node <- function(graph, x, date = NA) {
@@ -155,7 +152,7 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # Build a graph directed towards the most recent codes.
 #' library(klassR)
 #' klass_131 <- klass_graph(131)
@@ -166,7 +163,7 @@ is_combined <- function(graph, node, compare_node = NULL) {
 #'
 #' # Find the most recent code corresponding to 0101 Halden
 #' halden_node_updated <- update_klass_node(klass_131, halden_node)
-#'
+#' }
 update_klass_node <- function(graph, node) {
   bfs_result <- igraph::bfs(
     graph = graph,
