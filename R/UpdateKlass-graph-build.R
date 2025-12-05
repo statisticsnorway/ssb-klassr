@@ -27,46 +27,54 @@
 #' }
 #'
 klass_graph <- function(classification, date = NULL) {
-  if (is.null(classification)) stop("Please provide a classification ID.")
+  if (is.null(classification)) {
+    stop("Please provide a classification ID.")
+  }
 
   ## Downloading codes and code changes
 
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    classification, "/changes?from=0001-01-01"
+    classification,
+    "/changes?from=0001-01-01"
   )
 
-  api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url),
-    flatten = TRUE
-  )[["codeChanges"]]
+  api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url), flatten = TRUE)[[
+    "codeChanges"
+  ]]
 
   codes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    classification, "/codes?from=0001-01-01"
+    classification,
+    "/codes?from=0001-01-01"
   )
 
-  api_alle <- jsonlite::fromJSON(GetUrl2(codes_url),
-    flatten = TRUE
-  )[["codes"]]
-
+  api_alle <- jsonlite::fromJSON(GetUrl2(codes_url), flatten = TRUE)[["codes"]]
 
   ## Calculating code variants and changes. A code may have more variants than
   ## are present in `api_alle`, since combinations of codes into an already
   ## existing code do not generate a new entry in this table. See `find_dates`.
 
   variants <-
-    do.call(rbind, lapply(unique(api_alle$code),
-      find_dates,
-      api_alle = api_alle,
-      api_endringer = api_endringer
-    ))
+    do.call(
+      rbind,
+      lapply(
+        unique(api_alle$code),
+        find_dates,
+        api_alle = api_alle,
+        api_endringer = api_endringer
+      )
+    )
 
   variants$validFrom <- as.Date(variants$validFrom)
   variants$validTo <- as.Date(variants$validTo)
 
   variants <- variants[, c(
-    "code", "name", "variant",
-    "validFrom", "validTo"
+    "code",
+    "name",
+    "variant",
+    "validFrom",
+    "validTo"
   )]
 
   changes <- api_endringer[, c("oldCode", "changeOccurred", "newCode")]
@@ -94,46 +102,57 @@ klass_graph <- function(classification, date = NULL) {
   ## the two variants on the assumption that the variants are connected.
 
   variant_changes <-
-    do.call(rbind, lapply(split(variants, variants$code), function(df) {
-      # We check if each variant has a `validTo` that matches the next variant's
-      # `validFrom`. The last variant always gets `FALSE`, since there is no
-      # next variant to check against.
-      df$adjacent <- c(df$validTo[-nrow(df)] == df$validFrom[-1], FALSE)
+    do.call(
+      rbind,
+      lapply(split(variants, variants$code), function(df) {
+        # We check if each variant has a `validTo` that matches the next variant's
+        # `validFrom`. The last variant always gets `FALSE`, since there is no
+        # next variant to check against.
+        df$adjacent <- c(df$validTo[-nrow(df)] == df$validFrom[-1], FALSE)
 
-      # We keep rows where `validTo` is equal to a `validFrom` value in another
-      # row, or where `validTo` is either the highest value or NA. We wrap this
-      # call in suppressWarnings to silence warnings that are due to all values
-      # of `validTo` being NA. This is usually the case when there's only one
-      # variant of a code.
-      suppressWarnings({
-        df <- df[df$adjacent |
-          df$validTo == max(df$validTo, na.rm = TRUE) |
-          is.na(df$validTo), ]
+        # We keep rows where `validTo` is equal to a `validFrom` value in another
+        # row, or where `validTo` is either the highest value or NA. We wrap this
+        # call in suppressWarnings to silence warnings that are due to all values
+        # of `validTo` being NA. This is usually the case when there's only one
+        # variant of a code.
+        suppressWarnings({
+          df <- df[
+            df$adjacent |
+              df$validTo == max(df$validTo, na.rm = TRUE) |
+              is.na(df$validTo),
+          ]
+        })
+
+        # Preparing the changes table. These columns represent the "from" side of
+        # the change, so we simply copy the variables already present.
+        df$oldCode <- df$code
+        df$newCode <- df$code
+        df$variantFrom <- df$variant
+        df$changeOccurred <- as.character(df$validTo)
+
+        # Constructing the "to" side of the change. We set `variantTo` to the next
+        # `variant` if `validTo` matches that variant's `validFrom`. This ensures
+        # that we don't connect two variants that aren't adjacent in time, e.g. if
+        # a code has been discontinued and then reused after a period of time.
+        df$variantTo <- ifelse(df$adjacent, df$variant + 1, NA)
+
+        # We exclude rows where variantTo is NA, since these aren't changes. This
+        # also excludes rows representing the last variant of a code (see
+        # `max_validTo`). We also only keep the newly constructed columns.
+        df <- df[
+          !is.na(df$variantTo),
+          c(
+            "oldCode",
+            "changeOccurred",
+            "newCode",
+            "variantFrom",
+            "variantTo"
+          )
+        ]
+
+        return(df)
       })
-
-      # Preparing the changes table. These columns represent the "from" side of
-      # the change, so we simply copy the variables already present.
-      df$oldCode <- df$code
-      df$newCode <- df$code
-      df$variantFrom <- df$variant
-      df$changeOccurred <- as.character(df$validTo)
-
-      # Constructing the "to" side of the change. We set `variantTo` to the next
-      # `variant` if `validTo` matches that variant's `validFrom`. This ensures
-      # that we don't connect two variants that aren't adjacent in time, e.g. if
-      # a code has been discontinued and then reused after a period of time.
-      df$variantTo <- ifelse(df$adjacent, df$variant + 1, NA)
-
-      # We exclude rows where variantTo is NA, since these aren't changes. This
-      # also excludes rows representing the last variant of a code (see
-      # `max_validTo`). We also only keep the newly constructed columns.
-      df <- df[!is.na(df$variantTo), c(
-        "oldCode", "changeOccurred", "newCode",
-        "variantFrom", "variantTo"
-      )]
-
-      return(df)
-    }))
+    )
 
   # The final changes table is the combination of changes identified earlier and
   # the changes inferred from evaluating the dates in the variant table. We wrap
@@ -150,7 +169,8 @@ klass_graph <- function(classification, date = NULL) {
   all_changes$changeOccurred <- as.Date(all_changes$changeOccurred)
 
   klass_edges <-
-    merge(all_changes,
+    merge(
+      all_changes,
       stats::setNames(
         klass_vertices[, c("code", "variant", "vertex")],
         c("oldCode", "variantFrom", "vertexFrom")
@@ -160,7 +180,8 @@ klass_graph <- function(classification, date = NULL) {
     )
 
   klass_edges <-
-    merge(klass_edges,
+    merge(
+      klass_edges,
       stats::setNames(
         klass_vertices[, c("code", "variant", "vertex")],
         c("newCode", "variantTo", "vertexTo")
@@ -184,7 +205,9 @@ klass_graph <- function(classification, date = NULL) {
     value = klass_edges$changeOccurred
   )
 
-  no_edges <- klass_vertices[!klass_vertices$vertex %in% igraph::V(graph)$name, ]
+  no_edges <- klass_vertices[
+    !klass_vertices$vertex %in% igraph::V(graph)$name,
+  ]
 
   graph <- igraph::add_vertices(
     graph = graph,
@@ -241,9 +264,11 @@ klass_graph <- function(classification, date = NULL) {
 #' @keywords internal
 #'
 find_variant_from <- function(x, changeOccurred, variants) {
-  variants[variants$code == x &
-    changeOccurred > variants$validFrom &
-    (changeOccurred <= variants$validTo | is.na(variants$validTo)), ]$variant
+  variants[
+    variants$code == x &
+      changeOccurred > variants$validFrom &
+      (changeOccurred <= variants$validTo | is.na(variants$validTo)),
+  ]$variant
 }
 
 #' Find the variant of a code corresponding to a change *to* a specific code.
@@ -257,9 +282,11 @@ find_variant_from <- function(x, changeOccurred, variants) {
 #' @keywords internal
 #'
 find_variant_to <- function(x, changeOccurred, variants) {
-  variants[variants$code == x &
-    changeOccurred >= variants$validFrom &
-    (changeOccurred < variants$validTo | is.na(variants$validTo)), ]$variant
+  variants[
+    variants$code == x &
+      changeOccurred >= variants$validFrom &
+      (changeOccurred < variants$validTo | is.na(variants$validTo)),
+  ]$variant
 }
 
 
@@ -322,10 +349,14 @@ find_dates <- function(code, api_alle, api_endringer) {
         dates_df$rn <- 1:nrow(dates_df)
 
         row_to_edit <-
-          dates_df[date >= dates_df$validFrom &
-            (date < dates_df$validTo | is.na(dates_df$validTo)), ]
+          dates_df[
+            date >= dates_df$validFrom &
+              (date < dates_df$validTo | is.na(dates_df$validTo)),
+          ]
 
-        if (nrow(row_to_edit) > 1) stop("Multiple changes matched!")
+        if (nrow(row_to_edit) > 1) {
+          stop("Multiple changes matched!")
+        }
 
         old_row <- row_to_edit
         old_row$validTo <- date
@@ -353,7 +384,8 @@ find_dates <- function(code, api_alle, api_endringer) {
     dates_df$variant <- 1:nrow(dates_df)
 
     dates_df$name <-
-      mapply(find_name,
+      mapply(
+        find_name,
         validFrom = dates_df$validFrom,
         validTo = dates_df$validTo,
         MoreArgs = list(
