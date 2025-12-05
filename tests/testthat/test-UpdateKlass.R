@@ -51,7 +51,7 @@ test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
     131,
-    "/changes?from=0001-01-01"
+    "/changes?from=1963-01-01"
   )
 
   api_endringer <- jsonlite::fromJSON(
@@ -121,7 +121,7 @@ test_that("update_klass gir riktig resultat ved delte koder", {
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
     131,
-    "/changes?from=0001-01-01"
+    "/changes?from=1963-01-01"
   )
 
   api_endringer <- jsonlite::fromJSON(
