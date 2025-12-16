@@ -7,6 +7,10 @@
 #'   Defaults to the current year plus one, which ensures the graph is directed
 #'   to the most recent codes.
 #'
+#' @param from The earliest date that should be used to construct the graph.
+#'
+#' @param to The last date that should be used to construct the graph.
+#'
 #' @return An \code{igraph} object with the vertexes representing codes, and
 #'   edges representing changes between codes. The direction of the edges
 #'   represent changes towards the date specified in \code{date}.
@@ -26,7 +30,12 @@
 #' klass_131_2020 <- klass_graph(131, "2020-01-01")
 #' }
 #'
-klass_graph <- function(classification, date = NULL) {
+klass_graph <- function(
+  classification,
+  date = NULL,
+  from = "1900-01-01",
+  to = Sys.Date()
+) {
   if (is.null(classification)) {
     stop("Please provide a classification ID.")
   }
@@ -36,7 +45,10 @@ klass_graph <- function(classification, date = NULL) {
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
     classification,
-    "/changes?from=0001-01-01"
+    "/changes?from=",
+    from,
+    "&to=",
+    to
   )
 
   api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url), flatten = TRUE)[[
@@ -46,7 +58,10 @@ klass_graph <- function(classification, date = NULL) {
   codes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
     classification,
-    "/codes?from=0001-01-01"
+    "/codes?from=",
+    from,
+    "&to=",
+    to
   )
 
   api_alle <- jsonlite::fromJSON(GetUrl2(codes_url), flatten = TRUE)[["codes"]]
