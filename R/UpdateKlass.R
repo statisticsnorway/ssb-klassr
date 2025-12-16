@@ -46,12 +46,14 @@
 #' @seealso See [update_klass] for updating multiple codes in one function call.
 #'
 #' @keywords internal
-update_code <- function(graph,
-                        code,
-                        date = NA,
-                        output = "code",
-                        combine = TRUE,
-                        report = FALSE) {
+update_code <- function(
+  graph,
+  code,
+  date = NA,
+  output = "code",
+  combine = TRUE,
+  report = FALSE
+) {
   result <- update_klass_node(
     graph = graph,
     node = klass_node(graph, code, date = date)
@@ -84,9 +86,11 @@ update_code <- function(graph,
 
   if (report) {
     return(report_df[, output])
-  } else if (any(report_df$split) |
-    (!combine & any(report_df$combined)) |
-    length(result) == 0) {
+  } else if (
+    any(report_df$split) |
+      (!combine & any(report_df$combined)) |
+      length(result) == 0
+  ) {
     return(NA)
   } else {
     return(report_df[length(result), output])
@@ -169,14 +173,16 @@ update_code <- function(graph,
 #' )
 #' }
 #'
-update_klass <- function(codes,
-                         dates = NA,
-                         classification = NULL,
-                         date = NULL,
-                         graph = klass_graph(classification, date),
-                         output = "code",
-                         report = FALSE,
-                         combine = TRUE) {
+update_klass <- function(
+  codes,
+  dates = NA,
+  classification = NULL,
+  date = NULL,
+  graph = klass_graph(classification, date),
+  output = "code",
+  report = FALSE,
+  combine = TRUE
+) {
   if (!methods::hasArg(graph) & !methods::hasArg(classification)) {
     stop(
       "\nPlease provide either:\n",
