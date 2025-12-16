@@ -6,10 +6,7 @@
 library(klassR)
 klass_131_graph <- klass_graph(classification = 131, date = "2024-12-19")
 
-save(klass_131_graph,
-  file ="./data/klass_131_graph.RData",
-  compress = TRUE
-)
+save(klass_131_graph, file = "./data/klass_131_graph.RData", compress = TRUE)
 
 ## klass_131_2020_graph.R -------------------------------------------------
 
@@ -36,7 +33,7 @@ klass_131_1964_graph <- klass_graph(
 
 save(
   klass_131_1964_graph,
-  file ="data/klass_131_1964_graph.RData",
+  file = "data/klass_131_1964_graph.RData",
   compress = TRUE
 )
 
