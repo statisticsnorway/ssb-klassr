@@ -90,7 +90,7 @@ list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
 
   # If no family specified then show all families
   if (is.null(family)) {
-    url <- paste(GetBaseUrl(), "classificationfamilies/", code, sep = "")
+    url <- paste(GetBaseUrl(), "classificationfamilies", code, sep = "")
     dt <- data.frame(GetUrl(url)$"_embedded"$classificationFamilies)
     nums <- as.vector(sapply(dt$X_links$self$href, FUN = GetNums))
     dt2 <- data.frame(
@@ -260,7 +260,6 @@ GetFamily <- function(klass) {
   .Deprecated("get_family")
   get_family(classification = klass)
 }
-
 
 
 #' Correspondence list

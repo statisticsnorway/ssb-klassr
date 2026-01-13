@@ -4,10 +4,12 @@ test_that("update_klass gir riktig resultat ved enkle endringer", {
 
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    131, "/changes?from=0001-01-01"
+    131,
+    "/changes?from=2019-01-01"
   )
 
-  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+  api_endringer <- jsonlite::fromJSON(
+    klassR:::GetUrl2(changes_url),
     flatten = TRUE
   )[["codeChanges"]]
 
@@ -24,13 +26,15 @@ test_that("update_klass gir riktig resultat ved enkle endringer", {
 
   omkodet <-
     endringer_kommunestruktur_enkle %>%
-    dplyr::mutate(oppdatert = update_klass(
-      codes = oldCode,
-      classification = 131,
-      output = "code",
-      report = FALSE,
-      graph = graph
-    ))
+    dplyr::mutate(
+      oppdatert = update_klass(
+        codes = oldCode,
+        classification = 131,
+        output = "code",
+        report = FALSE,
+        graph = graph
+      )
+    )
 
   feil <-
     omkodet %>%
@@ -46,10 +50,12 @@ test_that("update_klass gir riktig resultat ved sammenslåtte koder", {
 
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    131, "/changes?from=0001-01-01"
+    131,
+    "/changes?from=1963-01-01"
   )
 
-  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+  api_endringer <- jsonlite::fromJSON(
+    klassR:::GetUrl2(changes_url),
     flatten = TRUE
   )[["codeChanges"]]
 
@@ -102,9 +108,7 @@ test_that("update_klass gir riktig resultat ved ugyldige koder", {
   expect_true(
     all(
       is.na(
-        update_klass(c("foo", "bar", "egg", "ham"),
-          graph = graph
-        )
+        update_klass(c("foo", "bar", "egg", "ham"), graph = graph)
       )
     )
   )
@@ -116,10 +120,12 @@ test_that("update_klass gir riktig resultat ved delte koder", {
 
   changes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
-    131, "/changes?from=0001-01-01"
+    131,
+    "/changes?from=1963-01-01"
   )
 
-  api_endringer <- jsonlite::fromJSON(klassR:::GetUrl2(changes_url),
+  api_endringer <- jsonlite::fromJSON(
+    klassR:::GetUrl2(changes_url),
     flatten = TRUE
   )[["codeChanges"]]
 
@@ -134,12 +140,14 @@ test_that("update_klass gir riktig resultat ved delte koder", {
 
   omkodet <-
     endringer_kommunestruktur_delinger %>%
-    dplyr::mutate(oppdatert = update_klass(
-      codes = oldCode,
-      dates = as.Date(changeOccurred) - 1,
-      classification = 131,
-      graph = graph
-    ))
+    dplyr::mutate(
+      oppdatert = update_klass(
+        codes = oldCode,
+        dates = as.Date(changeOccurred) - 1,
+        classification = 131,
+        graph = graph
+      )
+    )
 
   expect_true(all(is.na(omkodet$oppdatert)))
 })
@@ -169,7 +177,10 @@ test_that("update_klass gir forventet format på output", {
   )
   expect_type(update_helper(output = c("code", "name"), report = TRUE), "list")
   expect_type(update_helper(output = TRUE, report = FALSE), "list")
-  expect_s3_class(update_helper(output = TRUE, report = FALSE)[[1]], "data.frame")
+  expect_s3_class(
+    update_helper(output = TRUE, report = FALSE)[[1]],
+    "data.frame"
+  )
   expect_equal(nrow(update_helper(output = TRUE, report = FALSE)[[1]]), 1)
   expect_equal(
     nrow(update_helper(output = c("code", "name"), report = FALSE)[[1]]),
