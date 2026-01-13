@@ -1,0 +1,41 @@
+# Package index
+
+## All functions
+
+- [`apply_klass()`](apply_klass.md) [`ApplyKlass()`](apply_klass.md) :
+  Match and convert a classification
+- [`correspond_list()`](correspond_list.md)
+  [`CorrespondList()`](correspond_list.md) : Correspondence list Print a
+  list of correspondence tables for a given classification with source
+  and target IDs
+- [`get_family()`](get_family.md) [`GetFamily()`](get_family.md) :
+  Identify corresponding family from a classification number
+- [`get_klass()`](get_klass.md) [`GetKlass()`](get_klass.md) : Fetch
+  Statistics Norway classification data using API
+- [`get_name()`](get_name.md) [`GetName()`](get_name.md) : Get the name
+  of a classification version
+- [`get_version()`](get_version.md) [`GetVersion()`](get_version.md) :
+  Get version number of a class given a date
+- [`klass_131_1964_graph`](klass_131_1964_graph.md) : Test Graph data
+  for municipalities in 1964
+- [`klass_131_2020_graph`](klass_131_2020_graph.md) : Test Graph data
+  for municipalities in 2020
+- [`klass_131_graph`](klass_131_graph.md) : Test Graph data for
+  municipalities in 2024
+- [`klass_graph()`](klass_graph.md) : Build a directed graph of code
+  changes based on a Klass classification
+- [`klass_node()`](klass_node.md) : Given a Klass graph, find the node
+  corresponding to a code and (optionally) a date.
+- [`klassdata`](klassdata.md) : Testdata for klassR package
+- [`list_family()`](list_family.md) [`ListFamily()`](list_family.md) :
+  Classification family list Print a list of all families and the number
+  of classifications in each
+- [`list_klass()`](list_klass.md) [`ListKlass()`](list_klass.md) :
+  Classification list Get a full list of all classifications and
+  codelists
+- [`search_klass()`](search_klass.md) [`SearchKlass()`](search_klass.md)
+  : Search Klass
+- [`update_klass()`](update_klass.md) : Update multiple Klass codes to a
+  desired date.
+- [`update_klass_node()`](update_klass_node.md) : Given a node and a
+  graph, find the node at the end of a sequence of changes.
