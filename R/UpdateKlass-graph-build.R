@@ -1,3 +1,51 @@
+#' Get all available classification changes in a specified range
+#'
+#' @inheritParams klass_graph
+#'
+#' @return The full table of changes from the ?changes API endpoint.
+#'
+#' @keywords internal
+#'
+#' @examples
+get_changes_table <- function(classification, from, to) {
+  download_some_changes <- function(classification, from, to) {
+    changes_url <- paste0(
+      "https://data.ssb.no/api/klass/v1/classifications/",
+      classification,
+      "/changes?from=",
+      from,
+      "&to=",
+      to
+    )
+
+    api_endringer <- jsonlite::fromJSON(
+      klassR:::GetUrl2(changes_url),
+      flatten = TRUE
+    )[[
+      "codeChanges"
+    ]]
+
+    return(api_endringer)
+  }
+
+  dates <- c(
+    seq(from = as.Date("0000-01-01"), to = Sys.Date(), by = "100 year"),
+    Sys.Date()
+  )
+
+  dates <- gsub(" ", "0", sprintf("%010s", dates))
+
+  changes <- mapply(
+    FUN = download_some_changes,
+    from = dates[-length(dates)],
+    to = dates[-1],
+    classification = 131,
+    USE.NAMES = FALSE
+  )
+
+  return(do.call(rbind, changes))
+}
+
 #' Build a directed graph of code changes based on a Klass classification
 #'
 #' @param classification The ID of the desired classification.
@@ -33,7 +81,7 @@
 klass_graph <- function(
   classification,
   date = NULL,
-  from = "1900-01-01",
+  from = "0001-01-01",
   to = Sys.Date()
 ) {
   if (is.null(classification)) {
@@ -42,18 +90,11 @@ klass_graph <- function(
 
   ## Downloading codes and code changes
 
-  changes_url <- paste0(
-    "https://data.ssb.no/api/klass/v1/classifications/",
-    classification,
-    "/changes?from=",
-    from,
-    "&to=",
-    to
+  api_endringer <- get_changes_table(
+    classification = classification,
+    from = from,
+    to = to
   )
-
-  api_endringer <- jsonlite::fromJSON(GetUrl2(changes_url), flatten = TRUE)[[
-    "codeChanges"
-  ]]
 
   codes_url <- paste0(
     "https://data.ssb.no/api/klass/v1/classifications/",
