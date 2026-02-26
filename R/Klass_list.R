@@ -57,8 +57,10 @@ list_klass <- function(codelists = FALSE, language = "nb") {
     url <- paste(GetBaseUrl(), "classificationfamilies/", i, code, sep = "")
     dt <- data.frame(GetUrl(url)$classifications)
     nums <- as.vector(sapply(dt$X_links[, 1], GetNums))
-    dt2 <- data.frame(klass_name = dt$name, klass_nr = nums, klass_family = i, klass_type = dt$classificationType)
-    Klist <- rbind(Klist, dt2)
+    if (nrow(dt)>0){
+      dt2 <- data.frame(klass_name = dt$name, klass_nr = nums, klass_family = i, klass_type = dt$classificationType)
+      Klist <- rbind(Klist, dt2)
+    }
   }
   return(Klist[-1, ])
 }
