@@ -53,11 +53,11 @@ list_klass()
 | klass_name                               | klass_nr | klass_family | klass_type     |
 |:-----------------------------------------|:---------|:-------------|:---------------|
 | Standard for yrkesklassifisering         | 7        | 1            | Klassifikasjon |
-| Standard for skadeforsikring bransje     | 155      | 2            | Klassifikasjon |
 | Standard for kjønn                       | 2        | 3            | Klassifikasjon |
 | Standard for gruppering av familier      | 17       | 3            | Klassifikasjon |
 | Standard for sivilstand                  | 19       | 3            | Klassifikasjon |
 | Standard for gruppering av husholdninger | 37       | 3            | Klassifikasjon |
+| Standard for aldersinndeling             | 282      | 3            | Klassifikasjon |
 
 Code lists are classifications that used for national and internal
 (Statistics Norway) publications. These can be included in the list
@@ -98,11 +98,11 @@ search_klass(query = "ARENA")
 | Classification of coastal and marine management areas                                                        | 895      |
 | Classification of important Norwegian fishing areas                                                          | 33       |
 | Classification of agricultural holdings by size of utilised agricultural area                                | 378      |
-| Classification of land use and land cover                                                                    | 118      |
 | Classification of productive forest area by development class                                                | 70       |
+| Classification of land use and land cover                                                                    | 118      |
 | Classification of productive forest area by site quality (H40)                                               | 71       |
-| Classification of type of building /cadastre                                                                 | 31       |
 | Classification of forest owners with at last 25 decares productive forest area by owner group                | 22       |
+| Classification of type of building /cadastre                                                                 | 31       |
 | Classification of Standard Industrial Classification                                                         | 6        |
 | Classification of Land classification system in the Norwegian general map series at scale 1:5 000 - 1:10 000 | 28       |
 | Classification of energy products                                                                            | 117      |

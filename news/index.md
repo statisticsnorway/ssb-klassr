@@ -1,5 +1,11 @@
 # Changelog
 
+## klassR 1.0.5
+
+CRAN release: 2026-02-26
+
+- Bug fix for list_klass
+
 ## klassR 1.0.4
 
 CRAN release: 2025-12-12
