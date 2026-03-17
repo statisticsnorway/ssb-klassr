@@ -1,3 +1,6 @@
+# klassR 1.0.5
+- Bug fix for list_klass
+
 # klassR 1.0.4
 - Bug fixes
 
