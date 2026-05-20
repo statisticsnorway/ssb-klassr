@@ -262,7 +262,6 @@ GetFamily <- function(klass) {
 }
 
 
-
 #' Correspondence list
 #' Print a list of correspondence tables for a given classification with source and target IDs
 #'
