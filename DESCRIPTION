@@ -5,7 +5,7 @@ Version: 1.0.3
 Authors@R: 
   c(person(given = "Susie",
            family = "Jentoft",
-           role = c("aut", "cre"),
+           role = c("aut"),
            email = "susie.jentoft@ssb.no"),
     person(given = "Diana-Cristina",
            family = "Iancu",
@@ -15,7 +15,7 @@ Authors@R:
            role = "aut"),
     person(given = "Øyvind I.",
            family = "Berntsen",
-           role = "aut"),
+           role = c("aut", "cre")),
     person("Statistics Norway", role = "cph"))
 Description: Functions to search, retrieve, apply and update classifications 
   and codelists using Statistics Norway's API <https://www.ssb.no/klass> 
