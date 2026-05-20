@@ -83,7 +83,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'
 #' @param graph Optional. Generating the graph using `klass_graph` manually
 #'   beforehand and providing it in this parameter can save time if running
-#'   `find_equivalents` multiple times in sequence.
+#'   `find_equivalent_codes` multiple times in sequence.
 #'
 #' @param date_format Optional. Passed directly to \link{format}, this is used to
 #'   specify the output format for the `date` column. The default keeps just the
@@ -106,7 +106,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   been split into two or more codes (or combined from two or more codes, if
 #'   trying to back-date a code), and therefore that the code cannot be updated.
 #'
-#'   The solution provided by `find_equivalents` is answering the question: "in
+#'   The solution provided by `find_equivalent_codes` is answering the question: "in
 #'   these versions of the classification, which codes were equivalent to this
 #'   code in this other version of the classification?".
 #'
@@ -123,7 +123,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'
 #'   \code{\link{update_klass}} would inform us that `"a"` can be updated to
 #'   `"c"` at t2, unless we specified `combine = FALSE`, in which case the
-#'   result would be `NA`. `find_equivalents()` would inform us that the
+#'   result would be `NA`. `find_equivalent_codes()` would inform us that the
 #'   equivalent of the codes `"a"` and `"b"` in t1 at t2 is `"c"`.
 #'
 #'   We can also consider a code splitting into two. In this example, `"a"` is
@@ -137,13 +137,13 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   ```
 #'
 #'   \code{\link{update_klass}} is unable to provide an updated code due to the
-#'   split, and would return `NA`. `find_equivalents` would inform us that the
+#'   split, and would return `NA`. `find_equivalent_codes` would inform us that the
 #'   equivalent codes of `"a"` at t1 is `"b"` and `"c"` at t2.
 #'
 #'
-#'   `find_equivalents` can handle more than two dates. In the following
+#'   `find_equivalent_codes` can handle more than two dates. In the following
 #'   example, `"a"` splits into `"b"` and `"c"` at t2, and `"b"` and `"c"`
-#'   combine into `"d"` at t3. `find_equivalents` can inform us that `"a"` is
+#'   combine into `"d"` at t3. `find_equivalent_codes` can inform us that `"a"` is
 #'   equivalent to `"b"` and `"c"` at t2, and `"d"` at t3.
 #'
 #'   ```
@@ -153,7 +153,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   └─────> c ┴─> d
 #'   ```
 #'
-#'   `find_equivalents` will only search in the time range we specify. As a
+#'   `find_equivalent_codes` will only search in the time range we specify. As a
 #'   consequence, generating sets of equivalent codes over longer time spans
 #'   will generally create larger sets than using shorter time spans.
 #'
@@ -185,13 +185,17 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   - t4: `"f"`
 #'
 #' @export
-find_equivalents <- function(classification,
-                             dates,
-                             labels = TRUE,
-                             graph = klass_graph(classification),
-                             date_format = "%Y") {
+find_equivalent_codes <- function(
+  classification,
+  dates,
+  labels = TRUE,
+  graph = klass_graph(classification),
+  date_format = "%Y"
+) {
   # check if any provided dates are NA
-  if (any(is.na(dates))) stop("`dates` cannot be NA.")
+  if (any(is.na(dates))) {
+    stop("`dates` cannot be NA.")
+  }
 
   # prepare dates lacking month and date information for date conversion
   if (any(nchar(dates) == 4)) {
@@ -204,7 +208,9 @@ find_equivalents <- function(classification,
     stop("Some dates could not be converted to date format.")
   }
 
-  if (!length(dates) > 1) stop("Need to provide at least two dates")
+  if (!length(dates) > 1) {
+    stop("Need to provide at least two dates")
+  }
 
   # Search in codes that were valid before or on max_date and valid to
   # after the min_date (or still valid)
@@ -250,7 +256,8 @@ find_equivalents <- function(classification,
     if (isTRUE(labels)) {
       i <- equivalents_df$date == max(equivalents_df$date)
 
-      label <- paste(equivalents_df$code[i],
+      label <- paste(
+        equivalents_df$code[i],
         equivalents_df$name[i],
         collapse = ", "
       )
@@ -265,7 +272,7 @@ find_equivalents <- function(classification,
     result <- rbind(result, equivalents_df)
   }
 
-  # remove duplicate rows
+  # remove duplicate rowsl
   result <- unique(result)
 
   return(result)
