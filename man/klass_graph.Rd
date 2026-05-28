@@ -11,13 +11,13 @@ klass_graph(classification, date = NULL)
 
 \item{date}{The date which the edges of the graph should be directed towards.
 
-  Defaults to the current year plus one, which ensures the graph is directed
-  to the most recent codes.}
+Defaults to the current year plus one, which ensures the graph is directed
+to the most recent codes.}
 }
 \value{
 An \code{igraph} object with the vertexes representing codes, and
-  edges representing changes between codes. The direction of the edges
-  represent changes towards the date specified in \code{date}.
+edges representing changes between codes. The direction of the edges
+represent changes towards the date specified in \code{date}.
 }
 \description{
 Build a directed graph of code changes based on a Klass classification

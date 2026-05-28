@@ -1,12 +1,11 @@
 Package: klassR
 Type: Package
 Title: Classifications for Statistics Norway
-Version: 1.0.5
+Version: 1.0.6
 Authors@R: 
   c(person(given = "Susie",
            family = "Jentoft",
-           role = c("aut", "cre"),
-           email = "susie.jentoft@ssb.no"),
+           role = "aut"),
     person(given = "Diana-Cristina",
            family = "Iancu",
            role = "aut"),
@@ -15,7 +14,8 @@ Authors@R:
            role = "aut"),
     person(given = "Øyvind I.",
            family = "Berntsen",
-           role = "aut"),
+           role = c("aut", "cre"),
+           email = "Oyvind.Berntsen@ssb.no"),
     person("Statistics Norway", role = "cph"))
 Description: Functions to search, retrieve, apply and update classification 
   standards and code lists using Statistics Norway's API 
@@ -29,7 +29,8 @@ BugReports: https://github.com/statisticsnorway/ssb-klassr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
+Roxygen: list(markdown = TRUE)
 Suggests: 
     rmarkdown,
     knitr,

@@ -1,3 +1,6 @@
+# klassR 1.0.6
+- Introduces find_equivalent_codes
+
 # klassR 1.0.5
 - Bug fix for list_klass
 
