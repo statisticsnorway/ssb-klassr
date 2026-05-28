@@ -12,11 +12,11 @@ formattering(x, classification)
 
 - x:
 
-  \- vector of character
+  - vector of character
 
 - classification:
 
-  \- classification number
+  - classification number
 
 ## Value
 

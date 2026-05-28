@@ -1,5 +1,9 @@
 # Changelog
 
+## klassR 1.0.6
+
+- Introduces find_equivalent_codes
+
 ## klassR 1.0.5
 
 CRAN release: 2026-02-26

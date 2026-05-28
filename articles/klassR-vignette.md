@@ -17,6 +17,7 @@ For Statistic Norway employees, the package is installed on most of our
 platforms. For others, it can be installed from CRAN with:
 
 ``` r
+
 install.packages("klassR")
 ```
 
@@ -28,6 +29,7 @@ To use the function in **klassR** the package must be called each time a
 new R session is started. This can be done using:
 
 ``` r
+
 library(klassR)
 ```
 
@@ -47,34 +49,36 @@ classification type (`klass_type`) is also shown which indicates whether
 it is a classification or code list.
 
 ``` r
+
 list_klass()
 ```
 
-| klass_name                               | klass_nr | klass_family | klass_type     |
-|:-----------------------------------------|:---------|:-------------|:---------------|
-| Standard for yrkesklassifisering         | 7        | 1            | Klassifikasjon |
-| Standard for kjønn                       | 2        | 3            | Klassifikasjon |
-| Standard for gruppering av familier      | 17       | 3            | Klassifikasjon |
-| Standard for sivilstand                  | 19       | 3            | Klassifikasjon |
-| Standard for gruppering av husholdninger | 37       | 3            | Klassifikasjon |
-| Standard for aldersinndeling             | 282      | 3            | Klassifikasjon |
+| klass_name | klass_nr | klass_family | klass_type |
+|:---|:---|:---|:---|
+| Standard for yrkesklassifisering | 7 | 1 | Klassifikasjon |
+| Standard for kjønn | 2 | 3 | Klassifikasjon |
+| Standard for gruppering av familier | 17 | 3 | Klassifikasjon |
+| Standard for sivilstand | 19 | 3 | Klassifikasjon |
+| Standard for gruppering av husholdninger | 37 | 3 | Klassifikasjon |
+| Standard for aldersinndeling | 282 | 3 | Klassifikasjon |
 
 Code lists are classifications that used for national and internal
 (Statistics Norway) publications. These can be included in the list
 using the `codelist` parameter
 
 ``` r
+
 list_klass(codelists = TRUE)
 ```
 
-| klass_name                                            | klass_nr | klass_family | klass_type     |
-|:------------------------------------------------------|:---------|:-------------|:---------------|
-| Standard for yrkesklassifisering                      | 7        | 1            | Klassifikasjon |
-| Kodeliste for arbeidstid (hel-/deltid)                | 149      | 1            | Kodeliste      |
-| Kodeliste for arbeidsmarkedsstatus                    | 161      | 1            | Kodeliste      |
-| Kodeliste for arbeidsgiveravgiftstype                 | 162      | 1            | Kodeliste      |
-| Kodeliste for delpopulasjon for lønn og sysselsetting | 163      | 1            | Kodeliste      |
-| Kodeliste for arbeidsforhold                          | 164      | 1            | Kodeliste      |
+| klass_name | klass_nr | klass_family | klass_type |
+|:---|:---|:---|:---|
+| Standard for yrkesklassifisering | 7 | 1 | Klassifikasjon |
+| Kodeliste for arbeidstid (hel-/deltid) | 149 | 1 | Kodeliste |
+| Kodeliste for arbeidsmarkedsstatus | 161 | 1 | Kodeliste |
+| Kodeliste for arbeidsgiveravgiftstype | 162 | 1 | Kodeliste |
+| Kodeliste for delpopulasjon for lønn og sysselsetting | 163 | 1 | Kodeliste |
+| Kodeliste for arbeidsforhold | 164 | 1 | Kodeliste |
 
 ### Search for a classification using a keyword
 
@@ -83,60 +87,62 @@ You can also search for a classification by a keyword using the
 for.
 
 ``` r
+
 search_klass(query = "ARENA")
 ```
 
-| klass_name                                                                                                   | klass_nr |
-|:-------------------------------------------------------------------------------------------------------------|:---------|
-| Classification of Residential areas                                                                          | 567      |
-| Classification of STN area                                                                                   | 599      |
-| Classification of maritime Areas                                                                             | 892      |
-| Classification of wild reindeer areas                                                                        | 75       |
-| Classification of agricultural area by use                                                                   | 27       |
-| Classification of major fishing areas (FAO)                                                                  | 32       |
-| Classification of Service areas - Emergency rooms                                                            | 435      |
-| Classification of coastal and marine management areas                                                        | 895      |
-| Classification of important Norwegian fishing areas                                                          | 33       |
-| Classification of agricultural holdings by size of utilised agricultural area                                | 378      |
-| Classification of productive forest area by development class                                                | 70       |
-| Classification of land use and land cover                                                                    | 118      |
-| Classification of productive forest area by site quality (H40)                                               | 71       |
-| Classification of forest owners with at last 25 decares productive forest area by owner group                | 22       |
-| Classification of type of building /cadastre                                                                 | 31       |
-| Classification of Standard Industrial Classification                                                         | 6        |
-| Classification of Land classification system in the Norwegian general map series at scale 1:5 000 - 1:10 000 | 28       |
-| Classification of energy products                                                                            | 117      |
-| Classification of target species in the sea                                                                  | 34       |
-| Classification of ports in Norway, goods and passenger transport                                             | 398      |
+| klass_name | klass_nr |
+|:---|:---|
+| Classification of Residential areas | 567 |
+| Classification of STN area | 599 |
+| Classification of maritime Areas | 892 |
+| Classification of wild reindeer areas | 75 |
+| Classification of agricultural area by use | 27 |
+| Classification of major fishing areas (FAO) | 32 |
+| Classification of Service areas - Emergency rooms | 435 |
+| Classification of coastal and marine management areas | 895 |
+| Classification of important Norwegian fishing areas | 33 |
+| Classification of agricultural holdings by size of utilised agricultural area | 378 |
+| Classification of productive forest area by development class | 70 |
+| Classification of land use and land cover | 118 |
+| Classification of productive forest area by site quality (H40) | 71 |
+| Classification of forest owners with at last 25 decares productive forest area by owner group | 22 |
+| Classification of type of building /cadastre | 31 |
+| Classification of Standard Industrial Classification | 6 |
+| Classification of Land classification system in the Norwegian general map series at scale 1:5 000 - 1:10 000 | 28 |
+| Classification of energy products | 117 |
+| Classification of target species in the sea | 34 |
+| Classification of ports in Norway, goods and passenger transport | 398 |
 
 Again, to include code lists in the search this should be specified
 
 ``` r
+
 search_klass(query = "ARENA", codelists = TRUE)
 ```
 
-| klass_name                                                            | klass_nr |
-|:----------------------------------------------------------------------|:---------|
-| Kodeliste for ARENA as_ytelse                                         | 394      |
-| Kodeliste for ARENA Tiltak                                            | 386      |
-| Kodeliste for ARENA as_f (arbeidssøkerstatus_fingruppe )              | 396      |
-| Kodeliste for ARENA as_gr (arbeidssøkerstatus grovgruppe)             | 395      |
-| Kodeliste for ARENA as_stat (arbeidssøkerstatus, aktivitet og ytelse) | 393      |
-| Classification of Residential areas                                   | 567      |
-| Codelist for nature hazard area and nature hazard suceptibility area  | 723      |
-| Classification of STN area                                            | 599      |
-| Classification of maritime Areas                                      | 892      |
-| Classification of wild reindeer areas                                 | 75       |
-| Codelist for Postal code areas                                        | 616      |
-| Classification of agricultural area by use                            | 27       |
-| Codelist for nature hazard susceptibility areas                       | 721      |
-| Classification of major fishing areas (FAO)                           | 32       |
-| Classification of Service areas - Emergency rooms                     | 435      |
-| Classification of coastal and marine management areas                 | 895      |
-| Codelist for functional urban areas (FUA)                             | 551      |
-| Classification of important Norwegian fishing areas                   | 33       |
-| Codelist for property tax area in the municipalities                  | 260      |
-| Codelist for Accessible areas for recreation and outdoor activities.  | 305      |
+| klass_name | klass_nr |
+|:---|:---|
+| Kodeliste for ARENA as_ytelse | 394 |
+| Kodeliste for ARENA Tiltak | 386 |
+| Kodeliste for ARENA as_f (arbeidssøkerstatus_fingruppe ) | 396 |
+| Kodeliste for ARENA as_gr (arbeidssøkerstatus grovgruppe) | 395 |
+| Kodeliste for ARENA as_stat (arbeidssøkerstatus, aktivitet og ytelse) | 393 |
+| Classification of Residential areas | 567 |
+| Codelist for nature hazard area and nature hazard suceptibility area | 723 |
+| Classification of STN area | 599 |
+| Classification of maritime Areas | 892 |
+| Classification of wild reindeer areas | 75 |
+| Codelist for Postal code areas | 616 |
+| Classification of agricultural area by use | 27 |
+| Codelist for nature hazard susceptibility areas | 721 |
+| Classification of major fishing areas (FAO) | 32 |
+| Classification of Service areas - Emergency rooms | 435 |
+| Classification of coastal and marine management areas | 895 |
+| Codelist for functional urban areas (FUA) | 551 |
+| Classification of important Norwegian fishing areas | 33 |
+| Codelist for property tax area in the municipalities | 260 |
+| Codelist for Accessible areas for recreation and outdoor activities. | 305 |
 
 Sometimes a classification or code list will appear several times. This
 is due to that it occurs several times in different langauges in the
@@ -149,18 +155,19 @@ together with the unique identifier. For example, to fetch the Standard
 Industrial Classifications (*KLASS* number 6) we run:
 
 ``` r
+
 industry <- get_klass(6)
 head(industry)
 ```
 
-| code   | parentCode | level | name                                                             |
-|:-------|:-----------|:------|:-----------------------------------------------------------------|
-| 01     | A          | 2     | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell     |
-| 01.1   | 01         | 3     | Dyrking av ettårige vekster                                      |
-| 01.11  | 01.1       | 4     | Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster |
-| 01.110 | 01.11      | 5     | Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster |
-| 01.12  | 01.1       | 4     | Dyrking av ris                                                   |
-| 01.120 | 01.12      | 5     | Dyrking av ris                                                   |
+| code | parentCode | level | name |
+|:---|:---|:---|:---|
+| 01 | A | 2 | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell |
+| 01.1 | 01 | 3 | Dyrking av ettårige vekster |
+| 01.11 | 01.1 | 4 | Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster |
+| 01.110 | 01.11 | 5 | Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster |
+| 01.12 | 01.1 | 4 | Dyrking av ris |
+| 01.120 | 01.12 | 5 | Dyrking av ris |
 
 ### Level
 
@@ -171,18 +178,19 @@ For example, to fetch only the top level Standard Industrial
 Classification codes we use:
 
 ``` r
+
 industry <- get_klass(6, output_level = 1)
 head(industry)
 ```
 
-| code | parentCode | level | name                                                          |
-|:-----|:-----------|:------|:--------------------------------------------------------------|
-| A    | NA         | 1     | Jordbruk, skogbruk og fiske                                   |
-| B    | NA         | 1     | Bergverksdrift og utvinning                                   |
-| C    | NA         | 1     | Industri                                                      |
-| D    | NA         | 1     | Forsyning av elektrisitet, gass, damp og kjøleluft            |
-| E    | NA         | 1     | Vannforsyning, avløps-, renovasjons- og oppryddingsvirksomhet |
-| F    | NA         | 1     | Bygge- og anleggsvirksomhet                                   |
+| code | parentCode | level | name |
+|:---|:---|:---|:---|
+| A | NA | 1 | Jordbruk, skogbruk og fiske |
+| B | NA | 1 | Bergverksdrift og utvinning |
+| C | NA | 1 | Industri |
+| D | NA | 1 | Forsyning av elektrisitet, gass, damp og kjøleluft |
+| E | NA | 1 | Vannforsyning, avløps-, renovasjons- og oppryddingsvirksomhet |
+| F | NA | 1 | Bygge- og anleggsvirksomhet |
 
 ### Language
 
@@ -193,18 +201,19 @@ in multiple languages. The output language can be specified as Bokmål
 *Note: all 3 languages are not available for all classifcations.*
 
 ``` r
+
 industry <- get_klass(6, output_level = 1, language = "en")
 head(industry)
 ```
 
-| code | parentCode | level | name                                                                |
-|:-----|:-----------|:------|:--------------------------------------------------------------------|
-| A    | NA         | 1     | Agriculture, forestry and fishing                                   |
-| B    | NA         | 1     | Mining and quarrying                                                |
-| C    | NA         | 1     | Manufacturing                                                       |
-| D    | NA         | 1     | Electricity, gas, steam and air conditioning supply                 |
-| E    | NA         | 1     | Water supply; sewerage, waste management and remediation activities |
-| F    | NA         | 1     | Construction                                                        |
+| code | parentCode | level | name |
+|:---|:---|:---|:---|
+| A | NA | 1 | Agriculture, forestry and fishing |
+| B | NA | 1 | Mining and quarrying |
+| C | NA | 1 | Manufacturing |
+| D | NA | 1 | Electricity, gas, steam and air conditioning supply |
+| E | NA | 1 | Water supply; sewerage, waste management and remediation activities |
+| F | NA | 1 | Construction |
 
 ### Output format
 
@@ -215,14 +224,15 @@ classification with the codes and names of the higher/broader levels
 given as variables.
 
 ``` r
+
 industry <- get_klass(6, output_style = "wide", language = "en")
 head(industry, 2)
 ```
 
-|     | code5  | name5                                                               | code4 | name4                                                               | code3 | name3                          | code2 | name2                                                              | code1 | name1                             |
-|:----|:-------|:--------------------------------------------------------------------|:------|:--------------------------------------------------------------------|:------|:-------------------------------|:------|:-------------------------------------------------------------------|:------|:----------------------------------|
-| 4   | 01.110 | Growing of cereals, other than rice, leguminous crops and oil seeds | 01.11 | Growing of cereals, other than rice, leguminous crops and oil seeds | 01.1  | Growing of non-perennial crops | 01    | Crop and animal production, hunting and related service activities | A     | Agriculture, forestry and fishing |
-| 6   | 01.120 | Growing of rice                                                     | 01.12 | Growing of rice                                                     | 01.1  | Growing of non-perennial crops | 01    | Crop and animal production, hunting and related service activities | A     | Agriculture, forestry and fishing |
+|  | code5 | name5 | code4 | name4 | code3 | name3 | code2 | name2 | code1 | name1 |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+| 4 | 01.110 | Growing of cereals, other than rice, leguminous crops and oil seeds | 01.11 | Growing of cereals, other than rice, leguminous crops and oil seeds | 01.1 | Growing of non-perennial crops | 01 | Crop and animal production, hunting and related service activities | A | Agriculture, forestry and fishing |
+| 6 | 01.120 | Growing of rice | 01.12 | Growing of rice | 01.1 | Growing of non-perennial crops | 01 | Crop and animal production, hunting and related service activities | A | Agriculture, forestry and fishing |
 
 ### Notes
 
@@ -231,14 +241,15 @@ classification. These can be included in the data using the option
 `notes = T`.
 
 ``` r
+
 industry <- get_klass(6, notes = T)
 head(industry, 2)
 ```
 
-| code | parentCode | level | name                                                         | notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|:-----|:-----------|:------|:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 01   | A          | 2     | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell | Omfatter: Denne næringen omfatter to basisaktiviteter, produksjon av vegetabilske og animalske produkter. Næringshovedgruppe 01.5 Kombinert husdyrhold og planteproduksjon bryter med de vanlige prinsippene for identifisering av hovedaktivitet. Det er aksept for at mange gårder har et rimelig balansert forhold mellom plante- og husdyrproduksjon, og at en klassifisering i den ene eller andre kategorien vil bli tilfeldig. Næringen inkluderer jordløs dyrking, for eksempel ved bruk av hydroponiske og akvaponiske dyrkingsmetoder. I jordbruket kan det by på utfordringer ved fordelingen av verdiskapingen når en virksomhet både produserer en råvare og produserer en bearbeidet vare fra den egenproduserte råvaren. For eksempel når en virksomhet dyrker epler og produserer sider fra de selvdyrkede eplene, eller når en virksomhet dyrker bær og produserer syltetøy fra de selvdyrkede bærene. I slike tilfeller vil antall timer arbeidet være en passende erstatningsvariabel. Bruk av antall timer arbeidet ved slike vertikalt integrerte aktiviteter vil vanligvis føre til klassifisering av virksomheten i jordbruk. Det samme vil være tilfelle for andre jordbruksprodukter, der virksomheter vanligvis blir klassifisert i jordbruk, for å sikre likebehandling. Omfatter også: Næringen omfatter også tjenester tilknyttet jordbruk, jakt og fangst. Ekskluderer: Jordbruksaktiviteter omfatter normalt ikke bearbeiding av jordbruksprodukter (klassifisert i næringene 10, 11 og 12) med unntak av den bearbeiding som er nødvendig for å få omsatt varene på det primære markedet. En slik bearbeiding er inkludert her. Grunnarbeid, for eksempel anlegg av jordterrasser, drenering og lignende, grupperes under næringshovedområde F. Kjøpere og andelslag som driver med markedsføring av jordbruksprodukter grupperes under næringshovedområde G. Stell og vedlikehold av landskap grupperes under 81.30 Beplantning av hager og parkanlegg. |
-| 01.1 | 01         | 3     | Dyrking av ettårige vekster                                  | Omfatter: Denne næringshovedgruppen omfatter dyrking av ettårige vekster, dvs. Planter som ikke varer i mer enn to vekstsesonger. Den omfatter også dyrking av ettårige vekster med henblikk på produksjon av såfrø og såkorn.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| code | parentCode | level | name | notes |
+|:---|:---|:---|:---|:---|
+| 01 | A | 2 | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell | Omfatter: Denne næringen omfatter to basisaktiviteter, produksjon av vegetabilske og animalske produkter. Næringshovedgruppe 01.5 Kombinert husdyrhold og planteproduksjon bryter med de vanlige prinsippene for identifisering av hovedaktivitet. Det er aksept for at mange gårder har et rimelig balansert forhold mellom plante- og husdyrproduksjon, og at en klassifisering i den ene eller andre kategorien vil bli tilfeldig. Næringen inkluderer jordløs dyrking, for eksempel ved bruk av hydroponiske og akvaponiske dyrkingsmetoder. I jordbruket kan det by på utfordringer ved fordelingen av verdiskapingen når en virksomhet både produserer en råvare og produserer en bearbeidet vare fra den egenproduserte råvaren. For eksempel når en virksomhet dyrker epler og produserer sider fra de selvdyrkede eplene, eller når en virksomhet dyrker bær og produserer syltetøy fra de selvdyrkede bærene. I slike tilfeller vil antall timer arbeidet være en passende erstatningsvariabel. Bruk av antall timer arbeidet ved slike vertikalt integrerte aktiviteter vil vanligvis føre til klassifisering av virksomheten i jordbruk. Det samme vil være tilfelle for andre jordbruksprodukter, der virksomheter vanligvis blir klassifisert i jordbruk, for å sikre likebehandling. Omfatter også: Næringen omfatter også tjenester tilknyttet jordbruk, jakt og fangst. Ekskluderer: Jordbruksaktiviteter omfatter normalt ikke bearbeiding av jordbruksprodukter (klassifisert i næringene 10, 11 og 12) med unntak av den bearbeiding som er nødvendig for å få omsatt varene på det primære markedet. En slik bearbeiding er inkludert her. Grunnarbeid, for eksempel anlegg av jordterrasser, drenering og lignende, grupperes under næringshovedområde F. Kjøpere og andelslag som driver med markedsføring av jordbruksprodukter grupperes under næringshovedområde G. Stell og vedlikehold av landskap grupperes under 81.30 Beplantning av hager og parkanlegg. |
+| 01.1 | 01 | 3 | Dyrking av ettårige vekster | Omfatter: Denne næringshovedgruppen omfatter dyrking av ettårige vekster, dvs. Planter som ikke varer i mer enn to vekstsesonger. Den omfatter også dyrking av ettårige vekster med henblikk på produksjon av såfrø og såkorn. |
 
 ## 4. Applying a classification
 
@@ -251,6 +262,7 @@ contains fictitious persons with sex, education level, municipality
 numbers, industry classification for workplace and occupation.
 
 ``` r
+
 data(klassdata)
 head(klassdata)
 ```
@@ -270,6 +282,7 @@ specify the vector of codes as the first parameter followed by the
 unique classification number.
 
 ``` r
+
 klassdata$kommune_names <- apply_klass(klassdata$kommune,
   classification = 131
 )
@@ -305,6 +318,7 @@ number 106) over the past few years. We can see this by fetching the
 classifications for these at different times
 
 ``` r
+
 get_klass(106, date = "2019-01-01")
 ```
 
@@ -320,6 +334,7 @@ get_klass(106, date = "2019-01-01")
 | 9    | NA         | 1     | Uoppgitt           |
 
 ``` r
+
 get_klass(106, date = "2020-01-01")
 ```
 
@@ -343,25 +358,26 @@ The following code fetched Norwegian regional codes between 1st January
 both old and newer names.
 
 ``` r
+
 get_klass(106, date = c("2019-01-01", "2020-01-01"))
 ```
 
-| code | parentCode | level | name                   | validFromInRequestedRange | validToInRequestedRange |
-|:-----|:-----------|:------|:-----------------------|:--------------------------|:------------------------|
-| 1    | NA         | 1     | Oslo og Akershus       | 2018-01-01                | 2020-01-01              |
-| 1    | NA         | 1     | Oslo og Viken          | 2020-01-01                | 2020-01-02              |
-| 2    | NA         | 1     | Innlandet              | 2020-01-01                | 2020-01-02              |
-| 2    | NA         | 1     | Hedmark og Oppland     | 2018-01-01                | 2020-01-01              |
-| 3    | NA         | 1     | Agder og Sør-Østlandet | 2020-01-01                | 2020-01-02              |
-| 3    | NA         | 1     | Sør-Østlandet          | 2018-01-01                | 2020-01-01              |
-| 4    | NA         | 1     | Vestlandet             | 2020-01-01                | 2020-01-02              |
-| 4    | NA         | 1     | Agder og Rogaland      | 2018-01-01                | 2020-01-01              |
-| 5    | NA         | 1     | Vestlandet             | 2018-01-01                | 2020-01-01              |
-| 5    | NA         | 1     | Trøndelag              | 2020-01-01                | 2020-01-02              |
-| 6    | NA         | 1     | Trøndelag              | 2018-01-01                | 2020-01-01              |
-| 6    | NA         | 1     | Nord-Norge             | 2020-01-01                | 2020-01-02              |
-| 7    | NA         | 1     | Nord-Norge             | 2018-01-01                | 2020-01-01              |
-| 9    | NA         | 1     | Uoppgitt               | 2018-01-01                | 2020-01-02              |
+| code | parentCode | level | name | validFromInRequestedRange | validToInRequestedRange |
+|:---|:---|:---|:---|:---|:---|
+| 1 | NA | 1 | Oslo og Akershus | 2018-01-01 | 2020-01-01 |
+| 1 | NA | 1 | Oslo og Viken | 2020-01-01 | 2020-01-02 |
+| 2 | NA | 1 | Innlandet | 2020-01-01 | 2020-01-02 |
+| 2 | NA | 1 | Hedmark og Oppland | 2018-01-01 | 2020-01-01 |
+| 3 | NA | 1 | Agder og Sør-Østlandet | 2020-01-01 | 2020-01-02 |
+| 3 | NA | 1 | Sør-Østlandet | 2018-01-01 | 2020-01-01 |
+| 4 | NA | 1 | Vestlandet | 2020-01-01 | 2020-01-02 |
+| 4 | NA | 1 | Agder og Rogaland | 2018-01-01 | 2020-01-01 |
+| 5 | NA | 1 | Vestlandet | 2018-01-01 | 2020-01-01 |
+| 5 | NA | 1 | Trøndelag | 2020-01-01 | 2020-01-02 |
+| 6 | NA | 1 | Trøndelag | 2018-01-01 | 2020-01-01 |
+| 6 | NA | 1 | Nord-Norge | 2020-01-01 | 2020-01-02 |
+| 7 | NA | 1 | Nord-Norge | 2018-01-01 | 2020-01-01 |
+| 9 | NA | 1 | Uoppgitt | 2018-01-01 | 2020-01-02 |
 
 ### Changes in time
 
@@ -370,24 +386,25 @@ specify `correspond=TRUE` allong with the time interval we are
 interested in.
 
 ``` r
+
 get_klass(106,
   date = c("2020-01-01", "2019-01-01"),
   correspond = TRUE
 )
 ```
 
-| sourceCode | sourceName             | targetCode | targetName         | changeOccurred |
-|:-----------|:-----------------------|:-----------|:-------------------|:---------------|
-| NA         | NA                     | 1          | Oslo og Akershus   | 2020-01-01     |
-| NA         | NA                     | 3          | Sør-Østlandet      | 2020-01-01     |
-| NA         | NA                     | 4          | Agder og Rogaland  | 2020-01-01     |
-| NA         | NA                     | 5          | Vestlandet         | 2020-01-01     |
-| 1          | Oslo og Viken          | NA         | NA                 | 2020-01-01     |
-| 2          | Innlandet              | 2          | Hedmark og Oppland | 2020-01-01     |
-| 3          | Agder og Sør-Østlandet | NA         | NA                 | 2020-01-01     |
-| 4          | Vestlandet             | NA         | NA                 | 2020-01-01     |
-| 5          | Trøndelag              | 6          | Trøndelag          | 2020-01-01     |
-| 6          | Nord-Norge             | 7          | Nord-Norge         | 2020-01-01     |
+| sourceCode | sourceName | targetCode | targetName | changeOccurred |
+|:---|:---|:---|:---|:---|
+| NA | NA | 1 | Oslo og Akershus | 2020-01-01 |
+| NA | NA | 3 | Sør-Østlandet | 2020-01-01 |
+| NA | NA | 4 | Agder og Rogaland | 2020-01-01 |
+| NA | NA | 5 | Vestlandet | 2020-01-01 |
+| 1 | Oslo og Viken | NA | NA | 2020-01-01 |
+| 2 | Innlandet | 2 | Hedmark og Oppland | 2020-01-01 |
+| 3 | Agder og Sør-Østlandet | NA | NA | 2020-01-01 |
+| 4 | Vestlandet | NA | NA | 2020-01-01 |
+| 5 | Trøndelag | 6 | Trøndelag | 2020-01-01 |
+| 6 | Nord-Norge | 7 | Nord-Norge | 2020-01-01 |
 
 The table returned is a correspondents in codes and/or names in the time
 interval specified. The `sourceCode` and `sourceName` refer to the
@@ -415,6 +432,7 @@ To fetch a correspondence table between municipality codes (131) and
 greater regional codes (106) we can run:
 
 ``` r
+
 get_klass(131, correspond = 106, date = "2020-01-01")
 ```
 
@@ -431,6 +449,7 @@ We can apply this correspondence between municipality and region in our
 example data set using `apply_klass`.
 
 ``` r
+
 klassdata$region <- apply_klass(klassdata$kommune,
   classification = 131,
   correspond = 106,
@@ -454,14 +473,15 @@ It is also possible to fetch a variant of a classification. You need to
 provide both the classification number and the variant number.
 
 ``` r
+
 get_klass(6, variant = 1616, date = "2021-01-02")
 ```
 
-| code   | parentCode | level | name                                                              |
-|:-------|:-----------|:------|:------------------------------------------------------------------|
-| 01     | 01-03      | 2     | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell      |
-| 01-03  | NA         | 1     | Jordbruk, skogbruk og fiske                                       |
-| 01.1   | 01         | 3     | Dyrking av ettårige vekster                                       |
-| 01.11  | 01.1       | 4     | Dyrking av korn (unntatt ris), belgvekster og oljeholdige vekster |
-| 01.110 | 01.11      | 5     | Dyrking av korn (unntatt ris), belgvekster og oljeholdige vekster |
-| 01.12  | 01.1       | 4     | Dyrking av ris                                                    |
+| code | parentCode | level | name |
+|:---|:---|:---|:---|
+| 01 | 01-03 | 2 | Jordbruk og tjenester tilknyttet jordbruk, jakt og viltstell |
+| 01-03 | NA | 1 | Jordbruk, skogbruk og fiske |
+| 01.1 | 01 | 3 | Dyrking av ettårige vekster |
+| 01.11 | 01.1 | 4 | Dyrking av korn (unntatt ris), belgvekster og oljeholdige vekster |
+| 01.110 | 01.11 | 5 | Dyrking av korn (unntatt ris), belgvekster og oljeholdige vekster |
+| 01.12 | 01.1 | 4 | Dyrking av ris |

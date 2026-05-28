@@ -97,4 +97,5 @@ codes, the result will be `NA`.
 
 ## See also
 
-See \[update_klass\] for updating multiple codes in one function call.
+See [update_klass](update_klass.md) for updating multiple codes in one
+function call.

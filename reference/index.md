@@ -8,6 +8,11 @@
   [`CorrespondList()`](correspond_list.md) : Correspondence list Print a
   list of correspondence tables for a given classification with source
   and target IDs
+- [`find_equivalent_codes()`](find_equivalent_codes.md)
+  [`find_equivalents()`](find_equivalent_codes.md) : Find equivalent
+  sets of codes in a Klass classification
+- [`find_equivalent_nodes()`](find_equivalent_nodes.md) : Find the
+  equivalent sets of a node at various dates
 - [`get_family()`](get_family.md) [`GetFamily()`](get_family.md) :
   Identify corresponding family from a classification number
 - [`get_klass()`](get_klass.md) [`GetKlass()`](get_klass.md) : Fetch

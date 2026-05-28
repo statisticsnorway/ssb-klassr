@@ -2,29 +2,29 @@
 
 ## Authors
 
-- **Susie Jentoft**. Author, maintainer.
+- **Susie Jentoft**. Author.
 
 - **Diana-Cristina Iancu**. Author.
 
 - **Lisa Li**. Author.
 
-- **Øyvind I. Berntsen**. Author.
+- **Øyvind I. Berntsen**. Author, maintainer.
 
 - **Statistics Norway**. Copyright holder.
 
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/statisticsnorway/ssb-klassr/blob/v1.0.5/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/statisticsnorway/ssb-klassr/blob/master/DESCRIPTION)
 
 Jentoft S, Iancu D, Li L, Berntsen Ø (2026). *klassR: Classifications
-for Statistics Norway*. R package version 1.0.5,
+for Statistics Norway*. R package version 1.0.6,
 <https://statisticsnorway.github.io/ssb-klassr/>.
 
     @Manual{,
       title = {klassR: Classifications for Statistics Norway},
       author = {Susie Jentoft and Diana-Cristina Iancu and Lisa Li and Øyvind I. Berntsen},
       year = {2026},
-      note = {R package version 1.0.5},
+      note = {R package version 1.0.6},
       url = {https://statisticsnorway.github.io/ssb-klassr/},
     }

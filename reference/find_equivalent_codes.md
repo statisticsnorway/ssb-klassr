@@ -1,0 +1,194 @@
+# Find equivalent sets of codes in a Klass classification
+
+Find which codes should be combined to reconstruct older or newer codes
+across multiple dates. Creates groups dynamically to fit the provided
+date range, with flexible labelling functionality.
+
+## Usage
+
+``` r
+find_equivalent_codes(
+  classification,
+  dates,
+  labels = TRUE,
+  graph = klass_graph(classification),
+  date_format = "%Y"
+)
+
+find_equivalents(
+  classification,
+  dates,
+  labels = TRUE,
+  graph = klass_graph(classification),
+  date_format = "%Y"
+)
+```
+
+## Arguments
+
+- classification:
+
+  The Klass classification to be used
+
+- dates:
+
+  The dates that equivalent sets of codes should be found for.
+
+- labels:
+
+  `TRUE`, `FALSE` or a named list of functions.
+
+  This parameter controls whether or not to add group labels to groups
+  of equivalent sets. If `TRUE`, labels are constructed using the codes
+  valid at the latest provided date, and comma separated like in the
+  example below. By default, labels will be placed in a column named
+  `label`.
+
+      "1508 Ålesund, 1580 Haram"
+
+  If `FALSE`, no labels will be applied.
+
+  This parameter also accepts a named list of labelling functions. The
+  resulting dataset will contain a label column for each of the supplied
+  functions. The names of the label columns are specified using the
+  names of the list of functions.
+
+  The functions provided in this parameter can accept any of the
+  following parameters: `date`, `code`, `name`, `validFrom` and
+  `validTo`, representing the corresponding values of each code in a
+  group. The functions must also provide a `...` parameter, unless using
+  all of the above. The functions can expect that the input variables
+  have the same length of 1 or longer. The functions should return a
+  character vector of length one or the same length as the input
+  variables.
+
+  The following list, when supplied to this parameter, creates two label
+  columns: one containing the codes and names (`label1`), and another
+  with only the codes `label2`. In this example, `label1` creates the
+  same labels as the default labelling used when `labels == TRUE`.
+
+      list(
+        label1 = function(code, name, date, ...) {
+          label_codes <- date == max(date)
+          paste(code[label_codes], name[label_codes], collapse = ", ")
+        },
+        label2 = function(code, date, ...) {
+          label_codes <- date == max(date)
+          paste(code[label_codes], collapse = ", ")
+        }
+      )
+
+- graph:
+
+  Optional. Generating the graph using `klass_graph` manually beforehand
+  and providing it in this parameter can save time if running
+  `find_equivalent_codes` multiple times in sequence.
+
+- date_format:
+
+  Optional. Passed directly to
+  [format](https://rdrr.io/r/base/format.html), this is used to specify
+  the output format for the `date` column. The default keeps just the
+  year (`"YYYY"`). To get the full date in `"YYYY-MM-DD"` format, use
+  `"%Y-%m-%d"`. See [strptime](https://rdrr.io/r/base/strptime.html) for
+  complete functionality.
+
+## Value
+
+A data.frame with columns:
+
+- `date` containing the input `dates`
+
+- `code` containing the set of equivalent codes in each date
+
+- `name` containing the names of each code
+
+- `validFrom` and `validTo` values for each code returned
+
+- By default, `labels`, giving a unique group label for each group of
+  equivalent sets.
+
+## Details
+
+This function provides a solution to the problem of split or combined
+codes in Klass classifications. When using
+[`update_klass`](update_klass.md) to ask "what is this code in this
+version of the classification in this other version of the
+classification?", the answer is sometimes that the code has been split
+into two or more codes (or combined from two or more codes, if trying to
+back-date a code), and therefore that the code cannot be updated.
+
+The solution provided by `find_equivalent_codes` is answering the
+question: "in these versions of the classification, which codes were
+equivalent to this code in this other version of the classification?".
+
+Consider the following example of two codes combining into one. Here,
+`"a"` and `"b"` are valid at t1, and are combined into `"c"` at t2.
+
+    t1     t2
+    a ──┰─> c
+        ┃
+    b ──┚
+
+[`update_klass`](update_klass.md) would inform us that `"a"` can be
+updated to `"c"` at t2, unless we specified `combine = FALSE`, in which
+case the result would be `NA`. `find_equivalent_codes()` would inform us
+that the equivalent of the codes `"a"` and `"b"` in t1 at t2 is `"c"`.
+
+We can also consider a code splitting into two. In this example, `"a"`
+is valid at t1, and splits into `"b"` and `"c"` at t2.
+
+    t1     t2
+    a
+    ├─────> b
+    └─────> c
+
+[`update_klass`](update_klass.md) is unable to provide an updated code
+due to the split, and would return `NA`. `find_equivalent_codes` would
+inform us that the equivalent codes of `"a"` at t1 is `"b"` and `"c"` at
+t2.
+
+`find_equivalent_codes` can handle more than two dates. In the following
+example, `"a"` splits into `"b"` and `"c"` at t2, and `"b"` and `"c"`
+combine into `"d"` at t3. `find_equivalent_codes` can inform us that
+`"a"` is equivalent to `"b"` and `"c"` at t2, and `"d"` at t3.
+
+    t1     t2     t3
+    a
+    ├─────> b ┐
+    └─────> c ┴─> d
+
+`find_equivalent_codes` will only search in the time range we specify.
+As a consequence, generating sets of equivalent codes over longer time
+spans will generally create larger sets than using shorter time spans.
+
+To illustrate this behavior, we can add a new code `"e"` to the previous
+example, and have `"d"` and `"e"` combine into `"f"` at t4.
+
+    t1     t2     t3     t4
+    a
+    ├─────> b ┐
+    └─────> c ┴─> d ┐
+    e ──────────────┴──> f
+
+Finding the equivalents of `"a"` in t1 at t2 and t3 returns the same
+sets as before:
+
+- t1: `"a"`
+
+- t2: `"b"` and `"c"`
+
+- t3: `"d"`
+
+However, if we also wanted to know the equivalent set for t4, the result
+would be:
+
+- t1: `"a"` and `"e"`
+
+- t2: `"b"`, `"c"` and `"e"`
+
+- t3: `"d"` and `"e"`
+
+- t4: `"f"`
+
+`find_equivalents` is a legacy alias for `find_equivalent_codes`.

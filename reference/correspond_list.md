@@ -24,7 +24,7 @@ CorrespondList(klass, date = NULL)
 
 - klass:
 
-  Deprecated; use \`classification\` instead.
+  Deprecated; use `classification` instead.
 
 ## Value
 
@@ -47,6 +47,6 @@ correspond_list("7")
 #> 2         <NA>            7                 2500
 #> 3         <NA>            7                 1007
 #> 4         <NA>            7                 2482
-#> 5          623            7                  426
+#> 5          145            7                  426
 # }
 ```

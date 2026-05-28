@@ -32,7 +32,7 @@ GetVersion(klass = NULL, date = NULL, family = NULL, klassNr = FALSE)
 
 - klass:
 
-  Deprecated; use \`classification\` instead.
+  Deprecated; use `classification` instead.
 
 ## Value
 

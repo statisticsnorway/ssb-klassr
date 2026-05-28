@@ -18,7 +18,7 @@ GetFamily(klass)
 
 - klass:
 
-  Deprecated; use \`classification\` instead.
+  Deprecated; use `classification` instead.
 
 ## Value
 

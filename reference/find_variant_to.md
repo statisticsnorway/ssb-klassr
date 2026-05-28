@@ -1,6 +1,6 @@
-# Find the variant of a code corresponding to a change \*to\* a specific code.
+# Find the variant of a code corresponding to a change *to* a specific code.
 
-Find the variant of a code corresponding to a change \*to\* a specific
+Find the variant of a code corresponding to a change *to* a specific
 code.
 
 ## Usage
@@ -29,4 +29,4 @@ The variant corresponding to the code `x` at date `changeOccurred`.
 
 ## See also
 
-\[find_variant_from()\]
+[`find_variant_from()`](find_variant_from.md)

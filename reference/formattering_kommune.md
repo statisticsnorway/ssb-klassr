@@ -12,7 +12,7 @@ formattering_kommune(x)
 
 - x:
 
-  \- vector of character type for kommune codes
+  - vector of character type for kommune codes
 
 ## Value
 

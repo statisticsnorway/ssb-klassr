@@ -13,11 +13,11 @@ levelCheck(x, klass_data)
 
 - x:
 
-  \- vector of character
+  - vector of character
 
 - klass_data:
 
-  \- - the right formatting to the classification levels
+  - - the right formatting to the classification levels
 
 ## Value
 
