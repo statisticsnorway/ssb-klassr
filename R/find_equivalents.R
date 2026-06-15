@@ -115,10 +115,9 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   and `"b"` are valid at t1, and are combined into `"c"` at t2.
 #'
 #'   ```
-#'   t1     t2
-#'   a ──┰─> c
-#'       ┃
-#'   b ──┚
+#'   t1      t2
+#'   a ---|
+#'   b ---+-> c
 #'
 #'   ```
 #'
@@ -133,8 +132,8 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   ```
 #'   t1     t2
 #'   a
-#'   ├─────> b
-#'   └─────> c
+#'   |-----> b
+#'   |-----> c
 #'   ```
 #'
 #'   \code{\link{update_klass}} is unable to provide an updated code due to the
@@ -150,8 +149,8 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   ```
 #'   t1     t2     t3
 #'   a
-#'   ├─────> b ┐
-#'   └─────> c ┴─> d
+#'   |-----> b |
+#'   |-----> c +-> d
 #'   ```
 #'
 #'   `find_equivalent_codes` will only search in the time range we specify. As a
@@ -164,9 +163,9 @@ find_equivalent_nodes <- function(node, dates, graph) {
 #'   ```
 #'   t1     t2     t3     t4
 #'   a
-#'   ├─────> b ┐
-#'   └─────> c ┴─> d ┐
-#'   e ──────────────┴──> f
+#'   |-----> b |
+#'   |-----> c |-> d |
+#'   e---------------+--> f
 #'   ```
 #'
 #'   Finding the
