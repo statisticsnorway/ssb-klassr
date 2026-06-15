@@ -16,7 +16,7 @@ find_equivalent_nodes <- function(node, dates, graph) {
     unreachable = FALSE
   )[["order"]]
 
-  result <- lapply(dates, \(date) {
+  result <- lapply(dates, function(date) {
     result_nodes <- related_nodes[
       date >= related_nodes$validFrom &
         (date < related_nodes$validTo | is.na(related_nodes$validTo))
