@@ -125,10 +125,9 @@ equivalent to this code in this other version of the classification?".
 Consider the following example of two codes combining into one. Here,
 `"a"` and `"b"` are valid at t1, and are combined into `"c"` at t2.
 
-    t1     t2
-    a ──┰─> c
-        ┃
-    b ──┚
+    t1      t2
+    a ---|
+    b ---+-> c
 
 [`update_klass`](update_klass.md) would inform us that `"a"` can be
 updated to `"c"` at t2, unless we specified `combine = FALSE`, in which
@@ -140,8 +139,8 @@ is valid at t1, and splits into `"b"` and `"c"` at t2.
 
     t1     t2
     a
-    ├─────> b
-    └─────> c
+    |-----> b
+    |-----> c
 
 [`update_klass`](update_klass.md) is unable to provide an updated code
 due to the split, and would return `NA`. `find_equivalent_codes` would
@@ -155,8 +154,8 @@ combine into `"d"` at t3. `find_equivalent_codes` can inform us that
 
     t1     t2     t3
     a
-    ├─────> b ┐
-    └─────> c ┴─> d
+    |-----> b |
+    |-----> c +-> d
 
 `find_equivalent_codes` will only search in the time range we specify.
 As a consequence, generating sets of equivalent codes over longer time
@@ -167,9 +166,9 @@ example, and have `"d"` and `"e"` combine into `"f"` at t4.
 
     t1     t2     t3     t4
     a
-    ├─────> b ┐
-    └─────> c ┴─> d ┐
-    e ──────────────┴──> f
+    |-----> b |
+    |-----> c |-> d |
+    e---------------+--> f
 
 Finding the equivalents of `"a"` in t1 at t2 and t3 returns the same
 sets as before:
