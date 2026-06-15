@@ -107,10 +107,9 @@ code in this other version of the classification?".
 Consider the following example of two codes combining into one. Here, \code{"a"}
 and \code{"b"} are valid at t1, and are combined into \code{"c"} at t2.
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{t1     t2
-a ──┰─> c
-    ┃
-b ──┚
+\if{html}{\out{<div class="sourceCode">}}\preformatted{t1      t2
+a ---|
+b ---+-> c
 
 }\if{html}{\out{</div>}}
 
@@ -124,8 +123,8 @@ valid at t1, and splits into \code{"b"} and \code{"c"} at t2.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{t1     t2
 a
-├─────> b
-└─────> c
+|-----> b
+|-----> c
 }\if{html}{\out{</div>}}
 
 \code{\link{update_klass}} is unable to provide an updated code due to the
@@ -139,8 +138,8 @@ equivalent to \code{"b"} and \code{"c"} at t2, and \code{"d"} at t3.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{t1     t2     t3
 a
-├─────> b ┐
-└─────> c ┴─> d
+|-----> b |
+|-----> c +-> d
 }\if{html}{\out{</div>}}
 
 \code{find_equivalent_codes} will only search in the time range we specify. As a
@@ -152,9 +151,9 @@ example, and have \code{"d"} and \code{"e"} combine into \code{"f"} at t4.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{t1     t2     t3     t4
 a
-├─────> b ┐
-└─────> c ┴─> d ┐
-e ──────────────┴──> f
+|-----> b |
+|-----> c |-> d |
+e---------------+--> f
 }\if{html}{\out{</div>}}
 
 Finding the
