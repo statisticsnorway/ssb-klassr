@@ -345,33 +345,18 @@ get_klass <- function(
     print(paste("Fetching class from:", url))
   }
   if (type == "kor") {
-    klass_text <- GetUrl2(url, check = FALSE)
-    # sjekk at det finnes
-    targetswap <- FALSE
+    klass_text <- GetUrl2(url)
+
     if (grepl("no correspondence table", klass_text)) {
-      targetswap <- TRUE
-      url <- MakeUrl(
-        classification = correspond,
-        correspond = classification,
-        type = type,
-        fratil = fratil,
-        date = date,
-        output_level_coding = output_level_coding,
-        language_coding = language_coding
+      stop(
+        "No correspondence table found between classes ",
+        classification,
+        " and ",
+        correspond,
+        " for the date ",
+        date,
+        "For a list of valid correspondence tables use the function correspond_list()"
       )
-      klass_text <- GetUrl2(url)
-      if (grepl("no correspondence table", klass_text)) {
-        stop(
-          "No correspondence table found between classes ",
-          classification,
-          " and ",
-          correspond,
-          " for the date ",
-          date,
-          "For a list of valid correspondence tables use the function correspond_list()"
-        )
-      }
-      if (is.null(klass_text)) stop_quietly()
     }
   } else {
     klass_text <- GetUrl2(url)
@@ -424,27 +409,13 @@ get_klass <- function(
         "For a list of valid correspondence tables use the function correspond_list()"
       )
     }
-    if (targetswap) {
-      klass_data <- klass_data[, c(
-        "targetCode",
-        "targetName",
-        "sourceCode",
-        "sourceName"
-      )]
-    } else {
-      klass_data <- klass_data[, c(
-        "sourceCode",
-        "sourceName",
-        "targetCode",
-        "targetName"
-      )]
-    }
-    names(klass_data) <- c(
+
+    klass_data <- klass_data[, c(
       "sourceCode",
       "sourceName",
       "targetCode",
       "targetName"
-    )
+    )]
   }
   if (type == "korID") {
     klass_data <- jsonlite::fromJSON(
