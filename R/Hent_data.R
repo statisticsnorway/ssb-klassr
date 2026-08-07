@@ -26,12 +26,17 @@ CheckDate <- function(date) {
 #' @keywords internal
 #'
 #' @return String url adress
-MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
-                    variant_name = NULL,
-                    type = "vanlig",
-                    fratil = FALSE, date = NULL,
-                    output_level_coding = NULL,
-                    language_coding = NULL) {
+MakeUrl <- function(
+  classification,
+  correspond = NULL,
+  correspondID = NULL,
+  variant_name = NULL,
+  type = "vanlig",
+  fratil = FALSE,
+  date = NULL,
+  output_level_coding = NULL,
+  language_coding = NULL
+) {
   # Standard classification/codelist
   if (type == "vanlig" & fratil == TRUE) {
     coding <- paste0("/codes?from=", date[1], "&to=", date[2])
@@ -40,13 +45,26 @@ MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
     coding <- paste0("/codesAt?date=", date)
   }
 
-
   # For correspondence tables
   if (type == "kor" & fratil == TRUE) {
-    coding <- paste("/corresponds?targetClassificationId=", MakeChar(correspond), "&from=", date[1], "&to=", date[2], sep = "")
+    coding <- paste(
+      "/corresponds?targetClassificationId=",
+      MakeChar(correspond),
+      "&from=",
+      date[1],
+      "&to=",
+      date[2],
+      sep = ""
+    )
   }
   if (type == "kor" & fratil == FALSE) {
-    coding <- paste("/correspondsAt?targetClassificationId=", MakeChar(correspond), "&date=", date, sep = "")
+    coding <- paste(
+      "/correspondsAt?targetClassificationId=",
+      MakeChar(correspond),
+      "&date=",
+      date,
+      sep = ""
+    )
   }
   if (type == "korID") {
     coding <- paste0("correspondencetables/", MakeChar(correspondID))
@@ -63,7 +81,14 @@ MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
 
   # For fetching a variant
   if (type == "variant" & fratil == TRUE) {
-    coding <- paste0("/variant?variantName=", variant_name, "&from=", date[1], "&to=", date[2])
+    coding <- paste0(
+      "/variant?variantName=",
+      variant_name,
+      "&from=",
+      date[1],
+      "&to=",
+      date[2]
+    )
   }
   if (type == "variant" & fratil == FALSE) {
     coding <- paste0("/variantAt?variantName=", variant_name, "&date=", date)
@@ -72,11 +97,15 @@ MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
   # For future times
   idag <- Sys.Date()
   if ((idag < date[1]) & (type != "korID")) {
-    message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+    message(
+      "The date you selected is in the future. You may be viewing a future classification that is not currently valid"
+    )
     coding <- paste0(coding, "&includeFuture=True")
   } else if ((length(date) > 1) & (type != "korID")) {
     if (idag < date[2]) {
-      message("The date you selected is in the future. You may be viewing a future classification that is not currently valid")
+      message(
+        "The date you selected is in the future. You may be viewing a future classification that is not currently valid"
+      )
       coding <- paste0(coding, "&includeFuture=True")
     }
   }
@@ -88,9 +117,9 @@ MakeUrl <- function(classification, correspond = NULL, correspondID = NULL,
     classifics <- "classifications/"
   }
 
-
   # Paste together to an URL
-  url <- paste(GetBaseUrl(),
+  url <- paste(
+    GetBaseUrl(),
     classifics,
     classification,
     coding,
@@ -142,7 +171,9 @@ get_variant_name <- function(variant) {
   # Check variant url and that it exists
   url <- paste0(GetBaseUrl(), "variants/", variant)
   variant_url <- check_connect(url)
-  if (is.null(variant_url)) stop_quietly()
+  if (is.null(variant_url)) {
+    stop_quietly()
+  }
 
   # Extract text with variant name
   variant_text <- httr::content(variant_url, "text", encoding = "UTF-8") ####
@@ -211,16 +242,18 @@ GetUrl2 <- function(url, check = TRUE) {
 #' head(get_klass(classification = "7"))
 #' # Get classification for occupation classifications in English
 #' head(get_klass(classification = "7", language = "en"))
-get_klass <- function(classification,
-                      date = NULL,
-                      correspond = NULL,
-                      correspondID = NULL,
-                      variant = NULL,
-                      output_level = NULL,
-                      language = "nb",
-                      output_style = "normal",
-                      notes = FALSE,
-                      quiet = TRUE) {
+get_klass <- function(
+  classification,
+  date = NULL,
+  correspond = NULL,
+  correspondID = NULL,
+  variant = NULL,
+  output_level = NULL,
+  language = "nb",
+  output_style = "normal",
+  notes = FALSE,
+  quiet = TRUE
+) {
   # create type of classification for using later
   type <- ifelse(is.null(correspond) & is.null(correspondID), "vanlig", "kor")
   type <- ifelse(isTRUE(correspond), "change", type)
@@ -234,12 +267,15 @@ get_klass <- function(classification,
     classification <- ""
   }
 
-
   # dato sjekking
   if (!is.null(date[1]) & (!is.null(correspondID))) {
-    message("Note: Correspondence tables provided using an ID do not har a date attached. Date is being ignored.")
+    message(
+      "Note: Correspondence tables provided using an ID do not har a date attached. Date is being ignored."
+    )
   }
-  if (is.null(date[1])) date <- Sys.Date()
+  if (is.null(date[1])) {
+    date <- Sys.Date()
+  }
 
   # Create variables fratil (whether to and from dates should be used) and ver
   if (length(date) == 1 & !is.numeric(date)) {
@@ -267,7 +303,9 @@ get_klass <- function(classification,
     }
     date[2] <- as.character(as.Date(date[2], format = "%Y-%m-%d") + 1)
   }
-  if (length(date) > 2) stop("You have provided too many dates.")
+  if (length(date) > 2) {
+    stop("You have provided too many dates.")
+  }
 
   # Check levels
   if (is.null(output_level)) {
@@ -287,14 +325,20 @@ get_klass <- function(classification,
       variant_name <- gsub(" ", "%20", variant)
     }
     if (!is.null(output_level)) {
-      print("Selecting an output level for a variant isn't currently supported. All levels will be returned")
+      print(
+        "Selecting an output level for a variant isn't currently supported. All levels will be returned"
+      )
     }
   }
   url <- MakeUrl(
-    classification = classification, correspond = correspond, correspondID = correspondID,
+    classification = classification,
+    correspond = correspond,
+    correspondID = correspondID,
     variant_name = variant_name,
     type = type,
-    fratil = fratil, date = date, output_level_coding = output_level_coding,
+    fratil = fratil,
+    date = date,
+    output_level_coding = output_level_coding,
     language_coding = language_coding
   )
   if (!quiet) {
@@ -307,13 +351,23 @@ get_klass <- function(classification,
     if (grepl("no correspondence table", klass_text)) {
       targetswap <- TRUE
       url <- MakeUrl(
-        classification = correspond, correspond = classification, type = type, fratil = fratil, date = date,
-        output_level_coding = output_level_coding, language_coding = language_coding
+        classification = correspond,
+        correspond = classification,
+        type = type,
+        fratil = fratil,
+        date = date,
+        output_level_coding = output_level_coding,
+        language_coding = language_coding
       )
       klass_text <- GetUrl2(url)
       if (grepl("no correspondence table", klass_text)) {
         stop(
-          "No correspondence table found between classes ", classification, " and ", correspond, " for the date ", date,
+          "No correspondence table found between classes ",
+          classification,
+          " and ",
+          correspond,
+          " for the date ",
+          date,
           "For a list of valid correspondence tables use the function correspond_list()"
         )
       }
@@ -322,18 +376,32 @@ get_klass <- function(classification,
   } else {
     klass_text <- GetUrl2(url)
   }
-  if (is.null(klass_text)) stop_quietly()
+  if (is.null(klass_text)) {
+    stop_quietly()
+  }
 
   if (grepl("not found", klass_text)) {
-    stop("No classification table was found for classification number ", classification, ".
+    stop(
+      "No classification table was found for classification number ",
+      classification,
+      ".
     Please try again with a different classification number.
-    For a list of possible classification's use the function list_klass() or list_family()")
+    For a list of possible classification's use the function list_klass() or list_family()"
+    )
   }
   if (grepl("not published in language", klass_text)) {
-    stop("The classification requested was not found for language = ", gsub(".*=", "", language_coding))
+    stop(
+      "The classification requested was not found for language = ",
+      gsub(".*=", "", language_coding)
+    )
   }
   if (grepl("does not have a variant named", klass_text)) {
-    stop("The variant ", variant, " was not found for classification number ", classification)
+    stop(
+      "The variant ",
+      variant,
+      " was not found for classification number ",
+      classification
+    )
   }
 
   if (type %in% c("vanlig", "variant")) {
@@ -341,50 +409,112 @@ get_klass <- function(classification,
     klass_data <- klass_data[, c("code", "parentCode", "level", "name")]
   }
   if (type == "kor") {
-    klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceItems
+    klass_data <- jsonlite::fromJSON(
+      klass_text,
+      flatten = TRUE
+    )$correspondenceItems
     if (length(klass_data) == 0) {
       stop(
-        "No correspondence table found between classes ", classification, " and ", correspond, " for the date ", date,
+        "No correspondence table found between classes ",
+        classification,
+        " and ",
+        correspond,
+        " for the date ",
+        date,
         "For a list of valid correspondence tables use the function correspond_list()"
       )
     }
     if (targetswap) {
-      klass_data <- klass_data[, c("targetCode", "targetName", "sourceCode", "sourceName")]
+      klass_data <- klass_data[, c(
+        "targetCode",
+        "targetName",
+        "sourceCode",
+        "sourceName"
+      )]
     } else {
-      klass_data <- klass_data[, c("sourceCode", "sourceName", "targetCode", "targetName")]
+      klass_data <- klass_data[, c(
+        "sourceCode",
+        "sourceName",
+        "targetCode",
+        "targetName"
+      )]
     }
-    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName")
+    names(klass_data) <- c(
+      "sourceCode",
+      "sourceName",
+      "targetCode",
+      "targetName"
+    )
   }
   if (type == "korID") {
-    klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$correspondenceMaps
+    klass_data <- jsonlite::fromJSON(
+      klass_text,
+      flatten = TRUE
+    )$correspondenceMaps
   }
   if (type == "change") {
     klass_data <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codeChanges
-    if (!is.data.frame(klass_data)) stop("No changes found for this classification.")
-    if (dateswap) {
-      klass_data <- klass_data[, c("newCode", "newName", "oldCode", "oldName", "changeOccurred")]
-    } else {
-      klass_data <- klass_data[, c("oldCode", "oldName", "newCode", "newName", "changeOccurred")]
+    if (!is.data.frame(klass_data)) {
+      stop("No changes found for this classification.")
     }
-    names(klass_data) <- c("sourceCode", "sourceName", "targetCode", "targetName", "changeOccurred")
+    if (dateswap) {
+      klass_data <- klass_data[, c(
+        "newCode",
+        "newName",
+        "oldCode",
+        "oldName",
+        "changeOccurred"
+      )]
+    } else {
+      klass_data <- klass_data[, c(
+        "oldCode",
+        "oldName",
+        "newCode",
+        "newName",
+        "changeOccurred"
+      )]
+    }
+    names(klass_data) <- c(
+      "sourceCode",
+      "sourceName",
+      "targetCode",
+      "targetName",
+      "changeOccurred"
+    )
   }
   if (type %in% c("variant", "vanlig") & isTRUE(notes)) {
-    klass_data$notes <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$notes
+    klass_data$notes <- jsonlite::fromJSON(
+      klass_text,
+      flatten = TRUE
+    )$codes$notes
   }
 
   if (type %in% c("variant", "vanlig") & isTRUE(fratil)) {
-    klass_data$validFromInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validFromInRequestedRange
-    klass_data$validToInRequestedRange <- jsonlite::fromJSON(klass_text, flatten = TRUE)$codes$validToInRequestedRange
+    klass_data$validFromInRequestedRange <- jsonlite::fromJSON(
+      klass_text,
+      flatten = TRUE
+    )$codes$validFromInRequestedRange
+    klass_data$validToInRequestedRange <- jsonlite::fromJSON(
+      klass_text,
+      flatten = TRUE
+    )$codes$validToInRequestedRange
   }
 
-  if (output_style == "wide" & is.null(output_level) & is.null(correspond) & is.null(correspondID)) {
+  if (
+    output_style == "wide" &
+      is.null(output_level) &
+      is.null(correspond) &
+      is.null(correspondID)
+  ) {
     # get maximum level
     maxlength <- max(klass_data$level)
     minlength <- min(klass_data$level)
 
     # check several levels exist
     if (maxlength == minlength) {
-      warning("Only one level was detected. Classification returned with output_style normal. ")
+      warning(
+        "Only one level was detected. Classification returned with output_style normal. "
+      )
       return(as.data.frame(klass_data))
     }
 
@@ -414,16 +544,18 @@ get_klass <- function(classification,
 #' @rdname get_klass
 #' @param klass Deprecated; use `classification` instead.
 #' @export
-GetKlass <- function(klass,
-                     date = NULL,
-                     correspond = NULL,
-                     correspondID = NULL,
-                     variant = NULL,
-                     output_level = NULL,
-                     language = "nb",
-                     output_style = "normal",
-                     notes = FALSE,
-                     quiet = TRUE) {
+GetKlass <- function(
+  klass,
+  date = NULL,
+  correspond = NULL,
+  correspondID = NULL,
+  variant = NULL,
+  output_level = NULL,
+  language = "nb",
+  output_style = "normal",
+  notes = FALSE,
+  quiet = TRUE
+) {
   # .Deprecated("get_klass") # Add in for future versions
   get_klass(
     classification = klass,
