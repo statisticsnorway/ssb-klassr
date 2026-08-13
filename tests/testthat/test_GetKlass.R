@@ -166,3 +166,17 @@ test_that("get_klass returns valid dates for a date range", {
   variant_data <- get_klass(6, variant = 1616, date = c("2020-01-01", "2024-01-02"))
   expect_equal(variant_data$validFromInRequestedRange[1], "2020-01-01")
 })
+
+test_that("get_klass gives an informative error message when a correspondence is missing", {
+  expect_snapshot(
+    get_klass(131, correspond = 556, date = "2020-01-01"),
+    error = TRUE
+  )
+})
+
+test_that("get_klass gives an informative error message when a date is too old", {
+  expect_snapshot(
+    get_klass(131, date = "1600-01-01"),
+    error = TRUE
+  )
+})

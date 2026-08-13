@@ -146,7 +146,20 @@ check_connect <- function(url) {
     message(tryget)
     return(invisible(NULL))
   } else if (httr::http_error(tryget$status_code)) {
-    message(paste("Connection failed with error code", tryget$status_code))
+    if (httr::http_type(tryget) == "application/json") {
+      response <- jsonlite::fromJSON(rawToChar(tryget$content))
+
+      if ("detail" %in% names(response)) {
+        message(
+          paste("Connection failed with error code", tryget$status_code),
+          ":\n",
+          response$detail
+        )
+      }
+    } else {
+      message(paste("Connection failed with error code", tryget$status_code))
+    }
+
     return(invisible(NULL))
   }
   tryget
@@ -347,6 +360,10 @@ get_klass <- function(
   if (type == "kor") {
     klass_text <- GetUrl2(url)
 
+    if (is.null(klass_text)) {
+      stop_quietly()
+    }
+
     if (grepl("no correspondence table", klass_text)) {
       stop(
         "No correspondence table found between classes ",
@@ -363,6 +380,17 @@ get_klass <- function(
   }
   if (is.null(klass_text)) {
     stop_quietly()
+  }
+
+  if (klass_text == '{\"codes\":[]}') {
+    stop(
+      "No codes were found for classification ",
+      classification,
+      " with the current search parameters.",
+      " The specified date (",
+      date,
+      ") may be too early."
+    )
   }
 
   if (grepl("not found", klass_text)) {
