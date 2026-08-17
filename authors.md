@@ -15,7 +15,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/statisticsnorway/ssb-klassr/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/statisticsnorway/ssb-klassr/blob/v1.0.6/DESCRIPTION)
 
 Jentoft S, Iancu D, Li L, Berntsen Ø (2026). *klassR: Classifications
 for Statistics Norway*. R package version 1.0.6,
