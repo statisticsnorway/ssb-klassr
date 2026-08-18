@@ -138,7 +138,7 @@ MakeUrl <- function(
 #' @return Nothing is returned but a error or warning message is return if no connection is available
 check_connect <- function(url) {
   tryget <- tryCatch(
-    httr::GET(url = url),
+    httr::GET(url = utils::URLencode(url)),
     error = function(e) conditionMessage(e),
     warning = function(w) conditionMessage(w)
   )
