@@ -18,13 +18,13 @@ update_klass(
 \arguments{
 \item{codes}{Codes to be updated.}
 
-\item{dates}{Optional. Can be used to specify what date each of the codes was
-valid in. Supply a character vector of either length 1 to specify the same
-valid date for all codes, or of the same length as \code{codes} to specify
-valid dates for each code. The character vector(s) should have a format
-coercible by \code{\link[base]{as.Date}}, e.g. \code{YYYY-MM-DD}. The
-function will return an error if a code was not valid at the specified
-date.}
+\item{dates}{Optional. The date on which each input code was valid. When
+supplied, this date identifies the source version from which the update
+starts. Supply a character vector of length 1 to use the same date for all
+codes, or a vector with the same length as \code{codes} to specify a date
+for each code. Values should be coercible by \code{\link[base]{as.Date}},
+for example \code{YYYY-MM-DD}. If omitted, the code is evaluated using
+the default graph node and its full graph ancestry.}
 
 \item{classification}{The ID of the desired classification.}
 
@@ -93,6 +93,23 @@ combination of codes, the result will be \code{NA}.
 }
 \description{
 Update multiple Klass codes to a desired date.
+}
+\details{
+For each code, \code{update_klass} first selects a source node with
+\code{klass_node()}. If \code{dates} is omitted, the node with the highest variant
+for that code is used. If a date is supplied, the node valid on that date
+is used.
+
+The update then traverses the graph from that source node and evaluates
+the visited nodes to determine whether they are split or combined. Because
+the ancestry is evaluated relative to the chosen source node, omitting
+\code{dates} may include older combination ancestry and cause the \code{combined}
+flag to be \code{TRUE}. When \code{combine = FALSE}, this can return \code{NA} even when
+the code appears unchanged at the target date.
+
+Supplying \code{dates} makes the input code interpreted as the version valid at
+a specific date, which ensures that the update is evaluated from the correct
+historical source node.
 }
 \examples{
 library(klassR)
