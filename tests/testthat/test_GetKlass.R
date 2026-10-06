@@ -163,6 +163,10 @@ test_that("get_klass returns valid dates for a date range", {
 })
 
 test_that("get_klass gives an informative error message when a correspondence is missing", {
+  withr::local_options(
+    klassr.skip_api_failures = FALSE
+  )
+
   expect_snapshot(
     get_klass(131, correspond = 556, date = "2020-01-01"),
     error = TRUE
@@ -170,6 +174,10 @@ test_that("get_klass gives an informative error message when a correspondence is
 })
 
 test_that("get_klass gives an informative error message when a date is too old", {
+  withr::local_options(
+    klassr.skip_api_failures = FALSE
+  )
+
   expect_snapshot(
     get_klass(131, date = "1600-01-01"),
     error = TRUE
