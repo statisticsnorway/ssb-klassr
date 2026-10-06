@@ -106,24 +106,12 @@ test_that("get_klass returns a correspondent using ID", {
 })
 
 
-test_that("get_klass fails quietly with invalid variant", {
+test_that("get_klass gives an informative error message when a variant is invalid", {
   # Capture the warnings and errors
-  err <- NULL
-  result <- tryCatch(
-    {
-      variant_data <- get_klass(6, variant = 1, date = "2021-01-02")
-    },
-    error = function(e) {
-      err <<- e
-      NULL
-    }
+  expect_snapshot(
+    get_klass(classification = 6, variant = 1, date = "2021-01-02"),
+    error = TRUE
   )
-
-  # Check that an error was indeed thrown
-  expect_true(!is.null(err))
-
-  # Check that the error message is empty
-  expect_true(nchar(conditionMessage(err)) == 0)
 })
 
 
@@ -163,10 +151,6 @@ test_that("get_klass returns valid dates for a date range", {
 })
 
 test_that("get_klass gives an informative error message when a correspondence is missing", {
-  withr::local_options(
-    klassr.skip_api_failures = FALSE
-  )
-
   expect_snapshot(
     get_klass(131, correspond = 556, date = "2020-01-01"),
     error = TRUE
@@ -174,10 +158,6 @@ test_that("get_klass gives an informative error message when a correspondence is
 })
 
 test_that("get_klass gives an informative error message when a date is too old", {
-  withr::local_options(
-    klassr.skip_api_failures = FALSE
-  )
-
   expect_snapshot(
     get_klass(131, date = "1600-01-01"),
     error = TRUE

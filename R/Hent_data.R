@@ -139,42 +139,52 @@ MakeUrl <- function(
 check_connect <- function(url) {
   tryget <- tryCatch(
     httr::GET(url = utils::URLencode(url)),
-    error = function(e) conditionMessage(e),
-    warning = function(w) conditionMessage(w)
+    error = function(e) {
+      rlang::abort(
+        paste("Failed to connect to", url),
+        parent = e
+      )
+    }
   )
-  if (!inherits(tryget, "response")) {
-    message(tryget)
-    return(invisible(NULL))
-  } else if (httr::http_error(tryget$status_code)) {
+
+  if (httr::http_error(tryget$status_code)) {
     if (httr::http_type(tryget) == "application/json") {
       response <- jsonlite::fromJSON(rawToChar(tryget$content))
 
-      if ("detail" %in% names(response)) {
-        message(
-          paste("Connection failed with error code", tryget$status_code),
-          ":\n",
-          response$detail
+      if (
+        all(c("detail", "status", "title", "instance") %in% names(response))
+      ) {
+        msg <- c(
+          "x" = "Failed to retrieve data from Klass",
+          "i" = paste(
+            response$status,
+            response$title,
+            "when requesting",
+            paste0("https://data.ssb.no", response$instance)
+          ),
+          "i" = paste("Klass responded:", response$detail)
         )
       }
     } else {
-      message(paste("Connection failed with error code", tryget$status_code))
+      msg <- c(
+        paste(
+          "Klass responded with the following error:",
+          tryget$status_code
+        )
+      )
     }
 
-    return(invisible(NULL))
+    rlang::abort(
+      msg,
+      class = c(
+        paste0("http_", tryget$status_code),
+        "http_error"
+      )
+    )
   }
+
   tryget
 }
-
-
-#' Stop quietly function
-#' Stop from a function without an error. Used for stopping when no internet
-#' @keywords internal
-stop_quietly <- function() {
-  opt <- options(show.error.messages = FALSE)
-  on.exit(options(opt))
-  stop()
-}
-
 
 #' Get variant name
 #' Internal function for fetching the variant name based on the number
@@ -184,9 +194,6 @@ get_variant_name <- function(variant) {
   # Check variant url and that it exists
   url <- paste0(GetBaseUrl(), "variants/", variant)
   variant_url <- check_connect(url)
-  if (is.null(variant_url)) {
-    stop_quietly()
-  }
 
   # Extract text with variant name
   variant_text <- httr::content(variant_url, "text", encoding = "UTF-8") ####
@@ -221,9 +228,6 @@ GetUrl2 <- function(url, check = TRUE) {
     hent_klass <- check_connect(url)
   } else {
     hent_klass <- httr::GET(url = url)
-  }
-  if (is.null(hent_klass)) {
-    return(invisible(NULL))
   }
   klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") ## deserialisering with httr function
   return(klass_text)
@@ -360,10 +364,6 @@ get_klass <- function(
   if (type == "kor") {
     klass_text <- GetUrl2(url)
 
-    if (is.null(klass_text)) {
-      stop_quietly()
-    }
-
     if (grepl("no correspondence table", klass_text)) {
       stop(
         "No correspondence table found between classes ",
@@ -377,9 +377,6 @@ get_klass <- function(
     }
   } else {
     klass_text <- GetUrl2(url)
-  }
-  if (is.null(klass_text)) {
-    stop_quietly()
   }
 
   if (klass_text == '{\"codes\":[]}') {

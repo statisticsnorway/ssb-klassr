@@ -18,4 +18,5 @@ README.md
 LICENSE.md
 SECURITY.md
 ^inst$
+^misc$
 ^\.lintr

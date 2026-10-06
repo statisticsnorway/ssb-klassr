@@ -22,13 +22,9 @@ GetNums <- function(x) {
 #' @return text in json format
 GetUrl <- function(url) {
   hent_klass <- check_connect(url)
-  if (is.null(hent_klass)) {
-    return(invisible(NULL))
-  } else {
-    klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") ## deserialisering med httr funksjonen content
-    klass_data <- jsonlite::fromJSON(klass_text)
-    return(klass_data)
-  }
+  klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") ## deserialisering med httr funksjonen content
+  klass_data <- jsonlite::fromJSON(klass_text)
+  return(klass_data)
 }
 
 
