@@ -41,11 +41,18 @@ GetUrl <- function(url) {
 #' head(list_klass(codelists = TRUE))
 list_klass <- function(codelists = FALSE, language = "nb") {
   fams <- list_family()$family_nr
-  Klist <- data.frame(klass_name = NA, klass_nr = NA, klass_family = NA, klass_type = NA)
+  Klist <- data.frame(
+    klass_name = NA,
+    klass_nr = NA,
+    klass_family = NA,
+    klass_type = NA
+  )
 
   # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
-  code <- ifelse(code == "", paste0(code, "?language=", language),
+  code <- ifelse(
+    code == "",
+    paste0(code, "?language=", language),
     paste0(code, "&language=", language)
   )
 
@@ -54,7 +61,12 @@ list_klass <- function(codelists = FALSE, language = "nb") {
     dt <- data.frame(GetUrl(url)$classifications)
     nums <- as.vector(sapply(dt$X_links[, 1], GetNums))
     if (nrow(dt) > 0) {
-      dt2 <- data.frame(klass_name = dt$name, klass_nr = nums, klass_family = i, klass_type = dt$classificationType)
+      dt2 <- data.frame(
+        klass_name = dt$name,
+        klass_nr = nums,
+        klass_family = i,
+        klass_type = dt$classificationType
+      )
       Klist <- rbind(Klist, dt2)
     }
   }
@@ -82,7 +94,9 @@ ListKlass <- function(codelists = FALSE, language = "nb") {
 list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
   # create code for including codelists and language
   code <- ifelse(codelists, "?includeCodelists=true", "")
-  code <- ifelse(code == "", paste0(code, "?language=", language),
+  code <- ifelse(
+    code == "",
+    paste0(code, "?language=", language),
     paste0(code, "&language=", language)
   )
 
@@ -92,7 +106,8 @@ list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
     dt <- data.frame(GetUrl(url)$"_embedded"$classificationFamilies)
     nums <- as.vector(sapply(dt$X_links$self$href, FUN = GetNums))
     dt2 <- data.frame(
-      family_name = dt$name, family_nr = nums,
+      family_name = dt$name,
+      family_nr = nums,
       number_of_classifications = dt$numberOfClassifications
     )
   }
@@ -100,7 +115,13 @@ list_family <- function(family = NULL, codelists = FALSE, language = "nb") {
   # If a family is given the show classifications within that family
   if (!is.null(family)) {
     family <- MakeChar(family)
-    url <- paste(GetBaseUrl(), "classificationfamilies/", family, code, sep = "")
+    url <- paste(
+      GetBaseUrl(),
+      "classificationfamilies/",
+      family,
+      code,
+      sep = ""
+    )
     dt <- data.frame(GetUrl(url)$classifications)
     nums <- as.vector(sapply(dt$X_links[, 1], GetNums))
     dt2 <- data.frame(klass_name = dt$name, klass_nr = nums)
@@ -131,7 +152,15 @@ ListFamily <- function(family = NULL, codelists = FALSE, language = "nb") {
 search_klass <- function(query, codelists = FALSE, size = 20) {
   query <- as.character(query)
   code <- ifelse(codelists, "&includeCodelists=true", "")
-  url <- paste(GetBaseUrl(), "classifications/search?query=", query, code, "&size=", size, sep = "")
+  url <- paste(
+    GetBaseUrl(),
+    "classifications/search?query=",
+    query,
+    code,
+    "&size=",
+    size,
+    sep = ""
+  )
   dt <- data.frame(GetUrl(url)$"_embedded"$searchResults)
   nums <- as.vector(sapply(dt$X_links$self$href, GetNums))
   dt2 <- data.frame(klass_name = dt$name, klass_nr = nums)
@@ -159,16 +188,28 @@ SearchKlass <- function(query, codelists = FALSE, size = 20) {
 #'
 #' @examples
 #' get_version(7)
-get_version <- function(classification = NULL, date = NULL, family = NULL, klassNr = FALSE) {
-  if (is.null(date)) date <- Sys.Date()
+get_version <- function(
+  classification = NULL,
+  date = NULL,
+  family = NULL,
+  klassNr = FALSE
+) {
+  if (is.null(date)) {
+    date <- Sys.Date()
+  }
   if (is.null(family)) {
-    if (klassNr == TRUE) stop("To output classification number from this function you need to input a family number")
+    if (klassNr == TRUE) {
+      stop(
+        "To output classification number from this function you need to input a family number"
+      )
+    }
     classification <- MakeChar(classification)
     url <- paste(GetBaseUrl(), "classifications/", classification, sep = "")
     df <- as.data.frame(GetUrl(url)$versions)
     df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
     for (i in 1:nrow(df)) {
-      cond <- as.Date(date) >= as.Date(df$validFrom[i]) & as.Date(date) < as.Date(df$validTo[i])
+      cond <- as.Date(date) >= as.Date(df$validFrom[i]) &
+        as.Date(date) < as.Date(df$validTo[i])
       if (cond) {
         vers <- GetNums(df$`_links`$self$href[i])
       }
@@ -181,11 +222,16 @@ get_version <- function(classification = NULL, date = NULL, family = NULL, klass
     for (i in fam$klass_nr) {
       url <- paste(GetBaseUrl(), "classifications/", i, sep = "")
       df <- as.data.frame(GetUrl(url)$versions)
-      if (length(df) == 0) next() # Check if there is a valid version number
-      if (is.null(df$validTo)) df$validTo <- as.character(Sys.Date() + 1)
+      if (length(df) == 0) {
+        next()
+      } # Check if there is a valid version number
+      if (is.null(df$validTo)) {
+        df$validTo <- as.character(Sys.Date() + 1)
+      }
       df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
       for (j in 1:nrow(df)) {
-        cond <- as.Date(date) >= as.Date(df$validFrom[j]) & as.Date(date) < as.Date(df$validTo[j])
+        cond <- as.Date(date) >= as.Date(df$validFrom[j]) &
+          as.Date(date) < as.Date(df$validTo[j])
         if (cond) {
           vers <- c(vers, GetNums(df$`_links`$self$href[j]))
           klass_nr <- c(klass_nr, i)
@@ -202,9 +248,19 @@ get_version <- function(classification = NULL, date = NULL, family = NULL, klass
 
 #' @rdname get_version
 #' @param klass Deprecated; use `classification` instead.
-GetVersion <- function(klass = NULL, date = NULL, family = NULL, klassNr = FALSE) {
+GetVersion <- function(
+  klass = NULL,
+  date = NULL,
+  family = NULL,
+  klassNr = FALSE
+) {
   .Deprecated("get_version")
-  get_version(classification = klass, date = date, family = family, klassNr = klassNr)
+  get_version(
+    classification = klass,
+    date = date,
+    family = family,
+    klassNr = klassNr
+  )
 }
 
 
@@ -296,7 +352,8 @@ correspond_list <- function(classification, date = NULL) {
     m2 <- match(findName, vers_names)
     newdate <- date
     counter <- 0
-    while (is.na(m2) & counter < 10) { # hvis versjonen ikke ble funnet på date søkes det tilbake i tid
+    while (is.na(m2) & counter < 10) {
+      # hvis versjonen ikke ble funnet på date søkes det tilbake i tid
       newdate <- as.character(as.Date(newdate) - 60)
       versValidold <- get_version(family = fam, date = newdate, klassNr = TRUE)
       vers_names <- get_name(versValidold$vers)
@@ -304,7 +361,11 @@ correspond_list <- function(classification, date = NULL) {
       counter <- counter + 1
       cat(".")
     }
-    sourceTarget <- ifelse(is.na(m2), NA, as.character(versValid[m2, "klass_nr"]))
+    sourceTarget <- ifelse(
+      is.na(m2),
+      NA,
+      as.character(versValid[m2, "klass_nr"])
+    )
     source_klass[i] <- ifelse(m == 1, classification, sourceTarget)
     target_klass[i] <- ifelse(m == 1, sourceTarget, classification)
   }
@@ -313,7 +374,8 @@ correspond_list <- function(classification, date = NULL) {
     correspondence_name = dt$name,
     source_klass = source_klass,
     target_klass = target_klass,
-    correspondence_table, stringsAsFactors = FALSE
+    correspondence_table,
+    stringsAsFactors = FALSE
   )
   row.names(dt2) <- NULL
   dt2$target_klass[dt2$source_klass == dt2$target_klass] <- NA # dropping target for tables within version
