@@ -68,8 +68,8 @@ library(klassR)
 
 ## 2. Search for a classification
 
-To fetch a classification from *KLASS* you need the unique classification
-number. This can be found in the URL of the *KLASS* website or you can search
+To fetch a classification from *Klass* you need the unique classification
+number. This can be found in the URL of the *Klass* website or you can search
 for it in R using one of the following functions.
 
 ### List all classifications
@@ -139,7 +139,7 @@ to that it occurs several times in different langauges in the database.
 
 To fetch a complete classification, use the `get_klass` function together with
 the unique identifier. For example, to fetch the Standard Industrial
-Classifications (*KLASS* number 6) we run:
+Classifications (*Klass* number 6) we run:
 
 ```{r, eval=F}
 industry <- get_klass(6)
@@ -172,7 +172,7 @@ kable(head(get_klass(6, output_level = 1)))
 ### Language
 
 In the above examples we have seen that the names are returned in Norwegian
-(Bokmål). However, many of the classification in *KLASS* are in multiple
+(Bokmål). However, many of the classification in *Klass* are in multiple
 languages. The output language can be specified as Bokmål ("nb"), Nynorsk ("nn")
 or English ("en") using the `language` parameter. *Note: all 3 languages are not
 available for all classifcations.*
@@ -265,7 +265,7 @@ Again, the `language` and `output_level` can be specified.
 
 ## 5. Working with dates
 
-Classifications will often change over time. The *KLASS* database considers this
+Classifications will often change over time. The *Klass* database considers this
 and older classifications can be fetched using the `date` parameter.
 
 ### Specify a specific date
@@ -345,7 +345,7 @@ the municipality number would be needed to map the changes more accurately.
 
 ### Future classification
 
-Classification that are valid in the future are also included in *KLASS*. They
+Classification that are valid in the future are also included in *Klass*. They
 can be fetched out by specifying the future date. A message will be shown to
 indicate that this is a future classification. No additional parameters need to
 be specified.
@@ -354,7 +354,7 @@ be specified.
 ## 6. Correspondence tables
 
 In addition to small changes in time, some classifications will change
-completely and a correspondence table is then defined within the *KLASS*
+completely and a correspondence table is then defined within the *Klass*
 database. These can be fetched or applied using `get_klass` and `apply_klass`
 functions together with the `correspond` parameter which should give the unique
 classification number to convert into.
