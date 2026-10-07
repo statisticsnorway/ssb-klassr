@@ -1,3 +1,12 @@
+# klassR 1.0.8
+- Further improvements to error signaling
+- Failure to retrieve Klass data from the API now gives an error
+- Tests are more robust to API unavailability
+
+# klassR 1.0.7
+- Improves error messaging
+- Relies less on the Klass API during testing, using pre-saved data
+
 # klassR 1.0.6
 - Introduces find_equivalent_codes
 

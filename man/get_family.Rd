@@ -21,5 +21,7 @@ Family number
 Identify corresponding family from a classification number
 }
 \examples{
+\donttest{
 get_family(classification = 7)
+}
 }
