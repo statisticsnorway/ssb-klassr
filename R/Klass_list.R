@@ -299,7 +299,9 @@ GetName <- function(version) {
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' get_family(classification = 7)
+#' }
 get_family <- function(classification) {
   classification <- MakeChar(classification)
   K <- list_klass(codelists = TRUE)
