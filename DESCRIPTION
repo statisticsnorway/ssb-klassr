@@ -19,7 +19,7 @@ Authors@R:
     person("Statistics Norway", role = "cph"))
 Description: Functions to search, retrieve, apply and update classification 
   standards and code lists using Statistics Norway's API 
-  <https://www.ssb.no/klass> from the system 'KLASS'. Retrieves classifications 
+  <https://dataportal.ssb.no/classifications?types=Classifications> from the system 'KLASS'. Retrieves classifications 
   by date with options to choose language, hierarchical level and formatting.
 Depends:
     R (>= 3.5.0)
