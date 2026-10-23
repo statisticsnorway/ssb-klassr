@@ -21,7 +21,7 @@ Levels(input_level, output_level, klass_data)
 
 - klass_data:
 
-  Classification file retrieved from KLASS.
+  Classification file retrieved from Klass.
 
 ## Value
 

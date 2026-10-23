@@ -1,5 +1,20 @@
 # Changelog
 
+## klassR 1.0.8
+
+CRAN release: 2026-10-07
+
+- Further improvements to error signaling
+- Failure to retrieve Klass data from the API now gives an error
+- Tests are more robust to API unavailability
+
+## klassR 1.0.7
+
+CRAN release: 2026-08-21
+
+- Improves error messaging
+- Relies less on the Klass API during testing, using pre-saved data
+
 ## klassR 1.0.6
 
 CRAN release: 2026-06-16

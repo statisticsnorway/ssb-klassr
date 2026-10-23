@@ -1,10 +1,12 @@
-### Introduction
+# klassR - search and retrieve classifications from Statistics Norway’s Klass API
+
+## Introduction
 
 This repository is the repo for the R-package **klassR**. The package is
 designed to provide an easy interface to retrieving classifications from
 Statistic Norway’s classification database.
 
-### Quick guide
+## Quick guide
 
 To install the `klassR` package use
 
@@ -19,8 +21,10 @@ library(klassR)
 ```
 
 To fetch a classification, use the `get_klass` function together with
-the klass number from SSBs [KLASS](https://www.ssb.no/klass/). For
-example occupation classifications (klass number 7) can be fetched with
+the klass number from SSBs
+[Klass](https://dataportal.ssb.no/classifications?types=Classification).
+For example occupation classifications (klass number 7) can be fetched
+with
 
 ``` R
 get_klass(7)
@@ -33,6 +37,10 @@ A more in depth introduction to **klassR** can be found at:
 
 ## All functions
 
+- [`api_endringer_1963`](api_endringer_1963.md) : Test data for changes
+  in municipality codes from 1963 onwards
+- [`api_endringer_2019`](api_endringer_2019.md) : Test data for changes
+  in municipality codes from 2019 onwards
 - [`apply_klass()`](apply_klass.md) [`ApplyKlass()`](apply_klass.md) :
   Match and convert a classification
 - [`correspond_list()`](correspond_list.md)

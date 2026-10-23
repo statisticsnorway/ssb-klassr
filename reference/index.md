@@ -2,6 +2,10 @@
 
 ## All functions
 
+- [`api_endringer_1963`](api_endringer_1963.md) : Test data for changes
+  in municipality codes from 1963 onwards
+- [`api_endringer_2019`](api_endringer_2019.md) : Test data for changes
+  in municipality codes from 2019 onwards
 - [`apply_klass()`](apply_klass.md) [`ApplyKlass()`](apply_klass.md) :
   Match and convert a classification
 - [`correspond_list()`](correspond_list.md)

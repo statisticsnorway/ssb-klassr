@@ -27,6 +27,8 @@ Family number
 ## Examples
 
 ``` r
+# \donttest{
 get_family(classification = 7)
 #> [1] "1"
+# }
 ```

@@ -5,13 +5,14 @@
 Do you have a Norwegian data set with codes for Standard Industrial
 Classification that you want to find out what they mean? Or data with
 Norwegian municipality numbers and no names? Or perhaps you want to
-convert English standard occupations into Ny Norsk for a figure. These
+convert English standard occupations into nynorsk for a figure. These
 are tasks which the R package **klassR** can help you with.
 
-Statistics Norway’s [*KLASS*](https://www.ssb.no/en/klass/) is a central
-database of classifications and code lists. An API makes it easy to
-fetch these standards in different computing environments. **klassR**
-provides an easy interface to fetch and apply these in R.
+Statistics Norway’s
+[*Klass*](https://dataportal.ssb.no/classifications?types=Classifications)
+is a central database of classifications and code lists. An API makes it
+easy to fetch these standards in different computing environments.
+**klassR** provides an easy interface to fetch and apply these in R.
 
 For Statistic Norway employees, the package is installed on most of our
 platforms. For others, it can be installed from CRAN with:
@@ -35,8 +36,8 @@ library(klassR)
 
 ## 2. Search for a classification
 
-To fetch a classification from *KLASS* you need the unique
-classification number. This can be found in the URL of the *KLASS*
+To fetch a classification from *Klass* you need the unique
+classification number. This can be found in the URL of the *Klass*
 website or you can search for it in R using one of the following
 functions.
 
@@ -73,12 +74,12 @@ list_klass(codelists = TRUE)
 
 | klass_name | klass_nr | klass_family | klass_type |
 |:---|:---|:---|:---|
-| Standard for yrkesklassifisering | 7 | 1 | Klassifikasjon |
 | Kodeliste for arbeidstid (hel-/deltid) | 149 | 1 | Kodeliste |
 | Kodeliste for arbeidsmarkedsstatus | 161 | 1 | Kodeliste |
 | Kodeliste for arbeidsgiveravgiftstype | 162 | 1 | Kodeliste |
 | Kodeliste for delpopulasjon for lønn og sysselsetting | 163 | 1 | Kodeliste |
 | Kodeliste for arbeidsforhold | 164 | 1 | Kodeliste |
+| Kodeliste for sysselsettingsstatus | 165 | 1 | Kodeliste |
 
 ### Search for a classification using a keyword
 
@@ -104,9 +105,9 @@ search_klass(query = "ARENA")
 | Classification of important Norwegian fishing areas | 33 |
 | Classification of agricultural holdings by size of utilised agricultural area | 378 |
 | Classification of productive forest area by development class | 70 |
-| Classification of land use and land cover | 118 |
 | Classification of productive forest area by site quality (H40) | 71 |
 | Classification of forest owners with at last 25 decares productive forest area by owner group | 22 |
+| Classification of land use and land cover | 118 |
 | Classification of type of building /cadastre | 31 |
 | Classification of Standard Industrial Classification | 6 |
 | Classification of Land classification system in the Norwegian general map series at scale 1:5 000 - 1:10 000 | 28 |
@@ -152,7 +153,7 @@ database.
 
 To fetch a complete classification, use the `get_klass` function
 together with the unique identifier. For example, to fetch the Standard
-Industrial Classifications (*KLASS* number 6) we run:
+Industrial Classifications (*Klass* number 6) we run:
 
 ``` r
 
@@ -195,7 +196,7 @@ head(industry)
 ### Language
 
 In the above examples we have seen that the names are returned in
-Norwegian (Bokmål). However, many of the classification in *KLASS* are
+Norwegian (Bokmål). However, many of the classification in *Klass* are
 in multiple languages. The output language can be specified as Bokmål
 (“nb”), Nynorsk (“nn”) or English (“en”) using the `language` parameter.
 *Note: all 3 languages are not available for all classifcations.*
@@ -302,7 +303,7 @@ Again, the `language` and `output_level` can be specified.
 
 ## 5. Working with dates
 
-Classifications will often change over time. The *KLASS* database
+Classifications will often change over time. The *Klass* database
 considers this and older classifications can be fetched using the `date`
 parameter.
 
@@ -416,14 +417,14 @@ to map the changes more accurately.
 ### Future classification
 
 Classification that are valid in the future are also included in
-*KLASS*. They can be fetched out by specifying the future date. A
+*Klass*. They can be fetched out by specifying the future date. A
 message will be shown to indicate that this is a future classification.
 No additional parameters need to be specified.
 
 ## 6. Correspondence tables
 
 In addition to small changes in time, some classifications will change
-completely and a correspondence table is then defined within the *KLASS*
+completely and a correspondence table is then defined within the *Klass*
 database. These can be fetched or applied using `get_klass` and
 `apply_klass` functions together with the `correspond` parameter which
 should give the unique classification number to convert into.

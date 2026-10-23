@@ -31,17 +31,17 @@ includes the classification name, number, family and type.
 ``` r
 head(list_klass(codelists = TRUE))
 #>                                              klass_name klass_nr klass_family
-#> 2                      Standard for yrkesklassifisering        7            1
-#> 3                Kodeliste for arbeidstid (hel-/deltid)      149            1
-#> 4                    Kodeliste for arbeidsmarkedsstatus      161            1
-#> 5                 Kodeliste for arbeidsgiveravgiftstype      162            1
-#> 6 Kodeliste for delpopulasjon for lønn og sysselsetting      163            1
-#> 7                          Kodeliste for arbeidsforhold      164            1
-#>       klass_type
-#> 2 Klassifikasjon
-#> 3      Kodeliste
-#> 4      Kodeliste
-#> 5      Kodeliste
-#> 6      Kodeliste
-#> 7      Kodeliste
+#> 2                Kodeliste for arbeidstid (hel-/deltid)      149            1
+#> 3                    Kodeliste for arbeidsmarkedsstatus      161            1
+#> 4                 Kodeliste for arbeidsgiveravgiftstype      162            1
+#> 5 Kodeliste for delpopulasjon for lønn og sysselsetting      163            1
+#> 6                          Kodeliste for arbeidsforhold      164            1
+#> 7                    Kodeliste for sysselsettingsstatus      165            1
+#>   klass_type
+#> 2  Kodeliste
+#> 3  Kodeliste
+#> 4  Kodeliste
+#> 5  Kodeliste
+#> 6  Kodeliste
+#> 7  Kodeliste
 ```
