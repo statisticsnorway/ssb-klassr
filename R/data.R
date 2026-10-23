@@ -34,3 +34,15 @@
 #' A nested list of graph data for using in testing
 #'
 "klass_131_1964_graph"
+
+#' Test data for changes in municipality codes from 1963 onwards
+#'
+#' A data.frame containing information about changes in municipality codes
+#'
+"api_endringer_1963"
+
+#' Test data for changes in municipality codes from 2019 onwards
+#'
+#' A data.frame containing information about changes in municipality codes
+#'
+"api_endringer_2019"

@@ -11,7 +11,7 @@ Levels(input_level, output_level, klass_data)
 
 \item{output_level}{Classification level for which the codes and names are desired by the user.}
 
-\item{klass_data}{Classification file retrieved from KLASS.}
+\item{klass_data}{Classification file retrieved from Klass.}
 }
 \value{
 Data frame with the input and extra desired classification levels. Includes codes and names for each level.

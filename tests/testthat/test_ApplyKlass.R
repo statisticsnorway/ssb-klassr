@@ -1,6 +1,7 @@
 test_that("apply_klass returns correct names for numeric codes", {
   data(klassdata)
-  kommune_names <- apply_klass(klassdata$kommune,
+  kommune_names <- apply_klass(
+    klassdata$kommune,
     classification = 131,
     date = "2015-01-01"
   )
@@ -10,7 +11,8 @@ test_that("apply_klass returns correct names for numeric codes", {
 
 test_that("apply_klass returns correct names for numeric codes", {
   data(klassdata)
-  kommune_names <- apply_klass(klassdata$kommune,
+  kommune_names <- apply_klass(
+    klassdata$kommune,
     classification = 131,
     date = "2015-01-01"
   )
@@ -20,7 +22,8 @@ test_that("apply_klass returns correct names for numeric codes", {
 
 test_that("apply_klass returns correct names for character codes", {
   data(klassdata)
-  sektor_names <- apply_klass(c("INNL", "UTL", "B_FIN"),
+  sektor_names <- apply_klass(
+    c("INNL", "UTL", "B_FIN"),
     classification = 39,
     date = "2019-01-01"
   )
@@ -77,7 +80,8 @@ test_that("apply_klass can return a variant classification", {
   dat <- c("000", "101", "102", "103")
   dat <- c("01.21", "01.46", "10.61")
 
-  dat_new <- klassR::apply_klass(dat,
+  dat_new <- klassR::apply_klass(
+    dat,
     classification = 6,
     variant = 1616,
     date = "2021-01-02"
@@ -95,21 +99,18 @@ test_that("apply_klass can return a variant classification", {
 })
 
 
-test_that(
-  "apply_klass works for variant classification with Norwegian characters in the variant name",
-  {
-    dat <- c("05", "01")
-    new <- apply_klass(
-      dat,
-      classification = 6,
-      variant = 1616,
-      output_level = 1,
-      output = "name",
-      date = "2020-01-01"
-    )
-    expect_equal(new[1], "Bergverksdrift og utvinning")
-  }
-)
+test_that("apply_klass works for variant classification with Norwegian characters in the variant name", {
+  dat <- c("05", "01")
+  new <- apply_klass(
+    dat,
+    classification = 6,
+    variant = 1616,
+    output_level = 1,
+    output = "name",
+    date = "2020-01-01"
+  )
+  expect_equal(new[1], "Bergverksdrift og utvinning")
+})
 
 
 test_that("An error is correctly returned in the case of a null vector", {
@@ -175,7 +176,6 @@ test_that("Municipality classification with missing formatting", {
     "Number missing leading 0: 2"
   )
   expect_equal(new[1], "Oslo")
-
 
   # Check mixture of formatting
   dat <- c("45112", "45.111")
